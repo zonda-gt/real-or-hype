@@ -1,8 +1,11 @@
 # For every segment carrying the creator's real voice: does the cut land in a real pause?
 # Thresholds are relative to the clip's own noise floor (mall noise ~-38 dB defeats a fixed threshold).
 import sys,os,subprocess,numpy as np
-os.chdir(sys.argv[1]); txt=open(sys.argv[2]).read()
-S=eval(txt[txt.index('S=[')+2:txt.index(']\nREACT=')+1],{'V':'VID_20260910_'})
+os.chdir(sys.argv[1])
+if sys.argv[2].endswith('variants.py'):     # cutcheck.py <dir> scripts/variants.py <VAR>
+    sys.path.insert(0,os.path.dirname(os.path.abspath(sys.argv[2]))); import variants; S=variants.S[sys.argv[3]]
+else:
+    txt=open(sys.argv[2]).read(); S=eval(txt[txt.index('S=[')+2:txt.index(']\nREACT=')+1],{'V':'VID_20260910_'})
 def src(n):
     for e in ('.MOV','.mp4'):
         if os.path.exists('orig/'+n+e): return 'orig/'+n+e

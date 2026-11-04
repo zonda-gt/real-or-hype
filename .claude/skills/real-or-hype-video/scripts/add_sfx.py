@@ -9,9 +9,10 @@ def peak_db(f):
 # (file, peak offset in file, moment, role volume, trim)
 ev=[('whoosh_es',0.310,st['O1'],0.45,None),('whoosh_es',0.310,st['A1'],0.45,None),('whoosh_es',0.310,st['R1'],0.45,None),
     ('pop_es',0.0,st['O5']+0.03,0.40,None),
-    ('ding',0.05,st['I4']+0.13,0.55,(0,0.45)),
     ('real_es',0.335,st['V1']+1.1,0.45,None),
     ('buzz',0.0,st['V1']+2.0,0.18,None)]
+dk='I4' if 'I4' in st else ('B1' if 'B1' in st else None)
+if dk: ev.append(('ding',0.05,st[dk]+0.13,0.55,(0,0.45)))
 inp=['-i',inp_v]; fc=''
 for i,(n,po,t,v,tr) in enumerate(ev):
     f=f'sfx/{n}.wav'; inp+=['-i',f]; g=10**((-6-peak_db(f))/20)*v; ms=max(0,int((t-po)*1000))

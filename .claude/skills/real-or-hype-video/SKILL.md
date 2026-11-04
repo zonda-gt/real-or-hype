@@ -7,7 +7,7 @@ description: Plan, script, review footage for, and edit "Real or Hype?" short-fo
 
 The creator reacts to a viral video of a place, goes there, tests the claim, and gives a verdict.
 Series name **Real or Hype?** (not "Fact or Hype", which belongs to the reference creator @itstundeanthony). Verdict wording: "Trees: real. Mall: hype."
-Reference episode: 1000 Trees, final = v14 (Nov 2026). Pipeline: `scripts/v13_render.py` → `scripts/subs.py` (burn with `ass=...:fontsdir=`) → `scripts/add_sfx.py` → earshot `timeline`/`measure` QA is the template for new episodes.
+Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `scripts/vr_all.sh <dir> A B C` = `vr_render.py` (segments from `variants.py`; no creator handle) → `cutcheck.py` → `subs.py` → `add_sfx.py` → earshot `measure`. `v13_render.py` is the older single-video renderer and still shows the handle, so don't use it is the template for new episodes.
 
 ## Pre-delivery checklist (run before sending any cut)
 
@@ -33,7 +33,7 @@ Reference episode: 1000 Trees, final = v14 (Nov 2026). Pipeline: `scripts/v13_re
 ## 2. Getting footage
 
 - Never ask for tokens in chat; suggest environment secrets. If pasted anyway: `umask 077`, task use only, then remind him to log out of all devices.
-- Alipan share: `POST api.alipan.com/v2/share_link/get_share_token`; list `/adrive/v2/file/list_by_share` (page with `marker`); previews with audio `/v2/file/get_share_link_video_preview_play_info` (Bearer + `x-share-token`), download the m3u8 with `ffmpeg -headers 'Referer: https://www.alipan.com/' -c copy`. Originals via `/v2/file/get_download_url`; files over ~100 MB, or anything after a token refresh, fail, so use the top FHD/QHD preview (`scripts/getfhd.sh`). Tokens last 2 h; refresh at `auth.alipan.com/v2/account/token`.
+- Alipan share: `POST api.alipan.com/v2/share_link/get_share_token`; list `/adrive/v2/file/list_by_share` (page with `marker`); previews with audio `/v2/file/get_share_link_video_preview_play_info` (Bearer + `x-share-token`), download the m3u8 with `ffmpeg -headers 'Referer: https://www.alipan.com/' -c copy`. **Originals** via `/v2/file/get_download_url`: the returned OSS link is signed for the header **`Referer: https://www.aliyundrive.com/`** (the old domain; check `x-oss-additional-headers`). `alipan.com` gives 403 SignatureDoesNotMatch, and no Referer gives 400. Files **over 100 MB get no link at all** (empty `url`, a web-API limit): only for those, use the top FHD/QHD preview (`scripts/getfhd.sh`), and tell the creator which clips are previews. Previews are 608×1080 / 810×1440 at 2–4 Mbps against 13–30 Mbps originals, so they're visibly softer. **Always check every source**: compare the file size with the Alipan listing and list original vs preview. Colour after tone-mapping matches between preview and original (within 1–2 levels), so swapping changes sharpness, not colour. Even better: ask him to share footage on Google Drive, which always gives originals. Tokens last 2 h; refresh at `auth.alipan.com/v2/account/token`.
 - Google Drive file: `drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`. Folder listing: `drive.google.com/embeddedfolderview?id=<FOLDER>`.
 
 ## 3. Footage review (before writing a word)
@@ -59,12 +59,12 @@ His phrases: "First you get to this station…", "check this out", "the only thi
 
 | Beat | What |
 | --- | --- |
-| Hook 0–5.3 s | Him full frame (silent deadpan). Viral clip as a rounded card on the left (594×1056 @ 54,634) with the @handle, **window shifted and sped (start 0.5 s, 1.3×) so the claim → turn → landmark reveal all show**. White pill "Real or Hype?". Hook VO states the claim only ("This mall in Shanghai has a thousand trees on it."). Clip music ducked to 0.22. |
+| Hook 0–5.3 s | Him full frame (silent deadpan). Viral clip as a rounded card on the left (594×1056 @ 54,634), **with no creator handle or credit on screen** (the creator's decision; suggest tagging the original creator in the post caption instead), **window shifted and sped (start 0.5 s, 1.3×) so the claim → turn → landmark reveal all show**. White pill "Real or Hype?". Hook VO states the claim only ("This mall in Shanghai has a thousand trees on it."). Clip music ducked to 0.22. |
 | Punch 2 s | Series sting `gd/sting.mp3` ("Is It Real or Hype_.mp3", sung). Envelope onsets: Is 0.01, real 0.51, or 0.99, hype 1.34. Captions IS IT @0, REAL @0.45, OR HYPE? @0.93. Fade out from 1.95 s. |
 | Bar | "☐ REAL OR ☐ HYPE 💩" (Anton) at the top until the verdict. |
 | Outside ~12 s | Station (clean window), bike with the landmark behind him, panel shot (viral clip inset ONLINE over his grey shot REAL LIFE), him at the planter wall, close-ups, him with the sculptures. |
 | Inside ~13 s | His entrance line (captioned), atrium/escalators, "Six floors here. Absolutely huge." (captioned), 1–2 shops, the price tag with his "$20,000" + yellow punch (price stated once). |
-| Verdict ~10 s | Ticks are **colour-coded**: REAL = green box with ✓ and green word, plus a click; HYPE = red box with ✗ and red word 💩, plus a low buzz (`v13_verdict.py`, `sfx/buzz.wav`). **Narrated** over interior-architecture b-roll: the reason ("far from the city center, not much inside" → "only two or three days, skip it"), then the ticks TREES ☑ REAL / MALL ☑ HYPE 💩. |
+| Verdict ~10 s | Ticks are **colour-coded**: REAL = green box with ✓ and green word, plus the `mallet/up4` success chime; HYPE = red box with ✗ and red word 💩, plus a low buzz (`v13_verdict.py`, `sfx/buzz.wav`). **Narrated** over interior-architecture b-roll: the reason ("far from the city center, not much inside" → "only two or three days, skip it"), then the ticks TREES ☑ REAL / MALL ☑ HYPE 💩. |
 
 Rules:
 - Cuts every 1–2 s.
@@ -99,6 +99,15 @@ git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3
 - Openverse (`api.openverse.org`, no key) is fine for CC0 effects. **Not for music**: almost all its music is Jamendo CC BY-NC-ND (non-commercial, no derivatives). Freesound blocks automated downloads (403), so don't try to get around that. Wikimedia needs a descriptive User-Agent.
 - **Music**: the creator adds a trending sound in Instagram at about 10–15%, or sends a licensed track (Epidemic, Artlist or Pixabay) for me to bake in after the sting and cut to its beat. Top Shanghai travel TikToks (Nov 2026) most often used "No Reason" by Ryan.B. Episode 1's timeline showed 0.6–1.05 s dead-air gaps, which music fills.
 
+## 5c. Trial-reel variants (`scripts/variants.py`, `scripts/vr_render.py`, `scripts/vr_all.sh`)
+
+Make 3 versions that change **only the hook/angle**, and post them as Instagram Trial Reels with the same music:
+- **A, claim hook**: reaction card + claim VO.
+- **B, price shock**: open 1.5 s on the steadiest price-tag shot with his "$20,000" and the yellow punch, then the card with "This bike is in a mall in Shanghai with a thousand trees on it." The bike/price leaves the inside section (replaced by another shop shot).
+- **C, how-to guide**: "Everyone's posting this mall in Shanghai. Here's how to get there." → "Take line 3 or 4 to Zhongtan Road, exit 3." → bike → his "Because you can get the best pictures from this park right here." with a BEST PHOTO SPOT label → the rest, with less shopping.
+
+`variants.py` holds each segment list and its overlays; `vr_all.sh <dir> A B C` renders, cut-checks, subtitles, adds SFX and runs earshot `measure`, stopping on the first error. **Never move or replace source files while a render is running.** Open with a steady shot: scan the hook shot at 0.1 s for motion and start on the stillest window.
+
 ## 6. Delivery
 
 540p preview via SendUserFile; full file in the working directory. Script and shot list live in the user's Claude Doc "Shanghai: Fact or Hype? — Content Plan & Scripts".
@@ -125,6 +134,8 @@ git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3
 | Scooter crossed the shot unnoticed | 0.1 s intrusion scan |
 | "huge" clipped again: the old checker used a fixed -38 dB threshold, which mall noise defeats, and a CUT result was accepted | Noise-relative `cutcheck.py`, never accept FAIL, use another take |
 | Two effects were wrong for their moment and I couldn't hear it | Rank effects with earshot before using them |
+| B opened on a motion-blurred price tag | Scan the opening shot for motion and start on the stillest window |
+| 9 of 17 clips were soft Alipan previews without anyone noticing | List original vs preview for every source; Referer aliyundrive.com gets originals under 100 MB |
 | True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |

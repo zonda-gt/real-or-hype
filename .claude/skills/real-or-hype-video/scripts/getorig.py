@@ -11,7 +11,7 @@ def work(n):
         r=subprocess.run(['curl','-sS','-m','30','-X','POST','https://api.alipan.com/v2/file/get_download_url','-H','Content-Type: application/json','-H','Referer: https://www.alipan.com/','-H','Authorization: Bearer '+AT,'-d',json.dumps({"drive_id":f['drive_id'],"file_id":f['file_id'],"expire_sec":3600})],capture_output=True,text=True)
         try: url=json.loads(r.stdout)['url']
         except Exception: continue
-        subprocess.run(['curl','-sS','-m','1200','-H','Referer: https://www.alipan.com/','-o',out,url])
+        subprocess.run(['curl','-sS','-m','1200','-H','Referer: https://www.aliyundrive.com/','-o',out,url])
         if os.path.exists(out) and os.path.getsize(out)==f['size']: return n,'ok'
     return n,'fail'
 with cf.ThreadPoolExecutor(4) as ex:
