@@ -40,8 +40,9 @@ Reference episode: 1000 Trees, final = v14 (Nov 2026). Pipeline: `scripts/v13_re
 
 1. Transcribe every clip (`scripts/wtx.py`); check `volumedetect` first, because Whisper invents text on silent clips.
 2. 6 frames per clip (`strips.py`), then every 2 s for clips over 20 s (`dense.py`), then **every 0.5 s at ≥200 px** for candidates (`big.py`), then the 0.1 s intrusion scan (checklist #8) on the chosen windows.
-3. Choose for **looks**: him and the landmark in one frame, him interacting with the place, interior **architecture** (atrium, escalators, signature columns), and his "we're at the entrance…" piece to camera.
-4. Verify each in/out point with a frame grab. Never label what you haven't verified.
+3. **Let the footage decide the story.** Every episode is different (North Bund had no "getting there" at all; it was about what's there and the views). List what the clips actually contain (his lines, the best views, the test of the claim, price, crowds), then build the middle from that. Don't ask him to film missing beats from a template.
+4. Choose for **looks**: him and the landmark in one frame, him interacting with the place, the place's signature visual (atrium/escalators for a mall, the skyline through the window for a view café), and any piece to camera he did.
+5. Verify each in/out point with a frame grab. Never label what you haven't verified.
 
 ## 4. Narration voice
 
@@ -55,15 +56,18 @@ His phrases: "First you get to this station…", "check this out", "the only thi
 - **One voice for the whole video.** Echo and ballad mispronounce "mall". Fallback if there's no key: edge-tts `en-US-AndrewMultilingualNeural` via `scripts/tts.py`.
 - Write verdicts so they can't be misheard: "Overall: trees, real. Mall, hype."
 
-## 5. Edit format (v11 structure, ~39 s)
+## 5. Edit format (~39 s)
+
+Fixed in every episode: **Hook → Punch → Bar → [middle] → Verdict**. The middle is built from the footage (section 3). Episode 1's middle (Outside / Inside rows below) is one example, not a required order.
 
 | Beat | What |
 | --- | --- |
 | Hook 0–5.3 s | Him full frame (silent deadpan). Viral clip as a rounded card on the left (594×1056 @ 54,634) with the @handle, **window shifted and sped (start 0.5 s, 1.3×) so the claim → turn → landmark reveal all show**. White pill "Real or Hype?". Hook VO states the claim only ("This mall in Shanghai has a thousand trees on it."). Clip music ducked to 0.22. |
 | Punch 2 s | Series sting `gd/sting.mp3` ("Is It Real or Hype_.mp3", sung). Envelope onsets: Is 0.01, real 0.51, or 0.99, hype 1.34. Captions IS IT @0, REAL @0.45, OR HYPE? @0.93. Fade out from 1.95 s. |
 | Bar | "☐ REAL OR ☐ HYPE 💩" (Anton) at the top until the verdict. |
-| Outside ~12 s | Station (clean window), bike with the landmark behind him, panel shot (viral clip inset ONLINE over his grey shot REAL LIFE), him at the planter wall, close-ups, him with the sculptures. |
-| Inside ~13 s | His entrance line (captioned), atrium/escalators, "Six floors here. Absolutely huge." (captioned), 1–2 shops, the price tag with his "$20,000" + yellow punch (price stated once). |
+| *Ep 1 example:* Outside ~12 s | Station (clean window), bike with the landmark behind him, panel shot (viral clip inset ONLINE over his grey shot REAL LIFE), him at the planter wall, close-ups, him with the sculptures. |
+| *Ep 1 example:* Inside ~13 s | His entrance line (captioned), atrium/escalators, "Six floors here. Absolutely huge." (captioned), 1–2 shops, the price tag with his "$20,000" + yellow punch (price stated once). |
+| Middle ~25 s (per episode) | Whatever tests the claim best, in the order that tells it: e.g. what's there → the claim checked against reality (ONLINE / REAL LIFE panel when he has a matching angle) → the one number (price/queue) → his best line. His real lines captioned. |
 | Verdict ~10 s | Ticks are **colour-coded**: REAL = green box with ✓ and green word, plus a click; HYPE = red box with ✗ and red word 💩, plus a low buzz (`v13_verdict.py`, `sfx/buzz.wav`). **Narrated** over interior-architecture b-roll: the reason ("far from the city center, not much inside" → "only two or three days, skip it"), then the ticks TREES ☑ REAL / MALL ☑ HYPE 💩. |
 
 Rules:
