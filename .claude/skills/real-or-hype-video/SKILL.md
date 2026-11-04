@@ -7,7 +7,7 @@ description: Plan, script, review footage for, and edit "Real or Hype?" short-fo
 
 The creator reacts to a viral video of a place, goes there, tests the claim, and gives a verdict.
 Series name **Real or Hype?** (not "Fact or Hype", which belongs to the reference creator @itstundeanthony). Verdict wording: "Trees: real. Mall: hype."
-Reference episode: 1000 Trees, final = v13 (Nov 2026). Pipeline: `scripts/v13_render.py` → `scripts/subs.py` (burn with `ass=...:fontsdir=`) → `scripts/add_sfx.py` is the template for new episodes.
+Reference episode: 1000 Trees, final = v14 (Nov 2026). Pipeline: `scripts/v13_render.py` → `scripts/subs.py` (burn with `ass=...:fontsdir=`) → `scripts/add_sfx.py` → earshot `timeline`/`measure` QA is the template for new episodes.
 
 ## Pre-delivery checklist (run before sending any cut)
 
@@ -79,12 +79,25 @@ Technical:
 - Place narration and overlays from **measured** segment lengths (ffprobe), and re-encode the concat audio with `aresample=async=1` (otherwise it drifts ~0.15 s).
 - Overlays are PIL PNGs (`v8_overlays.py`, `v9_overlays_extra.py`); fonts are in `scripts/`.
 
-## 5b. Sound effects (`scripts/add_sfx.py`, assets in `sfx/`)
+## 5b. Sound effects and audio QA with earshot
 
-- Whoosh into each section cut (station, "let's go inside", verdict), with its peak 0.305 s after start, landing on the cut. Pop when the ONLINE/REAL LIFE panel appears. Ding on the price tag (trim 0.45 s, before his voice starts). Click on each checkbox tick. Levels 0.4–0.7 under -15 LUFS speech; the speech window must not get quieter.
-- Sources: **Openverse** API (`api.openverse.org/v1/audio/?q=...&license=cc0`, no key needed). Its Freesound results return 403 to automated downloads, so don't try to get around that. Wikimedia Commons results download fine **with a descriptive User-Agent** (they return 429 without one), but most "whoosh"/"pop" hits there are people saying the word. `ding.wav` (typewriter ding) and `click.wav` (karabiner) are CC0 from Wikimedia. `whoosh.wav` and `pop.wav` are synthesized (`scripts/synth_sfx.py`).
-- Don't add a music bed: he adds a trending Instagram sound when posting.
-- Tools assessed (Nov 2026): **Openverse** = yes, for SFX. **HyperFrames** (HeyGen, HTML→MP4, Node ≥22 + ffmpeg, `npx skills add heygen-com/hyperframes`) = optional, for animated captions (pop-in/bounce); not used yet. The "earshot" plugin = Claude Code notification sounds, not useful for videos.
+**earshot** ([Leonxlnx/earshot](https://github.com/Leonxlnx/earshot), MIT, CPU only, no key) gives the agent "ears". Install once per session (~3 min + 1.1 GB of models):
+```bash
+git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3 -m venv .venv \
+ && .venv/bin/python -m pip install -q torch --index-url https://download.pytorch.org/whl/cpu \
+ && .venv/bin/python -m pip install -q -e . && .venv/bin/python -m earshot doctor --fetch
+```
+- **Pick effects by ranking, not by guessing**: render 5–7 candidates from its 252-sound bank (`earshot sfx render <id> -o x.wav [--dur 0.6 --apex 0.30]`), include the current sound, then `earshot rank "<what the moment needs>" *.wav`. Keep the one it calls *strong* and whose "sounds most like" reading fits. Episode 1 found that my synth pop "sounds like a kick drum" and my click was "no match" for a correct-answer chime.
+- Current set (in `sfx/`, placed by `scripts/add_sfx.py`, with each effect's **peak** on its moment, every effect peak-normalised to -6 dBFS before its role volume):
+  - whoosh `whoosh_fast/tight` (rendered dur 0.6, apex 0.30) into each section cut
+  - pop `pop/0` when the ONLINE/REAL LIFE panel appears
+  - typewriter ding on the price tag
+  - REAL `mallet/up4` ("success chime", peak at 0.335 s)
+  - HYPE my buzz ("error buzz")
+- **Final QA**: `earshot timeline final.mp4 --video final.mp4` (gaps, loudness, sync of hits to cuts) and `earshot measure final.mp4`. Targets: about -15 LUFS integrated, **true peak ≤ -1 dBTP** (the final limiter is `alimiter=limit=0.84`), and no dead-air gap over ~0.5 s unless music will fill it.
+- Its limits (README): genre and mood are "hints only"; it can't judge taste, speech content or licences, and it can't find music.
+- Openverse (`api.openverse.org`, no key) is fine for CC0 effects. **Not for music**: almost all its music is Jamendo CC BY-NC-ND (non-commercial, no derivatives). Freesound blocks automated downloads (403), so don't try to get around that. Wikimedia needs a descriptive User-Agent.
+- **Music**: the creator adds a trending sound in Instagram at about 10–15%, or sends a licensed track (Epidemic, Artlist or Pixabay) for me to bake in after the sting and cut to its beat. Top Shanghai travel TikToks (Nov 2026) most often used "No Reason" by Ryan.B. Episode 1's timeline showed 0.6–1.05 s dead-air gaps, which music fills.
 
 ## 6. Delivery
 
@@ -111,5 +124,7 @@ Technical:
 | "OR HYPE?" caption lagged the singing | Sync to envelope onsets, 2 frames early |
 | Scooter crossed the shot unnoticed | 0.1 s intrusion scan |
 | "huge" clipped again: the old checker used a fixed -38 dB threshold, which mall noise defeats, and a CUT result was accepted | Noise-relative `cutcheck.py`, never accept FAIL, use another take |
+| Two effects were wrong for their moment and I couldn't hear it | Rank effects with earshot before using them |
+| True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |
