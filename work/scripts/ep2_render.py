@@ -1,6 +1,6 @@
 # Episode 2 (North Bund vs the Bund) full render. Usage: ep2_render.py <workdir>
-# Structure built from the footage: hook -> sting -> "Don't go to the Bund" (night crowd cutaway) -> "come to the North Bund"
-# -> skyline + "zero people" -> ONLINE/REAL LIFE panel -> bars & restaurants -> mirror-egg park -> "absolute gem" -> verdict.
+# Structure (v2, creator's order): hook -> sting -> "We are at the North Bund / come with me" -> explore (restaurants, bars, park)
+# -> payoff: the view (ONLINE/REAL LIFE, skyline, zero people) -> verdict ("Don't go to the Bund" + crowd, "come here instead", ticks).
 import subprocess,os,sys,json
 os.chdir(sys.argv[1]); O='ov/'; V='VID_20260916_'
 def src(n):
@@ -27,17 +27,16 @@ SP=1.4
 S=[
  ('H1','hook',None,5.3,None),
  ('H2','react',(9.8,),2.0,None),
- ('T1','talk',('IMG_5095',6.70,10.60,SP,[(1.75,'IMG_5113',1.4)]),None,None),        # Don't go to the Bund... (X arms) -> night crowd at the 外滩 sign
- ('T2','talk',('IMG_5096',1.45,6.92,SP,[]),None,None),                                # Instead, come to this place, the North Bund...
- ('T3','talk',('IMG_5103',4.05,6.80,SP,[]),None,None),                                # look at this beautiful skyline (selfie)
- ('T4','talk',('IMG_5103',10.92,14.17,SP,[(0.0,'IMG_5098',9.6)]),None,None),         # zero people -> empty promenade
- ('P1','panel',(V+'171459_005',0.2,9.3),2.4,'same'),
+ ('W1','talk',('IMG_5093',6.70,9.15,SP,[]),None,None),                                # We are at the North Bund in China. (clean take; the 9.0 take has a passer-by)
+ ('W2','talk',('IMG_5097',1.95,3.85,SP,[]),None,None),                                # Come with me, guys, come with me. (walks out of frame)
  ('T5','talk',(V+'171108_002',55.00,59.65,SP,[(1.6,V+'173805_023',2.4)]),None,None), # restaurants and bars -> terrace
  ('T6','talk',(V+'171108_002',68.20,70.75,SP,[]),None,None),                          # which the real Bund doesn't have
- ('E1','clip',(V+'174403_031',0.0,0.0),1.35,'egg'),
- ('E2','clip',(V+'173900_025',3.3,0.0),1.30,None),
- ('E3','photo',('IMG_2155',V+'174323_030',2.0,0.7),1.0,None),
- ('T7','talk',(V+'172120_010',28.95,33.00,SP,[(1.3,V+'172451_013',8.6)],4.0),None,None), # absolute gem compared to the real Bund
+ ('K1','talk',(V+'172120_010',54.00,59.75,SP,[(1.1,V+'174403_031',0.0),(2.5,'IMG_2155',0)]),None,None), # park behind it -> mirror egg -> his photo
+ ('P1','panel',(V+'171459_005',0.2,9.3),1.7,'same2'),                                 # payoff: the view, ONLINE vs REAL LIFE
+ ('T3','talk',('IMG_5103',4.05,6.80,SP,[]),None,None),                                # look at this beautiful skyline (selfie)
+ ('T4','talk',('IMG_5103',10.92,14.17,SP,[(0.0,'IMG_5098',9.6)]),None,None),         # zero people -> empty promenade
+ ('T1','talk',('IMG_5095',6.70,10.60,SP,[(1.75,'IMG_5113',1.4)]),None,None),        # verdict: Don't go to the Bund... -> night crowd at the 外滩 sign
+ ('T2','talk',('IMG_5096',1.45,6.92,SP,[]),None,None),                                # Instead, come to this place, the North Bund...
  ('R1','clip',(V+'172008_009',44.0,0.0),2.19,'verdict'),
  ('R2','clip',('IMG_5112',1.4,0.35),2.25,None),
 ]
@@ -64,6 +63,10 @@ for sid,kind,args,d,narr in S:
             end=pieces[i+1][0] if i+1<len(pieces) else d; pd=end-to
             if pn==n and psp==sp:
                 vin=0; fc+=f'[0:v]trim=start={to*sp:.3f}:duration={pd*sp:.3f},setpts=(PTS-STARTPTS)/{sp},{full(f)},trim=duration={pd:.3f}[p{i}];'
+            elif src(pn).endswith('.jpg'):
+                inputs+=['-i',src(pn)]; k=inputs.count('-i')-1; fr=int(round(pd*30))+2
+                fc+=(f"[{k}:v]scale=1188:2112:force_original_aspect_ratio=increase,crop=1188:2112,setsar=1,"
+                     f"zoompan=z='1+0.06*on/{fr}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={fr}:s=1080x1920:fps=30,format=yuv420p,trim=duration={pd:.3f},setpts=PTS-STARTPTS[p{i}];")
             else:
                 inputs+=['-ss',str(ss),'-t',str(pd+0.2),'-i',src(pn)]; k=inputs.count('-i')-1
                 fc+=f'[{k}:v]{full(src(pn))},trim=duration={pd:.3f},setpts=PTS-STARTPTS[p{i}];'
@@ -74,7 +77,7 @@ for sid,kind,args,d,narr in S:
     elif kind=='panel':
         n,a,herin=args
         fc=(f'[0:v]{full(src(n))}[bg];[1:v]scale=760:-2,crop=760:700:0:ih*0.14,fps=30,format=rgba[p0];[2:v]format=gray[m];[p0][m]alphamerge[p1];'
-            f'[bg][p1]overlay=160:1060[v1];[v1][3:v]overlay[v2];[v2][4:v]overlay[v];[0:a]{AFMT},volume=0.15[a]')
+            f'[bg][p1]overlay=160:1060[v1];[v1][3:v]overlay[v2];[v2][4:v]overlay[v];[0:a]{AFMT},volume=0.6[a]')
         cmd=['ffmpeg','-loglevel','error','-y','-ss',str(a),'-t',str(d),'-i',src(n),'-ss',str(herin),'-t',str(d),'-i',HER,'-i',O+'m_panel.png','-i',O+'l_online.png','-i',O+'l_real.png',
              '-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]
     elif kind=='photo':
@@ -93,8 +96,8 @@ run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i','seg/list.
 st=starts
 # verdict word onsets in vo/verdict.wav (envelope): "The Bund" 1.99, "real" 1.30, "hype" 2.65; narration placed at R1+0.25; graphics 2 frames early
 VOFF=0.25; REAL_T=st['R1']+VOFF+1.30-0.067; HYPE_T=st['R1']+VOFF+2.65-0.067
-ovs=[('p1.png',st['H2'],st['H2']+0.45),('p2.png',st['H2']+0.45,st['H2']+0.93),('p3.png',st['H2']+0.93,st['T1']),
-     ('bar.png',st['T1'],REAL_T),('l_bund.png',st['T1']+1.75,st['T2']),('l_north.png',st['T2']+(3.62-1.45)/SP-0.067,st['T3']),
+ovs=[('p1.png',st['H2'],st['H2']+0.45),('p2.png',st['H2']+0.45,st['H2']+0.93),('p3.png',st['H2']+0.93,st['W1']),
+     ('bar.png',st['W1'],REAL_T),('l_north.png',st['W1']+(7.40-6.70)/SP-0.067,st['W2']),('l_bund.png',st['T1']+1.75,st['T2']),
      ('v1.png',REAL_T,total),('v2.png',HYPE_T,total)]
 inputs=['-i','seg/base.mp4']; fc='[0:v]null[v0];'; last='v0'
 for i,(png,a,b) in enumerate(ovs):

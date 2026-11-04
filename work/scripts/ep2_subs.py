@@ -26,7 +26,7 @@ for key,sid,text in lines:
         allw.append(('main',align(text,f'{SEGDIR}/{key}.mp4',st[key])))
     else:
         off=0.2 if key=='hook' else st[sid]+(0.25 if key=='verdict' else 0.08)
-        allw.append(({'hook':'hook','same':'panel'}.get(key,'main'),align(text,f'{VO}/{key}.wav',off)))
+        allw.append(({'hook':'hook','same':'panel','same2':'panel'}.get(key,'main'),align(text,f'{VO}/{key}.wav',off)))
 def ts(x): return f'{int(x//3600)}:{int(x%3600//60):02d}:{x%60:05.2f}'
 ass="""[Script Info]
 ScriptType: v4.00+
