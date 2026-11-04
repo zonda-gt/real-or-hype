@@ -65,3 +65,26 @@ def mask(name,w,h,r):
     m=Image.new('L',(w,h),0); ImageDraw.Draw(m).rounded_rectangle((0,0,w-1,h-1),radius=r,fill=255); m.save(O+name)
 mask('m_card.png',594,1056,34); mask('m_panel.png',760,700,34)
 print('ok')
+# --- episode 2 extras: place labels + colour-coded verdict rows
+label('l_bund.png','THE BUND',330); label('l_north.png','NORTH BUND',330)
+GREEN=(40,220,90,255); RED=(240,50,50,255); WHITE=(255,255,255,255); BLACK=(0,0,0,255)
+def vbox(kind,s):
+    im=Image.new('RGBA',(s+12,s+12),(0,0,0,0)); d=ImageDraw.Draw(im)
+    d.rectangle((4,4,s+8,s+8),fill=GREEN if kind=='tick' else RED,outline=BLACK,width=8)
+    if kind=='tick':
+        pts=[(s*0.22+6,s*0.52+6),(s*0.43+6,s*0.74+6),(s*0.84+6,s*0.22+6)]
+        d.line(pts,fill=BLACK,width=22,joint='curve'); d.line(pts,fill=WHITE,width=12,joint='curve')
+    else:
+        for a,b in [((s*0.25+6,s*0.25+6),(s*0.75+6,s*0.75+6)),((s*0.75+6,s*0.25+6),(s*0.25+6,s*0.75+6))]:
+            d.line([a,b],fill=BLACK,width=22); d.line([a,b],fill=WHITE,width=12)
+    return im
+def vtxt(t,size,col):
+    f=ImageFont.truetype(ANTON,size); d=ImageDraw.Draw(Image.new('RGBA',(1,1))); b=d.textbbox((0,0),t,font=f,stroke_width=7)
+    im=Image.new('RGBA',(b[2]-b[0]+10,b[3]-b[1]+10),(0,0,0,0)); ImageDraw.Draw(im).text((5-b[0],5-b[1]),t,font=f,fill=col,stroke_width=7,stroke_fill=BLACK); return im
+def vrow(c,y,parts):
+    tw=sum(p.width for p in parts)+16*(len(parts)-1); x=int(W/2-tw/2)
+    for p in parts: c.alpha_composite(p,(x,int(y-p.height/2))); x+=p.width+16
+s=120
+c=canvas(); vrow(c,H*0.40,[vtxt('NORTH BUND',s,WHITE),vbox('tick',int(s*0.82)),vtxt('REAL',s,GREEN)]); c.save(O+'v1.png')
+c=canvas(); vrow(c,H*0.50,[vtxt('THE BUND',s,WHITE),vbox('cross',int(s*0.82)),vtxt('HYPE',s,RED),emoji('💩',int(s*0.6))]); c.save(O+'v2.png')
+print('extras ok')
