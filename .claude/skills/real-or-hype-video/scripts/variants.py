@@ -46,3 +46,6 @@ HOOKVO['D']=VODIR+'/d_hook.wav'
 
 # when the green REAL and red HYPE ticks appear, seconds after V1 starts (on the spoken words)
 TICKS={'A':(1.1,2.0),'B':(1.1,2.0),'C':(1.1,2.0),'D':(1.0,2.26)}
+
+# D2: D's body with a minimal hook line that only names the place (the reaction + sting are the hook)
+S['D2']=list(S['D']); HOOKVO['D2']=VODIR+'/d2_hook.wav'; TICKS['D2']=TICKS['D']
