@@ -75,7 +75,7 @@ k=len(ovs)+1
 for t0,key in nar: inputs+=['-i',f'{variants.VODIR}/{key}.wav']
 inputs+=['-i','gd/sting.mp3']
 for j,(t0,key) in enumerate(nar):
-    ms=int(t0*1000+(250 if key=='verdict' else 80))
+    ms=int(t0*1000+(250 if key.endswith('verdict') else 80))
     fc+=f'[{k+j}:a]aformat=channel_layouts=stereo,loudnorm=I=-15:TP=-1.5,adelay={ms}|{ms}[d{j}];'
 sj=k+len(nar); hs=int(st['H2']*1000)
 fc+=f'[{sj}:a]aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-14:TP=-1.5,afade=t=out:st=1.95:d=0.4,adelay={hs}|{hs}[sting];'

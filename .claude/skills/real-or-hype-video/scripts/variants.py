@@ -31,8 +31,18 @@ HOOKVO={'A':VODIR+'/hook.wav','B':VODIR+'/hook_b.wav','C':VODIR+'/hook_c.wav'}
 def ovs(var,st,total):
     o=[('p1.png',st['H2'],st['H2']+0.45),('p2.png',st['H2']+0.45,st['H2']+0.93),('p3.png',st['H2']+0.93,st['O1']),
        ('bar.png',st['O1'],st['V1']),('l_station.png',st['O1'],st['O2']),
-       ('v1.png',st['V1']+1.1,total),('v2.png',st['V1']+2.0,total)]
+       ('v1.png',st['V1']+TICKS[var][0],total),('v2.png',st['V1']+TICKS[var][1],total)]
     if 'I4' in st: o.append(('p20k.png',st['I4']+0.1,st['R1']))
     if 'B1' in st: o.append(('p20k.png',st['B1']+0.1,st['H1']))
     if 'P1' in st: o.append(('l_photo.png',st['P1'],st['O5']))
     return o
+
+# D: A's edit with a script in the "you-hook + open loops + closing question" formula (another creator's style, adapted)
+_D_KEYS={'station':'d_station','bike':'d_bike','green':'d_green','pillar':'d_pillar','close':'d_close','inside':'d_inside',
+         'thisbike':'d_thisbike','far':'d_far','skip':'d_skip','verdict':'d_verdict'}
+_D_DUR={'O1':3.02,'O7':2.3,'O8':2.4,'A1':1.08,'I3':1.0,'R1':3.28,'R2':2.8,'V1':3.85}
+S['D']=[(sid,k,a,_D_DUR.get(sid,d),_D_KEYS.get(key,key)) for sid,k,a,d,key in S['A'] if sid not in ('M1','I2')]
+HOOKVO['D']=VODIR+'/d_hook.wav'
+
+# when the green REAL and red HYPE ticks appear, seconds after V1 starts (on the spoken words)
+TICKS={'A':(1.1,2.0),'B':(1.1,2.0),'C':(1.1,2.0),'D':(1.0,2.26)}

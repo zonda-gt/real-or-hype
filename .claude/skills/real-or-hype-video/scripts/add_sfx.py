@@ -3,14 +3,16 @@
 # to -6 dBFS, then given a role volume. Times put each effect's PEAK on its moment.
 import sys,os,subprocess,ast,numpy as np
 os.chdir(sys.argv[1]); inp_v,stf,out=sys.argv[2:5]; st=ast.literal_eval(open(stf).read())
+sys.path.insert(0,os.path.join(os.path.dirname(os.path.abspath(__file__)))); import variants
+VAR=os.path.basename(out).split('_')[-1].split('.')[0]; T1,T2=variants.TICKS.get(VAR,(1.1,2.0))
 def peak_db(f):
     a=np.frombuffer(subprocess.run(['ffmpeg','-loglevel','error','-i',f,'-ac','1','-f','f32le','-'],capture_output=True).stdout,dtype=np.float32)
     return 20*np.log10(np.abs(a).max()+1e-9)
 # (file, peak offset in file, moment, role volume, trim)
 ev=[('whoosh_es',0.310,st['O1'],0.45,None),('whoosh_es',0.310,st['A1'],0.45,None),('whoosh_es',0.310,st['R1'],0.45,None),
     ('pop_es',0.0,st['O5']+0.03,0.40,None),
-    ('real_es',0.335,st['V1']+1.1,0.45,None),
-    ('buzz_el',0.345,st['V1']+2.0,0.40,None)]
+    ('real_es',0.335,st['V1']+T1,0.45,None),
+    ('buzz_el',0.345,st['V1']+T2,0.40,None)]
 dk='I4' if 'I4' in st else ('B1' if 'B1' in st else None)
 if dk: ev.append(('ding',0.05,st[dk]+0.13,0.55,(0,0.45)))
 inp=['-i',inp_v]; fc=''
