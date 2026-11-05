@@ -12,7 +12,7 @@ The skill lives in `.claude/skills/real-or-hype-video/`. It contains the workflo
 ```
 Make a Real or Hype video using the real-or-hype-video skill.
 Place: <name, city>
-Viral reaction clip: <Instagram/TikTok link>
+Viral reaction clip: <Douyin/TikTok/Instagram/Xiaohongshu link, or a topic to search for>
 My reaction video + raw footage: <Google Drive folder link, "anyone with the link">
 Claim to test: <e.g. "thousands of trees on a mall">
 Keep it under 40 s.
@@ -21,7 +21,8 @@ Keep it under 40 s.
 ## Keys (set in the cloud environment's settings, never in this repo)
 
 - `OPENAI_API_KEY`: narration voice (OpenAI `gpt-4o-mini-tts`, voice `cedar`)
-- `BRIGHTDATA_API_TOKEN`: finding viral clips and scraping reels
+- TikHub key: finding viral clips on Douyin, TikTok, Instagram and Xiaohongshu, with stats and downloads (`scripts/social_search.py`). Saved as a network secret for `api.tikhub.io`, not a variable.
+- `BRIGHTDATA_API_TOKEN`: fallback for TikTok and Instagram scraping
 
 Footage is best shared as a Google Drive folder set to "anyone with the link".
 

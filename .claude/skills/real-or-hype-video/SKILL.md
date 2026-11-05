@@ -22,11 +22,19 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 9. **Loudness**: his real lines are recorded ~19 dB quieter than the narration. Normalise every real-voice segment (`highpass=f=80,loudnorm=I=-16:TP=-1.5:LRA=11`) and check with `ebur128` that each sits within ~3 LU of the narration (-15 LUFS). Quiet line endings feel "cut off" even when they aren't.
 10. Total under 40 s. Send a 540p preview, and keep the 1080p file.
 
-## 1. Research (Bright Data only)
+## 1. Research (TikHub first, Bright Data as fallback)
 
-- `$BRIGHTDATA_API_TOKEN`. **Never Apify** (the user objected).
-- Instagram Posts `gd_lk5ns7kz21pck8jpis`: scrape a reel by URL (trigger → `/progress/{id}` → `/snapshot/{id}`). There's no hashtag/keyword search on Instagram (profile URLs only). The Reels dataset `gd_lyclm20il4r5helnj` fails on single reels.
-- TikTok Posts `gd_lu702nij2f790tmv9h`, `type=discover_new&discover_by=keyword`, `[{"search_keyword": "..."}]`: the way to find viral clips by topic. Takes 10–30 min, so run it in the background. The Discover API returns "Not found" on this account.
+- **Never Apify** (the user objected).
+- **TikHub** (`api.tikhub.io`) for search on all four platforms: `scripts/social_search.py`. The key is a network secret on the cloud environment (the proxy adds it), so there is no variable to set; elsewhere use `TIKHUB_API_KEY`. Results come back in ~5 s.
+  - `search {douyin,tiktok,instagram,xhs} "<keyword>" [--sort likes] [--recent week] [--pages 2] [--plays]` prints plays, likes, saves, shares, comments and duration, sorted by plays, and saves a JSON. Search Douyin and Xiaohongshu in Chinese ("上海 网红商场"), TikTok and Instagram in English.
+  - `download <results.json> --top 1` or `download <results.json> <id>` saves `<platform>_<id>.mp4` plus a `.json` of its stats. Downloads are free (straight from the platform's CDN), have no platform watermark, and are usually 1080p (Instagram 720p). Saved CDN links expire after a few hours; the script re-fetches the post (one detail call) when that happens.
+  - `link <post URL>`: stats and download for one post you already have (any of the four platforms).
+  - Prices per successful call (failures are free): Douyin search $0.01 (~7–10 videos), TikTok search $0.001 (20), Instagram search $0.002 (12), Xiaohongshu search $0.01 (20), one post $0.001 (Xiaohongshu $0.01), Douyin play counts $0.025 per 20 videos. One episode's research costs well under $1.
+  - Quirks: Douyin search returns plays as 0, so add `--plays` (or run `plays <results.json>`). Xiaohongshu never exposes plays: judge it by likes and saves. Instagram hides likes on some reels. TikTok sort is relevance or likes only (no "newest"). Cloudflare blocks Python's default user agent (error 1010); the script sends its own.
+- **Bright Data** (`$BRIGHTDATA_API_TOKEN`) only if TikHub is down:
+  - Instagram Posts `gd_lk5ns7kz21pck8jpis`: scrape a reel by URL (trigger → `/progress/{id}` → `/snapshot/{id}`). No keyword or hashtag search on Instagram (profile URLs only). The Reels dataset `gd_lyclm20il4r5helnj` fails on single reels.
+  - TikTok Posts `gd_lu702nij2f790tmv9h`, `type=discover_new&discover_by=keyword`, `[{"search_keyword": "..."}]`. Takes 10–30 min, so run it in the background. The Discover API returns "Not found" on this account.
+  - Bright Data has no Douyin or Xiaohongshu scraper, and this account has no Web Unlocker zone.
 - Pick clips with a **checkable claim** (price, queue, "free", "thousands of trees"), not just plays. Prefer Shanghai.
 - Reaction clip choice: same angle and daylight as his footage, recent, and a claim his test can answer.
 
@@ -123,6 +131,7 @@ Make 3 versions that change **only the hook/angle**, and post them as Instagram 
 | Mistake | Rule |
 | --- | --- |
 | Used Apify | Bright Data only |
+| Bright Data took 10–30 min per TikTok search, couldn't search Instagram, and has no Douyin/Xiaohongshu | TikHub first (`social_search.py`), Bright Data as fallback |
 | Scripted from thumbnails, no audio | Transcribe and do frame review first |
 | 6 frames per clip; missed the best shots | 2 s / 0.5 s / 0.1 s passes |
 | Picked the first usable second | Pick for looks |
