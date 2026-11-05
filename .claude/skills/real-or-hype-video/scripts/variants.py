@@ -49,3 +49,7 @@ TICKS={'A':(1.1,2.0),'B':(1.1,2.0),'C':(1.1,2.0),'D':(1.0,2.26)}
 
 # D2: D's body with a minimal hook line that only names the place (the reaction + sting are the hook)
 S['D2']=list(S['D']); HOOKVO['D2']=VODIR+'/d2_hook.wav'; TICKS['D2']=TICKS['D']
+
+# A0: A (the creator's preferred script) with NO hook narration; the viral clip's own audio plays louder instead
+S['A0']=list(S['A']); HOOKVO['A0']=VODIR+'/silence.wav'; TICKS['A0']=TICKS['A']
+HOOKVOL={'A0':0.95}   # viral-clip audio level in the hook (default 0.22 under narration)

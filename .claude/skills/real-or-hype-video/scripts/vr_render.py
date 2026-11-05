@@ -28,7 +28,7 @@ for sid,kind,args,d,narr in S:
     if kind=='hook':
         fc=(f'[0:v]{REACTV}[bg];[1:v]setpts=PTS/1.3,scale=594:1056,fps=30,format=rgba[c0];[2:v]format=gray[m];[c0][m]alphamerge[c1];'
             f'[bg][c1]overlay=54:634[v1];[v1][3:v]overlay[v];'
-            f'[1:a]{AFMT},atempo=1.3,volume=0.22,afade=t=out:st={d-0.5}:d=0.5[m];[4:a]{AFMT},loudnorm=I=-14:TP=-1.5,adelay=200|200,apad[t];[m][t]amix=inputs=2:normalize=0:duration=first[a]')
+            f'[1:a]{AFMT},atempo=1.3,volume={getattr(variants,"HOOKVOL",{}).get(VAR,0.22)},afade=t=out:st={d-0.5}:d=0.5[m];[4:a]{AFMT},{"volume=0" if HOOKVO.endswith("silence.wav") else "loudnorm=I=-14:TP=-1.5"},adelay=200|200,apad[t];[m][t]amix=inputs=2:normalize=0:duration=first[a]')
         cmd=['ffmpeg','-loglevel','error','-y','-ss','0.8','-t',str(d),'-i',REACT,'-ss','0.5','-t',str(d*1.3+0.1),'-i',HER,'-i',O+'m_card.png','-i',O+'pill.png','-i',HOOKVO,
              '-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]
     elif kind=='react':

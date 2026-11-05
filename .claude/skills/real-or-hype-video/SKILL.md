@@ -48,14 +48,9 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 He is **plain, nonchalant, honest**: name the thing, give the number, one flat opinion. No jokes, wordplay or attitude lines ("Don't ask about this chair" was cringe). Read-aloud test: would he say it to a friend? Only words he uses (no "kinda", "lowkey", "bonsai", "unreal"). About 60 words per 40 s.
 His phrases: "First you get to this station…", "check this out", "the only thing is, it is $20,000", "absolutely huge", "overall…".
 
-**Script formula under test (trial reel D, Nov 2026)**, adapted from a successful creator's narration (structure only, keeping his plain, no-jokes voice):
-1. **Hook narration only names the place**: "This is 1000 Trees, a mall in Shanghai." The reaction (his face plus the viral clip's own captions) and the sung sting ARE the hook, so narration must not compete with them. The creator rejected the salesy "Don't go to this viral… until you watch this" (variant D); D2 replaces it. Keep the hook line under ~2.5 s.
-2. **A hard number early** ($20,000, a thousand trees, two minutes, six floors).
-3. **Chronological walk-through with signposts**: "To get here…", "Then…", "First thing?", "Now the inside."
-4. **Question-answer beats**: "And up close? Honestly really nice." "Trees? Real. Mall? Hype."
-5. **A turn before the verdict**: "But here's the thing…"
-6. **End on a question to drive comments**: "Would you still go?"
-At most one or two filler words like "literally" or "honestly" per video, never her "insane"/"masterpiece" register. The creator preferred D's body to A's. **D2 (simple hook + D body) is the current best candidate**; confirm on views and average watch time against A before making it the default.
+**Script style: keep the plain style above (variant A).** We tested another successful creator's formula (variant D: "Don't go… until you watch this", "First thing?", "But here's the thing…", "Would you still go?"). The creator judged that **the original script is better**, so don't use that formula.
+
+**Hook narration: being tested.** A = one claim line ("This mall in Shanghai has a thousand trees on it."). **A0 = no hook narration at all**: the reaction and the viral clip's own captions and audio carry it, and the clip's audio is raised to 0.95 (`HOOKVOL`) so the hook matches the body's loudness (check both with `ebur128`; it was 4.5 dB quieter at 0.55). Whichever wins on watch time becomes the rule. If narration is used, it only names the place or claim, under ~2.5 s, and never sounds salesy.
 
 **Voice: ElevenLabs "Liam"** (voice id `TX3LPaxmHKxFdv7VOQHJ`, model `eleven_multilingual_v2`, stability 0.4, similarity 0.75, style 0.35, speaker boost), chosen by the creator from an audition of 6 ElevenLabs voices plus Cedar. Script: `scripts/eltts.py - <voice_id> "<text>" out.mp3` (`-` reads `ELEVENLABS_API_KEY`). Key: env `ELEVENLABS_API_KEY` (this key has text-to-speech and sound-generation permission only; it can't list voices or read the account, so use known voice ids).
 - Trim with `silenceremove ... start_threshold=-55dB:start_silence=0.03` (front) and `start_silence=0.08` (end), then **`atempo=1.12`**. Liam's natural pace is close to Cedar at 1.27×.
