@@ -48,14 +48,6 @@ Reference episode: 1000 Trees, final = v14 (Nov 2026). Pipeline: `scripts/v13_re
 
 He is **plain, nonchalant, honest**: plain words, but **every line either creates curiosity or pays it off**. Name the thing, give the number, one flat opinion. No puns, wordplay or attitude lines ("Don't ask about this chair" was cringe). Read-aloud test: would he say it to a friend? Only words he uses (no "kinda", "lowkey", "bonsai", "unreal"). About 60 words per 40 s. His own on-camera lines come first; narration only fills what his lines don't cover.
 
-**Script shape** (from a top-performing travel creator the user picked, Nov 2026; episode 2 v3 follows it):
-- Answer first, then promise the proof: "So I came to check it out. And let me show you why it beats the Bund."
-- First person, like telling a friend ("I came", "honestly", "literally"); walk through in order ("First, …", "And right behind it, …").
-- "But the best part? …" right before the most visual moment (the payoff shot).
-- End with a recommendation folded into the verdict: "So if you're in Shanghai: North Bund, real. The Bund, hype."
-- Narration can lead straight into his real line (VO ends on a comma, his clip finishes the sentence).
-- The hook is the viral clip + his reaction with the clip's own sound; no hook VO unless the clip's claim is unreadable.
-
 **How to write narration (per-beat brief, then variants):**
 1. After the footage review, write a beat table: for each beat, what's on screen, what he already says there, the job of the line (hook / bridge / payoff / verdict), and a word budget (~2.5 words per second of screen time at atempo 1.27).
 2. For every narration line, write **8–10 variants** in his voice across patterns: plain statement, contrast ("Everyone goes to X. Nobody comes here."), promise ("the X view, without the X crowd"), open loop ("wait till you see what's behind it"), number (only numbers you can verify). Use the hook bank (`hook_bank.md`, built from real top travel reels) as examples.
@@ -75,7 +67,7 @@ Fixed in every episode: **Hook → Punch → Bar → [middle] → Verdict**. The
 
 | Beat | What |
 | --- | --- |
-| Hook 0–5.3 s | Him full frame (silent deadpan). Viral clip as a rounded card on the left (594×1056 @ 54,634) with the @handle, **window shifted and sped (start 0.5 s, 1.3×) so the claim → turn → landmark reveal all show**. White pill "Real or Hype?". **Let the viral clip be the hook**: its own sound up for the first ~1.5 s so it reads as a real reaction. If the clip states its claim clearly (voice or big text), add no hook VO; if it's music-only or the text is tiny, add one short VO line or big on-screen text stating the claim ("This mall in Shanghai has a thousand trees on it."), with the clip ducked to 0.22 under it. |
+| Hook 0–5.3 s | Him full frame (silent deadpan). Viral clip as a rounded card on the left (594×1056 @ 54,634), **no @handle or creator name on screen**, **window shifted and sped (start 0.5 s, 1.3×) so the claim → turn → landmark reveal all show**. White pill "Real or Hype?". **Let the viral clip be the hook**: its own sound up for the first ~1.5 s so it reads as a real reaction. If the clip states its claim clearly (voice or big text), add no hook VO; if it's music-only or the text is tiny, add one short VO line or big on-screen text stating the claim ("This mall in Shanghai has a thousand trees on it."), with the clip ducked to 0.22 under it. |
 | Punch 2 s | Series sting `gd/sting.mp3` ("Is It Real or Hype_.mp3", sung). Envelope onsets: Is 0.01, real 0.51, or 0.99, hype 1.34. Captions IS IT @0, REAL @0.45, OR HYPE? @0.93. Fade out from 1.95 s. |
 | Bar | "☐ REAL OR ☐ HYPE 💩" (Anton) at the top until the verdict. |
 | *Ep 1 example:* Outside ~12 s | Station (clean window), bike with the landmark behind him, panel shot (viral clip inset ONLINE over his grey shot REAL LIFE), him at the planter wall, close-ups, him with the sculptures. |
@@ -145,3 +137,4 @@ git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3
 | True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |
+| Showed the viral creator's @handle on the hook | No creator name or @handle anywhere in the video |

@@ -1,9 +1,9 @@
-[["n1","N1","So I came to check it out. And let me show you why it beats the Bund."],
+[["eln1","N1","This is the North Bund. Same skyline as the Bund. So what's different?"],
  ["W2","SEG","Come with me, guys, come with me."],
- ["n2","N2","First, there's a lot of bars and restaurants right on the river,"],
+ ["eln2","N2","There are bars and restaurants right along the river,"],
  ["T6","SEG","which the real Bund doesn't actually have any."],
- ["n3","N3","And right behind it, there's a park with this giant mirror egg. Everyone comes here for photos."],
- ["n4","P1","But the best part? Look at this view."],
+ ["eln3","N3","Behind them, there's a park with a giant mirror egg. This is where everyone takes photos."],
+ ["eln4","P1","And the view? Same as the video."],
  ["T4","SEG","And there's literally zero people here, we can have this place for ourselves."],
  ["T1","SEG","Don't go to the Bund because there's so many people there."],
  ["T2","SEG","Instead, come to this place, the North Bund, is in every way better than the real Bund."]]

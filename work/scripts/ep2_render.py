@@ -1,4 +1,5 @@
 # Episode 2 (North Bund vs the Bund) full render. Usage: ep2_render.py <workdir>
+# Structure (v4: new plain narration, ElevenLabs Liam; v3 creator-style kept in ep2_render_v3.py)
 # Structure (v3, narration rewritten in a first-person 'answer first, then show why' style; v2 kept in ep2_render_v2.py)
 # Structure (v2, creator's order): hook -> sting -> "We are at the North Bund / come with me" -> explore (restaurants, bars, park)
 # -> payoff: the view (ONLINE/REAL LIFE, skyline, zero people) -> verdict ("Don't go to the Bund" + crowd, "come here instead", ticks).
@@ -28,21 +29,21 @@ SP=1.4
 S=[
  ('H1','hook',None,5.3,None),                                                          # viral clip + his reaction, clip's own sound, no VO
  ('H2','react',(9.8,),2.0,None),
- ('N1','clip',(V+'171459_005',0.2,0.15),1.6,'n1'),                                   # "So I came to check it out. And let me show you why it beats the Bund."
- ('N1b','clip',(V+'172451_013',0.0,0.15),1.5,None),
+ ('N1','clip',(V+'171459_005',0.2,0.15),2.0,'eln1'),                                   # "So I came to check it out. And let me show you why it beats the Bund."
+ ('N1b','clip',(V+'172451_013',0.0,0.15),2.2,None),
  ('W2','talk',('IMG_5097',1.95,3.85,SP,[]),None,None),                                # Come with me, guys, come with me.
- ('N2','clip',(V+'172120_010',8.6,0.0),1.35,'n2'),                                   # "First, there's a lot of bars and restaurants right on the river,"
+ ('N2','clip',(V+'172120_010',8.6,0.0),1.35,'eln2'),                                   # "First, there's a lot of bars and restaurants right on the river,"
  ('N2b','clip',(V+'173805_023',2.4,0.2),1.4,None),
  ('T6','talk',(V+'171108_002',68.20,70.75,SP,[]),None,None),                          # ...which the real Bund doesn't actually have any.
- ('N3','clip',(V+'174403_031',0.0,0.25),1.6,'n3'),                                    # park with this giant mirror egg / everyone comes here for photos
- ('N3b','clip',(V+'173900_025',3.3,0.0),1.4,None),
- ('N3c','clip',(V+'174323_030',2.0,0.3),1.25,None),
- ('N3d','photo',('IMG_2155',V+'174323_030',3.25,0.3),1.0,None),
- ('P1','panel',(V+'171459_005',0.2,9.3),2.3,'n4'),                                   # "But the best part? Look at this view."
+ ('N3','clip',(V+'174403_031',0.0,0.25),1.4,'eln3'),                                    # park with this giant mirror egg / everyone comes here for photos
+ ('N3b','clip',(V+'173900_025',3.3,0.0),1.2,None),
+ ('N3c','clip',(V+'174323_030',2.0,0.3),1.6,None),
+ ('N3d','photo',('IMG_2155',V+'174323_030',3.6,0.3),0.8,None),
+ ('P1','panel',(V+'171459_005',0.2,9.3),2.3,'eln4'),                                   # "But the best part? Look at this view."
  ('T4','talk',('IMG_5103',10.92,14.17,SP,[(0.0,'IMG_5098',9.6)]),None,None),         # zero people -> empty promenade
  ('T1','talk',('IMG_5095',6.70,10.60,SP,[(1.75,'IMG_5113',1.4)]),None,None),        # Don't go to the Bund... -> night crowd at the 外滩 sign
  ('T2','talk',('IMG_5096',1.45,6.92,SP,[]),None,None),                                # Instead, come to this place, the North Bund...
- ('R1','clip',(V+'172008_009',44.0,0.25),3.41,'v3'),                                  # "So if you're in Shanghai: North Bund, real. The Bund, hype."
+ ('R1','clip',(V+'172008_009',44.0,0.25),2.44,'elv'),                                  # "So if you're in Shanghai: North Bund, real. The Bund, hype."
  ('R2','clip',('IMG_5112',1.4,0.35),2.1,None),
 ]
 REACT='drive/reaction.mp4'; HER='ref/viral.mp4'; REACTV='scale=1080:1920,fps=30,setsar=1'
@@ -52,9 +53,9 @@ for sid,kind,args,d,narr in S:
     out=f'seg/{sid}.mp4'; starts[sid]=t
     if kind=='hook':   # no VO: the viral clip's own sound carries the hook
         fc=(f'[0:v]{REACTV}[bg];[1:v]setpts=PTS/1.3,scale=594:1056,fps=30,format=rgba[c0];[2:v]format=gray[m];[c0][m]alphamerge[c1];'
-            f'[bg][c1]overlay=54:634[v1];[v1][3:v]overlay[v2];[v2][4:v]overlay[v];'
+            f'[bg][c1]overlay=54:634[v1];[v1][3:v]overlay[v];'
             f'[1:a]{AFMT},atempo=1.3,volume=0.75,afade=t=out:st={d-0.4}:d=0.4,apad[a]')
-        cmd=['ffmpeg','-loglevel','error','-y','-ss','1.0','-t',str(d),'-i',REACT,'-ss','3.5','-t',str(d*1.3+0.1),'-i',HER,'-i',O+'m_card.png','-i',O+'pill.png','-i',O+'credit.png',
+        cmd=['ffmpeg','-loglevel','error','-y','-ss','1.0','-t',str(d),'-i',REACT,'-ss','3.5','-t',str(d*1.3+0.1),'-i',HER,'-i',O+'m_card.png','-i',O+'pill.png',
              '-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]
     elif kind=='react':
         fc=f'[0:v]{REACTV}[v];anullsrc=r=48000:cl=stereo[a]'
@@ -101,7 +102,7 @@ run(['ffmpeg','-loglevel','error','-y','-f','concat','-safe','0','-i','seg/list.
 st=starts
 # verdict word onsets in vo/verdict.wav (envelope): "The Bund" 1.99, "real" 1.30, "hype" 2.65; narration placed at R1+0.25; graphics 2 frames early
 # verdict word onsets in vo/v3.wav (envelope): real 2.59, "The Bund" 3.21, hype 3.96; narration at R1+0.25; graphics 2 frames early
-VKEY='v3'; VOFF=0.25; REAL_T=st['R1']+VOFF+2.59-0.067; HYPE_T=st['R1']+VOFF+3.96-0.067
+VKEY='elv'; VOFF=0.25; REAL_T=st['R1']+VOFF+1.50-0.067; HYPE_T=st['R1']+VOFF+2.96-0.067   # vo/elv.wav onsets (envelope)
 ovs=[('p1.png',st['H2'],st['H2']+0.45),('p2.png',st['H2']+0.45,st['H2']+0.93),('p3.png',st['H2']+0.93,st['N1']),
      ('bar.png',st['N1'],REAL_T),('l_north.png',st['N1'],st['W2']),('l_bund.png',st['T1']+1.75,st['T2']),
      ('v1.png',REAL_T,total),('v2.png',HYPE_T,total)]
