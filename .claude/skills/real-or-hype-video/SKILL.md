@@ -114,6 +114,11 @@ Make 3 versions that change **only the hook/angle**, and post them as Instagram 
 
 `variants.py` holds each segment list and its overlays; `vr_all.sh <dir> A B C` renders, cut-checks, subtitles, adds SFX and runs earshot `measure`, stopping on the first error. **Never move or replace source files while a render is running.** Open with a steady shot: scan the hook shot at 0.1 s for motion and start on the stillest window.
 
+## 5d. Editable CapCut / JianYing projects (experimental)
+
+`scripts/draft_media.py <dir> <VAR> <media_dir>` collects the variant's shots (rendered segments, colour already converted), graphics PNGs, narration, sound effects (gain baked in), the sting and a phrase-level SRT, plus `manifest.json`. `scripts/build_draft.py <jianying|capcut> <media_dir> <manifest> <out> <name>` (venv with `pip install pyJianYingDraft pycapcut`; pyJianYingDraft 0.3.1 uses `append_track(TrackSpec)`, pycapcut 0.0.4 uses `add_track`) writes the draft. Drafts store **absolute media paths**, so make Windows (`C:/RealOrHype/<name>_media`) and Mac (`/Users/Shared/RealOrHype/<name>_media`) copies by rewriting the paths, and ship each with its media folder and a README.
+Gotchas: shot files can be a few ms shorter than their slot (stretch with `speed=mat.duration/slot`); audio lengths must come from the library's own material (ms precision); cap each audio clip before the next one on its track; SRT phrases must not overlap. Newer app versions encrypt drafts and may refuse generated ones, so ask the creator for the app version if a draft won't open. **Not yet confirmed to open in the creator's apps.**
+
 ## 6. Delivery
 
 540p preview via SendUserFile; full file in the working directory. Script and shot list live in the user's Claude Doc "Shanghai: Fact or Hype? — Content Plan & Scripts".
