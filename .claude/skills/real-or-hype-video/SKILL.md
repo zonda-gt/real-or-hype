@@ -48,11 +48,12 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 He is **plain, nonchalant, honest**: name the thing, give the number, one flat opinion. No jokes, wordplay or attitude lines ("Don't ask about this chair" was cringe). Read-aloud test: would he say it to a friend? Only words he uses (no "kinda", "lowkey", "bonsai", "unreal"). About 60 words per 40 s.
 His phrases: "First you get to this station…", "check this out", "the only thing is, it is $20,000", "absolutely huge", "overall…".
 
-**Voice**: OpenAI `gpt-4o-mini-tts`, voice **cedar** (`scripts/oatts.py`, env `OPENAI_API_KEY`), with the instruction: *"Young guy in his twenties narrating a fast-paced travel reel. Upbeat but relaxed and nonchalant, like telling a friend. Natural and casual, not salesy, not an announcer. Quick pace."*
-- Generate one line at a time with retries.
-- Trim with `silenceremove ... start_threshold=-55dB:start_silence=0.03` (front) and `start_silence=0.08` (end), so word tails aren't eaten.
-- Then `atempo` 1.27 (hook 1.23).
-- **One voice for the whole video.** Echo and ballad mispronounce "mall". Fallback if there's no key: edge-tts `en-US-AndrewMultilingualNeural` via `scripts/tts.py`.
+**Voice: ElevenLabs "Liam"** (voice id `TX3LPaxmHKxFdv7VOQHJ`, model `eleven_multilingual_v2`, stability 0.4, similarity 0.75, style 0.35, speaker boost), chosen by the creator from an audition of 6 ElevenLabs voices plus Cedar. Script: `scripts/eltts.py - <voice_id> "<text>" out.mp3` (`-` reads `ELEVENLABS_API_KEY`). Key: env `ELEVENLABS_API_KEY` (this key has text-to-speech and sound-generation permission only; it can't list voices or read the account, so use known voice ids).
+- Trim with `silenceremove ... start_threshold=-55dB:start_silence=0.03` (front) and `start_silence=0.08` (end), then **`atempo=1.12`**. Liam's natural pace is close to Cedar at 1.27×.
+- **After changing voice, check every line fits its shot** (line end + 0.05 s before the next line or real-voice segment starts). Lengthen the b-roll shot under a long line rather than speeding the voice past ~1.15×.
+- To audition voices, render the same 3 lines per voice into one mp3 each and let the creator pick by ear. Measurements only rule out mispronunciations: Will and Charlie said "maul".
+- **One male voice for the whole video**, matching the on-camera creator (a female narrator reads as an unseen co-host; only worth an A/B trial reel). Long term: an ElevenLabs clone of his own voice (needs 2–3 min of clean speech and his consent).
+- Fallbacks: OpenAI `gpt-4o-mini-tts` voice `cedar` (`scripts/oatts.py`, the instruction text is in its history), then edge-tts.
 - Write verdicts so they can't be misheard: "Overall: trees, real. Mall, hype."
 
 ## 5. Edit format (v11 structure, ~39 s)
@@ -93,7 +94,8 @@ git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3
   - pop `pop/0` when the ONLINE/REAL LIFE panel appears
   - typewriter ding on the price tag
   - REAL `mallet/up4` ("success chime", peak at 0.335 s)
-  - HYPE my buzz ("error buzz")
+  - HYPE: **ElevenLabs-generated buzzer** `sfx/buzz_el.wav` ("Quiz show incorrect answer buzzer, short", ranked strong by earshot against my weak synth buzz; peak at 0.345 s)
+  - ElevenLabs sound generation (`POST /v1/sound-generation`) is worth trying for specific real-world sounds, but always rank the result with earshot: its whoosh and cash-register tries lost to the bank and the typewriter ding
 - **Final QA**: `earshot timeline final.mp4 --video final.mp4` (gaps, loudness, sync of hits to cuts) and `earshot measure final.mp4`. Targets: about -15 LUFS integrated, **true peak ≤ -1 dBTP** (the final limiter is `alimiter=limit=0.84`), and no dead-air gap over ~0.5 s unless music will fill it.
 - Its limits (README): genre and mood are "hints only"; it can't judge taste, speech content or licences, and it can't find music.
 - Openverse (`api.openverse.org`, no key) is fine for CC0 effects. **Not for music**: almost all its music is Jamendo CC BY-NC-ND (non-commercial, no derivatives). Freesound blocks automated downloads (403), so don't try to get around that. Wikimedia needs a descriptive User-Agent.

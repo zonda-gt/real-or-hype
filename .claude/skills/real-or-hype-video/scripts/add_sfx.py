@@ -10,7 +10,7 @@ def peak_db(f):
 ev=[('whoosh_es',0.310,st['O1'],0.45,None),('whoosh_es',0.310,st['A1'],0.45,None),('whoosh_es',0.310,st['R1'],0.45,None),
     ('pop_es',0.0,st['O5']+0.03,0.40,None),
     ('real_es',0.335,st['V1']+1.1,0.45,None),
-    ('buzz',0.0,st['V1']+2.0,0.18,None)]
+    ('buzz_el',0.345,st['V1']+2.0,0.40,None)]
 dk='I4' if 'I4' in st else ('B1' if 'B1' in st else None)
 if dk: ev.append(('ding',0.05,st[dk]+0.13,0.55,(0,0.45)))
 inp=['-i',inp_v]; fc=''
