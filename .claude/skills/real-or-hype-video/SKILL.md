@@ -33,7 +33,7 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 ## 2. Getting footage
 
 - Never ask for tokens in chat; suggest environment secrets. If pasted anyway: `umask 077`, task use only, then remind him to log out of all devices.
-- Alipan share: `POST api.alipan.com/v2/share_link/get_share_token`; list `/adrive/v2/file/list_by_share` (page with `marker`); previews with audio `/v2/file/get_share_link_video_preview_play_info` (Bearer + `x-share-token`), download the m3u8 with `ffmpeg -headers 'Referer: https://www.alipan.com/' -c copy`. **Originals** via `/v2/file/get_download_url`: the returned OSS link is signed for the header **`Referer: https://www.aliyundrive.com/`** (the old domain; check `x-oss-additional-headers`). `alipan.com` gives 403 SignatureDoesNotMatch, and no Referer gives 400. Files **over 100 MB get no link at all** (empty `url`, a web-API limit). For those, use the `aliyunpan-login` skill: he approves a QR login once, then the CLI downloads originals of any size from his own drive (have him save a share to his drive first). Only if that is not possible, fall back to the top FHD/QHD preview (`scripts/getfhd.sh`), and tell the creator which clips are previews. Previews are 608×1080 / 810×1440 at 2–4 Mbps against 13–30 Mbps originals, so they're visibly softer. **Always check every source**: compare the file size with the Alipan listing and list original vs preview. Colour after tone-mapping matches between preview and original (within 1–2 levels), so swapping changes sharpness, not colour. Even better: ask him to share footage on Google Drive, which always gives originals. Tokens last 2 h; refresh at `auth.alipan.com/v2/account/token`.
+- Aliyun Drive (阿里云盘 / Alipan): use the `aliyunpan-login` skill. He approves a QR login once, then the CLI downloads originals of any size from his own drive. For a share link, have him save it to his drive first. **Always check every source**: each downloaded file's size must match the drive listing.
 - Google Drive file: `drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`. Folder listing: `drive.google.com/embeddedfolderview?id=<FOLDER>`.
 
 ## 3. Footage review (before writing a word)
@@ -135,7 +135,7 @@ Make 3 versions that change **only the hook/angle**, and post them as Instagram 
 | "huge" clipped again: the old checker used a fixed -38 dB threshold, which mall noise defeats, and a CUT result was accepted | Noise-relative `cutcheck.py`, never accept FAIL, use another take |
 | Two effects were wrong for their moment and I couldn't hear it | Rank effects with earshot before using them |
 | B opened on a motion-blurred price tag | Scan the opening shot for motion and start on the stillest window |
-| 9 of 17 clips were soft Alipan previews without anyone noticing | List original vs preview for every source; Referer aliyundrive.com gets originals under 100 MB; `aliyunpan-login` skill gets originals over 100 MB |
+| 9 of 17 clips were soft Alipan previews without anyone noticing | Download originals with the `aliyunpan-login` skill and check every file's size against the drive listing |
 | True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |

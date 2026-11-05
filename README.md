@@ -27,4 +27,4 @@ Footage is best shared as a Google Drive folder set to "anyone with the link".
 
 ## Aliyun Drive (阿里云盘) footage
 
-`.claude/skills/aliyunpan-login/` logs in to Aliyun Drive with a QR code and downloads original files of any size (the web API stops at 100 MB). The environment's network must allow `alipan.com`, `aliyundrive.com`, `aliyundrive.net` and `api.tickstep.com`.
+`.claude/skills/aliyunpan-login/` logs in to Aliyun Drive with a QR code and downloads original files of any size. The environment's network must allow `alipan.com`, `aliyundrive.com`, `aliyundrive.net` and `api.tickstep.com`.
