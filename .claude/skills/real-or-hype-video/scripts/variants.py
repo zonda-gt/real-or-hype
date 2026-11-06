@@ -35,6 +35,7 @@ def ovs(var,st,total):
     if 'I4' in st: o.append(('p20k.png',st['I4']+0.1,st['R1']))
     if 'B1' in st: o.append(('p20k.png',st['B1']+0.1,st['H1']))
     if 'P1' in st: o.append(('l_photo.png',st['P1'],st['O5']))
+    if var in CONTEXT_TEXT: o.append((CONTEXT_TEXT[var],st['H1'],st['H2']))
     return o
 
 # D: A's edit with a script in the "you-hook + open loops + closing question" formula (another creator's style, adapted)
@@ -53,3 +54,6 @@ S['D2']=list(S['D']); HOOKVO['D2']=VODIR+'/d2_hook.wav'; TICKS['D2']=TICKS['D']
 # A0: A (the creator's preferred script) with NO hook narration; the viral clip's own audio plays louder instead
 S['A0']=list(S['A']); HOOKVO['A0']=VODIR+'/silence.wav'; TICKS['A0']=TICKS['A']
 HOOKVOL={'A0':0.95}   # viral-clip audio level in the hook (default 0.22 under narration)
+
+# on-screen context line during the hook (for viewers watching muted), shown from the first frame until the sting
+CONTEXT_TEXT={'A0':'ctx.png'}
