@@ -1,1 +1,13 @@
 exports/
+video-jobs/**/raw/
+video-jobs/**/work/
+video-jobs/**/search/
+video-jobs/**/*.mp4
+video-jobs/**/*.mp3
+video-jobs/**/*.wav
+video-jobs/**/*.m4a
+video-jobs/**/*.json.raw
+video-jobs/**/frames/
+video-jobs/**/*.jpg
+video-jobs/**/*.png
+video-jobs/**/__pycache__/
