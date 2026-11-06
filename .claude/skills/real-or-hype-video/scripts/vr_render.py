@@ -72,7 +72,7 @@ for i,(png,a,b) in enumerate(ovs):
 # narration from per-line TTS files + series sting
 nar=[(st[sid],key) for sid,kind,args,d,key in S if key]
 k=len(ovs)+1
-for t0,key in nar: inputs+=['-i',f'{variants.VODIR}/{key}.wav']
+for t0,key in nar: inputs+=['-i',f'{variants.vodir(VAR)}/{key}.wav']
 inputs+=['-i','gd/sting.mp3']
 for j,(t0,key) in enumerate(nar):
     ms=int(t0*1000+(250 if key.endswith('verdict') else 80))
