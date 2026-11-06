@@ -9,7 +9,9 @@ The helper script `scripts/aliyunpan-login.sh` (next to this file) builds the CL
 its two-step browser login from a non-interactive shell. Run every step through it.
 
 ```bash
-S=.claude/skills/aliyunpan-login/scripts/aliyunpan-login.sh   # path relative to the repository root
+# Personal skill (~/.claude/skills) if installed there, else the repository copy.
+S=~/.claude/skills/aliyunpan-login/scripts/aliyunpan-login.sh
+[ -f "$S" ] || S=.claude/skills/aliyunpan-login/scripts/aliyunpan-login.sh
 ```
 
 Use this to get **original files of any size**, including files over 100 MB, which the
