@@ -54,8 +54,12 @@ the Aliyun Drive app first; the CLI cannot save another account's share.
    - `who` also shows `三方权益包` (third-party app pack, paid). Downloads work without it
      (`未开通` = not active); the pack adds things like WebDAV and faster download quota.
    - Before downloading a lot, compare total size with free disk space (`df -h /home/user`).
-     Measured speed from a cloud session was about 5 MB/s, so 1 GB takes about 3 minutes.
-     Run long downloads with `run_in_background`.
+     Download with `-p 3 --sp 3` (3 files at once, 3 slices each): one file at a time ran at
+     ~2.5 MB/s, while `-p 3 --sp 3` averaged ~30 MB/s (19.6 GB in 12 minutes) without the paid
+     三方权益包, which therefore isn't needed for downloads. The CLI warns that this is above Alipan's
+     recommended concurrency; lower it if downloads start failing. Run long downloads with
+     `run_in_background`, and if a download is stopped, delete the half-written file (and its
+     `.aliyunpan-downloading` marker) before restarting, because the CLI skips files that already exist.
 
 6. **Log out when done** if the user wants: `bash $S logout`. The user can also remove the
    app's access in their Aliyun Drive account settings.

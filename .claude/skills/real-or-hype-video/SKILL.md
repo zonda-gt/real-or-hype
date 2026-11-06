@@ -13,7 +13,8 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 
 1. **Colour**: every HLG/HDR source (`color_transfer=arib-std-b67`, i.e. all iPhone IMG_* clips) is tone-mapped to BT.709; no saturation boost. Make a before/after frame if anything changed.
 2. **His real lines end in silence**: `scripts/cutcheck.py "$PWD" scripts/<render>.py` must print **ALL OK** (it exits 1 otherwise). It measures against each clip's own noise floor, because mall noise ~-38 dB defeats a fixed threshold. It needs ≥0.15 s of silence before the cut and no speech within 0.05 s after. **Never accept a FAIL.** If he runs straight into the next word, there is no safe cut: find **another take of the same words** (he usually repeats lines; e.g. "absolutely huge" came from take 1 at IMG_4855 25.50–27.30), splice takes as a jump cut, or end on b-roll.
-3. **Don't trust Whisper alone for cut words**: it "completes" clipped words. Use the energy checks above; use Whisper only to confirm the right words are present.
+3. **Don't trust Whisper alone for cut words**: it "completes" clipped words. Use the energy checks above; use Whisper only to confirm the right words are present. `CUTDEBUG=1` makes `cutcheck.py` list the voiced frames around each cut.
+   **Whisper with `language='en'` translates Chinese speech into fake English** (coaches, other visitors, shouting in loud water). Before captioning a line as his, run language detection on the segment (it must come back `en`), and re-transcribe it with auto language: if the words change, don't use it.
 4. **Narration never overlaps**: each AI line ends before the next starts, and the last line ends before the video does.
 5. **Graphics sync to sung/spoken word onsets**: measure onsets from the audio envelope (not Whisper word times) and show each word's caption 2 frames *before* its onset.
 6. **Subtitles** on every spoken line (`scripts/subs.py`): exact script text, timed from Whisper word stamps on the exact audio used (energy fallback), chunks of ≤3 words, current word yellow, Montserrat ExtraBold 66 px with a 6 px outline, MarginV 430 (hook style MarginV 130, below the viral card). Skip lines whose words are already on screen as big text ($20,000, the verdict ticks).
@@ -100,7 +101,7 @@ git clone --depth 1 https://github.com/Leonxlnx/earshot && cd earshot && python3
   - REAL `mallet/up4` ("success chime", peak at 0.335 s)
   - HYPE: **ElevenLabs-generated buzzer** `sfx/buzz_el.wav` ("Quiz show incorrect answer buzzer, short", ranked strong by earshot against my weak synth buzz; peak at 0.345 s)
   - ElevenLabs sound generation (`POST /v1/sound-generation`) is worth trying for specific real-world sounds, but always rank the result with earshot: its whoosh and cash-register tries lost to the bank and the typewriter ding
-- **Final QA**: `earshot timeline final.mp4 --video final.mp4` (gaps, loudness, sync of hits to cuts) and `earshot measure final.mp4`. Targets: about -15 LUFS integrated, **true peak ≤ -1 dBTP** (the final limiter is `alimiter=limit=0.84`), and no dead-air gap over ~0.5 s unless music will fill it.
+- **Final QA**: `earshot timeline final.mp4 --video final.mp4` (gaps, loudness, sync of hits to cuts) and `earshot measure final.mp4`. Targets: about -15 LUFS integrated, **true peak ≤ -1 dBTP** (the final limiter runs at 4x oversampling, `aresample=192000,alimiter=limit=0.79,aresample=48000`, because the plain sample-peak limiter at 0.84 let true peaks reach 0.0 dBTP), and no dead-air gap over ~0.5 s unless music will fill it.
 - Its limits (README): genre and mood are "hints only"; it can't judge taste, speech content or licences, and it can't find music.
 - Openverse (`api.openverse.org`, no key) is fine for CC0 effects. **Not for music**: almost all its music is Jamendo CC BY-NC-ND (non-commercial, no derivatives). Freesound blocks automated downloads (403), so don't try to get around that. Wikimedia needs a descriptive User-Agent.
 - **Music**: the creator adds a trending sound in Instagram at about 10–15%, or sends a licensed track (Epidemic, Artlist or Pixabay) for me to bake in after the sting and cut to its beat. Top Shanghai travel TikToks (Nov 2026) most often used "No Reason" by Ryan.B. Episode 1's timeline showed 0.6–1.05 s dead-air gaps, which music fills.
@@ -143,5 +144,9 @@ Make 3 versions that change **only the hook/angle**, and post them as Instagram 
 | B opened on a motion-blurred price tag | Scan the opening shot for motion and start on the stillest window |
 | 9 of 17 clips were soft Alipan previews without anyone noticing | Download originals with the `aliyunpan-login` skill and check every file's size against the drive listing |
 | True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
+| True peak 0.0 dBTP after raising room tone (sample-peak limiter misses inter-sample peaks) | Limiter at 4x oversampling, limit 0.79 (`add_sfx.py`) |
+| `cutcheck.py` measured 1 s too late for clips starting before 1.0 s (lead-in clamped to 0) | Fixed: the lead-in is `min(1.0, start)` |
+| Captioned a "line" that was Whisper's English translation of shouting in water | Language-check every line of his before using it (section checklist #3) |
+| Hook background was a close, moving selfie: he drifted behind the viral card | Hook background = a steady medium shot with him right of the card (check frames with the card area drawn on) |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |

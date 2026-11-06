@@ -20,6 +20,6 @@ for i,(n,po,t,v,tr) in enumerate(ev):
     f=f'sfx/{n}.wav'; inp+=['-i',f]; g=10**((-6-peak_db(f))/20)*v; ms=max(0,int((t-po)*1000))
     trim=f'atrim={tr[0]}:{tr[1]},asetpts=PTS-STARTPTS,afade=t=out:st={tr[1]-tr[0]-0.08:.2f}:d=0.08,' if tr else ''
     fc+=f'[{i+1}:a]{trim}aresample=48000,aformat=channel_layouts=stereo,volume={g:.4f},adelay={ms}|{ms}[s{i}];'
-fc+='[0:a]'+''.join(f'[s{i}]' for i in range(len(ev)))+f'amix=inputs={len(ev)+1}:normalize=0:duration=first,alimiter=limit=0.84:level=false[a]'
+fc+='[0:a]'+''.join(f'[s{i}]' for i in range(len(ev)))+f'amix=inputs={len(ev)+1}:normalize=0:duration=first,aresample=192000,alimiter=limit=0.79:level=false,aresample=48000[a]'
 subprocess.run(['ffmpeg','-loglevel','error','-y']+inp+['-filter_complex',fc,'-map','0:v','-map','[a]','-c:v','copy','-c:a','aac','-b:a','192k','-movflags','+faststart',out],check=True)
 print('sfx ok')

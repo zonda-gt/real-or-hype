@@ -18,14 +18,16 @@ for sid,kind,args,d,narr in S:
     elif kind=='price': n,_,a=args; sp=1.15; span=(d-0.15)*sp
     elif kind=='clip' and args[2]>=0.9: n,a,vol=args; span=d
     else: continue
-    f=src(n); e=env(f,a-1.0,span+2.5)            # 10 ms frames, index 0 = a-1.0
+    pre=min(1.0,a)                                 # lead-in actually available (clips that start before 1.0 s)
+    f=src(n); e=env(f,a-pre,span+pre+1.5)         # 10 ms frames, index 0 = a-pre
     floor=np.percentile(e,10); peak=np.percentile(e,98); thr=floor+0.35*(peak-floor)   # speech if above 35% of floor->peak
-    c=int(round((span+1.0)/0.01))
+    c=int(round((span+pre)/0.01))
     voiced=e>thr
     # last voiced frame before the cut, first voiced frame after it
     before=np.where(voiced[:c])[0]; after=np.where(voiced[c:])[0]
     tail=(c-before[-1]-1)*0.01 if len(before) else 9; nxt=after[0]*0.01 if len(after) else 9
     ok=tail>=0.15 and nxt>=0.05
+    if os.environ.get('CUTDEBUG'): print('   voiced near cut (s rel. cut):',[round((i-c)*0.01,2) for i in range(max(0,c-40),min(len(e),c+20)) if voiced[i]], 'thr',round(thr,1))
     bad+= not ok
     print(f"{sid:4s} {n:28s} cut@{a+span:6.2f}s  silence before cut {tail:4.2f}s (need ≥0.15)  next speech in {nxt:4.2f}s  floor {floor:5.1f} dB  {'OK' if ok else 'FAIL'}")
 print('ALL OK' if not bad else f'{bad} FAIL')
