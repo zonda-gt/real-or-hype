@@ -1,0 +1,36 @@
+---
+name: chinapal-promo
+description: Plan, storyboard, generate (AI demo) and edit ChinaPal product promo Reels — "DM us your saved reels, we build your itinerary" — using a menu of motion-graphics effects (couch wall, orbit, vertigo, UI world, checklist, pull-back reveal, route grow, zoom-through, cover story, frame break). Use for ChinaPal promo scripts, storyboards, Seedance demo shots, Remotion edits and re-cuts.
+---
+
+# ChinaPal promo videos
+
+Product: **ChinaPal**. Instagram: **@steven_chinapal** (Steven, the founder, is the on-camera presenter).
+Pitch: send your saved Instagram reels of places to @steven_chinapal in a DM → ChinaPal builds a personalised day-by-day itinerary around those reels.
+CTA in use: "Comment TRIP and I'll send you the link" (needs a comment auto-DM; otherwise "DM us your saved reels").
+
+## Status (Nov 2026)
+- v1 (Python/PIL renderer, `scripts/render.py`) and v2 (Remotion, `remotion/`) of a ~37 s AI demo exist. Same cut, same audio.
+- Creator feedback on v1: **too slow**. Next versions: **faster pace and a new script that sells the service harder**. Also wanted: a 15–17 s cut.
+- App screens are HTML mock-ups (`scripts/screens.py`), placeholders until Steven sends the real DM thread, itinerary and reel links.
+
+## Effects menu (from @tenfoldmarc's "17 video effects Claude can create" reel)
+Used: 01 couch wall (reels pinned on the wall *behind* him), 02 orbit (reels circle him in 3D), 03 vertigo (dolly zoom on a clean plate), 04 UI world (floating DM, reels fly in), 05 checklist (glass panel ticks), 06 pull-back reveal (shot shrinks into "building your trip" window, % counter), 07 route grow (Day-1 route draws on the wall behind him, pins pop on spoken words), 08 zoom-through cut (into the café reel → café shot), 09 cover story (Playfair title behind his head), 10 frame break (he reaches out of an IG reel frame).
+Not used: headline wall (dup of couch wall), green screen, paper cut, doodle boil, glass type (pick one of cover story / glass type), phone mockup (UI world covers it), digital zoom (use sparingly).
+Rule: one effect per story beat, never two big effects at once, one text style at a time.
+
+## Pipeline
+1. **Stills / storyboard**: `scripts/gen.py` (OpenAI `gpt-image-2` generations), `scripts/edit.py` (likeness edits from a photo), `scripts/screens.py` + `scripts/shot.js` (HTML → PNG via Playwright), `scripts/frames.py`, `scripts/sheets.py`.
+2. **AI shots: Seedance 2.0 Mini on Volcano Engine Ark** (`ark.cn-beijing.volces.com`, key is a proxy-injected environment credential: send `Authorization: Bearer proxy-injected`). Model `doubao-seedance-2-0-mini-260615` (must be activated in the Ark console). `scripts/sd_batch.py`.
+   - **Any realistic face in an input image is rejected** (`InputImageSensitiveContentDetected.PrivacyInformation`): Steven's photo, a gpt-image presenter, even a frame of Seedance's own output. Only text-to-video works unless he completes Volcano's real-person verification (asset id).
+   - Consistency: one fixed presenter + room description and `seed: 77911` for every shot. Worked well enough.
+   - Measured cost: 480p ≈ 10,100 tokens/s ≈ **0.23 yuan/s** (0.023 yuan / 1k tokens); 720p ≈ 0.5 yuan/s. 4–6 s per shot.
+   - It speaks the quoted line (generate_audio). Watch for extras (it said "one two three" aloud when told to count) and for props it invents (paper notes on the wall: say "the wall is completely bare").
+3. **Cut-outs**: `scripts/mattes.py` → trimmed `base_XX.mp4` + presenter-only `cut_XX.webm` (VP9 alpha, rembg `u2net_human_seg`, EMA-smoothed) + `plate_03.jpg` (OpenCV inpaint clean plate for vertigo).
+4. **Edit (preferred): Remotion** (`remotion/`, remotion@4.0.536, react@18.3.1). Graphics in `src/Demo.tsx`, one component per effect, `SEG` holds segment frame counts. Render with `node render.mjs` (uses `/opt/pw-browsers/chromium`; `node render.mjs stills <frames…>` for checks). Layers: `<OffthreadVideo>` base → graphics behind → `<OffthreadVideo transparent>` cut-out → graphics in front → captions. 1080×1920 @ 24 fps.
+   Python/PIL renderer (`scripts/render.py`, `scripts/assets.py`) is the v1 fallback: fine for pixel work, worse for typography and motion.
+5. **Audio**: each shot's voice `highpass=f=80,loudnorm=I=-16`, whoosh at every cut, pop/ding/click on graphic hits (sfx from `real-or-hype-video/sfx`), limiter; target ≈ -15/-16 LUFS, peak ≤ -1 dB.
+6. Captions: small white line + big yellow keyword (Montserrat ExtraBold, black stroke), keyword timed to the Whisper word onset minus 2 frames.
+
+## Filming brief (for the real version)
+4K 30 fps vertical, HDR off, tripod locked, waist-up with space above the head, plain wall 1–2 m behind, face the window, 3 takes per line, 5 s of the empty room. Screen-record: Saved folder scroll, sharing 8–10 reels to @steven_chinapal, the reply, the itinerary, the profile.
