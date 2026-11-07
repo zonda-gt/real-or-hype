@@ -20,6 +20,7 @@ Not used: headline wall (dup of couch wall), green screen, paper cut, doodle boi
 Rule: one effect per story beat, never two big effects at once, one text style at a time.
 
 ## Pipeline
+0. **Polished app screens (itinerary etc.)**: OpenAI **`gpt-image-2.6-sunburst`**, size **`1152x2496`** (true iPhone shape), quality high, via `scripts/gen2.py`. It beat `gpt-image-2.6-flare` (garbled a label) and `gpt-image-2` at 1024x1536 (creator: "not like mobile, not polished"). Give it a full design system in the prompt (colours, SF Pro hierarchy, 8 pt grid, 20 pt cards, exact copy for every element). Frame in an iPhone with `scripts/phone_frame.py`. The "Steven's tip" avatar is AI: swap in his real photo.
 1. **Stills / storyboard**: `scripts/gen.py` (OpenAI `gpt-image-2` generations), `scripts/edit.py` (likeness edits from a photo), `scripts/screens.py` + `scripts/shot.js` (HTML → PNG via Playwright), `scripts/frames.py`, `scripts/sheets.py`.
 2. **AI shots: Seedance 2.0 Mini on Volcano Engine Ark** (`ark.cn-beijing.volces.com`, key is a proxy-injected environment credential: send `Authorization: Bearer proxy-injected`). Model `doubao-seedance-2-0-mini-260615` (must be activated in the Ark console). `scripts/sd_batch.py`.
    - **Any realistic face in an input image is rejected** (`InputImageSensitiveContentDetected.PrivacyInformation`): Steven's photo, a gpt-image presenter, even a frame of Seedance's own output. Only text-to-video works unless he completes Volcano's real-person verification (asset id).
