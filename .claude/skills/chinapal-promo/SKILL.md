@@ -14,6 +14,12 @@ CTA in use: "Comment TRIP and I'll send you the link" (needs a comment auto-DM; 
 - Creator feedback on v1: **too slow**. Next versions: **faster pace and a new script that sells the service harder**. Also wanted: a 15–17 s cut.
 - App screens are HTML mock-ups (`scripts/screens.py`), placeholders until Steven sends the real DM thread, itinerary and reel links.
 
+## Script 2 / Script 3 cuts (~18–19 s, Nov 2026)
+- Script 2 "result first": PhoneHold (overview screen) → Checklist → Orbit → RouteGrow + tip bubble → StopScreen zoom → CoverStory "YOUR REELS/TRIP" → FrameBreak "Comment TRIP".
+- Script 3 "offer": FrameBreak hook "Send me your saved reels. I'll plan your whole China trip." → CouchWall → UIWorld (DM) → PullBackReveal (facecam tile + Day-1 itinerary phone) → StopScreen with chip/map/tip highlights on "hours, routes, tips" → CommentCTA (IG comment sheet, TRIP typed, "Sent you a DM").
+- Build: `scripts/sd_batch2.py shots.json outdir` (Seedance, prompt asks for "upbeat and quick") → Whisper `wtx.py` → `scripts/prep2.py plan.json rm/public rm/edl.json` (trim, speed 1.15×, cut-out, voice loudnorm, word frames, merges "-by -day", fixes Whisper "roots"→"routes") → `remotion/src/Fx.tsx` (reusable effect components incl. word-synced captions, per-segment voice and SFX) + `Scripts.tsx` (step lists) → `node render2.mjs Script2|Script3 [stills f…]`.
+- CTA advice given: one spoken CTA "Comment TRIP" only with an instant auto-DM (ManyChat) asking them to share reels into that chat; caption backup "share your saved reels to @steven_chinapal"; without automation say "Share your saved reels to my DMs". A/B by completed trips, not comments.
+
 ## Effects menu (from @tenfoldmarc's "17 video effects Claude can create" reel)
 Used: 01 couch wall (reels pinned on the wall *behind* him), 02 orbit (reels circle him in 3D), 03 vertigo (dolly zoom on a clean plate), 04 UI world (floating DM, reels fly in), 05 checklist (glass panel ticks), 06 pull-back reveal (shot shrinks into "building your trip" window, % counter), 07 route grow (Day-1 route draws on the wall behind him, pins pop on spoken words), 08 zoom-through cut (into the café reel → café shot), 09 cover story (Playfair title behind his head), 10 frame break (he reaches out of an IG reel frame).
 Not used: headline wall (dup of couch wall), green screen, paper cut, doodle boil, glass type (pick one of cover story / glass type), phone mockup (UI world covers it), digital zoom (use sparingly).
