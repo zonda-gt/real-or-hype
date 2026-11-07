@@ -66,3 +66,6 @@ S['A0me']=[(sid,k,a,_ME_DUR.get(sid,d),key) for sid,k,a,d,key in S['A0']]
 HOOKVO['A0me']=VODIRS['A0me']+'/silence.wav'; HOOKVOL['A0me']=0.95; CONTEXT_TEXT['A0me']='ctx.png'
 TICKS['A0me']=(0.71,1.31)   # same ~0.32 s lead before the spoken "real"/"hype" as Liam's ticks
 def vodir(var): return VODIRS.get(var,VODIR)
+
+# AN: A0 (context line, A's body) plus the Liam claim line in the hook; viral clip lowered under it
+S['AN']=list(S['A0']); HOOKVO['AN']=VODIR+'/hook.wav'; TICKS['AN']=TICKS['A']; CONTEXT_TEXT['AN']='ctx.png'; HOOKVOL['AN']=0.3
