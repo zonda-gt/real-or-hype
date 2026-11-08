@@ -1,0 +1,401 @@
+out/A_v4.mp4: 998 frames OCR'd, 995 with text, 409 unique strings
+   349  packagedeal,2025
+   317  ￥500
+   189  regular price
+   188  Oriental Pearl Tower suite
+   187  Hotel by Waibaidu Bridge
+   187  上海外滩中南海滨酒店
+   170  ¥68,000
+   165  ￥1,000
+   160  东方明珠230空中酒店·230 mup
+   159  US$75/night
+   153  Us$75/night
+   151  HOTEL
+   118  creatorquote,Jun2026
+   117  Fanhua Hotel . North Bund
+   115  COMMENT
+   115  for our Shanghai hotel list
+    94  regularprice
+    93  OUR PICK
+    76  ￥68,000
+    64  Uss150/night
+    59  沪上·繁花酒店
+    58  沪上·繁花酒店 (北外滩滨江店)
+    49  沪上·繁花酒店(北外滩滨江店）
+    46  500
+    43  room
+    43  creator quote,Jun2026
+    42  Tower
+    42  ~ US$10,150 / night
+    41  Us$10,150/night
+    41  ¥1,000
+    39  thousand
+    39  (北外滩滨江店）
+    38  ~ Us$10,150/night
+    38  thirty
+    38  metres
+    37  Around
+    35  Fanhua Hotel : North Bund
+    34  hundred
+    34  沪上·繁花酒店(北外滩滨江店)
+    33  ¥500
+    33  Floor-to-ceiling glass
+    32  US$75 / night
+    32  package deal, 2025
+    32  OURPICK
+    31  ~ Us$10,150 / night
+    29  Us$10,150 /night
+    28  the
+    27  and
+    27  one.
+    26  hotel
+    26  our
+    26  Comment
+    25  3Us$75/night
+    25  river-view
+    25  Bund.
+    25  across
+    25  Sixty-eight thousand
+    25  is right downstairs.
+    25  hotel list.
+    24  hotel.
+    24  skyline
+    24  Oriental
+    24  odn
+    23  high-floor
+    23  downstairs.
+    22  sixty-eight
+    22  from
+    21  Bridge
+    21  Around a thousand
+    20  yuan
+    20  ￥68.000
+    20   US$150 / night
+    20  Same tower
+    19  东方明珠230空中酒店·230 m up
+    18   Us$150 / night
+    18  creator quote,Jun 2026
+    18  the only
+    18  Shanghai
+    16  five
+    16  by Waibaidu Bridge
+    16  with the Pearl
+    16  the window.
+    16  3Uss150/night
+    15  package deal,2025
+    15  3US$75/night
+    15  by Waibaidu
+    15  Sixty-eight
+    15  suite
+    14  right in
+    14  water
+    14  pick?
+    14  Our pick?
+    14  The
+    14  send
+    14  you
+    13  see
+    13  inside the
+    13  The five-hundred
+    13  five-hundred
+    13  and the Bund
+    13  is right
+    12  Uss10,150 / night
+    12  tower
+    12  your
+    12  US$150 / night
+    12  Us$150 /night
+    12  two
+    12  is cight
+    11  sixty-eight thousand yuan
+    11   Uss10,150 / night
+    11   Us$10,150 /night
+    11  Us$150 / night
+    11  Fanhua Hotel :NorthBund
+    11  water.
+    11  edn
+    10  USs10,150/night
+    10  Fanhua Hotel .North Bund
+    10  东方明珠230空中酒店·230mup
+     9  US$10,150/night
+     9  this
+     9  your hotel.
+     9  five hundred
+     9  沪上·繁花酒店 (北外滩滨江店）
+     9  （北外滩滨江店）
+     9  creator quote, Jun2026
+     9  PearlTower
+     9  comment
+     8  You don't
+     8   Us$10,150 / night
+     8  from your
+     8  by
+     8  Fanhua Hotel.North Bund
+     8  creator quote, Jun 2026
+     8  andthe whole
+     8  creatorquote, Jun 2026
+     8  Pearl
+     7  need
+     7  night
+     7  to
+     7  on the North
+     7  Floor-to-ceiling
+     7  Jglass
+     6  cight in
+     6  creatorquote,Jun 2026
+     6  (北外滩滨江店)
+     6  沪上·繁花酒店(北外滩滨江店
+     6  Fanhua Hotel ·North Bund
+     6  ~Us$150 / night
+     6  suite inside the
+     6  OrientalPearl
+     6  南京
+     6  南京路
+     5  You don't need
+     5  3Us$10,150/night
+     5  ¥68.000
+     5  Waibaidu
+     5  Fanhua Hotel.NorthBund
+     5  Fanhua Hotel. North Bund
+     5  FanhuaHotel.North Bund
+     5  Fanhua Hotel · North Bund
+     5  and the whole
+     5  creatorquote, Jun2026
+     5  US$150/ night
+     5  Oriental Pearl
+     5  Thefive-hundred
+     4  You
+     4  don't need
+     4  68,000
+     4  this tower
+     4  Us$10,150 / night
+     4  Around five
+     4   room
+     4  FanhuaHotel.NorthBund
+     4  Us$150/night
+     4   US$150 /night
+     4  Fanhua Hotel  North Bund
+     4  000'L
+     4  ~Us$150 /night
+     4  USS150/ night
+     3  Uss10,150/night
+     3  fromyour
+     3  fivehundred
+     3  Around five hundred
+     3  Around five I
+     3  Waibaidu Bridge
+     3  the window
+     3  thewindow.
+     3  沪上·繁花酒店（北外滩滨江店）
+     3  Arounda
+     3  Around a
+     3   USS150 / night
+     3   (北外滩滨江店）
+     3  US$150 /night
+     3  ~ Us$150 / night
+     3  onthe North
+     3  ~ Us$150/night
+     3  3US$10,150/night
+     3  'dn
+     3  Our-pick?
+     3  one
+     3  The five-hundred one.
+     3  步柠街
+     3  hotellist.
+     3  list.
+     2  t need
+     2  puesnoy?
+     2   Us$10,150/night
+     2  68.000
+     2  anight to
+     2  Uss75/night
+     2  see this tower
+     2  3Us$75 /night
+     2  see this
+     2   Uss10,150 /night
+     2   Us$75/night
+     2  ~ Us$10,150 /night
+     2  from your hotel.
+     2   regular price
+     2  ¥68;000
+     2  Jfivehundred
+     2  a high-floor
+     2   Bridge
+     2   US$75/night
+     2  by. Waibaidu
+     2  with the Peari
+     2  thewindow
+     2  USs150/night
+     2  Around,a
+     2  Arounda thousand
+     2  000°L
+     2  on
+     2  the North
+     2  ~Uss150 / night
+     2  Uss150 / night
+     2  Uss150 /night
+     2  ~ Us$150 /night
+     2  ~Us$150/night
+     2  ~ Us150 / night
+     2  skyline across
+     2  3Uss10,150/night
+     2   thousand
+     2  00089大
+     2  the only hotel
+     2  theonly
+     2   US$10,150 / night
+     2  insidethe
+     2  suite insidethe
+     2   USs10,150 / night
+     2  ~ Uss10,150 / night
+     2  Oriental Pearl Tower
+     2  Pearl Tower
+     2  OrientalPearl Tower
+     2  hundred and
+     2  hundredand
+     2  twohundred
+     2  oneb
+     2  步行街
+     2  柠街
+     2  行街
+     2   downstairs.
+     2  packagedeal, 2025
+     2  you our
+     2  Ilist.
+     1  You'don't need
+     1  You' don't
+     1  Uss10150/night
+     1  reguiarprice
+     1  000'89大
+     1   yuan
+     1  puesnoyt :
+     1  puesnoy+
+     1  uenkpuesnoyt
+     1  a night to
+     1  Uss10,150 /night
+     1  anight
+     1  3to
+     1  this, tower
+     1  ?Uss75/night
+     1  U$75/night
+     1  see this t
+     1  Uss$10,150 / night
+     1  seet
+     1  Itower
+     1  from your lhotel,
+     1  your hotel,
+     1  myourh
+     1  ~ Uss10,150 /night
+     1  : Uss10,150 / night
+     1  : Us$10,150 /night
+     1  ¥68:000
+     1  ￥68;000
+     1  ~Uss10,150 /night
+     1  from yourh
+     1  uss10150/high
+     1  from your hotel
+     1  Ifivehundred
+     1  Around 
+     1   five hundred
+     1  Around fiveI
+     1  Around five 
+     1  Around fivel
+     1  ,room
+     1  .room
+     1  r room
+     1  high-floor room
+     1  high-floor 
+     1  a high-floor room
+     1  oy
+     1  Us$75 /night
+     1  np!eq!eM
+     1  with thePeari
+     1  cight-in
+     1  the wind
+     1  Fanhua HotelNorth Bund
+     1  花酒店（北外滩滨江店）
+     1  Aroundat
+     1  +000'L天
+     1  thousann
+     1   US$150/ night
+     1  Ja thousand
+     1  J a thousand
+     1  FanhuaHotel·North Bund
+     1  Ia thousand
+     1  I a thousand
+     1   (北外滩滨江店)
+     1   a thousand
+     1   (北外滩滨江店
+     1  roam
+     1  Us$i50 / night
+     1   Uss150 / night
+     1   USs150 /night
+     1  000°
+     1  river-viewroom
+     1   USS150 /night
+     1  onthe Marth
+     1  On the North
+     1  ~ Uss150 /night
+     1   Uss150 /night
+     1  Floorto-ceiling
+     1  Fanhua Hote.NorthBund
+     1  ing
+     1  andthe
+     1  whole
+     1  andthewhole
+     1  skyline-acrosst
+     1  ~ US$150 / night
+     1  kyine
+     1  FanhuaHotel .North Bund
+     1  Water
+     1  OrientalPearlTower suite
+     1  gUssio15ojniaht
+     1  Ussi0.150/night
+     1  theonly hotel
+     1  the'only hotel
+     1  US$10,150 /night
+     1  3US$10,150 /night
+     1  inside th
+     1   Tower
+     1  J Pearl Tower
+     1   Pearl Tower
+     1  IPearlTower
+     1  ~ US$10,150 /-night
+     1  1Pearl
+     1  OrientalPeari
+     1  ~ US$10,150./ night
+     1  PearTower
+     1  Oriental Pear
+     1   and
+     1  I and
+     1  two hundredand
+     1  J and
+     1  two hundred
+     1  twoIhundred
+     1  ￥68000
+     1  thirty metres
+     1  ¥68000
+     1  ~Uss10,150/night
+     1  thirty-metres
+     1  adn
+     1  Our [
+     1  Ourpick?
+     1  I oneb
+     1  南京星
+     1  USS75 / night
+     1  The five-hundred 
+     1  One.
+     1  The'five-hundred
+     1  Same
+     1  theBund
+     1  the Bund
+     1  I the Bund
+     1  J the Bund
+     1  3US$75 / night
+     1  US$75/ night
+     1  000大
+     1  Uss75Lnight
+     1  packgeleal2@25
+     1  OMMENTIU
+     1  for our hanghai hotel
+     1  an

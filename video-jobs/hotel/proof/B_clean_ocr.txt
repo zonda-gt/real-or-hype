@@ -1,0 +1,16 @@
+out/B_v5_clean.mp4: 852 frames OCR'd, 20 with text, 15 unique strings
+     5  步行街
+     2  步行明
+     1  IIHIH
+     1  IIHIHI
+     1  IIHI
+     1  BILCAR
+     1  BVLGAN
+     1  BI LCAN
+     1  SLCARY
+     1  BVLOO
+     1  sanr
+     1  步行钢
+     1  步行
+     1  南京
+     1  RHY

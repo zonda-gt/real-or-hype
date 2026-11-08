@@ -1,0 +1,375 @@
+out/B_v5.mp4: 852 frames OCR'd, 850 with text, 374 unique strings
+   481  packagedeal,2025
+   461  ￥500
+   289  bookingapp,May2026
+   237  OUR PICK
+   230  Us$75/night
+   222  Bulgari Hotel Shanghai
+   222  上海宝格丽酒店·外滩景观房
+   211  上海外滩中南海滨酒店
+   210  Hotel by Waibaidu Bridge
+   178  US$75/night
+   142  HOTEL
+   118  booking app, May 2026
+   117  COMMENT
+   117  for our Shanghai hotel list
+   116  ¥8,979
+    99  ￥8,979
+    92  8,979
+    63  Us$1,340/night
+    63  3Us$1,340/night
+    57  booking app,May2026
+    47  500
+    45  Us$1,340 / night
+    43  package deal, 2025
+    41  and
+    39  room
+    37  3Us$75/night
+    37  Around
+    36  Us$1,340 /night
+    36   US$1,340 / night
+    36  downstairs.
+    33  6L6'8
+    32  our
+    31  US$1,340 / night
+    31   Us$1,340 / night
+    29  ~ US$1,340 / night
+    29  3US$75/night
+    29  facing the skyline.
+    28  626'8
+    28  booking app, May2026
+    28  right
+    26  Nine
+    26  Bridge.
+    25  five
+    25  hundred gets you.
+    25  window.
+    25  thousand
+    25  is
+    25  Comment
+    24  ¥500
+    24  hundred
+    24  by Waibaidu
+    23  Lujiazui
+    23  pick?
+    22  hotel
+    21  double
+    20  list.
+    19   Us$1,340 /night
+    18  ￥8;979
+    18  sinks
+    18  Shanghai
+    17  ~ Us$1,340 /night
+    17  bathtub
+    16  high-floor
+    16  Bund-view
+    16  at the Bulgari.
+    15  Nine thousand
+    15  626'8大
+    15  five hundred
+    15  by Waibaidu Bridge.
+    15  The
+    15  You
+    14  The Pearl
+    14  Bulgari.
+    14  the
+    14  skyline
+    14  five-hundred
+    13  6Z6'8
+    13  Bund view?
+    13  US$75 / night
+    13  A walk-in closet
+    13   US$75 / night
+    12  for
+    12  booking app,May 2026
+    12  facing
+    12  one.
+    12  Thefive-hundred
+    12  is right
+    12  hotel list.
+    11  Nine thousand yuan
+    11  Uss1,340/night
+    11  ~ Us$1,340 / night
+    11  US$1,340/night
+    11  still
+    11  get
+    11  the skyline
+    11  and the Bund
+    11  send
+    10  a night
+    10   US$1,340 /night
+    10  walk-in
+    10  OURPICK
+     9  Bund
+     9  ~ Us$1,340/night
+     9   Us$1,340/night
+     9  US$1,340 /night
+     8  6L68
+     8  6L6'8大
+     8  626'8k
+     8  at the
+     8  at
+     8   USS75 / night
+     8  Comment HoTEL
+     8  you our
+     8  you
+     7  view?
+     7  Here's what
+     7  Around five hundred
+     7  package deal,2025
+     7  closet
+     7  one
+     7  One
+     6  yuan
+     6  a Bund view?
+     6  626°8
+     6  Here's what five
+     6  ￥8.979
+     6  The Pearl Tower
+     6  Tower
+     6  walk-in closet
+     6  the s
+     5  Here's
+     5   U$1,340 / night
+     5  gets you.
+     5  high-floor room
+     5   Tower
+     5  3Us$i,340/night
+     5  skyline.
+     5  Our pick?
+     5  步行街
+     4  Uss1,340 /night
+     4  bookingappMay2026
+     4  Bundview?
+     4  Uss75/night
+     4  ~ US$1,340 /night
+     4  8;979
+     4  andI
+     4  and Lujiazui
+     4  US$75/ night
+     4   US$1,340/night
+     4  the Bulgari.
+     4  626'8米
+     4  and a bathtub
+     4  The five-hundred one.
+     4  still get
+     4  3Us$1,340 / night
+     4  USS75/night
+     4  is right downstairs.
+     3  puesnoyt auin
+     3  Uss1,340/ night
+     3  6L6°8米
+     3  night
+     3  6268
+     3  what five
+     3   Us$75/night
+     3  I Tower
+     3  right in the
+     3  cight in the
+     3  packagedeal, 2025
+     3  3Us$1,340 /night
+     3  A-walk-in closet
+     3   sinks
+     3  6Z6'8k
+     3  the skyline.
+     3  Us$i,340/night
+     3  南京路
+     3  ~ US$75 / night
+     3   downstairs.
+     3  and 
+     2  I yuan
+     2  6L6'8太
+     2  6L6°8
+     2  626'8末
+     2  6268k
+     2  6L6i8
+     2  hundredgets you.
+     2   five hundred
+     2  The Peari Tower
+     2  !nzejn pue
+     2   in the
+     2  Nine t
+     2  Bund-view room
+     2  Us$1,340/ night
+     2  Bundview
+     2  a Bund-view
+     2  6Z6'8t
+     2   closet
+     2  Awalk-in closet
+     2  double sinks
+     2  6268大
+     2   Uss1,340 /night
+     2  Ourpick?
+     2  five-hundred one.
+     2  One.
+     2  USS75 / night
+     2  步行明
+     2  The five-hundred
+     2  U$1,340 / night
+     2  bookingapp, May2026
+     2  and theBund
+     2  and the
+     2  bookingapp,May 2026
+     2  3Uss1,340 / night
+     2   right
+     2  Uss1,340 / night
+     2  3Us$1,340/ night
+     2  Comment HOTEL
+     2  and l send
+     1   thousand yuan
+     1  uenk puesnoy+ au!n
+     1  thousand yuan
+     1  6268元
+     1  BUSstszonidht
+     1  Uss1340/night
+     1  Ussi,340/ night
+     1  thpusandyuan
+     1  l yuan
+     1   yuan
+     1  6L68夫
+     1  6L6'8米
+     1  tfor
+     1  626°8夫
+     1  a Bund
+     1   view?
+     1  aBund
+     1  Iview?
+     1  Here's,what five
+     1  3what five
+     1  what
+     1  6Z6°8
+     1  Us75/nicht
+     1  pack
+     1  edeal,2025
+     1  US75/night
+     1  Heres what five
+     1  6Z6'8大
+     1  : US$1,340 / night
+     1  I gets you.
+     1  hundred getsyou
+     1  hundredgetsyou.
+     1  hundred, gets you.
+     1  U$1,340/night
+     1  nok sa6papunu
+     1  ￥8979
+     1  USs75/night
+     1  packageclealb2027
+     1  Hotel by W'aibaidu Bridge
+     1  I five hundred
+     1  U$75/night
+     1  Around five
+     1  fivehundred
+     1   high-floor
+     1  a high-floor
+     1  ahigh-floorrdcm
+     1  high-floor toom
+     1  high-floor-room
+     1  by Waibaidu [
+     1  byWaibaidu
+     1  EANP
+     1  Bridge
+     1  by. Waibaidu
+     1  PeariTower
+     1  The Pear Tower
+     1  The Peari
+     1  ITower
+     1  !nzeifn pue
+     1  Inzeijn pue
+     1  in the
+     1  window
+     1  3Uss75/night
+     1  packagedleal,2025
+     1  wndaw
+     1  puesnoy au!n
+     1  Uss1,340/nigh
+     1  puesnoyt au!n
+     1  3US$1,340/ night
+     1  US$1,340/ night
+     1  BundEview
+     1   Uss$1,340/night
+     1  3 US$1,340/night
+     1  a-r
+     1   the
+     1  3US$1,340/night
+     1  at the [
+     1  at the E
+     1  BILOA8
+     1  BILCAR
+     1  ~ Uss1,340 /night
+     1  ~ Uss1,340 / night
+     1  tthe.Bulgari.
+     1  n closet
+     1  sinkss
+     1  3Us1,340/night
+     1  3Uss1,340/night
+     1  double s
+     1  doublesinks
+     1  and a
+     1  6268末
+     1  andra
+     1  3 Us$1,340 /night
+     1  3US$1,340 /night
+     1  the' skyline.
+     1  the  skyline.
+     1  6L6'8k
+     1  facing the
+     1  3 Us$1,340/night
+     1  ~Us$1,340/night
+     1  Bulcari Hotel Shangai
+     1  每宝格丽店·外滩景观房
+     1  ￥8.9
+     1  Ussi,340night
+     1  bookingapp
+     1  ay2026
+     1  our pick
+     1  US1,340 / night
+     1  3Us$75 /night
+     1  Thet
+     1  The five hundred o
+     1  步行时
+     1  USS75/ night
+     1  Uhe
+     1  步行厨
+     1  行街
+     1  ~ US1,340 / night
+     1  步行树
+     1  步柠明
+     1  ¥8.979
+     1  : Us$1,340 / night
+     1  ~ USS75 / night
+     1  南京
+     1  6268未
+     1  The five hundred
+     1  oneb
+     1  8.979
+     1   Uss1,340 / night
+     1  You still get
+     1  6L68天
+     1  6Z68大
+     1  626°8米
+     1  the:
+     1  bookingapp, May 2026
+     1  6L6'8夫
+     1  6Z6'8米
+     1  theBund
+     1  3 Us$1,340 / night
+     1  6Z6'8夫
+     1  do wnstairs.
+     1  3US$1,340 / night
+     1  6268天
+     1  626'8走
+     1  626'8天
+     1  3Uss1,340/ night
+     1  ￥B979
+     1  ~Uss1340/night
+     1  SRHY
+     1  Comment HoOTEL
+     1  and I'll send
+     1  and l
+     1  andlsend
+     1  and一
+     1  you our s
+     1  Shangha
+     1  Us$75 / night
+     1  listo
+     1  Ilisto

@@ -1,0 +1,13 @@
+out/A_v4_clean.mp4: 998 frames OCR'd, 22 with text, 12 unique strings
+     7  南京
+     5  南京路
+     3  步行街
+     2  南京局
+     2  南京昌
+     1  WHE
+     1  步行钢
+     1  步，
+     1  步行厨
+     1  IHIHI
+     1  HIIHI
+     1  IHIIHI

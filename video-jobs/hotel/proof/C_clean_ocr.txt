@@ -1,0 +1,3 @@
+out/C_v4_clean.mp4: 885 frames OCR'd, 2 with text, 2 unique strings
+     1  HNE
+     1  AHN
