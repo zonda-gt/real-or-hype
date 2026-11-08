@@ -127,6 +127,16 @@ Gotchas: shot files can be a few ms shorter than their slot (stretch with `speed
 
 540p preview via SendUserFile; full file in the working directory. Script and shot list live in the user's Claude Doc "Shanghai: Fact or Hype? — Content Plan & Scripts".
 
+## 7. Promo: "Send us a reel" (DM trip-planning service)
+
+`scripts/promo_dm.py <dir>` + `scripts/promo_audio.py <dir>`, driven by `<dir>/promo.json` (example: `promo/promo_xianqiao.json`). `<dir>` needs `src/viral.mp4` (scraped with Bright Data), `vo/L1..L6.wav` (cloned voice, trimmed, `atempo=1.12`, loudnorm -16) and `vo/L*.json` (Whisper word stamps).
+Beats (~20 s): first ~4.9 s of the viral reel full screen (cut on its own scene change) with a "Where is it? / How do I get there?" line → the reel shrinks into a DM chat as a sent message → we reply with 📍 place / 🚄 how to get there / 🎟️ cost / 💧 one tip, each bubble popping on its spoken word → more reels fly in ("Saved twenty reels? Send them all.") → itinerary card → "SEND US A REEL" CTA.
+- The chat is our own design (not Instagram's UI). For the real thing, a screen recording of sharing a reel to the account is more convincing.
+- Facts in the reply come from the reel's caption and are checked with a web search; give ranges where sources disagree.
+- `|` in a `lines` entry marks subtitle chunk breaks. Subtitles are drawn in the frame renderer, not with `subs.py`.
+- The clip's music is ducked under the first narration line and faded as it shrinks; hook and body both measure ~-16 LUFS.
+- Using another creator's reel in an ad is different from a reaction video: ask them first and credit them.
+
 ## Mistakes log (why each rule exists)
 
 | Mistake | Rule |

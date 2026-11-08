@@ -1,0 +1,195 @@
+{
+ "name": "Real or Hype?",
+ "sub": "Send us any China travel reel",
+ "lines": [
+  "Saw this|on Instagram?",
+  "Don't just save it.|Send it to us.",
+  "We'll tell you|where it is,|how to get there,|and what it costs.",
+  "Saved twenty reels?|Send them all.",
+  "We'll plan|your whole China trip|around them.",
+  "Send us a reel."
+ ],
+ "vo_starts": [
+  0.5,
+  5.2,
+  7.9,
+  12.3,
+  14.5,
+  17.8
+ ],
+ "no_subs": [
+  6
+ ],
+ "t": {
+  "hook_end": 4.867,
+  "send": 4.867,
+  "shrink": 0.55,
+  "typing1": 6.9,
+  "reply1": 8.42,
+  "reply1_step": [
+   0,
+   0.64,
+   1.72,
+   2.45
+  ],
+  "reels": 12.75,
+  "reel_step": 0.17,
+  "typing2": 13.9,
+  "plan": 14.85,
+  "cta": 17.3,
+  "end": 20.5
+ },
+ "loop_start": 0.0,
+ "loop_end": 8.4,
+ "top_text": [
+  [
+   1.8,
+   4.867,
+   "Where is it?\nHow do I get there?"
+  ]
+ ],
+ "top_y": 190,
+ "sub_y": 1560,
+ "reply1": [
+  [
+   "📍",
+   "Xianqiao Cave, Hangzhou (West Lake District)"
+  ],
+  [
+   "🚄",
+   "1–1.5 h train from Shanghai, then ~1 h taxi"
+  ],
+  [
+   "🎟️",
+   "~¥39–49 entry + ¥30 shuttle up the hill"
+  ],
+  [
+   "💧",
+   "It drips inside. Take your other photos first."
+  ]
+ ],
+ "more_reels": [
+  {
+   "label": "The Bund\nShanghai",
+   "emoji": "🌆",
+   "c1": [
+    40,
+    60,
+    120
+   ],
+   "c2": [
+    10,
+    15,
+    40
+   ]
+  },
+  {
+   "label": "1000 Trees\nShanghai",
+   "emoji": "🌳",
+   "c1": [
+    60,
+    120,
+    60
+   ],
+   "c2": [
+    15,
+    40,
+    20
+   ]
+  },
+  {
+   "label": "Pandas\nChengdu",
+   "emoji": "🐼",
+   "c1": [
+    90,
+    140,
+    90
+   ],
+   "c2": [
+    20,
+    45,
+    30
+   ]
+  },
+  {
+   "label": "Hongyadong\nChongqing",
+   "emoji": "🏮",
+   "c1": [
+    160,
+    60,
+    30
+   ],
+   "c2": [
+    40,
+    10,
+    10
+   ]
+  },
+  {
+   "label": "Zhangjiajie",
+   "emoji": "⛰️",
+   "c1": [
+    90,
+    110,
+    130
+   ],
+   "c2": [
+    20,
+    30,
+    40
+   ]
+  }
+ ],
+ "plan_title": "Your 8-day China trip",
+ "plan_rows": [
+  [
+   "🌆",
+   "Day 1–2 · Shanghai: The Bund, 1000 Trees"
+  ],
+  [
+   "🌿",
+   "Day 3 · Hangzhou: Xianqiao Cave"
+  ],
+  [
+   "🐼",
+   "Day 4–5 · Chengdu: pandas"
+  ],
+  [
+   "🏮",
+   "Day 6 · Chongqing: Hongyadong"
+  ],
+  [
+   "⛰️",
+   "Day 7–8 · Zhangjiajie"
+  ],
+  [
+   "🚄",
+   "Every train, ticket and time, in order"
+  ]
+ ],
+ "cta_big": [
+  "SEND US",
+  "A REEL"
+ ],
+ "cta_rows": [
+  [
+   "📍",
+   "Where it is"
+  ],
+  [
+   "🚄",
+   "How to get there"
+  ],
+  [
+   "💴",
+   "What it costs"
+  ],
+  [
+   "🗺️",
+   "Or your whole China trip"
+  ]
+ ],
+ "cta_arrow": "DM us",
+ "hook_vol": 0.85,
+ "hook_duck": 0.3
+}
