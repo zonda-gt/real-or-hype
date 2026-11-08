@@ -1,0 +1,1 @@
+curl -sS -m 30 -A "Mozilla/5.0 ChinaPal" -H "Authorization: Bearer $TIKHUB_API_KEY" https://api.tikhub.io/api/v1/tikhub/user/get_user_info | python3 -c "import sys,json; print('balance', json.load(sys.stdin)['user_data']['balance'])"

@@ -1,1 +1,8 @@
 exports/
+# media stays out of git
+video-jobs/**/*.mp4
+video-jobs/**/*.mov
+video-jobs/**/*.wav
+video-jobs/**/*.mp3
+video-jobs/**/*.jpg
+video-jobs/**/*.png
