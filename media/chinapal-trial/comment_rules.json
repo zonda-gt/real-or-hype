@@ -1,0 +1,24 @@
+[
+ {
+  "media_id": null,
+  "active": true,
+  "ask_first": true,
+  "opener": "Hey! 👋 Want me to turn your saved reels into a trip? Tap below 👇",
+  "button": "Show me how",
+  "message": "Here's how it works: share the reels of places you've saved straight into this chat (5+ works best). I'll turn them into a day-by-day trip and send it back here 🗺️",
+  "public_reply": "Sent you a DM 📩",
+  "follow_up": "Got any saved reels of China? Share just one here and I'll show you what I can build 👀",
+  "keyword": "reel"
+ },
+ {
+  "media_id": null,
+  "active": true,
+  "ask_first": true,
+  "opener": "Hey! 👋 Want me to turn your saved reels into a trip? Tap below 👇",
+  "button": "Show me how",
+  "message": "Here's how it works: share the reels of places you've saved straight into this chat (5+ works best). I'll turn them into a day-by-day trip and send it back here 🗺️",
+  "public_reply": "Sent you a DM 📩",
+  "follow_up": "Got any saved reels of China? Share just one here and I'll show you what I can build 👀",
+  "keyword": "reels"
+ }
+]
