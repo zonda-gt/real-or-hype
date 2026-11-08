@@ -30,6 +30,9 @@ for s in PLAN:
         x['w']=FIX.get(x['w'],x['w'])
         if x['w'].startswith('-') and mw: mw[-1]['w']+=x['w']; mw[-1]['e']=x['e']
         else: mw.append(x)
+    for k in range(1,len(mw)):
+        if mw[k-1]['w'].lower().startswith('comment') and mw[k]['w'].lower().strip('.,!?') in ('real','reel','reels','rail','trip'):
+            mw[k]['w']='REEL'+(mw[k]['w'][-1] if mw[k]['w'][-1] in '.,!?' else '')
     words=mw
     if s.get('matte'):
         p=subprocess.Popen(['ffmpeg','-loglevel','error','-i',base,'-f','rawvideo','-pix_fmt','rgb24','-'],stdout=subprocess.PIPE)

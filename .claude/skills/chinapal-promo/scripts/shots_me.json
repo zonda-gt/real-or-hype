@@ -1,0 +1,136 @@
+[
+{
+"name": "v1_01_wall",
+"dur": 4,
+"action": "He talks to the camera with open, relaxed hand gestures, then glances at the wall around him.",
+"line": "You've saved hundreds of reels of places."
+},
+{
+"name": "v1_02_orbit",
+"dur": 4,
+"action": "He glances left and right with curiosity as if things are flying around him, then back at the camera.",
+"line": "Rooftop bars, dumpling spots, that cafe."
+},
+{
+"name": "v1_03_vertigo",
+"dur": 4,
+"action": "He stays completely still, deadpan, looking straight into the camera.",
+"line": "And you've been to none of them."
+},
+{
+"name": "v1_04_dm",
+"dur": 4,
+"action": "He glances up toward his left shoulder, then back at the camera, and makes a small tossing gesture with one hand.",
+"line": "So just send them all to me."
+},
+{
+"name": "v1_05_check",
+"dur": 4,
+"action": "He raises one finger, then two fingers, then three fingers, without saying any numbers out loud.",
+"line": "Save the reel. Send it to me. That's it."
+},
+{
+"name": "v1_06_plan",
+"dur": 5,
+"action": "He talks to the camera calmly with relaxed hands.",
+"line": "I turn them into a day-by-day plan, built around your reels."
+},
+{
+"name": "v1_07_route",
+"dur": 5,
+"action": "He turns half toward the wall behind him and points to three spots on it from left to right.",
+"line": "Day one: this cafe, then the garden, then dinner here."
+},
+{
+"name": "v1_08_cafe",
+"dur": 4,
+"room": false,
+"scene": "Vertical 9:16 Instagram Reel shot on an iPhone. WHO sits at a wooden table in a cosy cat cafe in the former French Concession of Shanghai, a fluffy ginger cat next to his latte; he smiles and strokes the cat, soft window light, handheld but steady.",
+"action": "No dialogue, he does not speak.",
+"line": null
+},
+{
+"name": "v1_09_cover",
+"dur": 4,
+"action": "He lifts his chin slightly and looks straight into the camera with a confident small smile.",
+"line": "Your trip."
+},
+{
+"name": "v1_10_cta",
+"dur": 5,
+"action": "He leans forward toward the camera and reaches both open hands toward the lens, energetic.",
+"line": "Send me your saved reels. Comment REEL and I'll send you the link."
+},
+{
+"name": "s2_1_hold",
+"dur": 5,
+"action": "He holds one open hand out beside his shoulder, palm up, as if presenting something floating next to him, glances at it, then looks back at the camera.",
+"line": "This Shanghai trip was built from ten reels I saved."
+},
+{
+"name": "s2_2_check",
+"dur": 5,
+"action": "He raises one finger, then two fingers, then three fingers, without saying any numbers out loud.",
+"line": "Save reels. Send them to me. Get this back."
+},
+{
+"name": "s2_3_orbit",
+"dur": 4,
+"action": "He glances left and right with excitement as if things are flying around him, then back at the camera.",
+"line": "Food spots, rooftop bars, hidden cafes."
+},
+{
+"name": "s2_4_route",
+"dur": 4,
+"action": "He turns half toward the wall behind him and points to three spots on it from left to right.",
+"line": "All on a map, in the right order, with tips."
+},
+{
+"name": "s2_5_cover",
+"dur": 4,
+"action": "He lifts his chin slightly and looks straight into the camera with a confident smile.",
+"line": "Your reels. Your trip."
+},
+{
+"name": "s2_6_cta",
+"dur": 4,
+"action": "He leans forward toward the camera and reaches both open hands toward the lens.",
+"line": "Comment REEL."
+},
+{
+"name": "s3_1_offer",
+"dur": 5,
+"action": "He leans forward toward the camera and reaches both open hands toward the lens, energetic.",
+"line": "Send me your saved reels. I'll plan your whole China trip."
+},
+{
+"name": "s3_2_wall",
+"dur": 4,
+"action": "He glances around at the bare wall behind him as if it is covered in things, then back at the camera.",
+"line": "All those places you saved and forgot."
+},
+{
+"name": "s3_3_dm",
+"dur": 4,
+"action": "He glances up toward his left shoulder, then back at the camera, and makes a small tossing gesture with one hand.",
+"line": "Share them to my DMs."
+},
+{
+"name": "s3_4_plan",
+"dur": 5,
+"action": "He talks to the camera calmly with relaxed hands.",
+"line": "And get back a day-by-day plan, built around them."
+},
+{
+"name": "s3_5_tips",
+"dur": 4,
+"action": "He nods and counts lightly on his fingers.",
+"line": "Opening hours, routes, tips."
+},
+{
+"name": "s3_6_cta",
+"dur": 4,
+"action": "He points down toward the bottom of the screen, then looks back at the camera with a smile.",
+"line": "Comment REEL and I'll show you how."
+}
+]

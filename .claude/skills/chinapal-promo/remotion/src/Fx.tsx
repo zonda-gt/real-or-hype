@@ -164,19 +164,33 @@ export const FrameBreak: React.FC<{id: string; keys?: string[]; capTop?: number;
     <Voice id={id} /><Captions id={id} keys={keys} top={capTop} /></AbsoluteFill>);
 };
 // Instagram comment sheet slides up, "TRIP" gets typed and posted, auto-DM reply appears
-export const CommentCTA: React.FC<{id: string; typeAt: number}> = ({id, typeAt}) => {
-  const f = useCurrentFrame(); const sh = useSpr(0, {damping: 16, stiffness: 120, mass: 0.8}); const word = 'TRIP'; const n = Math.max(0, Math.min(4, Math.floor((f - typeAt) / 2) + 1));
+export const CommentCTA: React.FC<{id: string; typeAt: number; word?: string}> = ({id, typeAt, word = 'REEL'}) => {
+  const f = useCurrentFrame(); const sh = useSpr(0, {damping: 16, stiffness: 120, mass: 0.8}); const n = Math.max(0, Math.min(4, Math.floor((f - typeAt) / 2) + 1));
   const posted = typeAt + 12; const ps = useSpr(posted, {damping: 12, stiffness: 200, mass: 0.6}); const rs = useSpr(posted + 10, {damping: 12, stiffness: 200, mass: 0.6});
   return (<AbsoluteFill><Base id={id} />
     <div style={{position: 'absolute', left: 0, right: 0, top: interpolate(sh, [0, 1], [H, 1180]), height: 800, background: '#1c1c1e', borderRadius: '48px 48px 0 0', boxShadow: '0 -20px 60px rgba(0,0,0,.4)', padding: '22px 40px', color: '#fff'}}>
       <div style={{width: 90, height: 10, borderRadius: 5, background: '#555', margin: '0 auto 22px'}} />
       <div style={{textAlign: 'center', font: '700 34px Inter', marginBottom: 30}}>Comments</div>
       {f >= posted && <div style={{display: 'flex', gap: 20, alignItems: 'center', transform: `translateY(${(1 - ps) * 40}px)`, opacity: ps, marginBottom: 26}}>
-        <div style={{width: 72, height: 72, borderRadius: 36, background: 'linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)'}} /><div><div style={{font: '600 26px Inter', color: '#aaa'}}>you · now</div><div style={{font: '700 40px Inter'}}>TRIP</div></div></div>}
+        <div style={{width: 72, height: 72, borderRadius: 36, background: 'linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7)'}} /><div><div style={{font: '600 26px Inter', color: '#aaa'}}>you · now</div><div style={{font: '700 40px Inter'}}>{word}</div></div></div>}
       {f >= posted + 10 && <div style={{display: 'flex', gap: 20, alignItems: 'center', marginLeft: 70, transform: `translateY(${(1 - rs) * 40}px)`, opacity: rs}}>
         <div style={{width: 60, height: 60, borderRadius: 30, background: BR, display: 'grid', placeItems: 'center', font: '800 28px Inter'}}>C</div><div><div style={{font: '600 24px Inter', color: '#aaa'}}>steven_chinapal · author</div><div style={{font: '600 34px Inter'}}>Sent you a DM 📩</div></div></div>}
       <div style={{position: 'absolute', left: 40, right: 40, top: 520, height: 96, borderRadius: 48, border: '2px solid #444', display: 'flex', alignItems: 'center', padding: '0 34px', font: '600 38px Inter', color: f >= typeAt && f < posted ? '#fff' : '#888'}}>
         {f >= typeAt && f < posted ? word.slice(0, n) + (f % 12 < 6 ? '|' : '') : 'Add a comment…'}<span style={{marginLeft: 'auto', color: '#4c9aff', fontWeight: 700}}>{f >= typeAt + 8 && f < posted ? 'Post' : ''}</span></div></div>
     <Sfx at={0} name="whoosh_es" />{[0, 1, 2, 3].map(k => <Sfx key={k} at={typeAt + k * 2} name="click" vol={0.15} />)}<Sfx at={posted} name="pop_es" vol={0.3} /><Sfx at={posted + 10} name="ding" vol={0.3} />
-    <Voice id={id} /><Captions id={id} keys={['trip']} top={300} /></AbsoluteFill>);
+    <Voice id={id} /><Captions id={id} keys={[word.toLowerCase()]} top={300} /></AbsoluteFill>);
+};
+
+// dolly zoom: clean plate stretches behind him, he stays the same size
+export const Vertigo: React.FC<{id: string; keys?: string[]}> = ({id, keys = []}) => {
+  const f = useCurrentFrame(); const n = EDL[id]?.frames ?? 60; const s = interpolate(f, [0, n], [1, 1.8], {...clamp, easing: Easing.inOut(Easing.cubic)});
+  return (<AbsoluteFill style={{background: '#000'}}>
+    <Img src={staticFile(`${id}_plate.jpg`)} style={{position: 'absolute', width: W, height: H, transform: `scale(${s})`, transformOrigin: '540px 840px', filter: `blur(${(s - 1) * 4}px)`}} />
+    <AbsoluteFill style={{background: `radial-gradient(circle at 50% 45%, transparent 45%, rgba(0,0,0,${(s - 1) * 0.8}) 100%)`}} />
+    <Cut id={id} /><Sfx at={0} name="whoosh_es" vol={0.25} /><Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);
+};
+// landing shot after a zoom-through: punch-in with blur settling
+export const CafeClip: React.FC<{id: string}> = ({id}) => {
+  const f = useCurrentFrame(); const q = interpolate(f, [0, 7], [0, 1], {...clamp, easing: Easing.out(Easing.cubic)});
+  return (<AbsoluteFill><Base id={id} style={{transform: `scale(${1.35 - 0.35 * q})`, filter: `blur(${(1 - q) * 10}px)`}} /></AbsoluteFill>);
 };
