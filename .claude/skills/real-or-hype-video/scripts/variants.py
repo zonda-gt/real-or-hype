@@ -58,13 +58,13 @@ HOOKVOL={'A0':0.95}   # viral-clip audio level in the hook (default 0.22 under n
 # on-screen context line during the hook (for viewers watching muted), shown from the first frame until the sting
 CONTEXT_TEXT={'A0':'ctx.png'}
 
-# A0me: A0 narrated in the creator's own cloned voice (ElevenLabs instant clone 3UC062EABK6Q78ypE8za,
-# stability 0.5 / similarity 0.9 / style 0.15, atempo 1.12). Slots widened where his lines run longer than Liam's.
-VODIRS={'A0me':'vo_me'}
-_ME_DUR={'O5':2.72,'A1':1.08,'I2':1.78,'R1':3.02}
+# A0me: A0 narrated in the creator's own cloned voice. v2 clone (ElevenLabs IVC KdPzirZUC0HY6WhfwyeE) from a clean 63 s
+# read of the series script; stability 0.5 / similarity 0.9 / style 0.15, atempo 1.2 (his natural pace is slower than Liam's).
+VODIRS={'A0me':'vo_me2'}
+_ME_DUR={'H1':5.05,'O2':0.85,'O7':1.4,'M1':0.73,'A1':1.08,'I3':1.0,'R1':3.27,'R2':2.99,'V1':3.45}   # O3 can't grow: its source clip ends
 S['A0me']=[(sid,k,a,_ME_DUR.get(sid,d),key) for sid,k,a,d,key in S['A0']]
 HOOKVO['A0me']=VODIRS['A0me']+'/silence.wav'; HOOKVOL['A0me']=0.95; CONTEXT_TEXT['A0me']='ctx.png'
-TICKS['A0me']=(0.71,1.31)   # same ~0.32 s lead before the spoken "real"/"hype" as Liam's ticks
+TICKS['A0me']=(1.18,2.56)   # verdict "Overall: the trees are real. The mall is hype." (his clone blurs a lone "Mall," into "mole/more"); HYPE buzz starts after "mall"
 def vodir(var): return VODIRS.get(var,VODIR)
 
 # AN: A0 (context line, A's body) plus the Liam claim line in the hook; viral clip lowered under it
