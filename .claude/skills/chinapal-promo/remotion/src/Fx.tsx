@@ -47,10 +47,10 @@ export const Phone: React.FC<{src: string; w: number; style?: React.CSSPropertie
 };
 
 // ---- effects ----
-export const PhoneHold: React.FC<{id: string; src: string}> = ({id, src}) => {
+export const PhoneHold: React.FC<{id: string; src: string; x?: number; y?: number; w?: number; tilt?: number}> = ({id, src, x = 610, y = 330, w = 430, tilt = 4}) => {
   const f = useCurrentFrame(); const s = useSpr(2, {damping: 14, stiffness: 120, mass: 0.8});
   return (<AbsoluteFill><Base id={id} />
-    <Phone src={src} w={430} style={{left: 610, top: interpolate(s, [0, 1], [1950, 330]) + Math.sin(f / 10) * 8, transform: `perspective(1600px) rotateY(-18deg) rotateZ(${4 + (1 - s) * 10}deg)`}} />
+    <Phone src={src} w={w} style={{left: x, top: interpolate(s, [0, 1], [1950, y]) + Math.sin(f / 10) * 8, transform: `perspective(1600px) rotateY(-12deg) rotateZ(${tilt + (1 - s) * 10}deg)`, transformOrigin: '50% 100%'}} />
     <Sfx at={2} name="whoosh_es" /><Voice id={id} /><Captions id={id} keys={['10', 'ten', 'reels']} /></AbsoluteFill>);
 };
 export const Checklist: React.FC<{id: string; items: string[]; ticks: number[]}> = ({id, items, ticks}) => {
@@ -65,11 +65,13 @@ export const Checklist: React.FC<{id: string; items: string[]; ticks: number[]}>
     {ticks.map((t, k) => <Sfx key={k} at={t} name="ding" vol={0.25} />)}<Sfx at={0} name="whoosh_es" />
     <Voice id={id} /><Captions id={id} keys={['send', 'this']} /></AbsoluteFill>);
 };
-export const Orbit: React.FC<{id: string; keys?: string[]}> = ({id, keys = []}) => {
+export const Orbit: React.FC<{id: string; keys?: string[]; blurIn?: number}> = ({id, keys = [], blurIn = 0}) => {
   const f = useCurrentFrame(); const g = useSpr(0, {damping: 16, stiffness: 90, mass: 0.8});
+  const bq = blurIn ? interpolate(f, [0, blurIn], [0, 1], {...clamp, easing: Easing.out(Easing.cubic)}) : 1;
+  const vs: React.CSSProperties = blurIn ? {transform: `scale(${1.3 - 0.3 * bq})`, filter: `blur(${(1 - bq) * 14}px)`} : {};
   const items = P.map((_, i) => { const a = (2 * Math.PI * i) / 10 + 0.2 + f * 0.06; return {i, a, x: 540 + 500 * g * Math.cos(a), y: 1020 + 120 * g * Math.sin(a), d: (Math.sin(a) + 1) / 2}; });
   const r = (it: typeof items[0]) => { const w = 150; return <div key={it.i} style={{position: 'absolute', left: it.x - w / 2, top: it.y - w * 0.75, width: w, height: w * 1.5, transform: `perspective(900px) rotateY(${-Math.cos(it.a) * 55}deg) scale(${(0.55 + 0.6 * it.d) * g})`, filter: `blur(${(1 - it.d) * 2.5}px) brightness(${0.75 + 0.25 * it.d})`}}><Card i={it.i} w={w} views={false} /></div>; };
-  return (<AbsoluteFill><Base id={id} />{items.filter(t => Math.sin(t.a) <= 0).map(r)}<Cut id={id} />{items.filter(t => Math.sin(t.a) > 0).sort((a, b) => a.d - b.d).map(r)}
+  return (<AbsoluteFill><Base id={id} style={vs} />{items.filter(t => Math.sin(t.a) <= 0).map(r)}<Cut id={id} style={vs} />{items.filter(t => Math.sin(t.a) > 0).sort((a, b) => a.d - b.d).map(r)}
     <Sfx at={0} name="whoosh_es" /><Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);
 };
 export const CouchWall: React.FC<{id: string; keys?: string[]}> = ({id, keys = []}) => {
@@ -81,13 +83,14 @@ export const CouchWall: React.FC<{id: string; keys?: string[]}> = ({id, keys = [
     <Cut id={id} />{pos.map((_, i) => i % 2 === 0 ? <Sfx key={i} at={2 + i * 3} name="pop_es" vol={0.18} /> : null)}
     <Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);
 };
-export const UIWorld: React.FC<{id: string; fly: number[]; replyAt: number; keys?: string[]}> = ({id, fly, replyAt, keys = []}) => {
+export const UIWorld: React.FC<{id: string; fly: number[]; replyAt: number; keys?: string[]; px?: number; py?: number; pw?: number}> = ({id, fly, replyAt, keys = [], px = 610, py = 150, pw = 430}) => {
+  const ph = pw * 930 / 430;
   const f = useCurrentFrame(); const e = useSpr(0, {damping: 14, stiffness: 120, mass: 0.8}); const cards = [4, 6, 1, 3];
   return (<AbsoluteFill><Base id={id} />
-    <div style={{position: 'absolute', left: 610, top: interpolate(e, [0, 1], [-1100, 150]), transform: `perspective(1600px) rotateY(-20deg) rotateZ(${4 + (1 - e) * 8}deg)`, width: 430, height: 930}}>
-      <div style={{width: 430, height: 930, borderRadius: 56, border: '10px solid #111', overflow: 'hidden', boxShadow: '0 40px 90px rgba(0,0,0,.5)'}}><Img src={staticFile(f >= replyAt ? 'screen_dm.png' : 'screen_dm_sending.png')} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></div></div>
+    <div style={{position: 'absolute', left: px, top: interpolate(e, [0, 1], [-1100, py]), transform: `perspective(1600px) rotateY(-20deg) rotateZ(${4 + (1 - e) * 8}deg)`, width: pw, height: ph}}>
+      <div style={{width: pw, height: ph, borderRadius: pw * 0.13, border: '10px solid #111', overflow: 'hidden', boxShadow: '0 40px 90px rgba(0,0,0,.5)'}}><Img src={staticFile(f >= replyAt ? 'screen_dm.png' : 'screen_dm_sending.png')} style={{width: '100%', height: '100%', objectFit: 'cover'}} /></div></div>
     {fly.map((t0, k) => { const q = interpolate(f, [t0, t0 + 10], [0, 1], {...clamp, easing: Easing.inOut(Easing.quad)}); if (q <= 0 || q >= 1) return null;
-      const x = interpolate(q, [0, 1], [-60, 820]), y = interpolate(q, [0, 1], [1150, 650]) - 260 * Math.sin(Math.PI * q);
+      const x = interpolate(q, [0, 1], [-60, px + pw / 2]), y = interpolate(q, [0, 1], [700, py + ph * 0.45]) - 420 * Math.sin(Math.PI * q);
       return <div key={k} style={{position: 'absolute', left: x - 90, top: y - 135, transform: `scale(${1.1 - 0.75 * q}) rotate(${-20 * (1 - q)}deg)`, opacity: q > 0.8 ? (1 - q) * 5 : 1}}><Card i={cards[k % 4]} w={180} /></div>; })}
     <Sfx at={0} name="whoosh_es" />{fly.map((t, k) => <Sfx key={k} at={t} name="whoosh_es" vol={0.15} />)}<Sfx at={replyAt} name="ding" />
     <Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);
@@ -117,10 +120,11 @@ export const StopScreen: React.FC<{voice?: string; capId?: string; hl?: {at: num
     <Sfx at={0} name="whoosh_es" vol={0.35} />{hl.map((h, k) => <Sfx key={k} at={h.at} name="pop_es" vol={0.22} />)}
     {voice && <Voice id={voice} />}{capId && <Captions id={capId} keys={keys} top={1730} size={64} />}</AbsoluteFill>);
 };
-export const RouteGrow: React.FC<{id: string; at: number[]; tipAt?: number; keys?: string[]}> = ({id, at, tipAt, keys = []}) => {
+type Pin = [number | null, string];
+const DEF_PTS = [[120, 700], [345, 500], [570, 380], [795, 450], [975, 660]];
+const DEF_PINS: Pin[] = [[null, 'Start'], [5, 'Cat café'], [null, ''], [3, 'Yu Garden'], [2, 'Rooftop bar']];
+export const RouteGrow: React.FC<{id: string; at: number[]; tipAt?: number; keys?: string[]; pts?: number[][]; pins?: Pin[]; tipPos?: [number, number]}> = ({id, at, tipAt, keys = [], pts = DEF_PTS, pins = DEF_PINS, tipPos = [560, 900]}) => {
   const f = useCurrentFrame();
-  const pts = [[120, 700], [345, 500], [570, 380], [795, 450], [975, 660]];
-  const pins: [number | null, string][] = [[null, 'Start'], [5, 'Cat café'], [null, ''], [3, 'Yu Garden'], [2, 'Rooftop bar']];
   const segL = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1])); const total = segL.reduce((a, b) => a + b, 0);
   let len = 0; for (let k = 0; k < at.length - 1; k++) len += segL[k] * interpolate(f, [at[k], at[k + 1]], [0, 1], clamp);
   const d = 'M' + pts.map(p => p.join(',')).join(' L'); const sp = at.map(a => useSpr(a, {damping: 9, stiffness: 220, mass: 0.5})); const day = useSpr(0); const tp = useSpr(tipAt ?? 1e6, {damping: 11, stiffness: 200, mass: 0.6});
@@ -133,7 +137,7 @@ export const RouteGrow: React.FC<{id: string; at: number[]; tipAt?: number; keys
       <div style={{position: 'absolute', left: x - 34, top: y - 34, width: 68, height: 68, borderRadius: 34, background: BR, border: '6px solid #fff', display: 'grid', placeItems: 'center', color: '#fff', font: '800 32px Inter', transform: `scale(${s})`}}>{k + 1}</div></React.Fragment>); })}
     <div style={{position: 'absolute', left: 60, top: 80, font: '800 48px Inter', color: '#fff', background: '#1d1d1f', padding: '14px 34px', borderRadius: 44, transform: `scale(${day})`}}>DAY 1</div>
     <Cut id={id} />
-    {tipAt !== undefined && <div style={{position: 'absolute', left: 560, top: 900, width: 460, padding: '22px 26px', borderRadius: 28, background: '#FFF4EF', boxShadow: '0 20px 50px rgba(0,0,0,.3)', transform: `scale(${tp}) rotate(${(1 - tp) * 8 + 2}deg)`, transformOrigin: '0 0'}}>
+    {tipAt !== undefined && <div style={{position: 'absolute', left: tipPos[0], top: tipPos[1], width: 460, padding: '22px 26px', borderRadius: 28, background: '#FFF4EF', boxShadow: '0 20px 50px rgba(0,0,0,.3)', transform: `scale(${tp}) rotate(${(1 - tp) * 8 + 2}deg)`, transformOrigin: '0 0'}}>
       <div style={{font: '800 30px Inter', color: BR}}>Steven's tip</div><div style={{font: '600 30px Inter', color: '#1d1d1f', marginTop: 6}}>Go before 10 to beat the crowds</div></div>}
     {at.map((a, k) => <Sfx key={k} at={a} name="pop_es" vol={0.22} />)}{tipAt !== undefined && <Sfx at={tipAt} name="ding" vol={0.25} />}
     <Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);

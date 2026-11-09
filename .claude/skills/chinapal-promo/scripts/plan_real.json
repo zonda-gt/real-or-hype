@@ -11,8 +11,8 @@
 {
 "id": "v1r_02_orbit",
 "src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
-"tin": 42.6,
-"tout": 45.2,
+"tin": 21.95,
+"tout": 24.4,
 "speed": 1.15,
 "matte": true,
 "plate": false
@@ -20,8 +20,8 @@
 {
 "id": "v1r_03_vertigo",
 "src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
-"tin": 45.36,
-"tout": 46.4,
+"tin": 56.2,
+"tout": 57.75,
 "speed": 1.15,
 "matte": true,
 "plate": true
@@ -29,8 +29,8 @@
 {
 "id": "v1r_04_dm",
 "src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
-"tin": 85.3,
-"tout": 87.2,
+"tin": 80.35,
+"tout": 82.25,
 "speed": 1.15,
 "matte": false,
 "plate": false
@@ -155,8 +155,8 @@
 {
 "id": "s3r_3_dm",
 "src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
-"tin": 47.4,
-"tout": 49.5,
+"tin": 49.75,
+"tout": 51.5,
 "speed": 1.15,
 "matte": false,
 "plate": false

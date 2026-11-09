@@ -27,6 +27,14 @@ CTA in use: "Comment TRIP and I'll send you the link" (needs a comment auto-DM; 
 - Instagram posting: use the **instagram-trial-reel** skill (trial reels only, uploads local files directly). Old manifest script `scripts/post_trial_reels.py` is superseded.
 - Instagram posting (history): the user's "AI Chat generation env" holds INSTAGRAM_ACCESS_TOKEN / INSTAGRAM_USER_ID / INSTAGRAM_FB_TOKEN (not this "Video editing" env). Post only after explicit confirmation of video, caption and trial/normal reel.
 
+## Real-footage edits: choosing takes (lessons, Nov 9)
+- Never pick takes from the transcript alone. For every line, build a sheet of ALL its takes (`scripts/take_sheets.py`: one row per take, a frame every 0.4 s labelled with the word being said) and choose on picture AND sound: eye contact, a gesture that fits the effect, not reading the phone, not looking down, not leaning out of frame.
+- Check Whisper's segmentation: a "take" can contain an aborted start ("But you've been … and you've been to none of them"); re-transcribe the chosen range alone before trusting it.
+- Pointing shots: grab grid frames (1080×1920 coords) at each place word, read the fingertip position, and put that word's pin there (`RouteGrow pts/pins/at`); the route must follow the order he points (Real 1 goes right→left). Mirror the shot or flip the graphic if needed; never let a graphic contradict the hand.
+- Floating UI must not cover his face: measure the head box and place the phone (`UIWorld px/py/pw`, `PhoneHold x/y/w`) beside it; flying cards arc above the head.
+- If a take opens with him settling into frame and the first word starts too soon to trim, hide those frames with a short zoom-blur-in (`Orbit blurIn`).
+- Final check: 3 fps sheets of each render plus close 5–8 fps strips of every effect moment, before sending.
+
 ## Effects menu (from @tenfoldmarc's "17 video effects Claude can create" reel)
 Used: 01 couch wall (reels pinned on the wall *behind* him), 02 orbit (reels circle him in 3D), 03 vertigo (dolly zoom on a clean plate), 04 UI world (floating DM, reels fly in), 05 checklist (glass panel ticks), 06 pull-back reveal (shot shrinks into "building your trip" window, % counter), 07 route grow (Day-1 route draws on the wall behind him, pins pop on spoken words), 08 zoom-through cut (into the café reel → café shot), 09 cover story (Playfair title behind his head), 10 frame break (he reaches out of an IG reel frame).
 Not used: headline wall (dup of couch wall), green screen, paper cut, doodle boil, glass type (pick one of cover story / glass type), phone mockup (UI world covers it), digital zoom (use sparingly).
