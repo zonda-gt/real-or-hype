@@ -131,7 +131,12 @@ for vid, remote, log, state in items:
         if remote: data["video_url"] = vid
         else: data["upload_type"] = "resumable"
         sc, d = call("POST", f"{base}/{uid}/media", data=data)
-        if sc != 200 or "id" not in d: print(f"{vid}: could not create the post: {sc} {clean(d)}"); results.append((vid, None)); continue
+        if sc != 200 or "id" not in d:
+            print(f"{vid}: could not create the post: {sc} {clean(d)}")
+            if not remote and "video_url is required" in json.dumps(d):
+                print("  -> This account/token does not accept direct file uploads. Put the file at a public URL "
+                      "(e.g. commit it to the public repo and use its raw.githubusercontent.com link) and pass the URL instead.")
+            results.append((vid, None)); continue
         cid = d["id"]; state.update(container=cid, created=time.strftime("%Y-%m-%dT%H:%M:%S")); save()
         if not remote:
             uri = d.get("uri") or f"https://rupload.facebook.com/ig-api-upload/{VER}/{cid}"
