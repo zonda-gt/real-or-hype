@@ -34,9 +34,39 @@ export const S1: Step[] = [
   {len: fr('v1_09_cover'), el: <CoverStory id="v1_09_cover" yourAt={wf('v1_09_cover', 'that')} words={[{text: 'TRIP', at: wf('v1_09_cover', 'trip')}]} />},
   {len: fr('v1_10_cta'), el: <FrameBreak id="v1_10_cta" keys={['saved', 'reel']} followAt={Math.max(10, fr('v1_10_cta') - 10)} />},
 ];
+// ---- real footage of Steven (Nov 9) ----
+export const R1: Step[] = [
+  {len: fr('v1r_01_wall'), el: <CouchWall id="v1r_01_wall" keys={['hundreds']} />},
+  {len: fr('v1r_02_orbit'), el: <Orbit id="v1r_02_orbit" keys={['cafe']} />},
+  {len: fr('v1r_03_vertigo'), el: <Vertigo id="v1r_03_vertigo" keys={['none']} />},
+  {len: fr('v1r_04_dm'), el: <UIWorld id="v1r_04_dm" fly={[1, 6, 11]} replyAt={Math.max(18, fr('v1r_04_dm') - 10)} keys={['all']} />},
+  {len: fr('v1r_05_check'), el: <Checklist id="v1r_05_check" items={['Save the reel', 'Send it to @steven_chinapal', 'Get your trip']} ticks={[wf('v1r_05_check', 'reels') + 3, wf('v1r_05_check', 'me') + 3, wf('v1r_05_check', 'that') + 4]} />},
+  {len: fr('v1r_06_plan'), el: <PullBackReveal id="v1r_06_plan" src="A_sunburst.png" keys={['day-by-day', 'reels']} />},
+  {len: fr('v1r_07_route'), el: <RouteGrow id="v1r_07_route" at={[1, wf('v1r_07_route', 'this'), wf('v1r_07_route', 'cafe'), wf('v1r_07_route', 'garden'), wf('v1r_07_route', 'dinner')]} keys={['cafe', 'garden', 'dinner']} />},
+  {len: 14, el: <StopScreen />},
+  {len: fr('v1r_09_cover'), el: <CoverStory id="v1r_09_cover" yourAt={wf('v1r_09_cover', 'that')} words={[{text: 'TRIP', at: wf('v1r_09_cover', 'trip')}]} />},
+  {len: fr('v1r_10_cta'), el: <FrameBreak id="v1r_10_cta" keys={['reel', 'link']} followAt={Math.max(10, fr('v1r_10_cta') - 8)} />},
+];
+export const R2: Step[] = [
+  {len: fr('s2r_1_hold'), el: <PhoneHold id="s2r_1_hold" src="B_sunburst.png" />},
+  {len: fr('s2r_2_check'), el: <Checklist id="s2r_2_check" items={['Save reels', 'Send them to @steven_chinapal', 'Get your trip back']} ticks={[wf('s2r_2_check', 'reels') + 3, wf('s2r_2_check', 'me') + 3, wf('s2r_2_check', 'back') + 2]} />},
+  {len: fr('s2r_3_orbit'), el: <Orbit id="s2r_3_orbit" keys={['cafes']} />},
+  {len: fr('s2r_4_route'), el: <RouteGrow id="s2r_4_route" at={[1, wf('s2r_4_route', 'map'), wf('s2r_4_route', 'right'), wf('s2r_4_route', 'order'), wf('s2r_4_route', 'with')]} tipAt={wf('s2r_4_route', 'tips')} keys={['map', 'tips']} />},
+  {len: 16, el: <StopScreen />},
+  {len: fr('s2r_5_cover'), el: <CoverStory id="s2r_5_cover" yourAt={wf('s2r_5_cover', 'your')} words={[{text: 'REELS', at: wf('s2r_5_cover', 'reel')}, {text: 'TRIP', at: wf('s2r_5_cover', 'trip')}]} />},
+  {len: fr('s2r_6_cta'), el: <FrameBreak id="s2r_6_cta" keys={['reel', 'link']} followAt={Math.max(10, fr('s2r_6_cta') - 8)} />},
+];
+export const R3: Step[] = [
+  {len: fr('s3r_1_offer'), el: <FrameBreak id="s3r_1_offer" keys={['saved', 'china']} />},
+  {len: fr('s3r_2_wall'), el: <CouchWall id="s3r_2_wall" keys={['saved']} />},
+  {len: fr('s3r_3_dm'), el: <UIWorld id="s3r_3_dm" fly={[1, 6, 11]} replyAt={Math.max(18, fr('s3r_3_dm') - 10)} keys={['dm']} />},
+  {len: fr('s3r_4_plan'), el: <PullBackReveal id="s3r_4_plan" src="A_sunburst.png" keys={['day-by-day']} />},
+  {len: fr('s3r_5_tips'), el: <StopScreen voice="s3r_5_tips" capId="s3r_5_tips" keys={['hours', 'routes', 'tips']} hl={[{at: wf('s3r_5_tips', 'hours'), r: HL.hours}, {at: wf('s3r_5_tips', 'routes'), r: HL.map}, {at: wf('s3r_5_tips', 'tips'), r: HL.tip}]} />},
+  {len: fr('s3r_6_cta'), el: <CommentCTA id="s3r_6_cta" word="REEL" typeAt={Math.max(2, wf('s3r_6_cta', 'reel') - 2)} />},
+];
 export const total = (s: Step[]) => s.reduce((a, b) => a + b.len, 0);
-export const Video: React.FC<{steps: 'S1' | 'S2' | 'S3'}> = ({steps}) => {
-  const st = steps === 'S1' ? S1 : steps === 'S2' ? S2 : S3; let from = 0;
+export const Video: React.FC<{steps: 'S1' | 'S2' | 'S3' | 'R1' | 'R2' | 'R3'}> = ({steps}) => {
+  const st = ({S1, S2, S3, R1, R2, R3} as Record<string, Step[]>)[steps]; let from = 0;
   return (<AbsoluteFill style={{background: '#000', fontFamily: 'Inter'}}><style>{fontCss}</style>
     {st.map((s, i) => { const el = <Sequence key={i} from={from} durationInFrames={s.len}>{s.el}</Sequence>; from += s.len; return el; })}</AbsoluteFill>);
 };

@@ -1,0 +1,191 @@
+[
+{
+"id": "v1r_01_wall",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 1.25,
+"tout": 4.25,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "v1r_02_orbit",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 42.6,
+"tout": 45.2,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "v1r_03_vertigo",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 45.36,
+"tout": 46.4,
+"speed": 1.15,
+"matte": true,
+"plate": true
+},
+{
+"id": "v1r_04_dm",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 85.3,
+"tout": 87.2,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "v1r_05_check",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 101.6,
+"tout": 104.65,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "v1r_06_plan",
+"src": "/home/user/videos/promo1/cuts/v1r_06_plan.mp4",
+"tin": 0,
+"tout": 4.99,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "v1r_07_route",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 159.05,
+"tout": 163.5,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "v1r_09_cover",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 170.3,
+"tout": 172.3,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "v1r_10_cta",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_120846.mp4",
+"tin": 179.3,
+"tout": 181.65,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s2r_1_hold",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121206.mp4",
+"tin": 0.0,
+"tout": 4.15,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "s2r_2_check",
+"src": "/home/user/videos/promo1/cuts/s2r_2_check.mp4",
+"tin": 0,
+"tout": 4.4,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "s2r_3_orbit",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121206.mp4",
+"tin": 43.1,
+"tout": 46.7,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s2r_4_route",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121206.mp4",
+"tin": 80.6,
+"tout": 85.25,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s2r_5_cover",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121206.mp4",
+"tin": 89.6,
+"tout": 91.9,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s2r_6_cta",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121206.mp4",
+"tin": 94.4,
+"tout": 96.45,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s3r_1_offer",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 17.8,
+"tout": 21.4,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s3r_2_wall",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 24.4,
+"tout": 27.35,
+"speed": 1.15,
+"matte": true,
+"plate": false
+},
+{
+"id": "s3r_3_dm",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 47.4,
+"tout": 49.5,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "s3r_4_plan",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 78.1,
+"tout": 81.95,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "s3r_5_tips",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 93.7,
+"tout": 97.45,
+"speed": 1.15,
+"matte": false,
+"plate": false
+},
+{
+"id": "s3r_6_cta",
+"src": "/home/user/videos/promo1/Ang/reel promo1/20261109_121401.mp4",
+"tin": 108.15,
+"tout": 110.25,
+"speed": 1.15,
+"matte": false,
+"plate": false
+}
+]
