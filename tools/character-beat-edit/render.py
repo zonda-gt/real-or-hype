@@ -34,9 +34,11 @@ PLACES = {
  "rz": ("日照 · 童话小镇", "Rizhao, Shandong"), "yx": ("宜兴 · 窑湖小镇", "Yixing, Jiangsu")}
 # Cuts sit on the strongest drum hits (pickcuts8.py -> cuts8th.json), each snapped to the frame of the hit.
 CUTS = json.load(open("cuts2.json"))["cuts"]
-SEQ = [("panda", 2.0), ("panda", 6.0, 1.4), ("redpanda", 11.5), ("redpanda", 2.0), ("hz", 0.5), ("hz", 9.0),
-       ("xm", 2.1), ("xm", 5.15), ("hf", 0.2), ("py", 3.5), ("gk", 0.5), ("gk", 3.0, 1.4), ("dt", 4.3), ("dt", 9.4),
-       ("wx", 4.0), ("wx", 13.3), ("tz", 20.4), ("ly", 1.0), ("rz", 1.0), ("rz", 4.0), ("yx", 0.12), ("yx", 6.3)]
+# panda = hook at the start, red panda in the middle (14.3-16.5 s) so the animals are spread out
+SEQ = [("panda", 2.0), ("panda", 6.0, 1.4), ("hz", 0.5), ("hz", 9.0), ("hf", 0.2), ("py", 3.5),
+       ("xm", 2.1), ("xm", 5.15), ("gk", 0.5), ("gk", 3.0, 1.4), ("redpanda", 11.5), ("redpanda", 2.0),
+       ("dt", 4.3), ("dt", 9.4), ("wx", 4.0), ("wx", 13.3), ("tz", 20.4), ("ly", 1.0), ("rz", 1.0), ("rz", 4.0),
+       ("yx", 0.12), ("yx", 6.3)]
 LYRICS = {"A": ("我真的特别爱你", "I really do love you so much"),
           "B": ("为什么你会落泪", "Why are you crying?"),
           "C": ("答应我不再流泪", "Promise me you won't cry anymore"),
@@ -104,7 +106,7 @@ for i in range(1, NFR + 1, 10):
     xs0.append(xx.min()); xs1.append(xx.max()); ys0.append(yy.min()); ys1.append(yy.max())
 bx0, bx1, by0, by1 = np.median(xs0), np.median(xs1), np.median(ys0), np.median(ys1)
 fig_h = by1 - by0
-CH_SCALE = 430 / fig_h                     # figure ~430 px tall
+CH_SCALE = 320 / fig_h                     # figure ~320 px tall
 FEET_Y = 1400                              # feet line in output
 CX = 540
 print("figure bbox", bx0, bx1, by0, by1, "scale", CH_SCALE)
