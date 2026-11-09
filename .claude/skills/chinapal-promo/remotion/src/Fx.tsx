@@ -96,14 +96,15 @@ export const UIWorld: React.FC<{id: string; fly: number[]; replyAt: number; keys
     <Voice id={id} /><Captions id={id} keys={keys} /></AbsoluteFill>);
 };
 // his shot shrinks into a facecam tile while the itinerary phone rises
-export const PullBackReveal: React.FC<{id: string; src: string; keys?: string[]}> = ({id, src, keys = []}) => {
+export const PullBackReveal: React.FC<{id: string; src: string; keys?: string[]; fx?: number; fy?: number; k?: number}> = ({id, src, keys = [], fx = 540, fy = 760, k = 0.48}) => {
   const f = useCurrentFrame(); const p = useSpr(3, {damping: 18, stiffness: 110, mass: 0.8}); const ph = useSpr(8, {damping: 15, stiffness: 100, mass: 0.8});
   const t = {x: 50, y: 110, w: 320, h: 430};
   const r = {x: interpolate(p, [0, 1], [0, t.x]), y: interpolate(p, [0, 1], [0, t.y]), w: interpolate(p, [0, 1], [W, t.w]), h: interpolate(p, [0, 1], [H, t.h])};
   return (<AbsoluteFill style={{background: 'linear-gradient(160deg,#F3EEE6,#E6DED2)'}}>
     <Phone src={src} w={640} style={{left: 400, top: interpolate(ph, [0, 1], [2000, 150]), transform: `rotate(${(1 - ph) * 8}deg)`}} />
     <div style={{position: 'absolute', left: r.x, top: r.y, width: r.w, height: r.h, borderRadius: 36 * p, overflow: 'hidden', boxShadow: `0 20px 60px rgba(0,0,0,${0.35 * p})`, border: `${6 * p}px solid #fff`}}>
-      <Base id={id} style={{width: W, height: H, transform: `scale(${interpolate(p, [0, 1], [1, 0.42])})`, transformOrigin: '540px 760px', left: (r.w - W) / 2, top: (r.h - H) / 2}} /></div>
+      {(() => { const sc = interpolate(p, [0, 1], [1, k]); const cx = interpolate(p, [0, 1], [540, fx]); const cy = interpolate(p, [0, 1], [960, fy]);
+        return <Base id={id} style={{width: W, height: H, transformOrigin: '0 0', transform: `translate(${r.w / 2 - cx * sc}px, ${r.h / 2 - cy * sc}px) scale(${sc})`}} />; })()}</div>
     <Sfx at={3} name="whoosh_es" /><Sfx at={8} name="pop_es" vol={0.25} />
     <Voice id={id} /><Captions id={id} keys={keys} top={1755} size={64} /></AbsoluteFill>);
 };
@@ -123,18 +124,18 @@ export const StopScreen: React.FC<{voice?: string; capId?: string; hl?: {at: num
 type Pin = [number | null, string];
 const DEF_PTS = [[120, 700], [345, 500], [570, 380], [795, 450], [975, 660]];
 const DEF_PINS: Pin[] = [[null, 'Start'], [5, 'Cat café'], [null, ''], [3, 'Yu Garden'], [2, 'Rooftop bar']];
-export const RouteGrow: React.FC<{id: string; at: number[]; tipAt?: number; keys?: string[]; pts?: number[][]; pins?: Pin[]; tipPos?: [number, number]}> = ({id, at, tipAt, keys = [], pts = DEF_PTS, pins = DEF_PINS, tipPos = [560, 900]}) => {
+export const RouteGrow: React.FC<{id: string; at: number[]; tipAt?: number; keys?: string[]; pts?: number[][]; pins?: Pin[]; tipPos?: [number, number]; preview?: boolean}> = ({id, at, tipAt, keys = [], pts = DEF_PTS, pins = DEF_PINS, tipPos = [560, 900], preview = false}) => {
   const f = useCurrentFrame();
   const segL = pts.slice(1).map((p, i) => Math.hypot(p[0] - pts[i][0], p[1] - pts[i][1])); const total = segL.reduce((a, b) => a + b, 0);
   let len = 0; for (let k = 0; k < at.length - 1; k++) len += segL[k] * interpolate(f, [at[k], at[k + 1]], [0, 1], clamp);
-  const d = 'M' + pts.map(p => p.join(',')).join(' L'); const sp = at.map(a => useSpr(a, {damping: 9, stiffness: 220, mass: 0.5})); const day = useSpr(0); const tp = useSpr(tipAt ?? 1e6, {damping: 11, stiffness: 200, mass: 0.6});
+  const d = 'M' + pts.map(p => p.join(',')).join(' L'); const sp = at.map(a => useSpr(a, {damping: 9, stiffness: 220, mass: 0.5})); const day = useSpr(0); const tp = useSpr(tipAt ?? 1e6, {damping: 11, stiffness: 200, mass: 0.6}); const pv = useSpr(0, {damping: 14, stiffness: 160, mass: 0.6});
   return (<AbsoluteFill><Base id={id} />
     <svg width={W} height={H} style={{position: 'absolute'}}><defs><mask id={`rv${id}`}><path d={d} stroke="#fff" strokeWidth={20} fill="none" strokeDasharray={`${len} ${total}`} strokeLinecap="round" /></mask></defs>
       <path d={d} stroke={BR} strokeWidth={11} fill="none" strokeDasharray="26 18" strokeLinecap="round" mask={`url(#rv${id})`} /></svg>
-    {pins.map(([ci, lab], k) => { const s = sp[k]; const [x, y] = pts[k]; return (<React.Fragment key={k}>
+    {pins.map(([ci, lab], k) => { const on = f >= at[k]; const s = preview ? (on ? 0.82 + 0.18 * sp[k] : 0.82 * pv) : sp[k]; const op = preview && !on ? 0.55 : 1; const [x, y] = pts[k]; return (<React.Fragment key={k}><div style={{opacity: op}}>
       {ci !== null && <div style={{position: 'absolute', left: x - 70, top: y - 250, transform: `scale(${s})`, transformOrigin: '70px 230px'}}><Card i={ci} w={140} views={false} /></div>}
       {lab && ci !== null && <div style={{position: 'absolute', left: x - 110, top: y + 42, width: 220, textAlign: 'center', transform: `scale(${s})`}}><span style={{background: 'rgba(29,29,31,.9)', color: '#fff', font: '700 30px Inter', padding: '8px 18px', borderRadius: 24}}>{lab}</span></div>}
-      <div style={{position: 'absolute', left: x - 34, top: y - 34, width: 68, height: 68, borderRadius: 34, background: BR, border: '6px solid #fff', display: 'grid', placeItems: 'center', color: '#fff', font: '800 32px Inter', transform: `scale(${s})`}}>{k + 1}</div></React.Fragment>); })}
+      <div style={{position: 'absolute', left: x - 34, top: y - 34, width: 68, height: 68, borderRadius: 34, background: BR, border: '6px solid #fff', display: 'grid', placeItems: 'center', color: '#fff', font: '800 32px Inter', transform: `scale(${s})`}}>{k + 1}</div></div></React.Fragment>); })}
     <div style={{position: 'absolute', left: 60, top: 80, font: '800 48px Inter', color: '#fff', background: '#1d1d1f', padding: '14px 34px', borderRadius: 44, transform: `scale(${day})`}}>DAY 1</div>
     <Cut id={id} />
     {tipAt !== undefined && <div style={{position: 'absolute', left: tipPos[0], top: tipPos[1], width: 460, padding: '22px 26px', borderRadius: 28, background: '#FFF4EF', boxShadow: '0 20px 50px rgba(0,0,0,.3)', transform: `scale(${tp}) rotate(${(1 - tp) * 8 + 2}deg)`, transformOrigin: '0 0'}}>
