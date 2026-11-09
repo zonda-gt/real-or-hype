@@ -6,10 +6,11 @@ import numpy as np, cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W, H, FPS = 1080, 1920, 30
-BEAT = 0.4440                      # 135.1 BPM, fitted to kick + snare onsets (fit135.py)
-PHASE = 0.038                      # beat k is at PHASE + k*BEAT; snare on k%4==0, bar downbeat (kick) on k%4==2
+BEAT = 0.4443                      # 135.0 BPM, fitted on the original track 16-44.4 s (orig_grid.json)
+PHASE = 0.1002                     # in video time (audio = original 落泪 from 15.216 s)
 def beat_t(k): return PHASE + k * BEAT
-SONG_DUR = 29.833
+SONG_DUR = 29.424
+AUDIO = "song2.wav"                # 落泪 (康熙/TOYOKI) 15.216-44.640 s, 0.3 s fade out
 OUT = sys.argv[1]
 PREVIEW = float(sys.argv[2]) if len(sys.argv) > 2 else None
 FONT_CN = "fonts/Noto_San.ttf"           # Noto Sans SC Black
@@ -32,20 +33,29 @@ PLACES = {
  "tz": ("台州 · 七彩小镇", "Taizhou, Zhejiang"), "ly": ("龙岩 · 童话森林", "Longyan, Fujian"),
  "rz": ("日照 · 童话小镇", "Rizhao, Shandong"), "yx": ("宜兴 · 窑湖小镇", "Yixing, Jiangsu")}
 # Cuts sit on the strongest drum hits (pickcuts8.py -> cuts8th.json), each snapped to the frame of the hit.
-CUTS = json.load(open("cuts8th.json"))["cuts"]
-SEQ = [("panda", 2.0), ("panda", 5.0), ("redpanda", 11.5), ("hz", 0.5), ("hz", 9.0), ("xm", 2.1), ("py", 3.5),
-       ("hf", 0.0), ("gk", 0.5), ("dt", 4.3), ("dt", 9.4), ("wx", 4.0), ("wx", 13.3), ("ly", 1.0), ("ly", 4.0),
-       ("rz", 1.0), ("rz", 4.0), ("tz", 20.4), ("yx", 0.12), ("yx", 6.3), ("yx", 9.7, 1.45)]   # zoom cut: fireworks -> fireworks needs a visible change
+CUTS = json.load(open("cuts2.json"))["cuts"]
+SEQ = [("panda", 2.0), ("panda", 6.0, 1.4), ("redpanda", 11.5), ("redpanda", 2.0), ("hz", 0.5), ("hz", 9.0),
+       ("xm", 2.1), ("xm", 5.15), ("hf", 0.2), ("py", 3.5), ("gk", 0.5), ("gk", 3.0, 1.4), ("dt", 4.3), ("dt", 9.4),
+       ("wx", 4.0), ("wx", 13.3), ("tz", 20.4), ("ly", 1.0), ("rz", 1.0), ("rz", 4.0), ("yx", 0.12), ("yx", 6.3)]
 LYRICS = {"A": ("我真的特别爱你", "I really do love you so much"),
-          "B": ("为什么你会流泪", "Why did you cry?"),
+          "B": ("为什么你会落泪", "Why are you crying?"),
           "C": ("答应我不再流泪", "Promise me you won't cry anymore"),
           "D": ("在这世界", "In this world"),
           "E": ("没有多少的时间", "There isn't much time"),
-          "F": ("能让我对你思念", "Making me endlessly long for you")}
-# measured from the reel's own burned-in lyrics (frame classification), gaps < 0.4 s closed
-LYR_T = [("A", 0.2, 2.2), ("B", 2.2, 7.4), ("A", 7.4, 9.333), ("C", 9.333, 10.967), ("D", 10.967, 12.133),
-         ("E", 12.133, 13.9), ("F", 13.9, 15.067), ("A", 15.067, 16.4), ("B", 16.4, 21.367), ("A", 21.367, 23.333),
-         ("C", 23.333, 24.933), ("D", 24.933, 26.133), ("E", 26.133, 27.867), ("F", 27.867, 29.6)]
+          "F": ("能让我对你思念", "To spend missing you"),
+          "G": ("世界都变了", "The whole world has changed"),
+          "H": ("但是你还没变", "But you haven't"),
+          "I": ("我早已移情别恋", "I moved on long ago"),
+          "J": ("看现在窗外都变冷", "Look, it's turned cold outside"),
+          "K": ("我们多久没见", "How long since we last met?"),
+          "L": ("我选择没有底线", "I chose to have no limits")}
+# line starts measured on the original track (Whisper word times, checked against the melody match and
+# the reel's own subtitles shifted by 1.08 s), converted to video time (minus 15.216 s)
+_T0 = 15.216
+LYR_T = [(k, a - _T0, b - _T0) for k, a, b in [
+    ("A", 15.28, 17.70), ("B", 17.70, 22.45), ("A", 22.45, 24.41), ("C", 24.41, 26.01), ("D", 26.01, 27.21),
+    ("E", 27.21, 28.92), ("F", 28.92, 30.60), ("G", 32.00, 33.65), ("H", 33.65, 34.95), ("I", 34.95, 37.00),
+    ("J", 38.20, 40.55), ("K", 40.55, 42.05), ("L", 42.05, 44.40)]]
 
 # ---- shot list on the beat grid ---------------------------------------------
 bounds = [0.0] + CUTS + [SONG_DUR]
@@ -168,7 +178,7 @@ def ease_pop(x):          # 0..1 -> overshoot pop
 dur = PREVIEW or SONG_DUR
 nframes = round(dur * FPS)
 enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}", "-r", str(FPS),
-        "-i", "-", "-i", "reel.mp4", "-map", "0:v", "-map", "1:a", "-t", f"{dur:.3f}",
+        "-i", "-", "-i", AUDIO, "-map", "0:v", "-map", "1:a", "-t", f"{dur:.3f}",
         "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
         "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", OUT], stdin=subprocess.PIPE)
 

@@ -19,3 +19,12 @@ Run every script from a work dir that contains `reel.mp4` (the source clip), `so
    - `matte3.py`: refill the core from frames where it is visible (behind a 14 px dilated pass-1 matte), drop the floor shadow (ratio test) and the static watermark
    Don't feed a matte's own output back into the plate with a small margin: it erases the hair.
 5. **Render**: `render.py out.mp4 [preview_seconds]`. One place per bar, a cut every 2 beats, a 7% zoom punch on each cut, a character bounce on each kick, the place-label pill and the lyric subtitles.
+
+## v4: new audio (the original track, from the clear-beat section)
+
+The reel's audio turned out to be the original 落泪 (康熙/TOYOKI) from 1.08 s: `chromamatch.py` scores the match at 0.987. That's the song's soft intro, which is why the beat was unclear.
+- **Getting the audio:** YouTube refuses this server (a direct download returns 403 and yt-dlp hits the "confirm you're not a bot" check), so don't try to bypass it. The same 202 s release is on Bilibili, `BV1tA411m7hf`. Get it with TikHub `bilibili/web/fetch_one_video` (gives the cid), then `fetch_video_playurl`, and download the DASH audio with a `Referer: https://www.bilibili.com/` header.
+- **The window:** `viz2o.py` draws the structure. The bass drops at ~16 s, and a solid four-on-the-floor runs to the riser at ~44.4 s. 我真的特别爱你 starts at 15.28 s. `song2.wav` = 15.216–44.640 s with a 0.3 s fade out.
+- **Lyric times:** `fw.py <wav> medium` (local faster-whisper). Run it **without** the lyric prompt: with the prompt it just repeats the prompt back. Cross-check the times with `chromamatch.py`/`fullscan_o.py` and the reel's subtitles shifted by 1.08 s. The OpenAI key ran out of credits.
+- **Cuts:** `pickcuts2.py` produces `cuts2.json`, with an average hit strength of 1.57. `verify2.py` found 95% of cuts on a clear hit and a median offset of 9 ms. earshot found 85% of cuts within one frame of a sound event, against 34% by chance.
+- **Zoom cuts:** same-place cuts whose source camera barely moves (panda→panda, ginkgo→ginkgo) get a 1.4× punch-in (the third element in `SEQ`).
