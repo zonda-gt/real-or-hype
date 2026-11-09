@@ -6,8 +6,9 @@ import numpy as np, cv2
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 W, H, FPS = 1080, 1920, 30
-BEAT = 0.66667                     # 90 BPM, phase 0 (fitted to kick + lyric-change onsets)
-BAR = 4 * BEAT
+BEAT = 0.4440                      # 135.1 BPM, fitted to kick + snare onsets (fit135.py)
+PHASE = 0.038                      # beat k is at PHASE + k*BEAT; snare on k%4==0, bar downbeat (kick) on k%4==2
+def beat_t(k): return PHASE + k * BEAT
 SONG_DUR = 29.833
 OUT = sys.argv[1]
 PREVIEW = float(sys.argv[2]) if len(sys.argv) > 2 else None
@@ -21,20 +22,20 @@ P = {
  "panda": "7704258711699220687", "redpanda": "7643117918070514673", "hz": "7654209858460714344",
  "xm": "7665601807955632457", "hf": "7696465235804855281", "py": "7685187711413607281",
  "dt": "7698644721291301042", "wx": "7704836276721744233", "ly": "7673892305191884282",
- "rz": "7664818114395980970", "yx": "7690214385700574323"}
-BARS = [
- ("重庆动物园", "Chongqing Zoo",        [("panda", 2.0, 2), ("panda", 5.0, 2)]),
- ("成都熊猫谷", "Chengdu Panda Valley", [("redpanda", 12.0, 2), ("redpanda", 2.0, 2)]),
- ("杭州 · 鹿野森谷", "Hangzhou",        [("hz", 0.5, 2), ("hz", 9.0, 2)]),
- ("厦门", "Xiamen, Fujian",            [("xm", 2.05, 2), ("xm", 5.15, 2)]),
- ("合肥 · 粉黛花海", "Hefei, Anhui",     [("hf", 0.3, 1), ("hf", 2.0, 1), ("hf", 5.1, 1), ("hf", 6.8, 1)]),
- ("鄱阳湖", "Poyang Lake, Jiangxi",     [("py", 0.2, 2), ("py", 4.0, 2)]),
- ("大同古城", "Datong, Shanxi",          [("dt", 4.5, 2), ("dt", 9.5, 2)]),
- ("望仙谷", "Wangxian Valley, Jiangxi", [("wx", 4.0, 2), ("wx", 13.4, 2)]),
- ("龙岩 · 童话森林", "Longyan, Fujian",  [("ly", 1.0, 2), ("ly", 5.0, 2)]),
- ("日照 · 童话小镇", "Rizhao, Shandong", [("rz", 1.0, 2), ("rz", 4.0, 2)]),
- ("宜兴 · 窑湖小镇", "Yixing, Jiangsu",  [("yx", 0.6, 2), ("yx", 6.5, None)]),   # None = to the end
-]
+ "rz": "7664818114395980970", "yx": "7690214385700574323", "gk": "7696333460143232762",
+ "tz": "7660827483638028910"}
+PLACES = {
+ "panda": ("重庆动物园", "Chongqing Zoo"), "redpanda": ("成都熊猫谷", "Chengdu Panda Valley"),
+ "hz": ("杭州 · 鹿野森谷", "Hangzhou"), "xm": ("厦门", "Xiamen, Fujian"), "hf": ("合肥 · 粉黛花海", "Hefei, Anhui"),
+ "py": ("鄱阳湖", "Poyang Lake, Jiangxi"), "gk": ("千年古寺 · 银杏", "Ancient ginkgo temple"),
+ "dt": ("大同古城", "Datong, Shanxi"), "wx": ("望仙谷", "Wangxian Valley, Jiangxi"),
+ "tz": ("台州 · 七彩小镇", "Taizhou, Zhejiang"), "ly": ("龙岩 · 童话森林", "Longyan, Fujian"),
+ "rz": ("日照 · 童话小镇", "Rizhao, Shandong"), "yx": ("宜兴 · 窑湖小镇", "Yixing, Jiangsu")}
+# Cuts sit on the strongest drum hits (pickcuts8.py -> cuts8th.json), each snapped to the frame of the hit.
+CUTS = json.load(open("cuts8th.json"))["cuts"]
+SEQ = [("panda", 2.0), ("panda", 5.0), ("redpanda", 11.5), ("hz", 0.5), ("hz", 9.0), ("xm", 2.1), ("py", 3.5),
+       ("hf", 0.0), ("gk", 0.5), ("dt", 4.3), ("dt", 9.4), ("wx", 4.0), ("wx", 13.3), ("ly", 1.0), ("ly", 4.0),
+       ("rz", 1.0), ("rz", 4.0), ("tz", 20.4), ("yx", 0.12), ("yx", 6.3), ("yx", 9.7, 1.45)]   # zoom cut: fireworks -> fireworks needs a visible change
 LYRICS = {"A": ("我真的特别爱你", "I really do love you so much"),
           "B": ("为什么你会流泪", "Why did you cry?"),
           "C": ("答应我不再流泪", "Promise me you won't cry anymore"),
@@ -47,13 +48,14 @@ LYR_T = [("A", 0.2, 2.2), ("B", 2.2, 7.4), ("A", 7.4, 9.333), ("C", 9.333, 10.96
          ("C", 23.333, 24.933), ("D", 24.933, 26.133), ("E", 26.133, 27.867), ("F", 27.867, 29.6)]
 
 # ---- shot list on the beat grid ---------------------------------------------
-shots, t = [], 0.0
-for bi, (cn, en, ss) in enumerate(BARS):
-    for (k, st, nb) in ss:
-        dur = (SONG_DUR - t) if nb is None else nb * BEAT
-        shots.append(dict(src=P[k], st=st, t0=t, t1=t + dur, bar=bi))
-        t += dur
-assert abs(t - SONG_DUR) < 1e-6, t
+bounds = [0.0] + CUTS + [SONG_DUR]
+assert len(bounds) - 1 == len(SEQ), (len(bounds) - 1, len(SEQ))
+shots = [dict(src=P[e[0]], place=e[0], st=e[1], zoom=(e[2] if len(e) > 2 else 1.0), t0=bounds[i], t1=bounds[i + 1])
+         for i, e in enumerate(SEQ)]
+order = []
+for s_ in shots:
+    if not order or order[-1] != s_["place"]: order.append(s_["place"])
+for s_ in shots: s_["bar"] = order.index(s_["place"])
 json.dump(shots, open("shots.json", "w"), indent=1)
 
 # ---- frame readers -------------------------------------------------------------
@@ -92,9 +94,9 @@ for i in range(1, NFR + 1, 10):
     xs0.append(xx.min()); xs1.append(xx.max()); ys0.append(yy.min()); ys1.append(yy.max())
 bx0, bx1, by0, by1 = np.median(xs0), np.median(xs1), np.median(ys0), np.median(ys1)
 fig_h = by1 - by0
-CH_SCALE = 600 / fig_h                     # figure ~600 px tall
-FEET_Y = 1385                              # feet line in output
-CX = 300
+CH_SCALE = 430 / fig_h                     # figure ~430 px tall
+FEET_Y = 1400                              # feet line in output
+CX = 540
 print("figure bbox", bx0, bx1, by0, by1, "scale", CH_SCALE)
 
 # ---- text overlays (PIL RGBA) ----------------------------------------------------
@@ -138,7 +140,7 @@ def label_img(cn, en):
     d.text((tx - b2[0], 10 + 22 + (b1[3] - b1[1]) + 12 - b2[1]), en, font=fe, fill=(232, 80, 120))
     return im
 
-LABELS = [label_img(cn, en) for (cn, en, _) in BARS]
+LABELS = [label_img(*PLACES[p]) for p in order]
 
 def paste_rgba(dst, im, cx, cy, scale=1.0, alpha=1.0):
     if scale != 1.0:
@@ -179,6 +181,9 @@ for f in range(nframes):
     sh = shots[si]
     k = min(len(cur_frames) - 1, f - round(sh["t0"] * FPS))
     bg = cover(cur_frames[k])
+    if sh["zoom"] > 1:
+        zw, zh = round(W / sh["zoom"]), round(H / sh["zoom"]); y0 = round((H - zh) * 0.3)
+        bg = cv2.resize(bg[y0:y0 + zh, (W - zw) // 2:(W - zw) // 2 + zw], (W, H), interpolation=cv2.INTER_CUBIC)
     # beat punch: background zooms in 7% at each cut, eases back over 0.3 s
     lt = t - sh["t0"]
     z = 1 + 0.07 * max(0, 1 - lt / 0.3) ** 2
@@ -191,8 +196,8 @@ for f in range(nframes):
     # character (source frame index follows the song time 1:1)
     ci = min(NFR, 1 + int(round(t * 30)))
     rgb, a = char_rgba(ci)
-    bt = (t % (2 * BEAT)) / (2 * BEAT)          # small bounce on every kick (2 beats)
-    pulse = 1 + 0.035 * max(0, 1 - bt / 0.25)
+    ph2 = ((t - PHASE) % (2 * BEAT)) / (2 * BEAT)   # bounce on every kick and snare (each 2 beats)
+    pulse = 1 + 0.04 * max(0, 1 - ph2 / 0.3)
     s = CH_SCALE * pulse
     rgb_s = cv2.resize(rgb[:, :, ::-1].copy(), None, fx=s, fy=s, interpolation=cv2.INTER_LANCZOS4)
     a_s = np.clip(cv2.resize(a, None, fx=s, fy=s, interpolation=cv2.INTER_LINEAR), 0, 1)
