@@ -1,0 +1,133 @@
+{
+ "total": 25.346,
+ "music": "Life of Riley",
+ "music_offset": 21.650000000000002,
+ "shots": [
+  {
+   "clip": "7686168733353577738",
+   "in": 4.0,
+   "start": 0.0,
+   "end": 1.42,
+   "cap": "if you like fairy tales"
+  },
+  {
+   "clip": "7032864387610250503",
+   "in": 0.0,
+   "start": 1.42,
+   "end": 2.577,
+   "cap": "go to |Harbin"
+  },
+  {
+   "clip": "7567354522957696302",
+   "in": 0.0,
+   "start": 2.577,
+   "end": 3.577,
+   "cap": "if you like snow"
+  },
+  {
+   "clip": "6633966928304016653",
+   "in": 0.0,
+   "start": 3.577,
+   "end": 5.04,
+   "cap": "go to |Snow Town"
+  },
+  {
+   "clip": "7574626513597910308",
+   "in": 6.3,
+   "start": 5.04,
+   "end": 6.18,
+   "cap": "if you like skiing"
+  },
+  {
+   "clip": "7174235430735318324",
+   "in": 10.0,
+   "start": 6.18,
+   "end": 7.472,
+   "cap": "go to |Altay"
+  },
+  {
+   "clip": "7167203295742741791",
+   "in": 4.3,
+   "start": 7.472,
+   "end": 8.932,
+   "cap": "if you like hot springs"
+  },
+  {
+   "clip": "7179052116344851767",
+   "in": 6.0,
+   "start": 8.932,
+   "end": 10.505,
+   "cap": "go to |Changbai Mountain"
+  },
+  {
+   "clip": "7577973048092739001",
+   "in": 6.0,
+   "start": 10.505,
+   "end": 11.885,
+   "cap": "if you like frozen trees"
+  },
+  {
+   "clip": "7594343907758407409",
+   "in": 0.0,
+   "start": 11.885,
+   "end": 13.062,
+   "cap": "go to |Jilin"
+  },
+  {
+   "clip": "7582950175427579194",
+   "in": 2.0,
+   "start": 13.062,
+   "end": 14.242,
+   "cap": "if you like royalty"
+  },
+  {
+   "clip": "7583011953271442725",
+   "in": 3.0,
+   "start": 14.242,
+   "end": 15.612,
+   "cap": "go to |Beijing"
+  },
+  {
+   "clip": "7053011661703187753",
+   "in": 4.0,
+   "start": 15.612,
+   "end": 16.712,
+   "cap": "if you like clouds"
+  },
+  {
+   "clip": "7063406193032678667",
+   "in": 1.0,
+   "start": 16.712,
+   "end": 17.915,
+   "cap": "go to |Huangshan"
+  },
+  {
+   "clip": "6778666908683193600",
+   "in": 0.6,
+   "start": 17.915,
+   "end": 19.255,
+   "cap": "if you like the cold"
+  },
+  {
+   "clip": "7698679168661245247",
+   "in": 0.0,
+   "start": 19.255,
+   "end": 20.756,
+   "cap": "go to |Mohe"
+  },
+  {
+   "clip": "7312339237775494400",
+   "in": 3.0,
+   "start": 20.756,
+   "end": 22.988,
+   "cap": "china in winter"
+  },
+  {
+   "clip": "7667122568068296421",
+   "in": 1.0,
+   "start": 22.988,
+   "end": 25.346,
+   "cap": "follow for the next one"
+  }
+ ]
+}

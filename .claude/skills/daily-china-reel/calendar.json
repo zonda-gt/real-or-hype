@@ -1,0 +1,722 @@
+{
+ "auto_post": false,
+ "_note": "One episode per day. Each day's run takes the first entry without a 'posted' date, checks no city/clip repeats from history.json, writes episodes/<date>-<slug>/episode.json from it, and fills in Douyin keywords per shot. 'lines' are [X, city in Chinese, city as shown in the caption]. Edit freely: add, reorder or replace entries.",
+ "episodes": [
+  {
+   "slug": "winter-china",
+   "title": "Winter in China",
+   "type": "theme",
+   "lines": [
+    [
+     "fairy tales",
+     "哈尔滨",
+     "Harbin"
+    ],
+    [
+     "snow",
+     "雪乡",
+     "Snow Town"
+    ],
+    [
+     "skiing",
+     "阿勒泰",
+     "Altay"
+    ],
+    [
+     "hot springs",
+     "长白山",
+     "Changbai Mountain"
+    ],
+    [
+     "frozen trees",
+     "吉林",
+     "Jilin"
+    ],
+    [
+     "royalty",
+     "北京",
+     "Beijing"
+    ],
+    [
+     "clouds",
+     "黄山",
+     "Huangshan"
+    ],
+    [
+     "the cold",
+     "漠河",
+     "Mohe"
+    ]
+   ],
+   "outro": [
+    "China in winter is a different country.",
+    "Follow, so you don't miss the next one."
+   ],
+   "status": "built",
+   "dir": "episodes/2026-11-11-winter-china"
+  },
+  {
+   "slug": "chengdu",
+   "title": "Chengdu edition",
+   "type": "city",
+   "lines": [
+    [
+     "pandas",
+     "熊猫基地",
+     "the Panda Base"
+    ],
+    [
+     "tea",
+     "人民公园",
+     "People's Park"
+    ],
+    [
+     "old streets",
+     "宽窄巷子",
+     "Kuanzhai Alley"
+    ],
+    [
+     "hotpot",
+     "玉林路",
+     "Yulin Road"
+    ],
+    [
+     "temples",
+     "文殊院",
+     "Wenshu Monastery"
+    ],
+    [
+     "nightlife",
+     "九眼桥",
+     "Jiuyan Bridge"
+    ],
+    [
+     "opera",
+     "锦里",
+     "Jinli"
+    ],
+    [
+     "giant Buddhas",
+     "乐山",
+     "Leshan"
+    ]
+   ],
+   "outro": [
+    "Chengdu doesn't rush. Neither should you.",
+    "Follow for the next city."
+   ]
+  },
+  {
+   "slug": "food-china",
+   "title": "Food in China",
+   "type": "theme",
+   "lines": [
+    [
+     "noodles",
+     "兰州",
+     "Lanzhou"
+    ],
+    [
+     "dim sum",
+     "广州",
+     "Guangzhou"
+    ],
+    [
+     "spicy food",
+     "重庆",
+     "Chongqing"
+    ],
+    [
+     "dumplings",
+     "西安",
+     "Xi'an"
+    ],
+    [
+     "roast duck",
+     "北京",
+     "Beijing"
+    ],
+    [
+     "stinky tofu",
+     "长沙",
+     "Changsha"
+    ],
+    [
+     "seafood",
+     "厦门",
+     "Xiamen"
+    ],
+    [
+     "breakfast",
+     "武汉",
+     "Wuhan"
+    ]
+   ],
+   "outro": [
+    "In China, every city tastes different.",
+    "Follow, and come hungry."
+   ]
+  },
+  {
+   "slug": "ancient-towns",
+   "title": "Ancient towns",
+   "type": "theme",
+   "lines": [
+    [
+     "city walls",
+     "平遥",
+     "Pingyao"
+    ],
+    [
+     "stilt houses",
+     "凤凰",
+     "Fenghuang"
+    ],
+    [
+     "canals",
+     "乌镇",
+     "Wuzhen"
+    ],
+    [
+     "ink paintings",
+     "宏村",
+     "Hongcun"
+    ],
+    [
+     "lanterns",
+     "西塘",
+     "Xitang"
+    ],
+    [
+     "old roofs",
+     "丽江",
+     "Lijiang"
+    ],
+    [
+     "tea horses",
+     "大理",
+     "Dali"
+    ],
+    [
+     "stone villages",
+     "西江千户苗寨",
+     "Xijiang"
+    ]
+   ],
+   "outro": [
+    "These towns are older than most countries.",
+    "Follow for the next one."
+   ]
+  },
+  {
+   "slug": "shanghai",
+   "title": "Shanghai edition",
+   "type": "city",
+   "lines": [
+    [
+     "skylines",
+     "外滩",
+     "the Bund"
+    ],
+    [
+     "old houses",
+     "武康路",
+     "Wukang Road"
+    ],
+    [
+     "gardens",
+     "豫园",
+     "Yu Garden"
+    ],
+    [
+     "water towns",
+     "朱家角",
+     "Zhujiajiao"
+    ],
+    [
+     "shopping",
+     "南京路",
+     "Nanjing Road"
+    ],
+    [
+     "views",
+     "陆家嘴",
+     "Lujiazui"
+    ],
+    [
+     "art",
+     "西岸",
+     "West Bund"
+    ],
+    [
+     "night walks",
+     "北外滩",
+     "North Bund"
+    ]
+   ],
+   "outro": [
+    "Shanghai looks different every night.",
+    "Follow for the next city."
+   ]
+  },
+  {
+   "slug": "nature-wonders",
+   "title": "Nature wonders",
+   "type": "theme",
+   "lines": [
+    [
+     "floating mountains",
+     "张家界",
+     "Zhangjiajie"
+    ],
+    [
+     "blue lakes",
+     "九寨沟",
+     "Jiuzhaigou"
+    ],
+    [
+     "rainbow mountains",
+     "张掖",
+     "Zhangye"
+    ],
+    [
+     "rivers",
+     "桂林",
+     "Guilin"
+    ],
+    [
+     "grasslands",
+     "呼伦贝尔",
+     "Hulunbuir"
+    ],
+    [
+     "glaciers",
+     "稻城亚丁",
+     "Daocheng Yading"
+    ],
+    [
+     "deserts",
+     "敦煌",
+     "Dunhuang"
+    ],
+    [
+     "rice terraces",
+     "元阳",
+     "Yuanyang"
+    ]
+   ],
+   "outro": [
+    "China's nature doesn't look real.",
+    "Follow for more."
+   ]
+  },
+  {
+   "slug": "chongqing",
+   "title": "Chongqing edition",
+   "type": "city",
+   "lines": [
+    [
+     "cyberpunk",
+     "解放碑",
+     "Jiefangbei"
+    ],
+    [
+     "night views",
+     "洪崖洞",
+     "Hongyadong"
+    ],
+    [
+     "cable cars",
+     "长江索道",
+     "the Yangtze Cableway"
+    ],
+    [
+     "trains through buildings",
+     "李子坝",
+     "Liziba"
+    ],
+    [
+     "hotpot",
+     "磁器口",
+     "Ciqikou"
+    ],
+    [
+     "stairs",
+     "十八梯",
+     "Shibati"
+    ],
+    [
+     "rooftops",
+     "来福士",
+     "Raffles City"
+    ],
+    [
+     "mountains",
+     "武隆",
+     "Wulong"
+    ]
+   ],
+   "outro": [
+    "Chongqing is a city in 3D.",
+    "Follow for the next city."
+   ]
+  },
+  {
+   "slug": "night-china",
+   "title": "China at night",
+   "type": "theme",
+   "lines": [
+    [
+     "neon",
+     "重庆",
+     "Chongqing"
+    ],
+    [
+     "skylines",
+     "上海",
+     "Shanghai"
+    ],
+    [
+     "harbours",
+     "香港",
+     "Hong Kong"
+    ],
+    [
+     "light shows",
+     "深圳",
+     "Shenzhen"
+    ],
+    [
+     "Tang dynasty nights",
+     "西安",
+     "Xi'an"
+    ],
+    [
+     "river lanterns",
+     "南京",
+     "Nanjing"
+    ],
+    [
+     "glowing palaces",
+     "洛阳",
+     "Luoyang"
+    ],
+    [
+     "night markets",
+     "开封",
+     "Kaifeng"
+    ]
+   ],
+   "outro": [
+    "China doesn't sleep.",
+    "Follow for the next one."
+   ]
+  },
+  {
+   "slug": "beijing",
+   "title": "Beijing edition",
+   "type": "city",
+   "lines": [
+    [
+     "royalty",
+     "故宫",
+     "the Forbidden City"
+    ],
+    [
+     "hiking",
+     "长城",
+     "the Great Wall"
+    ],
+    [
+     "old lanes",
+     "胡同",
+     "the hutongs"
+    ],
+    [
+     "temples",
+     "天坛",
+     "the Temple of Heaven"
+    ],
+    [
+     "lakes",
+     "颐和园",
+     "the Summer Palace"
+    ],
+    [
+     "nightlife",
+     "后海",
+     "Houhai"
+    ],
+    [
+     "views",
+     "景山",
+     "Jingshan Park"
+    ],
+    [
+     "modern art",
+     "798",
+     "798 Art Zone"
+    ]
+   ],
+   "outro": [
+    "Beijing is three thousand years in one city.",
+    "Follow for the next city."
+   ]
+  },
+  {
+   "slug": "islands-beaches",
+   "title": "Islands and beaches",
+   "type": "theme",
+   "lines": [
+    [
+     "luxury",
+     "三亚",
+     "Sanya"
+    ],
+    [
+     "island walks",
+     "鼓浪屿",
+     "Gulangyu"
+    ],
+    [
+     "volcanic islands",
+     "涠洲岛",
+     "Weizhou Island"
+    ],
+    [
+     "blue tears",
+     "平潭",
+     "Pingtan"
+    ],
+    [
+     "beer by the sea",
+     "青岛",
+     "Qingdao"
+    ],
+    [
+     "sunsets",
+     "南澳岛",
+     "Nan'ao Island"
+    ],
+    [
+     "fishing villages",
+     "舟山",
+     "Zhoushan"
+    ],
+    [
+     "coconut trees",
+     "万宁",
+     "Wanning"
+    ]
+   ],
+   "outro": [
+    "China has beaches you've never heard of.",
+    "Follow for more."
+   ]
+  },
+  {
+   "slug": "xian",
+   "title": "Xi'an edition",
+   "type": "city",
+   "lines": [
+    [
+     "history",
+     "兵马俑",
+     "the Terracotta Army"
+    ],
+    [
+     "city walls",
+     "西安城墙",
+     "the City Wall"
+    ],
+    [
+     "street food",
+     "回民街",
+     "the Muslim Quarter"
+    ],
+    [
+     "Tang dynasty nights",
+     "大唐不夜城",
+     "Datang Everbright City"
+    ],
+    [
+     "pagodas",
+     "大雁塔",
+     "the Big Wild Goose Pagoda"
+    ],
+    [
+     "bell towers",
+     "钟楼",
+     "the Bell Tower"
+    ],
+    [
+     "mountains",
+     "华山",
+     "Mount Hua"
+    ],
+    [
+     "hanfu",
+     "永兴坊",
+     "Yongxingfang"
+    ]
+   ],
+   "outro": [
+    "Xi'an was the capital for thirteen dynasties.",
+    "Follow for the next city."
+   ]
+  },
+  {
+   "slug": "hidden-gems",
+   "title": "Underrated cities",
+   "type": "theme",
+   "lines": [
+    [
+     "temples",
+     "泉州",
+     "Quanzhou"
+    ],
+    [
+     "porcelain",
+     "景德镇",
+     "Jingdezhen"
+    ],
+    [
+     "old streets",
+     "潮州",
+     "Chaozhou"
+    ],
+    [
+     "grottoes",
+     "大同",
+     "Datong"
+    ],
+    [
+     "the Silk Road",
+     "喀什",
+     "Kashgar"
+    ],
+    [
+     "waterfalls",
+     "安顺",
+     "Anshun"
+    ],
+    [
+     "canyons",
+     "恩施",
+     "Enshi"
+    ],
+    [
+     "villages",
+     "婺源",
+     "Wuyuan"
+    ]
+   ],
+   "outro": [
+    "Most tourists never go here.",
+    "Follow, and you will."
+   ]
+  },
+  {
+   "slug": "yunnan",
+   "title": "Yunnan edition",
+   "type": "city",
+   "lines": [
+    [
+     "peace",
+     "大理",
+     "Dali"
+    ],
+    [
+     "old towns",
+     "丽江",
+     "Lijiang"
+    ],
+    [
+     "snow mountains",
+     "玉龙雪山",
+     "Jade Dragon Snow Mountain"
+    ],
+    [
+     "monasteries",
+     "香格里拉",
+     "Shangri-La"
+    ],
+    [
+     "jungles",
+     "西双版纳",
+     "Xishuangbanna"
+    ],
+    [
+     "rice terraces",
+     "元阳",
+     "Yuanyang"
+    ],
+    [
+     "flowers",
+     "昆明",
+     "Kunming"
+    ],
+    [
+     "lakes",
+     "泸沽湖",
+     "Lugu Lake"
+    ]
+   ],
+   "outro": [
+    "Yunnan is a whole country inside China.",
+    "Follow for the next place."
+   ]
+  },
+  {
+   "slug": "hangzhou",
+   "title": "Hangzhou edition",
+   "type": "city",
+   "lines": [
+    [
+     "lakes",
+     "西湖",
+     "West Lake"
+    ],
+    [
+     "tea",
+     "龙井村",
+     "Longjing Village"
+    ],
+    [
+     "temples",
+     "灵隐寺",
+     "Lingyin Temple"
+    ],
+    [
+     "bamboo",
+     "云栖竹径",
+     "Yunqi Bamboo Path"
+    ],
+    [
+     "old streets",
+     "河坊街",
+     "Hefang Street"
+    ],
+    [
+     "wetlands",
+     "西溪",
+     "Xixi Wetland"
+    ],
+    [
+     "pagodas",
+     "雷峰塔",
+     "Leifeng Pagoda"
+    ],
+    [
+     "water towns",
+     "乌镇",
+     "Wuzhen"
+    ]
+   ],
+   "outro": [
+    "Heaven above, Hangzhou below.",
+    "Follow for the next city."
+   ]
+  }
+ ]
+}
