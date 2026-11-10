@@ -1,7 +1,7 @@
 # Render each slot as a graded 1080x1920@30 (9:16) segment with an exact frame count.
 import sys, os, subprocess
-sys.path.insert(0, os.path.dirname(__file__)); from plan_v import CUTS, SHOTS, HLG, CROP
-RAW = os.path.join(os.path.dirname(__file__), '..', 'vraw'); OUT = os.path.join(os.path.dirname(__file__), 'segs_v')
+sys.path.insert(0, os.path.dirname(__file__)); import importlib; _p = importlib.import_module(os.environ.get('PLAN', 'plan_v')); CUTS, SHOTS, HLG, CROP = _p.CUTS, _p.SHOTS, _p.HLG, _p.CROP; PRECROP = getattr(_p, 'PRECROP', {})
+RAW = os.path.join(os.path.dirname(__file__), '..', os.environ.get('RAWDIR', 'vraw')); OUT = os.path.join(os.path.dirname(__file__), os.environ.get('SEGDIR', 'segs_v'))
 os.makedirs(OUT, exist_ok=True)
 FPS = 30
 # Look modelled on the reference: contrast with slightly lifted blacks, rolled-off highlights,
@@ -16,6 +16,7 @@ def render(k, grade=True):
     n = round(CUTS[k + 1] * FPS) - round(CUTS[k] * FPS)
     src_dur = n / FPS * sp + 0.2
     vf = TONEMAP if i in HLG else ''
+    if i in PRECROP: vf += f'crop={PRECROP[i]},'
     vf += f'setpts=(PTS-STARTPTS)/{sp},fps={FPS},'
     if i in CROP:
         z, ax, ay = CROP[i]

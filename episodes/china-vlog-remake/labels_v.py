@@ -1,7 +1,7 @@
 # Place-name labels for the 9:16 cut: big white Anton name + yellow pill (Montserrat ExtraBold), soft shadow.
 import os, sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
-here = os.path.dirname(os.path.abspath(__file__))
+here = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, here)
 FONTS = '/home/user/real-or-hype/.claude/skills/real-or-hype-video/scripts'
 NAME_FONT = f'{FONTS}/Anton-Regular.ttf'; PILL_FONT = f'{FONTS}/Montserrat-ExtraBold.ttf'
 W, H = 1080, 1920
@@ -40,7 +40,10 @@ def label(name, pill):
     sh = Image.new('RGBA', (W, H), (0, 0, 0, 0)); sh.putalpha(a.point(lambda v: int(v * 0.55)))
     sh = sh.transform((W, H), Image.AFFINE, (1, 0, 0, 0, 1, -5)).filter(ImageFilter.GaussianBlur(14))
     return Image.alpha_composite(sh, fg)
+import importlib
+_P = importlib.import_module(os.environ.get('PLAN', 'plan_v')); LABELS = getattr(_P, 'LABELS', LABELS)
+LDIR = os.environ.get('LABELDIR', 'labels_v')
 if __name__ == '__main__':
-    os.makedirs(f'{here}/labels_v', exist_ok=True)
+    os.makedirs(f'{here}/{LDIR}', exist_ok=True)
     for k, (n, p) in LABELS.items():
-        label(n, p).save(f'{here}/labels_v/label{k:02d}.png'); print(k, n, p)
+        label(n, p).save(f'{here}/{LDIR}/label{k:02d}.png'); print(k, n, p)
