@@ -7,7 +7,10 @@ the script first hosts it in this public GitHub repo: it copies the file to medi
 the current branch, and gives Instagram the raw.githubusercontent.com link. Public URLs are used as they are.
 
   python3 post_trial_reel.py VIDEO_OR_URL [...] --account steven_chinapal --caption-file caption.txt \
-      [--graduation MANUAL|SS_PERFORMANCE] [--commit-message-file msg.txt] [--dry-run | --yes]
+      [--commit-message-file msg.txt] [--dry-run | --yes]
+
+Graduation is always MANUAL (the user's rule): the reel goes to non-followers only, and the user shares it to
+followers themselves in the Instagram app. There is deliberately no option for SS_PERFORMANCE (auto-graduation).
 
   --dry-run        checks the token, the account, every video and the caption; pushes and publishes nothing
   --yes            hosts local files (commit + push) and publishes
@@ -32,7 +35,7 @@ ap.add_argument("videos", nargs="+")
 ap.add_argument("--account", required=True, help="expected Instagram username, e.g. steven_chinapal")
 g = ap.add_mutually_exclusive_group(required=True)
 g.add_argument("--caption"); g.add_argument("--caption-file")
-ap.add_argument("--graduation", default="MANUAL", choices=["MANUAL", "SS_PERFORMANCE"])
+GRADUATION = "MANUAL"   # always: the user graduates trial reels to followers themselves; never SS_PERFORMANCE
 ap.add_argument("--env-file", default=os.path.expanduser("~/.config/instagram-trial-reel/.env"))
 ap.add_argument("--repo", default=None, help="git checkout used for hosting (default: the repo this script is in)")
 ap.add_argument("--host-dir", default="media/trial-reels", help="folder in the repo for hosted videos")
@@ -192,7 +195,7 @@ for vid in a.videos:
         if os.path.exists(lg): state = json.load(open(lg)); break
     if state.get("media_id"): print(f"  already published: {state.get('permalink') or state['media_id']} (skipped)")
     items.append([vid, remote, logs, state])
-print(f"Caption ({len(caption)} chars):\n---\n{caption}\n---\nTrial reel, graduation: {a.graduation}")
+print(f"Caption ({len(caption)} chars):\n---\n{caption}\n---\nTrial reel, graduation: {GRADUATION}")
 if problems: sys.exit("STOP: fix the problems above. Nothing was published.")
 if a.dry_run:
     for vid, remote, logs, state in items:
@@ -213,7 +216,7 @@ for vid, remote, logs, state in items:
         for lg in logs: json.dump(state, open(lg, "w"), indent=1)
     cid = state.get("container")
     if not cid:
-        data = {"media_type": "REELS", "caption": caption, "trial_params": json.dumps({"graduation_strategy": a.graduation}), "access_token": tok}
+        data = {"media_type": "REELS", "caption": caption, "trial_params": json.dumps({"graduation_strategy": GRADUATION}), "access_token": tok}
         if video_url: data["video_url"] = video_url
         else: data["upload_type"] = "resumable"
         sc, d = call("POST", f"{base}/{uid}/media", data=data)
@@ -240,7 +243,7 @@ for vid, remote, logs, state in items:
     if sc != 200 or "id" not in d: print(f"{vid}: publish failed: {sc} {clean(d)}"); results.append((vid, None)); continue
     state["media_id"] = d["id"]; save()
     sc, d = call("GET", f"{base}/{state['media_id']}", params={"fields": "permalink", "access_token": tok})
-    state["permalink"] = d.get("permalink"); state["graduation"] = a.graduation; state["posted"] = time.strftime("%Y-%m-%d"); save()
+    state["permalink"] = d.get("permalink"); state["graduation"] = GRADUATION; state["posted"] = time.strftime("%Y-%m-%d"); save()
     print(f"{vid}: PUBLISHED as a trial reel {state['permalink'] or state['media_id']}")
     results.append((vid, state["permalink"] or state["media_id"]))
 print("\nResult:")
