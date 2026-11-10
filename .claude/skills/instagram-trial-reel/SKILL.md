@@ -81,3 +81,4 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | --- | --- | --- |
 | ChinaPal v1_fast, s2_result, s3_offer | see `media/chinapal-trial/*.ig.json` (branch `claude/fervent-sagan-20nx4z`) | 2026-11-08 |
 | Shenzhen free places v2 | https://www.instagram.com/reel/DffNyDVAo4w/ | 2026-11-08 |
+| Alipay: 3 ways to pay (no music) | https://www.instagram.com/reel/DfjI8D4jvlo/ | 2026-11-10 |
