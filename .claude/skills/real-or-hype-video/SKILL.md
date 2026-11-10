@@ -62,6 +62,9 @@ His phrases: "First you get to this station…", "check this out", "the only thi
   - Every line: generate, Whisper-check against the script, regenerate on mismatch (up to 3 takes).
   - **"mall" said alone ("Mall, hype.") comes out as "mole/more"** on every model. Test lines in the **final mix** (the SFX pre-roll can mask a word) and keep "mall" inside a phrase: verdict **"Overall: the trees are real. The mall is hype."** passed 4/4 mixed checks. In a narrated line ("This mall in Shanghai…") it's fine.
   - Slower voice means wider slots: run the gap check (each line ends ≥0.05 s before the next line or real-voice clip). A b-roll shot can't grow past the end of its source clip (O3 couldn't), so widen the neighbouring shot and take the time from an un-narrated shot. Variant `A0me` holds the result (`VODIRS`, `_ME_DUR`, `TICKS['A0me']`).
+- **Chinese place names: write them in Chinese characters** ("Take line 3 or 4 to 中潭路."). `eleven_v3` then says them in Mandarin and the creator loved it; pinyin, even with tone marks, stays English-sounding. Subtitles show pinyin + "Lu" ("Zhongtan Lu."), since Montserrat has no CJK glyphs. Whisper may hear 中坛路 for 中潭路 (same sound); accept it.
+  - **v3 for a whole script (variant `A0v3`, being tested)**: costs the same as v2 (~1 credit/char; Turbo/Flash 2.5 are 0.5). But v3 talks ~40% slower; the `speed` setting, stability 0/1 and "[speaking quickly]" tags barely help. Recipe: 3–6 takes per long line, keep the shortest one that passes Whisper, squeeze inner pauses (`silenceremove=stop_periods=-1:stop_duration=0.14:stop_threshold=-45dB:stop_silence=0.12`), per-line atempo 1.15–1.35 only as much as its shot needs, extend b-roll within its source length. 1000 Trees ran 40.6 s this way. `scripts/eltts_m.py` = `eltts_s.py` + model arg.
+  - Fitting check: the verdict must END ≥0.3 s before the video ends (an earlier fit script checked the wrong direction).
 - Fallbacks: OpenAI `gpt-4o-mini-tts` voice `cedar` (`scripts/oatts.py`, the instruction text is in its history), then edge-tts.
 - Write verdicts so they can't be misheard: "Overall: trees, real. Mall, hype."
 
@@ -88,6 +91,8 @@ Technical:
 - Tone-map HLG: `zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p` (`full()` in the renderer).
 - Place narration and overlays from **measured** segment lengths (ffprobe), and re-encode the concat audio with `aresample=async=1` (otherwise it drifts ~0.15 s).
 - Overlays are PIL PNGs (`v8_overlays.py`, `v9_overlays_extra.py`); fonts are in `scripts/`.
+
+**Sting transition (H2):** the creator can film his own transition for the sung sting: in the reaction room he turns away and walks off, cut to him walking up to and turning toward the camera at the first location. He speeds it up himself (~5×). The sung part of the sting lasts **2.0 s** (the file is 3.14 s; after 2.0 s it's only reverb), so use the clip from its start until he faces the camera (2.6 s for 1000 Trees), fit it into the 2.0 s slot (segment kind `trans`, `H2_TRANS` in `variants.py`), and have the next shot continue at the same spot. The "IS IT / REAL / OR HYPE?" captions stay on top.
 
 ## 5b. Sound effects and audio QA with earshot
 

@@ -31,6 +31,10 @@ for sid,kind,args,d,narr in S:
             f'[1:a]{AFMT},atempo=1.3,volume={getattr(variants,"HOOKVOL",{}).get(VAR,0.22)},afade=t=out:st={d-0.5}:d=0.5[m];[4:a]{AFMT},{"volume=0" if HOOKVO.endswith("silence.wav") else "loudnorm=I=-14:TP=-1.5"},adelay=200|200,apad[t];[m][t]amix=inputs=2:normalize=0:duration=first[a]')
         cmd=['ffmpeg','-loglevel','error','-y','-ss','0.8','-t',str(d),'-i',REACT,'-ss','0.5','-t',str(d*1.3+0.1),'-i',HER,'-i',O+'m_card.png','-i',O+'pill.png','-i',HOOKVO,
              '-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]
+    elif kind=='trans':   # creator's own sped-up transition clip under the sung sting (silent; sting is mixed later)
+        path,a,ln=args; sp=ln/d
+        fc=f'[0:v]trim=start={a}:duration={ln},setpts=(PTS-STARTPTS)/{sp},{FULL}[v];anullsrc=r=48000:cl=stereo[a]'
+        cmd=['ffmpeg','-loglevel','error','-y','-i',path,'-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]
     elif kind=='react':
         fc=f'[0:v]{REACTV}[v];anullsrc=r=48000:cl=stereo[a]'
         cmd=['ffmpeg','-loglevel','error','-y','-ss',str(args[0]),'-t',str(d),'-i',REACT,'-filter_complex',fc,'-map','[v]','-map','[a]','-t',str(d)]+ENC+[out]

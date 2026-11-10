@@ -69,3 +69,17 @@ def vodir(var): return VODIRS.get(var,VODIR)
 
 # AN: A0 (context line, A's body) plus the Liam claim line in the hook; viral clip lowered under it
 S['AN']=list(S['A0']); HOOKVO['AN']=VODIR+'/hook.wav'; TICKS['AN']=TICKS['A']; CONTEXT_TEXT['AN']='ctx.png'; HOOKVOL['AN']=0.3
+
+# A0v3: A0me with every line in ElevenLabs eleven_v3 (same clone). Place names in Chinese characters ("中潭路") so v3 says them
+# in Mandarin. v3 talks ~40% slower than multilingual_v2: shortest valid take of 3-6, inner pauses squeezed to 0.12 s,
+# per-line atempo 1.15-1.35 (vo_v3/fit.json). Runs ~40.6 s (test cut).
+VODIRS['A0v3']='vo_v3'
+_V3_DUR=dict(_ME_DUR, **{'H1':5.0,'O1':2.37,'O7':1.52,'M1':0.75,'R2':3.01,'V1':4.0})
+S['A0v3']=[(sid,k,a,_V3_DUR.get(sid,d),key) for sid,k,a,d,key in S['A0']]
+HOOKVO['A0v3']=VODIRS['A0v3']+'/silence.wav'; HOOKVOL['A0v3']=0.95; CONTEXT_TEXT['A0v3']='ctx.png'
+TICKS['A0v3']=(1.34,3.0)   # REAL 0.31 s before spoken "real" (1.40+0.25); HYPE buzz after "mall" (2.18-2.44)
+
+# H2 transition: the creator's own clip (reaction room -> walks off -> turns to camera at Zhongtan Road station), already
+# sped up ~5x by him; its first 2.6 s fill the 2.0 s sung sting ("Is it real or hype?" ends at 2.0 s), then O1 continues at the station.
+H2_TRANS=('H2','trans',('gd/h2_transition.mov',0.0,2.6),2.0,None)
+S['A0me']=[H2_TRANS if x[0]=='H2' else x for x in S['A0me']]
