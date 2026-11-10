@@ -36,6 +36,15 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 - Aliyun Drive (阿里云盘 / Alipan): use the `aliyunpan-login` skill. He approves a QR login once, then the CLI downloads originals of any size from his own drive. For a share link, have him save it to his drive first. **Always check every source**: each downloaded file's size must match the drive listing.
 - Google Drive file: `drive.usercontent.google.com/download?id=<ID>&export=download&confirm=t`. Folder listing: `drive.google.com/embeddedfolderview?id=<FOLDER>`.
 
+## 2b. Douyin B-roll (TikHub)
+
+For real footage to replace or support shots (city aerials, robots, pandas, festivals), search Douyin through TikHub (`api.tikhub.io`, the key is injected by the proxy):
+- `scripts/douyin_search.py "<中文关键词>" out.json 1` lists clips under 1 min sorted by likes (id, size, duration, likes, caption). Chinese keywords work best ("上海陆家嘴夜景航拍", "宇树机器人功夫").
+- `scripts/douyin_dl.py <dir> <id> ...` downloads the best decodable version. **Search results only carry ByteDance `bvc2` streams (ffmpeg shows `codec unknown`) or 576p H.264**; the downloader calls `web/fetch_one_video`, which has H.264 1080p.
+- Prefer landscape sources for a 4:3 or 16:9 frame; crop vertical ones only around a centred subject. Reject clips with burned-in titles, channel logos or subtitles.
+- Run a frame-difference scan on each chosen window: Douyin edits have whip transitions and hard cuts that a 1 s contact sheet misses. If a shot is a few frames short, slow it slightly (50/60 fps sources take ~0.94× invisibly).
+- Keep a shot list with each clip's author and link (`deliverables/shotlist.md`) for credits.
+
 ## 3. Footage review (before writing a word)
 
 1. Transcribe every clip (`scripts/wtx.py`); check `volumedetect` first, because Whisper invents text on silent clips.
