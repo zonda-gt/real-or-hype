@@ -51,3 +51,7 @@ Same cut times and sound; all-new vertical footage. Title: "CHINA" and "VLOG" sp
 | 12 | 17.43–18.93 | Zigong phoenix lantern | https://www.douyin.com/video/7596962176650418875 | 渝以北 | 4.7 |
 | 13 | 18.93–20.33 | Dunhuang camel caravan | https://www.douyin.com/video/7680325483075486330 | 青甘环线好先生 | 3.0 |
 | 14 | 20.33–21.97 | Beijing street, cyclist | https://www.douyin.com/video/7512402819463531812 | 好摄之徒 | 1.0 |
+
+### Place labels (`china_vlog_9x16_labels_1080x1920.mp4`)
+
+`labels_v.py` draws each place name in white Anton (150 px, shrunk to fit 990 px) with a soft drop shadow, plus a yellow pill (Montserrat ExtraBold 54 px, #F7D02E) with the city or region. `apply_labels_v.py` burns them in for exactly their shot. Shots without a known place name (title, temple, wok, noodles, Beijing street) have no label.
