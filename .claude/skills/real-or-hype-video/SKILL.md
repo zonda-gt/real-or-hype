@@ -92,6 +92,8 @@ Technical:
 - Place narration and overlays from **measured** segment lengths (ffprobe), and re-encode the concat audio with `aresample=async=1` (otherwise it drifts ~0.15 s).
 - Overlays are PIL PNGs (`v8_overlays.py`, `v9_overlays_extra.py`); fonts are in `scripts/`.
 
+**Sting transition (H2):** the creator can film his own transition for the sung sting: in the reaction room he turns away and walks off, cut to him walking up to and turning toward the camera at the first location. He speeds it up himself (~5×). The sung part of the sting lasts **2.0 s** (the file is 3.14 s; after 2.0 s it's only reverb), so use the clip from its start until he faces the camera (2.6 s for 1000 Trees), fit it into the 2.0 s slot (segment kind `trans`, `H2_TRANS` in `variants.py`), and have the next shot continue at the same spot. The "IS IT / REAL / OR HYPE?" captions stay on top.
+
 ## 5b. Sound effects and audio QA with earshot
 
 **earshot** ([Leonxlnx/earshot](https://github.com/Leonxlnx/earshot), MIT, CPU only, no key) gives the agent "ears". Install once per session (~3 min + 1.1 GB of models):

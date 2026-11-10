@@ -78,3 +78,8 @@ _V3_DUR=dict(_ME_DUR, **{'H1':5.0,'O1':2.37,'O7':1.52,'M1':0.75,'R2':3.01,'V1':4
 S['A0v3']=[(sid,k,a,_V3_DUR.get(sid,d),key) for sid,k,a,d,key in S['A0']]
 HOOKVO['A0v3']=VODIRS['A0v3']+'/silence.wav'; HOOKVOL['A0v3']=0.95; CONTEXT_TEXT['A0v3']='ctx.png'
 TICKS['A0v3']=(1.34,3.0)   # REAL 0.31 s before spoken "real" (1.40+0.25); HYPE buzz after "mall" (2.18-2.44)
+
+# H2 transition: the creator's own clip (reaction room -> walks off -> turns to camera at Zhongtan Road station), already
+# sped up ~5x by him; its first 2.6 s fill the 2.0 s sung sting ("Is it real or hype?" ends at 2.0 s), then O1 continues at the station.
+H2_TRANS=('H2','trans',('gd/h2_transition.mov',0.0,2.6),2.0,None)
+S['A0me']=[H2_TRANS if x[0]=='H2' else x for x in S['A0me']]
