@@ -29,3 +29,25 @@ Footage belongs to the Douyin creators below. Credit them, or ask permission, be
 - `render.py`: each shot trimmed to an exact frame count, HLG clips tone-mapped to BT.709, scaled to 1920x1080@30 and graded (lifted blacks, rolled-off highlights, warm highlights / teal shadows, saturation 0.92, soft vignette).
 - `title_seg.py` + `title.py` + `skymask.py`: "CHINA VLOG" (Anton, squashed tall, #F2DB11) drawn behind the skyline using a SegFormer-B4 ADE20K sky mask (ONNX), guided-filter refined and smoothed over 3 frames; pops in at 0.567 s like the reference.
 - `assemble.sh`: concat + original sound. The reference's "filmed and edited by @…" credit and studio logo were left out on purpose.
+
+## 9:16 version (`china_vlog_9x16_1080x1920.mp4`)
+
+Same cut times and sound; all-new vertical footage. Title: "CHINA" and "VLOG" split around the Chongqing tower (`title_seg_v.py`).
+
+| # | Time (s) | Place | Douyin video | Creator | Source in (s) |
+|---|---|---|---|---|---|
+| 0 | 0.00–3.00 | Chongqing skyline at night (title) | https://www.douyin.com/video/7684665809965530098 | 又见默默 | 6.9 @0.75x |
+| 1 | 3.00–3.47 | Monks under ginkgo, temple | https://www.douyin.com/video/7040790958220250409 | 骑水鸟的维生素 | 1.0 |
+| 2 | 3.47–3.97 | Wok fire | https://www.douyin.com/video/7478536330541059385 | 郴州市北湖区同德小家常餐饮店 | 0.9 |
+| 3 | 3.97–5.43 | Xijiang Miao village lights | https://www.douyin.com/video/7615586992571146387 | 是肉肉吖～ | 1.0 |
+| 4 | 5.43–6.37 | Yulong River rafts, Yangshuo | https://www.douyin.com/video/7683476706813020785 | 木 子 | 0.5 |
+| 5 | 6.37–7.80 | Slender West Lake, Yangzhou | https://www.douyin.com/video/7696099196599813753 | 玩转扬州 | 0.3 |
+| 6 | 7.80–9.27 | Beef noodles | https://www.douyin.com/video/7292324560702115108 | 十一 | 0.5 |
+| 7 | 9.27–10.23 | Potala Palace at dusk | https://www.douyin.com/video/7060985156043066655 | 過往雲煙 | 1.0 |
+| 8 | 10.23–12.17 | Uncle dancing in the park | https://www.douyin.com/video/7082548581072178432 | 午夜猎人 | 1.0 |
+| 9 | 12.17–14.07 | Erhai with reeds, Dali | https://www.douyin.com/video/7686344950119866234 | 蜗牛🐌 | 2.0 |
+| 10 | 14.07–16.50 | Huangshan sea of clouds | https://www.douyin.com/video/7609999068706119333 | 山水又一程 | 5.0 |
+| 11 | 16.50–17.43 | Xi'an city wall light trails | https://www.douyin.com/video/7682298339823874943 | 长安拍客 | 2.0 |
+| 12 | 17.43–18.93 | Zigong phoenix lantern | https://www.douyin.com/video/7596962176650418875 | 渝以北 | 4.7 |
+| 13 | 18.93–20.33 | Dunhuang camel caravan | https://www.douyin.com/video/7680325483075486330 | 青甘环线好先生 | 3.0 |
+| 14 | 20.33–21.97 | Beijing street, cyclist | https://www.douyin.com/video/7512402819463531812 | 好摄之徒 | 1.0 |

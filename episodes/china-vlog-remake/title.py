@@ -33,3 +33,20 @@ if __name__ == '__main__':
     al, col = text_layer()
     out, sky = composite(fr, al, col)
     Image.fromarray(out).save(sys.argv[2], quality=92)
+
+def words_layer(W, H, words, y0, y1, xs, squash, color=(242, 219, 17)):
+    """Render words at a common height (y0..y1) and horizontal squash; xs = left x of each word."""
+    f = ImageFont.truetype(FONT, 600)
+    a = np.zeros((H, W), np.float32)
+    for text, x in zip(words, xs):
+        l, t, r, b = f.getbbox(text)
+        im = Image.new('L', (r - l + 20, b - t + 20), 0)
+        ImageDraw.Draw(im).text((10 - l, 10 - t), text, font=f, fill=255)
+        h = y1 - y0; w = int(im.width * h / im.height * squash)
+        im = np.asarray(im.resize((w, h), Image.LANCZOS), np.float32) / 255
+        xe = min(W, x + w); a[y0:y1, x:xe] = np.maximum(a[y0:y1, x:xe], im[:, :xe - x])
+    return a, np.array(color, np.float32)
+
+def word_width(text, h, squash):
+    f = ImageFont.truetype(FONT, 600); l, t, r, b = f.getbbox(text)
+    return int((r - l + 20) * h / (b - t + 20) * squash)
