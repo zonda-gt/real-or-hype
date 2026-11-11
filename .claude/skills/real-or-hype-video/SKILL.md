@@ -129,6 +129,14 @@ Make 3 versions that change **only the hook/angle**, and post them as Instagram 
 `scripts/draft_media.py <dir> <VAR> <media_dir>` collects the variant's shots (rendered segments, colour already converted), graphics PNGs, narration, sound effects (gain baked in), the sting and a phrase-level SRT, plus `manifest.json`. `scripts/build_draft.py <jianying|capcut> <media_dir> <manifest> <out> <name>` (venv with `pip install pyJianYingDraft pycapcut`; pyJianYingDraft 0.3.1 uses `append_track(TrackSpec)`, pycapcut 0.0.4 uses `add_track`) writes the draft. Drafts store **absolute media paths**, so make Windows (`C:/RealOrHype/<name>_media`) and Mac (`/Users/Shared/RealOrHype/<name>_media`) copies by rewriting the paths, and ship each with its media folder and a README.
 Gotchas: shot files can be a few ms shorter than their slot (stretch with `speed=mat.duration/slot`); audio lengths must come from the library's own material (ms precision); cap each audio clip before the next one on its track; SRT phrases must not overlap. Newer app versions encrypt drafts and may refuse generated ones, so ask the creator for the app version if a draft won't open. **Not yet confirmed to open in the creator's apps.**
 
+## 5e. AI room swap + "words behind my head" captions
+
+`episodes/shanghai-budget/` has a working pipeline (README there has the details and pitfalls).
+- **Pipeline:** cut him out with the MediaPipe matte, then decontaminate the edges against the estimated wall, then composite over a Seedream room image, regraded to the room's light. The real table is kept with a static mask.
+- **Captions:** per-word captions with a style switch per phrase, drawn on two layers: behind his head and in front of him.
+- **A full video-to-video restyle (Seedance 2.x) needs his face verified as an Ark "real-person asset" first.** Ask before planning on it.
+- **Keep big prices readable:** his head may cover only the bottom ~30% of a word behind it.
+
 ## 6. Delivery
 
 540p preview via SendUserFile; full file in the working directory. Script and shot list live in the user's Claude Doc "Shanghai: Fact or Hype? — Content Plan & Scripts".
