@@ -1,0 +1,172 @@
+{
+ "slug": "chengdu",
+ "title": "Chengdu edition",
+ "vo_tempo": 1.3,
+ "hook": "Chengdu in 25 seconds 🐼 Save this for your trip",
+ "tags": "#chengdu #chinatravel #visitchina #sichuan #travelchina",
+ "lines": [
+  {
+   "id": "l1",
+   "say": "If you like pandas, go to 熊猫基地.",
+   "check": "if you like pandas go to",
+   "a": {
+    "cap": "if you like pandas",
+    "kw": "成都 熊猫 吃竹子 可爱",
+    "clip": "7640066822607422193",
+    "in": 0.5
+   },
+   "b": {
+    "cap": "go to |the Panda Base",
+    "kw": "成都大熊猫繁育研究基地 熊猫",
+    "clip": "7624151233910331627",
+    "in": 9.0,
+    "zoom": 1.25
+   }
+  },
+  {
+   "id": "l2",
+   "say": "If you like tea, go to 人民公园.",
+   "check": "if you like tea go to",
+   "a": {
+    "cap": "if you like tea",
+    "kw": "成都 盖碗茶 掏耳朵 茶馆",
+    "clip": "7225863140821437696",
+    "in": 7.6,
+    "zoom": 1.2
+   },
+   "b": {
+    "cap": "go to |People's Park",
+    "kw": "成都人民公园 鹤鸣茶社",
+    "clip": "7393867681998392586",
+    "in": 6.0
+   }
+  },
+  {
+   "id": "l3",
+   "say": "If you like old streets, go to 宽窄巷子.",
+   "check": "if you like old streets go to",
+   "a": {
+    "cap": "if you like old streets",
+    "kw": "成都 老街 青砖 小巷",
+    "clip": "7187984285314469135",
+    "in": 0.0
+   },
+   "b": {
+    "cap": "go to |Kuanzhai Alley",
+    "kw": "宽窄巷子 航拍 夜景",
+    "clip": "7302387134734847244",
+    "in": 7.5
+   }
+  },
+  {
+   "id": "l4",
+   "say": "If you like hotpot, go to 玉林路.",
+   "check": "if you like hot pot go to",
+   "a": {
+    "cap": "if you like hotpot",
+    "kw": "成都 火锅 红油 沸腾",
+    "clip": "7651630600336890554",
+    "in": 4.0
+   },
+   "b": {
+    "cap": "go to |Yulin Road",
+    "kw": "成都玉林路 小酒馆 夜晚",
+    "clip": "7486530206379920698",
+    "in": 0.3
+   }
+  },
+  {
+   "id": "l5",
+   "say": "If you like temples, go to 文殊院.",
+   "check": "if you like temples go to",
+   "a": {
+    "cap": "if you like temples",
+    "kw": "成都 寺庙 银杏 香火",
+    "clip": "7167642465552338206",
+    "in": 1.0
+   },
+   "b": {
+    "cap": "go to |Wenshu Monastery",
+    "kw": "成都文殊院",
+    "clip": "7359526360181738779",
+    "in": 0.0
+   }
+  },
+  {
+   "id": "l6",
+   "say": "If you like nightlife, go to 九眼桥.",
+   "check": "if you like nightlife go to",
+   "a": {
+    "cap": "if you like nightlife",
+    "kw": "成都 酒吧 夜生活 霓虹",
+    "clip": "7258096404315311371",
+    "in": 4.5
+   },
+   "b": {
+    "cap": "go to |Jiuyan Bridge",
+    "kw": "成都九眼桥 夜景",
+    "clip": "7427816886995389731",
+    "in": 1.0
+   }
+  },
+  {
+   "id": "l7",
+   "say": "If you like opera, go to 锦里.",
+   "check": "if you like opera go to",
+   "a": {
+    "cap": "if you like opera",
+    "kw": "川剧 变脸 表演",
+    "clip": "7631521170806402239",
+    "in": 3.5
+   },
+   "b": {
+    "cap": "go to |Jinli",
+    "kw": "成都锦里 古街 灯笼 夜景",
+    "clip": "7323543190722661666",
+    "in": 3.0
+   }
+  },
+  {
+   "id": "l8",
+   "say": "If you like giant Buddhas, go to 乐山.",
+   "check": "if you like giant Buddhas go to",
+   "a": {
+    "cap": "if you like giant Buddhas",
+    "kw": "乐山大佛 航拍",
+    "clip": "6813939166527704334",
+    "in": 0.0
+   },
+   "b": {
+    "cap": "go to |Leshan",
+    "kw": "乐山大佛 游船 正面",
+    "clip": "7677740935383772864",
+    "in": 7.5
+   }
+  },
+  {
+   "id": "o1",
+   "say": "Chengdu doesn't rush. Neither should you.",
+   "check": "chengdu doesn't rush neither should you",
+   "split": false,
+   "a": {
+    "cap": "chengdu doesn't rush",
+    "kw": "成都 太古里 航拍 城市",
+    "clip": "7608050608926704313",
+    "in": 3.0
+   }
+  },
+  {
+   "id": "o2",
+   "say": "Follow for the next city.",
+   "check": "follow for the next city",
+   "split": false,
+   "a": {
+    "cap": "follow for the next city",
+    "kw": "成都 安顺廊桥 夜景",
+    "clip": "7274521978608897343",
+    "in": 2.0
+   }
+  }
+ ],
+ "music": "Carefree"
+}

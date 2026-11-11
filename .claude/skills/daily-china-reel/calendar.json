@@ -104,7 +104,9 @@
    "outro": [
     "Chengdu doesn't rush. Neither should you.",
     "Follow for the next city."
-   ]
+   ],
+   "status": "built",
+   "dir": "episodes/2026-11-12-chengdu"
   },
   {
    "slug": "food-china",

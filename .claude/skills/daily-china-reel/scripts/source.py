@@ -26,7 +26,7 @@ def row(clip, out, label):
     w, h, d = probe(clip)
     n = 10; step = max(0.5, min(1.5, (d - 0.5) / n))
     vf = (f"fps=1/{step},scale=144:256:force_original_aspect_ratio=increase,crop=144:256,"
-          f"drawtext=fontfile='{FONT}':text='%{{pts\\:gmtime\\:0\\:%S}}':x=3:y=3:fontsize=16:fontcolor=yellow:box=1:boxcolor=black@0.6,"
+          f"drawtext=fontfile='{FONT}':text='%{{eif\\:t\\:d}}.%{{eif\\:mod(t*10\\,10)\\:d}}':x=3:y=3:fontsize=16:fontcolor=yellow:box=1:boxcolor=black@0.6,"
           f"tile={n}x1")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", clip, "-vf", vf, "-frames:v", "1", out], check=True)
     # label strip on the left

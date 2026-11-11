@@ -1,0 +1,72 @@
+{
+ "l1": {
+  "wav": "./vo/l1.wav",
+  "dur": 2.532,
+  "cut": 1.14,
+  "heard": "if you like pandas go to shunmao gt",
+  "tempo": 1.3
+ },
+ "l2": {
+  "wav": "./vo/l2.wav",
+  "dur": 2.417,
+  "cut": 1.2,
+  "heard": "if you like tea go to renmin gong yuan",
+  "tempo": 1.3
+ },
+ "l3": {
+  "wav": "./vo/l3.wav",
+  "dur": 3.008,
+  "cut": 1.28,
+  "heard": "if you like old streets go to",
+  "tempo": 1.3
+ },
+ "l5": {
+  "wav": "./vo/l5.wav",
+  "dur": 2.587,
+  "cut": 1.36,
+  "heard": "if you like temples go to meng shuyuan",
+  "tempo": 1.3
+ },
+ "l6": {
+  "wav": "./vo/l6.wav",
+  "dur": 2.634,
+  "cut": 1.28,
+  "heard": "if you like nightlife go to",
+  "tempo": 1.3
+ },
+ "l7": {
+  "wav": "./vo/l7.wav",
+  "dur": 2.187,
+  "cut": 1.2,
+  "heard": "if you like opera go to jin li",
+  "tempo": 1.3
+ },
+ "l8": {
+  "wav": "./vo/l8.wav",
+  "dur": 2.537,
+  "cut": 1.56,
+  "heard": "if you like giant buddhas go to luosan",
+  "tempo": 1.3
+ },
+ "o1": {
+  "wav": "./vo/o1.wav",
+  "dur": 2.451,
+  "cut": null,
+  "heard": "chengdu doesn't rush neither should you",
+  "tempo": 1.3
+ },
+ "o2": {
+  "wav": "./vo/o2.wav",
+  "dur": 1.185,
+  "cut": null,
+  "heard": "follow for the next city",
+  "tempo": 1.3
+ },
+ "l4": {
+  "wav": "./vo/l4.wav",
+  "dur": 2.4,
+  "cut": 1.32,
+  "heard": "if you like hot pot go to yiling lu",
+  "tempo": 1.3
+ }
+}
