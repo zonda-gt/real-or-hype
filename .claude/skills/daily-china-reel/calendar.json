@@ -134,9 +134,9 @@
      "Xi'an"
     ],
     [
-     "roast duck",
-     "北京",
-     "Beijing"
+     "barbecue",
+     "淄博",
+     "Zibo"
     ],
     [
      "stinky tofu",
@@ -157,7 +157,9 @@
    "outro": [
     "In China, every city tastes different.",
     "Follow, and come hungry."
-   ]
+   ],
+   "status": "built",
+   "dir": "episodes/2026-11-13-food-china"
   },
   {
    "slug": "ancient-towns",
