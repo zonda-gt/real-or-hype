@@ -58,7 +58,7 @@ Same cut times and sound; all-new vertical footage. Title: "CHINA" and "VLOG" sp
 
 ## Version 3, 9:16 (`china_vlog_v3_9x16_1080x1920.mp4`)
 
-Same cuts and sound; all-new vertical footage; single-line title behind the Tianjin tower; small place labels (`LABEL_SCALE = 0.45`); end card over the last two shots (from 18.93 s): footage blurs and dims in over 0.35 s, then "DM US" (Anton, DM in title yellow), a short yellow rule and "for a FREE / personalized itinerary" (Montserrat ExtraBold, FREE in yellow) fade in and rise 40 px (`cta_v.py`, `apply_labels_v.py`). Labels for those two shots are dropped.
+Same cuts and sound; all-new vertical footage; single-line title behind the Tianjin tower; small place labels (`LABEL_SCALE = 0.45`); end card over the last two shots (from 18.93 s): footage blurs and dims in over 0.35 s, then "DM US FOR A" (Montserrat ExtraBold 66, DM yellow) / "FREE" (Anton 300, title yellow, the hero) / "PERSONALIZED ITINERARY" (Montserrat 54, tracked) fade in and rise 40 px (`cta_v.py`, `apply_labels_v.py`). Labels for those two shots are dropped.
 Build: `PLAN=plan_v3 RAWDIR=v3raw SEGDIR=segs_v3 LABELDIR=labels_v3 OUTNAME=china_vlog_v3_9x16_nolabels` then render_v.py, title_seg_v.py, labels_v.py, cta_v.py, assemble_v.sh, and `SRC=china_vlog_v3_9x16_nolabels.mp4 OUT=china_vlog_v3_9x16_1080x1920.mp4 apply_labels_v.py`.
 
 | # | Time (s) | Place | Label | Douyin video | Creator | Source in (s) |
