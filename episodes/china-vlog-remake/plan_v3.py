@@ -34,3 +34,5 @@ LABELS = {
     14: ('YULIN ROAD', 'CHENGDU'),
 }
 TITLE = (250, 690, 0.47, 561, 1022)
+LABEL_SCALE = 0.45  # small place labels (user: 'much smaller')
+CTA_FROM_SHOT = 13  # end call to action covers the last two shots

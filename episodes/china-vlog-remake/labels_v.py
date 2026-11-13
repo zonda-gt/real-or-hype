@@ -20,30 +20,31 @@ LABELS = {
     13: ('MINGSHA MOUNTAIN', 'DUNHUANG'),
 }
 NAME_SIZE = 150; MAX_W = 990; NAME_Y = 520   # top of the name block, clear of the Reels header
-def label(name, pill):
-    nf = ImageFont.truetype(NAME_FONT, NAME_SIZE)
+def label(name, pill, S=1.0):
+    nf = ImageFont.truetype(NAME_FONT, round(NAME_SIZE * S))
     while nf.getbbox(name)[2] - nf.getbbox(name)[0] > MAX_W:
-        nf = ImageFont.truetype(NAME_FONT, nf.size - 4)
-    pf = ImageFont.truetype(PILL_FONT, 54)
+        nf = ImageFont.truetype(NAME_FONT, nf.size - 2)
+    pf = ImageFont.truetype(PILL_FONT, round(54 * S))
     fg = Image.new('RGBA', (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(fg)
     l, t, r, b = nf.getbbox(name); nw = r - l
     nx = (W - nw) // 2 - l; ny = NAME_Y - t
     d.text((nx, ny), name, font=nf, fill=(255, 255, 255, 255))
     name_bottom = NAME_Y + (b - t)
     pl, pt, pr, pb = pf.getbbox(pill); pw, ph = pr - pl, pb - pt
-    padx, pady = 30, 18; bx0 = (W - pw) // 2 - padx; by0 = name_bottom + 34
+    padx, pady = round(30 * S), round(18 * S); bx0 = (W - pw) // 2 - padx; by0 = name_bottom + round(34 * S)
     box = (bx0, by0, bx0 + pw + 2 * padx, by0 + ph + 2 * pady)
-    d.rounded_rectangle(box, radius=8, fill=YELLOW + (255,))
+    d.rounded_rectangle(box, radius=max(4, round(8 * S)), fill=YELLOW + (255,))
     d.text((bx0 + padx - pl, by0 + pady - pt), pill, font=pf, fill=(17, 17, 17, 255))
     # soft drop shadow under everything (like the reference), mostly for the white name
     a = fg.split()[3]
     sh = Image.new('RGBA', (W, H), (0, 0, 0, 0)); sh.putalpha(a.point(lambda v: int(v * 0.55)))
-    sh = sh.transform((W, H), Image.AFFINE, (1, 0, 0, 0, 1, -5)).filter(ImageFilter.GaussianBlur(14))
+    sh = sh.transform((W, H), Image.AFFINE, (1, 0, 0, 0, 1, -max(2, round(5 * S)))).filter(ImageFilter.GaussianBlur(max(5, 14 * S)))
     return Image.alpha_composite(sh, fg)
 import importlib
 _P = importlib.import_module(os.environ.get('PLAN', 'plan_v')); LABELS = getattr(_P, 'LABELS', LABELS)
+SCALE = getattr(_P, 'LABEL_SCALE', 1.0)
 LDIR = os.environ.get('LABELDIR', 'labels_v')
 if __name__ == '__main__':
     os.makedirs(f'{here}/{LDIR}', exist_ok=True)
     for k, (n, p) in LABELS.items():
-        label(n, p).save(f'{here}/{LDIR}/label{k:02d}.png'); print(k, n, p)
+        label(n, p, SCALE).save(f'{here}/{LDIR}/label{k:02d}.png'); print(k, n, p)

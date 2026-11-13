@@ -58,8 +58,8 @@ Same cut times and sound; all-new vertical footage. Title: "CHINA" and "VLOG" sp
 
 ## Version 3, 9:16 (`china_vlog_v3_9x16_1080x1920.mp4`)
 
-Same cuts and sound; all-new vertical footage; single-line title behind the Tianjin tower; place labels built in.
-Build: `PLAN=plan_v3 RAWDIR=v3raw SEGDIR=segs_v3 LABELDIR=labels_v3 OUTNAME=china_vlog_v3_9x16_nolabels` then render_v.py, title_seg_v.py, labels_v.py, assemble_v.sh, and `SRC=china_vlog_v3_9x16_nolabels.mp4 OUT=china_vlog_v3_9x16_1080x1920.mp4 apply_labels_v.py`.
+Same cuts and sound; all-new vertical footage; single-line title behind the Tianjin tower; small place labels (`LABEL_SCALE = 0.45`); end call to action "DM us for a FREE personalized itinerary" (DM and FREE in yellow boxes, `cta_v.py`) over the last two shots, fading in at 18.93 s.
+Build: `PLAN=plan_v3 RAWDIR=v3raw SEGDIR=segs_v3 LABELDIR=labels_v3 OUTNAME=china_vlog_v3_9x16_nolabels` then render_v.py, title_seg_v.py, labels_v.py, cta_v.py, assemble_v.sh, and `SRC=china_vlog_v3_9x16_nolabels.mp4 OUT=china_vlog_v3_9x16_1080x1920.mp4 apply_labels_v.py`.
 
 | # | Time (s) | Place | Label | Douyin video | Creator | Source in (s) |
 |---|---|---|---|---|---|---|
