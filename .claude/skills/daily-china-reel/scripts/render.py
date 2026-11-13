@@ -28,6 +28,8 @@ def run(*a):
 
 def caption_png(text, out):
     """'go to |Harbin' -> 'go to ' white + 'Harbin' yellow. Lowercase-style small caption with a soft shadow."""
+    if not text:
+        Image.new("RGBA", (W, H), (0, 0, 0, 0)).save(out); return
     parts = text.split("|")
     segs = [(parts[0], (255, 255, 255))] + ([(parts[1], YELLOW)] if len(parts) > 1 else [])
     f = ImageFont.truetype(FONT, 46)
@@ -47,6 +49,44 @@ def caption_png(text, out):
         d.text((x, y), s, font=f, fill=col + (255,))
         x += w
     sh = sh.filter(ImageFilter.GaussianBlur(4))
+    Image.alpha_composite(sh, img).save(out)
+
+
+def overlay_png(spec, out):
+    """Centered text block. spec: {"lines": [...], "size": px, "y": 0.5}. Words in [brackets] get a yellow highlight box."""
+    import re
+    size = spec.get("size", 90)
+    f = ImageFont.truetype(FONT, size)
+    try:
+        f.set_variation_by_axes([800])
+    except Exception:
+        pass
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d, ds = ImageDraw.Draw(img), ImageDraw.Draw(sh)
+    lh = int(size * 1.35)
+    lines = spec["lines"]
+    y = int(H * spec.get("y", 0.5) - lh * len(lines) / 2)
+    pad = int(size * 0.18)
+    for line in lines:
+        parts = [(m, m.startswith("[")) for m in re.findall(r"\[[^\]]+\]|[^\[]+", line)]
+        parts = [(t.strip("[]"), hi) for t, hi in parts]
+        tw = sum(f.getlength(t) + (2 * pad if hi else 0) for t, hi in parts)
+        x = (W - tw) / 2
+        for t, hi in parts:
+            w = f.getlength(t)
+            if hi:
+                box = (x, y - pad * 0.6, x + w + 2 * pad, y + size * 1.12)
+                ds.rounded_rectangle(box, radius=pad, fill=(0, 0, 0, 160))
+                d.rounded_rectangle(box, radius=pad, fill=YELLOW + (255,))
+                d.text((x + pad, y), t, font=f, fill=(0, 0, 0, 255))
+                x += w + 2 * pad
+            else:
+                ds.text((x + 3, y + 4), t, font=f, fill=(0, 0, 0, 220), stroke_width=6, stroke_fill=(0, 0, 0, 160))
+                d.text((x, y), t, font=f, fill=(255, 255, 255, 255), stroke_width=2, stroke_fill=(0, 0, 0, 120))
+                x += w
+        y += lh
+    sh = sh.filter(ImageFilter.GaussianBlur(6))
     Image.alpha_composite(sh, img).save(out)
 
 
@@ -167,7 +207,19 @@ def main():
         "-ar", "48000", f"{work}/mix.wav")
 
     out = x.out or f"{x.ep}/final.mp4"
-    run("ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav", "-map", "0:v", "-map", "1:a",
+    # optional centered overlays (title, end card): "overlays": [{"lines": [...], "start": s, "end": e or "end", "size", "y"}]
+    ov_in, ov_fc, last = [], "", "0:v"
+    for i, o in enumerate(ep.get("overlays", [])):
+        png = f"{work}/ov{i}.png"; overlay_png(o, png)
+        a = o.get("start", 0); b = total if o.get("end", "end") == "end" else o["end"]
+        if o.get("start") == "outro":  # from the start of the last shot
+            a = shots[-1][1]
+        ov_in += ["-loop", "1", "-t", f"{total:.3f}", "-i", png]
+        ov_fc += (f"[{i+2}]format=rgba,fade=t=in:st={a:.3f}:d=0.15:alpha=1[o{i}];"
+                  f"[{last}][o{i}]overlay=0:0:enable='between(t,{a:.3f},{b:.3f})'[v{i}];")
+        last = f"v{i}"
+    vmap = ["-filter_complex", ov_fc.rstrip(";"), "-map", f"[{last}]"] if ov_in else ["-map", "0:v"]
+    run("ffmpeg", "-v", "error", "-y", "-i", f"{work}/video.mp4", "-i", f"{work}/mix.wav", *ov_in, *vmap, "-map", "1:a",
         "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
         "-movflags", "+faststart", "-shortest", out)
     tl = {"total": round(total, 3), "music": name, "music_offset": off,

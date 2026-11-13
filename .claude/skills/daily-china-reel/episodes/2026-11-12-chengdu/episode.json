@@ -157,16 +157,38 @@
   },
   {
    "id": "o2",
-   "say": "Follow for the next city.",
-   "check": "follow for the next city",
+   "say": "DM us for a free, personalized itinerary.",
+   "check": "dm us for a free personalized itinerary",
    "split": false,
    "a": {
-    "cap": "follow for the next city",
+    "cap": "",
     "kw": "成都 安顺廊桥 夜景",
     "clip": "7274521978608897343",
     "in": 2.0
    }
   }
  ],
- "music": "Carefree"
+ "music": "Carefree",
+ "overlays": [
+  {
+   "lines": [
+    "CHENGDU"
+   ],
+   "start": 0.0,
+   "end": 2.6,
+   "size": 170,
+   "y": 0.42
+  },
+  {
+   "lines": [
+    "[DM] us for a",
+    "[FREE] personalized",
+    "itinerary"
+   ],
+   "start": "outro",
+   "end": "end",
+   "size": 84,
+   "y": 0.5
+  }
+ ]
 }
