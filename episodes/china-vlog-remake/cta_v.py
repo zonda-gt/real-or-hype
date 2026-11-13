@@ -9,8 +9,8 @@ here = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, here)
 from labels_v import NAME_FONT, PILL_FONT, W, H
 YEL = (242, 219, 17); WHITE = (255, 255, 255)
 LINES = [  # (font, size, tracking px, runs, gap after)
-    (PILL_FONT, 66, 3, [('DM', YEL), (' US FOR A', WHITE)], 30),
-    (NAME_FONT, 300, 4, [('FREE', YEL)], 34),
+    (PILL_FONT, 66, 3, [('DM', YEL), (' US FOR A', WHITE)], 24),
+    (NAME_FONT, 170, 3, [('FREE', YEL)], 26),
     (PILL_FONT, 54, 4, [('PERSONALIZED ITINERARY', WHITE)], 0),
 ]
 CENTER_Y = 900
