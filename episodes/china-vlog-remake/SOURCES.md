@@ -78,3 +78,5 @@ Build: `PLAN=plan_v3 RAWDIR=v3raw SEGDIR=segs_v3 LABELDIR=labels_v3 OUTNAME=chin
 | 12 | 17.43–18.93 | Datang Everbright City | DATANG EVERBRIGHT CITY / XI'AN | https://www.douyin.com/video/7598481496160946597 | 山水又一程 | 0.1 |
 | 13 | 18.93–20.33 | Chaka salt lake | CHAKA SALT LAKE / QINGHAI | https://www.douyin.com/video/7662185926873634801 | 浪迹山河、 | 1.5 |
 | 14 | 20.33–21.97 | Yulin Road, Chengdu | YULIN ROAD / CHENGDU | https://www.douyin.com/video/7673533308890894065 | Ww. | 0.2 |
+
+**No-blur variant** (`china_vlog_v3_9x16_noblur_1080x1920.mp4`): same end card, but the footage stays sharp and only a soft elliptical dark shade (`scrim_v.py`, up to 70%) fades in behind the text. Build with `CTA_BG=scrim` for `apply_labels_v.py` (default `blur`).
