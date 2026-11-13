@@ -1,0 +1,72 @@
+{
+ "l1": {
+  "wav": "./vo/l1.wav",
+  "dur": 2.251,
+  "cut": 1.04,
+  "heard": "if you like noodles go to lanzhou",
+  "tempo": 1.3
+ },
+ "l2": {
+  "wav": "./vo/l2.wav",
+  "dur": 2.2,
+  "cut": 1.2,
+  "heard": "if you like dim sum go to guangzhou",
+  "tempo": 1.3
+ },
+ "l3": {
+  "wav": "./vo/l3.wav",
+  "dur": 2.324,
+  "cut": 1.36,
+  "heard": "if you like spicy food go to chongqing",
+  "tempo": 1.3
+ },
+ "l4": {
+  "wav": "./vo/l4.wav",
+  "dur": 1.736,
+  "cut": 1.08,
+  "heard": "if you like dumplings go to see anne",
+  "tempo": 1.3
+ },
+ "l5": {
+  "wav": "./vo/l5.wav",
+  "dur": 2.48,
+  "cut": 1.3,
+  "heard": "if you like barbecue go to zinbo",
+  "tempo": 1.3
+ },
+ "l6": {
+  "wav": "./vo/l6.wav",
+  "dur": 2.51,
+  "cut": 1.44,
+  "heard": "if you like stinky tofu go to changsha",
+  "tempo": 1.3
+ },
+ "l7": {
+  "wav": "./vo/l7.wav",
+  "dur": 2.036,
+  "cut": 1.24,
+  "heard": "if you like seafood go to xiamen",
+  "tempo": 1.3
+ },
+ "l8": {
+  "wav": "./vo/l8.wav",
+  "dur": 2.265,
+  "cut": 1.14,
+  "heard": "if you like breakfast go to wuhan",
+  "tempo": 1.3
+ },
+ "o1": {
+  "wav": "./vo/o1.wav",
+  "dur": 2.329,
+  "cut": null,
+  "heard": "in china every city tastes different",
+  "tempo": 1.3
+ },
+ "o2": {
+  "wav": "./vo/o2.wav",
+  "dur": 1.402,
+  "cut": null,
+  "heard": "follow and come hungry",
+  "tempo": 1.3
+ }
+}

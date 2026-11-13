@@ -1,0 +1,171 @@
+{
+ "slug": "winter-china",
+ "title": "Winter in China",
+ "vo_tempo": 1.3,
+ "lines": [
+  {
+   "id": "l1",
+   "say": "If you like fairy tales, go to 哈尔滨.",
+   "check": "if you like fairy tales go to",
+   "a": {
+    "cap": "if you like fairy tales",
+    "kw": "哈尔滨 冰雪大世界 城堡 夜景",
+    "clip": "7686168733353577738",
+    "in": 4.0
+   },
+   "b": {
+    "cap": "go to |Harbin",
+    "kw": "哈尔滨 中央大街 雪 航拍",
+    "clip": "7032864387610250503",
+    "in": 0.0
+   }
+  },
+  {
+   "id": "l2",
+   "say": "If you like snow, go to 雪乡.",
+   "check": "if you like snow go to",
+   "a": {
+    "cap": "if you like snow",
+    "kw": "雪乡 雪蘑菇 夜景",
+    "clip": "7567354522957696302",
+    "in": 0.0
+   },
+   "b": {
+    "cap": "go to |Snow Town",
+    "kw": "中国雪乡 红灯笼 雪",
+    "clip": "6633966928304016653",
+    "in": 0.0
+   }
+  },
+  {
+   "id": "l3",
+   "say": "If you like skiing, go to 阿勒泰.",
+   "check": "if you like skiing go to",
+   "a": {
+    "cap": "if you like skiing",
+    "kw": "阿勒泰 滑雪 粉雪",
+    "clip": "7574626513597910308",
+    "in": 6.3
+   },
+   "b": {
+    "cap": "go to |Altay",
+    "kw": "阿勒泰 禾木 雪景 航拍",
+    "clip": "7174235430735318324",
+    "in": 10.0
+   }
+  },
+  {
+   "id": "l4",
+   "say": "If you like hot springs, go to 长白山.",
+   "check": "if you like hot springs go to",
+   "a": {
+    "cap": "if you like hot springs",
+    "kw": "长白山 温泉 雪中",
+    "clip": "7167203295742741791",
+    "in": 4.3
+   },
+   "b": {
+    "cap": "go to |Changbai Mountain",
+    "kw": "长白山 天池 冬天",
+    "clip": "7179052116344851767",
+    "in": 6.0,
+    "zoom": 1.3
+   }
+  },
+  {
+   "id": "l5",
+   "say": "If you like frozen trees, go to 吉林.",
+   "check": "if you like frozen trees go to",
+   "a": {
+    "cap": "if you like frozen trees",
+    "kw": "吉林 雾凇 松花江",
+    "clip": "7577973048092739001",
+    "in": 6.0
+   },
+   "b": {
+    "cap": "go to |Jilin",
+    "kw": "吉林 雾凇岛 日出",
+    "clip": "7594343907758407409",
+    "in": 0.0
+   }
+  },
+  {
+   "id": "l6",
+   "say": "If you like royalty, go to 北京.",
+   "check": "if you like royalty go to",
+   "a": {
+    "cap": "if you like royalty",
+    "kw": "故宫 下雪 红墙",
+    "clip": "7582950175427579194",
+    "in": 2.0
+   },
+   "b": {
+    "cap": "go to |Beijing",
+    "kw": "故宫 雪景 航拍 角楼",
+    "clip": "7583011953271442725",
+    "in": 3.0
+   }
+  },
+  {
+   "id": "l7",
+   "say": "If you like clouds, go to 黄山.",
+   "check": "if you like clouds go to",
+   "a": {
+    "cap": "if you like clouds",
+    "kw": "黄山 云海 雪",
+    "clip": "7053011661703187753",
+    "in": 4.0
+   },
+   "b": {
+    "cap": "go to |Huangshan",
+    "kw": "黄山 雪景 迎客松",
+    "clip": "7063406193032678667",
+    "in": 1.0
+   }
+  },
+  {
+   "id": "l8",
+   "say": "If you like the cold, go to 漠河.",
+   "check": "if you like the cold go to",
+   "a": {
+    "cap": "if you like the cold",
+    "kw": "漠河 极光",
+    "clip": "6778666908683193600",
+    "in": 0.6
+   },
+   "b": {
+    "cap": "go to |Mohe",
+    "kw": "漠河 北极村 雪 夜",
+    "clip": "7698679168661245247",
+    "in": 0.0
+   }
+  },
+  {
+   "id": "o1",
+   "say": "China in winter is a different country.",
+   "check": "china in winter is a different country",
+   "split": false,
+   "a": {
+    "cap": "china in winter",
+    "kw": "冬天 中国 雪景 航拍 古建筑",
+    "clip": "7312339237775494400",
+    "in": 3.0
+   }
+  },
+  {
+   "id": "o2",
+   "say": "Follow, so you don't miss the next one.",
+   "check": "follow so you don't miss the next one",
+   "split": false,
+   "a": {
+    "cap": "follow for the next one",
+    "kw": "哈尔滨 烟花 冰雪",
+    "clip": "7667122568068296421",
+    "in": 1.0
+   }
+  }
+ ],
+ "hook": "Winter in China hits different ❄️ Save this for your trip",
+ "tags": "#chinatravel #visitchina #chinawinter #harbin #travelchina",
+ "music": "Life of Riley"
+}

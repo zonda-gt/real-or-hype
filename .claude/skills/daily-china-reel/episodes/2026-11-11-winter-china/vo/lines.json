@@ -1,0 +1,72 @@
+{
+ "l1": {
+  "wav": "./vo/l1.wav",
+  "dur": 2.297,
+  "cut": 1.36,
+  "heard": "if you like fairy tales go to harbing",
+  "tempo": 1.3
+ },
+ "l2": {
+  "wav": "./vo/l2.wav",
+  "dur": 2.263,
+  "cut": 1.02,
+  "heard": "if you like snow go to xuexiang",
+  "tempo": 1.3
+ },
+ "l3": {
+  "wav": "./vo/l3.wav",
+  "dur": 2.232,
+  "cut": 1.16,
+  "heard": "if you like skiing go to aleutide",
+  "tempo": 1.3
+ },
+ "l4": {
+  "wav": "./vo/l4.wav",
+  "dur": 2.833,
+  "cut": 1.48,
+  "heard": "if you like hot springs go to",
+  "tempo": 1.3
+ },
+ "l5": {
+  "wav": "./vo/l5.wav",
+  "dur": 2.357,
+  "cut": 1.4,
+  "heard": "if you like frozen trees go to zilin",
+  "tempo": 1.3
+ },
+ "l6": {
+  "wav": "./vo/l6.wav",
+  "dur": 2.35,
+  "cut": 1.2,
+  "heard": "if you like royalty go to bieting",
+  "tempo": 1.3
+ },
+ "l7": {
+  "wav": "./vo/l7.wav",
+  "dur": 2.103,
+  "cut": 1.12,
+  "heard": "if you like clouds go to huangshan",
+  "tempo": 1.3
+ },
+ "l8": {
+  "wav": "./vo/l8.wav",
+  "dur": 2.641,
+  "cut": 1.36,
+  "heard": "if you like the cold go to makkua",
+  "tempo": 1.3
+ },
+ "o1": {
+  "wav": "./vo/o1.wav",
+  "dur": 2.032,
+  "cut": null,
+  "heard": "china in winter is a different country",
+  "tempo": 1.3
+ },
+ "o2": {
+  "wav": "./vo/o2.wav",
+  "dur": 1.618,
+  "cut": null,
+  "heard": "follow so you don't miss the next one",
+  "tempo": 1.3
+ }
+}
