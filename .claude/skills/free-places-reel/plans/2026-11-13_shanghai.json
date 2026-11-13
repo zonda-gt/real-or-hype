@@ -1,0 +1,137 @@
+{
+ "city": "Shanghai",
+ "shots": [
+  [
+   "hookA_7655724520506539249",
+   0.5,
+   "HOOK"
+  ],
+  [
+   "hookB_7313902259480382747",
+   19.4,
+   "HOOK"
+  ],
+  [
+   "library_7154640788184403236",
+   0.2,
+   "Shanghai Library East"
+  ],
+  [
+   "library_7173965862783782159",
+   0.0,
+   "Shanghai Library East"
+  ],
+  [
+   "museum_7475299634823400761",
+   3.95,
+   "Shanghai Museum East"
+  ],
+  [
+   "museum_7652687753122309553",
+   7.3,
+   "Shanghai Museum East"
+  ],
+  [
+   "skywalk_7168470084933913863",
+   0.5,
+   "Lujiazui Skywalk"
+  ],
+  [
+   "skywalk_7474177760529943847",
+   12.0,
+   "Lujiazui Skywalk"
+  ],
+  [
+   "trees_7637391453186918362",
+   0.5,
+   "1000 Trees"
+  ],
+  [
+   "trees_7353649932152229146",
+   5.0,
+   "1000 Trees"
+  ],
+  [
+   "wukang_7491961167494040871",
+   0.85,
+   "Wukang Mansion"
+  ],
+  [
+   "wukang_7684819445881937024",
+   26.42,
+   "Wukang Mansion"
+  ],
+  [
+   "zhangyuan_7659444257934567498",
+   3.45,
+   "Zhangyuan"
+  ],
+  [
+   "zhangyuan_7669834793304459763",
+   6.0,
+   "Zhangyuan"
+  ],
+  [
+   "yuyuan_7649052308953008049",
+   1.0,
+   "Yuyuan Bazaar"
+  ],
+  [
+   "yuyuan_7523071030833204514",
+   12.2,
+   "Yuyuan Bazaar"
+  ],
+  [
+   "fosun_6756048950848998669",
+   3.0,
+   "Fosun Moving Facade"
+  ],
+  [
+   "fosun_6769770623385259277",
+   1.0,
+   "Fosun Moving Facade"
+  ],
+  [
+   "westbund_7219927291437075752",
+   12.6,
+   "West Bund"
+  ],
+  [
+   "westbund_7245857962101689640",
+   4.0,
+   "West Bund"
+  ],
+  [
+   "xmas_7579850408178303461",
+   3.0,
+   "END"
+  ],
+  [
+   "bund_7690424618331450481",
+   6.0,
+   "END"
+  ]
+ ],
+ "blur": {
+  "1": [
+   [
+    390,
+    1185,
+    310,
+    110
+   ]
+  ],
+  "13": [
+   [
+    400,
+    215,
+    290,
+    90
+   ]
+  ]
+ },
+ "precrop": {},
+ "speed": {
+  "1": 0.9
+ }
+}
