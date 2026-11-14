@@ -87,3 +87,5 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | China Vlog remake (16:9) | https://www.instagram.com/reel/DfjXsxGHJnG/ | 2026-11-10 |
 | Baixiangju 8D building recreation | https://www.instagram.com/reel/DfkWXqVH3D-/ | 2026-11-10 |
 | China Vlog remake (9:16, new footage) | https://www.instagram.com/reel/DfkY2QznPtZ/ | 2026-11-10 |
+| GATE M: one evening in Shanghai (CTA: plan your trip, AI clips) | https://www.instagram.com/reel/DfthWYUkdWd/ | 2026-11-14 |
+| GATE M: walkthrough (CTA: more incredible places, AI wave) | https://www.instagram.com/reel/DfthilBgVUr/ | 2026-11-14 |
