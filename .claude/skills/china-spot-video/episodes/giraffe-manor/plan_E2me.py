@@ -8,10 +8,12 @@ CUES=[
  (11,[(G,5.36,1.50,0.62)]),                         # Giraffe Manor -> entrance arch
  (16,[(G,9.88,1.55,0.50),(B2,97.74,2.15,0.50)]),    # Huzhou, two hours from Shanghai -> drone, aerial
  (22,[(B2,14.80,1.20,0.50)]),                       # at breakfast -> restaurant
- (24,[(AI,0.45,0.50,0.5),(G,25.80,2.08,0.33)]),                        # one stops at your window
+ (24,[(AI,0.40,1.0,0.5)]),                         # you look up (ends on 'window')
+ (28,[(G,25.80,2.08,0.33)]),                        # one stops at your window
  (30,[(R,77.20,1.68,0.72)]),                        # pushes its whole head inside
- (35,[(AI,3.25,0.50,0.5),(G,17.12,1.14,0.48)]),                        # hold out a carrot
- (39,[(R,8.02,1.10,0.45),(B2,20.60,2.3,0.45)]),     # takes it right from your hand
+ (35,[(AI,3.00,1.0,0.5)]),                         # you hold out the carrot (ends on 'and')
+ (39,[(G,17.12,1.14,0.48)]),                        # hold out a carrot
+ (43,[(R,8.02,1.10,0.45),(B2,20.60,2.3,0.45)]),     # takes it right from your hand
  (47,[(WAKE,3.60,1.15,0.5),(WAKE,6.00,3.5,0.5)]),   # book an animal wake-up call
  (56,[(WAKE,15.95,1.6,0.5),(WAKE,19.00,4.5,0.5)]),  # a raccoon walks into your room
  (63,[(CALF,0.20,7.3,0.5)]),                        # two baby giraffes born here
@@ -19,7 +21,8 @@ CUES=[
  (80,[(B2,31.82,1.45,0.50),(B2,2.45,1.7,0.45)]),    # capybaras soak in the pond
  (86,[(G,11.48,1.12,0.50)]),                        # you sleep in a villa
  (92,[(B2,78.48,1.32,0.50),(B2,7.08,1.05,0.50)]),   # middle of a bamboo forest
- (99,[(AI,1.60,0.50,0.5),(B2,0.30,2.04,0.60)]),                       # but here's the part nobody expects
+ (99,[(AI,1.55,1.0,0.5)]),                         # you smile (ends on 'part')
+ (102,[(B2,0.30,2.04,0.60)]),                       # but here's the part nobody expects
  (105,[(B2,16.04,1.12,0.50),(V1,0.3,2.5,0.5)]),     # a thousand yuan
  (114,[(B2,26.62,1.80,0.42),(G,27.92,2.10,0.30)]),  # Kenya over $1,400
  (120,[(B2,96.64,1.06,0.55),(B2,97.74,2.18,0.50)]), # comment giraffe
