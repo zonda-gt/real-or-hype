@@ -1,5 +1,4 @@
 # Re-time a finished edit to a new narration (new voice, or a changed ending) without re-editing by hand.
-# Every time in the old edl (shot cuts, labels, pills, title end, follow start) is re-anchored to the same word in the new
 # Every time in the old edl (shot cuts, labels, pills, title end, CTA start) is re-anchored to the same word in the new
 # words.json, keeping its offset from that word's onset; changed words (new CTA, new price) map proportionally. END = last word end + 0.6 s.
 # usage (from the NEW project dir): python3 -I <skill>/scripts/revoice.py <old_project_dir>   -> writes ./edl.py
