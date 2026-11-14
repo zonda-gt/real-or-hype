@@ -1,8 +1,10 @@
 # Script example: GATE M / West Bund Dream Center
 
-## Final version (33 s, 111 words, 201 wpm) — the standard
+## Final version (32 s, John v3) — the standard
 
-Every sentence carries one thing the viewer would miss if it were gone. v3 Matilda, `[excited]` tag at the start.
+Current text (`episodes/gatem/script.txt`): hook `Shanghai turned Asia's biggest cement factory into this. It's called Gate M…`, price said as `about 25 dollars per person`, CTA `Comment WOW, and we'll plan your trip for you.` (or `…for more incredible places in Shanghai.`). The table below is the Matilda cut it grew from; the beats are the same.
+
+Every sentence carries one thing the viewer would miss if it were gone.
 
 | Time | Line | What it gives the viewer | Shot(s) |
 |---|---|---|---|

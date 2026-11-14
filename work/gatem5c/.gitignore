@@ -1,0 +1,15 @@
+src
+segs/
+music/m3.mp3
+vo/tight.f32
+vo/take1*
+vo/take2*
+out/gfx.mp4
+out/final_1080.mp4
+out/mix.wav
+out/yavg.txt
+__pycache__/
+*.jpg
+tmp/
+prev_john/
+vo/narr.f32

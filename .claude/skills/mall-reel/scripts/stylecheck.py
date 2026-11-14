@@ -7,11 +7,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); sys.path.insert(
 import gfx
 from gfx import W, H
 out = sys.argv[1] if len(sys.argv) > 1 else 'stylecheck.jpg'
+os.makedirs(os.path.dirname(out) or '.', exist_ok=True)
 try:
-    import edl; title = edl.TITLE[:3]; labels = [l[2] for l in edl.LABELS] or ['silo rooftop']; pills = edl.PILLS[0][2] if edl.PILLS else ['Metro Line 11', 'Longyao Rd · Exit 4']
+    import edl; title = list(edl.TITLE[:3]) + [edl.TITLE[5] if len(edl.TITLE) > 5 else 'name']; labels = [l[2] for l in edl.LABELS] or ['silo rooftop']; pills = edl.PILLS[0][2] if edl.PILLS else ['Metro Line 11', 'Longyao Rd · Exit 4']
     srcs = [f"src/{e[1]}.mp4@{e[2]+0.3}" for e in edl.EDL[:1]] + [f"src/{e[1]}.mp4@{e[2]+0.3}" for e in edl.EDL[len(edl.EDL)//3:len(edl.EDL)//3+1]] + [f"src/{e[1]}.mp4@{e[2]+0.3}" for e in edl.EDL[-1:]]
 except Exception:
-    title = ('GATE M', 'West Bund Dream Center', 'in  Shanghai'); labels = ['silo rooftop']; pills = ['Metro Line 11', 'Longyao Rd · Exit 4']; srcs = []
+    title = ("SHANGHAI'S", 'Cement Factory', 'turned riverside hangout', 'headline'); labels = ['silo rooftop']; pills = ['Metro Line 11', 'Longyao Rd · Exit 4']; srcs = []
 srcs = sys.argv[2:] or srcs
 
 def frame(spec):

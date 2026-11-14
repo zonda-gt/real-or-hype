@@ -23,6 +23,8 @@ PILLS = [   # (start, end, [lines], top_y) practical info, e.g. metro
 FOLLOW = (0.0, None)        # start of the CTA sticker (= onset of the CTA's first word), None = until the end
 FOLLOW_TEXT = ('COMMENT "WOW"', 'WE PLAN YOUR TRIP')   # sticker lines = the spoken CTA
 MUSIC = ('music/bed.mp3', 6.0, -9)   # file, offset into the track (skip a quiet intro), level dB after -16 LUFS normalise
+CAPTION_SKIP = []   # [(start, end)] no captions while those words are already on screen (the GATE M sign shot)
+CAPTION_Y = 960     # caption centre line; 960 = screen centre (default)
 CAPTION_REPLACE = {'龙耀路': 'LONGYAO LU'}   # Chinese written for the voice -> Latin for the caption font
 
 

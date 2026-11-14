@@ -10,7 +10,7 @@ PF = os.path.join(FONTS, 'PlayfairDisplay.ttf')               # title card (vari
 PFI = os.path.join(FONTS, 'PlayfairDisplay-Italic.ttf')       # title card subtitle
 CAV = os.path.join(FONTS, 'Caveat.ttf')                       # handwritten labels (variable, wght 400-700)
 
-CAPTION_Y = 1430      # centre line of the one-word captions (74% of height)
+CAPTION_Y = 960       # centre line of the one-word captions: screen centre (user's choice; edl.CAPTION_Y overrides)
 TITLE_TOP = 430       # top of the title block
 FOLLOW_Y = 230        # top of the follow sticker
 
@@ -47,11 +47,27 @@ def text_img(txt, font, fill=(255, 255, 255, 255), tracking=0, stroke=0, stroke_
     return im
 
 
-def title_img(line1, line2, line3):
-    """Full-frame layer: big serif name, italic subtitle, thin rule, small 'in Shanghai'. Shown over the first 2-3 shots."""
+def _fit(im, maxw=980):
+    return im if im.width <= maxw else im.resize((maxw, int(im.height * maxw / im.width)), Image.LANCZOS)
+
+
+def title_img(line1, line2, line3, style='headline'):
+    """Full-frame title layer over the opening shot(s).
+    style 'headline' (default): CONTEXT for a viewer who doesn't know the place, e.g. SHANGHAI'S / Cement Factory /
+      turned riverside hangout  (her "Full body health checkup in Shanghai", "SHANGHAI'S Basement Seafood").
+    style 'name': the place's name, e.g. GATE M / West Bund Dream Center / in Shanghai (only if the name itself is famous)."""
+    if style == 'headline':
+        L = Image.new('RGBA', (W, H), (0, 0, 0, 0))
+        t1 = _fit(text_img(line1, var(PF, 84, 600), tracking=22))
+        t2 = _fit(text_img(line2, var(PF, 150, 700), tracking=2))
+        t3 = _fit(text_img(line3, var(PFI, 74, 500)))
+        y = TITLE_TOP - 40
+        for im, dy in [(t1, -10), (t2, -6), (t3, 0)]:
+            L.alpha_composite(im, ((W - im.width) // 2, y)); y += im.height + dy
+        return shadowed(L, radius=14, alpha=175, offset=(0, 5))
     L = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-    t1 = text_img(line1, var(PF, 200, 600), tracking=14)
-    t2 = text_img(line2, var(PFI, 76, 500))
+    t1 = _fit(text_img(line1, var(PF, 200, 600), tracking=14))
+    t2 = _fit(text_img(line2, var(PFI, 76, 500)))
     t3 = text_img(line3, var(PF, 46, 500), tracking=6)
     y = TITLE_TOP
     for im, gap in [(t1, 0), (t2, 0), (None, 34), (t3, 0)]:

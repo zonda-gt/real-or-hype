@@ -40,16 +40,18 @@ NF = bounds[-1]
 def at(t): return round((t - LEAD) * FPS)
 words = json.load(open('vo/words.json'))
 items = []   # (start_frame, end_frame, image, x, y, anim)
-a, b, c, t0, t1 = edl.TITLE
-title = gfx.title_img(a, b, c)
+a, b, c, t0, t1, *tstyle = edl.TITLE
+title = gfx.title_img(a, b, c, *(tstyle or ['name']))
 items.append((round(t0 * FPS), round(t1 * FPS), title, (W - title.width) // 2, -42, 'fadeout'))
 REPL = getattr(edl, 'CAPTION_REPLACE', {})
+SKIP = getattr(edl, 'CAPTION_SKIP', [])          # (start, end): no captions while the words are already on screen (e.g. a sign)
 for i, (w, wa, wb) in enumerate(words):          # one word on screen at a time
+    if any(a0 <= wa < a1 for a0, a1 in SKIP): continue
     s0 = max(0, round(wa * FPS) - 2)              # 2 frames before the word starts
     nxt = words[i + 1][1] if i + 1 < len(words) else wb + 0.3
     e0 = round(min(nxt, wb + 0.6) * FPS) - 2      # until the next word (max 0.6 s after this one ends)
     im = gfx.word_img(w, REPL)
-    items.append((s0, max(s0 + 3, e0), im, (W - im.width) // 2, gfx.CAPTION_Y - im.height // 2, None))
+    items.append((s0, max(s0 + 3, e0), im, (W - im.width) // 2, getattr(edl, 'CAPTION_Y', gfx.CAPTION_Y) - im.height // 2, None))
 for la, lb, txt, cx, cy, ang in edl.LABELS:
     im = gfx.label_img(txt, ang); items.append((at(la), at(lb), im, cx - im.width // 2, cy - im.height // 2, 'pop'))
 for pa, pb, lines, py in edl.PILLS:
