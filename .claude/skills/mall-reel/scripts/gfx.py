@@ -58,7 +58,7 @@ def title_img(line1, line2, line3, style='headline'):
     style 'name': the place's name, e.g. GATE M / West Bund Dream Center / in Shanghai (only if the name itself is famous)."""
     if style == 'headline':
         L = Image.new('RGBA', (W, H), (0, 0, 0, 0))
-        t1 = _fit(text_img(line1, var(PF, 84, 600), tracking=22))
+        t1 = _fit(text_img(line1, var(PF, 84, 600), tracking=22), 820)
         t2 = _fit(text_img(line2, var(PF, 150, 700), tracking=2))
         t3 = _fit(text_img(line3, var(PFI, 74, 500)))
         y = TITLE_TOP - 40
