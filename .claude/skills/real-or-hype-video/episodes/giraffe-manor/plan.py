@@ -15,6 +15,8 @@ CARROT=(G,17.12,1.15,{'x':0.48}); POV=(R,8.02,1.36,{'x':0.45}); TABLE=(B2,26.65,
 CAPY=(B2,31.82,1.3,{'x':0.5}); RACC=(B2,43.12,1.2,{'x':0.55}); CRANE=(B2,28.48,1.2,{'x':0.48})
 ROOM=(B2,78.50,1.3,{'x':0.5}); REST=(B2,14.80,1.2,{'x':0.5}); KISS=(B2,96.65,1.05,{'x':0.55}); AER=(B2,97.75,2.15,{'x':0.5})
 VERT=(V1,0.3,1.8)
+REACT='7582116698300386610'  # vertical, giraffe licks a woman's face (zoo, not Giraffe Manor)
+SRC[REACT]={}
 VARIANTS={
  'A':{'lead':{'A1':0.05},'slots':[
    ('A1',HOOK),
@@ -44,4 +46,8 @@ VARIANTS={
    ('C6',[REST,(R,75.70,1.45,{'x':0.78}),(V1,12.6,1.4)]),
    ('C7',[KISS,AER]),
   ]},
+
+ 'D':{'slots':[('',[(REACT,1.0,2.0)])]},
 }
+VARIANTS['D2']={'slots':[('',[(REACT,1.0,2.0)])]+VARIANTS['A']['slots']}
+VARIANTS['D']={'slots':[('',[(G,51.40,1.5,{'x':0.33})])]+VARIANTS['A']['slots']}

@@ -21,7 +21,7 @@ def shot_vf(src,xc,zoom,yc):
     x=min(max(xc*w-cw/2,0),w-cw); y=min(max(yc*h*(1-cut)-ch/2,0),h*(1-cut)-ch)
     return f"{tm}crop={int(cw)//2*2}:{int(ch)//2*2}:{int(x)}:{int(y)},scale={W}:{H}:flags=lanczos,setsar=1"
 # --- 1. shots -> segments; narration slots
-segs=[]; t=0.0; vo_place=[]; cuts=[]
+segs=[]; t=0.0; vo_place=[]; cuts=[]; slots=[]
 for si,(key,shots) in enumerate(P['slots']):
     slot0=t
     for k,sh in enumerate(shots):
@@ -32,6 +32,7 @@ for si,(key,shots) in enumerate(P['slots']):
         if not os.path.exists(out):
             run(['ffmpeg','-y','-loglevel','error','-ss',str(tin),'-t',str(d*sp+0.2),'-i',src,'-vf',vf,'-t',str(d),'-an','-c:v','libx264','-preset','fast','-crf','17','-pix_fmt','yuv420p',out])
         segs.append(out); cuts.append(t); t+=dur(out)
+    slots.append((key,slot0,t))
     if key:
         vo_place.append((key,slot0+P.get('lead',{}).get(key,0.12)))
     if key and P.get('check',True):
@@ -43,5 +44,5 @@ for i,(k,s) in enumerate(vo_place):
     assert e<=nxt-0.05, f'overlap {k}: ends {e:.2f} next {nxt:.2f}'
 open(f'out/{V}/concat.txt','w').write(''.join(f"file '{os.path.abspath(s)}'\n" for s in segs))
 run(['ffmpeg','-y','-loglevel','error','-f','concat','-safe','0','-i',f'out/{V}/concat.txt','-c','copy',f'out/{V}/video.mp4'])
-json.dump({'total':total,'vo':vo_place,'cuts':cuts},open(f'out/{V}/timeline.json','w'),indent=1)
+json.dump({'total':total,'vo':vo_place,'cuts':cuts,'slots':slots},open(f'out/{V}/timeline.json','w'),indent=1)
 print('total',round(total,2))
