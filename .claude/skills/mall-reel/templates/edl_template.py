@@ -20,7 +20,8 @@ LABELS = [  # (start, end, text, centre_x, centre_y, angle) handwritten label on
 PILLS = [   # (start, end, [lines], top_y) practical info, e.g. metro
     # (54.50, 57.43, ['Metro Line 11', 'Longyao Rd · Exit 4'], 520),
 ]
-FOLLOW = (0.0, None)        # start of the follow card (= onset of "Follow"), None = until the end
+FOLLOW = (0.0, None)        # start of the CTA sticker (= onset of the CTA's first word), None = until the end
+FOLLOW_TEXT = ('COMMENT "WOW"', 'WE PLAN YOUR TRIP')   # sticker lines = the spoken CTA
 MUSIC = ('music/bed.mp3', 6.0, -9)   # file, offset into the track (skip a quiet intro), level dB after -16 LUFS normalise
 CAPTION_REPLACE = {'龙耀路': 'LONGYAO LU'}   # Chinese written for the voice -> Latin for the caption font
 

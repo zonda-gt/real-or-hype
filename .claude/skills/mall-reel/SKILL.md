@@ -56,7 +56,7 @@ Also run an English check (WebSearch) for official English names and what touris
 filler phrases ("one of the coolest places", "the whole place lights up", "full of shops and cafés", "everywhere") and any sentence
 with no name / number / price / how-to. Then ask of each sentence: *would the viewer miss it if it were gone?* If not, cut it.
 
-Beats: **hook** (surprise + fact + "Shanghai", ≤5 s) → **name + where** → **walkthrough, one named spot after another** (name + one concrete detail: dish, price, size, year, what's inside) → **night/second wind** → **practical** (free?, metro line + station + exit) → **next door** ("Afterward, you can walk to…, so it's easy to make a whole evening out of it") → **"Follow me for more Shanghai spots worth exploring."**
+Beats: **hook** (surprise + fact + "Shanghai", ≤5 s) → **name + where** → **walkthrough, one named spot after another** (name + one concrete detail: dish, price, size, year, what's inside) → **night/second wind** → **practical** (free?, metro line + station + exit) → **next door** ("then walk along the river to Tank Shanghai") → **CTA** (below).
 
 - ~100–200 words, as few as the facts allow. Short joined sentences, second person, one idea per sentence.
 - Say each thing once: the river, the silos, the name. Don't restate the hook later ("the silos are still standing" after "cement factory").
@@ -65,15 +65,32 @@ Beats: **hook** (surprise + fact + "Shanghai", ≤5 s) → **name + where** → 
 - Present tense only for things confirmed current; old seasonal footage → "Last winter, they even had…".
 - Chinese place names you want said in Mandarin: write them in characters (`龙耀路`), and add the caption replacement in `CAPTION_REPLACE`.
 - Avoid: jokes, hype words, "here's the thing", "you won't believe", anything she wouldn't say to a friend.
+- Prices: say them in **dollars** for the international audience ("about 25 dollars per person"); the label shows both (`¥180 ≈ $25 / person`). John's accent turned "yuan" into "yen".
 
-## 4. Voice: ElevenLabs v3 "Matilda" (`XrExE9yKIg1WjnnlVkGX`)
+### CTA (the account is a China travel agency: itinerary planning, bookings, on-the-ground help)
+- **One ask, ~3 s, in "we" voice**: `Comment WOW, and we'll plan your trip for you.` The end sticker repeats it (`FOLLOW_TEXT = ('COMMENT "WOW"', 'WE PLAN YOUR TRIP')`).
+- Why: a comment is a lead (auto-DM it) and boosts reach; her reels' top comments are "address please / where is this", so people want this.
+- Never stack asks (comment + follow + link). Agency pitch lives in the bio and the caption's last line, never as a hard sell in the voice.
+- Caption line 1 repeats the CTA: `Comment WOW and we'll plan this into your Shanghai trip 👇`; the auto-DM sends the pin + route, then "we can book X and fit it into your itinerary" + one WhatsApp/booking link.
+- A/B: render the same video with `Follow us for more Shanghai spots worth exploring.` (`FOLLOW_TEXT = ('FOLLOW US', 'FOR MORE')`) and post both as trial reels; compare comments + DMs per 1,000 views. GATE M: `work/gatem4` (A) vs `work/gatem4b` (B). Later, a unique keyword per video (e.g. `GATEM`) tells you which video a lead came from.
 
-Chosen by comparing 14 takes of 8 female voices with her real narration (speaker-embedding similarity 0.53 vs ≤0.38 for the rest, same pitch, pitch range 13 vs her 11.8 semitones). `$S/vsim.py` repeats that comparison (needs a venv with `torch speechbrain soundfile`, and her voice separated with `demucs --two-stems=vocals`).
+## 4. Voice (always ElevenLabs **v3**: it's far livelier than v2 for the same voice — John: 11.9 vs 6.5 semitones of pitch movement)
+
+| Voice | ID | When |
+|---|---|---|
+| **John - Passionate Founder** (young male, Korean-accented English, "energetic founder who loves to talk") | `PXo7njgt8slUVdtKa3La` | **Current default** (user's choice, Nov 2026). Shared-library voice; our key can use it directly. Music at −11 dB (−9 masked "Tank"/"Dock") |
+| Matilda (female, closest to @wynnejael) | `XrExE9yKIg1WjnnlVkGX` | her-style female narration |
+
+Find other library voices: `GET https://api.elevenlabs.io/v1/shared-voices?search=<name>&language=<ko|en…>&gender=male&page_size=30` (works with our key, unlike `/v1/voices`).
+
+Matilda was chosen by comparing 14 takes of 8 female voices with her real narration (speaker-embedding similarity 0.53 vs ≤0.38 for the rest, same pitch, pitch range 13 vs her 11.8 semitones). `$S/vsim.py` repeats that comparison (needs a venv with `torch speechbrain soundfile`, and her voice separated with `demucs --two-stems=vocals`).
 
 1. `script.txt` starts with `[excited] ` (v3 tag). Generate 3 takes, one at a time:
-   `$S/el.py XrExE9yKIg1WjnnlVkGX eleven_v3 vo/take1 '{"stability":0.5,"similarity_boost":0.8}' "$(cat script.txt)"` (key `$ELEVENLABS_API_KEY`; `mp3_44100_128` only — 192 needs a higher tier).
+   `$S/el.py PXo7njgt8slUVdtKa3La eleven_v3 vo/take1 '{"stability":0.5,"similarity_boost":0.8}' "$(cat script.txt)"` (key `$ELEVENLABS_API_KEY`; `mp3_44100_128` only — 192 needs a higher tier).
 2. Whisper-check each take against the script (see `qa.py` logic) and keep the one with no real word errors.
-3. `$S/tighten.py 1.08 take2` (in the project dir): shrinks pauses >0.30 s to 0.24 s, speeds up (1.08–1.17: pick the factor that lands 200–210 wpm; it prints wpm), loudnorms, and writes `vo/narr.wav` + `vo/words.json` (word, start, end on the final timeline, from ElevenLabs' character alignment; matches Whisper within ~0.03 s).
+3. `$S/tighten.py 1.10 take2` (in the project dir; John needed 1.12, Matilda 1.08–1.17): shrinks pauses >0.30 s to 0.24 s, speeds up (1.08–1.17: pick the factor that lands 200–210 wpm; it prints wpm), loudnorms, and writes `vo/narr.wav` + `vo/words.json` (word, start, end on the final timeline, from ElevenLabs' character alignment; matches Whisper within ~0.03 s).
+
+**Changing the voice or the CTA of a finished edit**: new project dir with the new `vo/` (tightened), then `$S/revoice.py <old_project>` re-times every cut, label and pill to the same words in the new narration (changed words are mapped proportionally), then `slivercheck.py` (timing shifts can create slivers; nudge the in-point or move a cut to a nearby word) and render.
 
 ## 5. Music
 
@@ -83,7 +100,7 @@ ElevenLabs Music (`POST /v1/music`), prompt in `episodes/gatem/music_prompt.txt`
 
 Copy `templates/edl_template.py` to `edl.py` (full example: `episodes/gatem/edl.py`). Crops are the optional 4th item of a shot, so they can't land on the wrong shot when shots are added or removed (that happened once: black bars on the sunset shot).
 - One shot per phrase; list items get one shot each. `t0` = the word's onset from `vo/words.json`; the renderer cuts 0.07 s earlier.
-- Open on the most beautiful wide shot (title card over the first 2 shots, ~3 s). End on a striking shot that holds ~3 s under the follow sticker.
+- Open on the most beautiful wide shot (title card over the first ~2 s). End on a striking shot that holds ~3 s under the CTA sticker (it auto-shrinks to fit long text).
 - Labels: one per highlight shot (name, or one fact like `about ¥180 / person`), placed near the subject, never over a face. One info pill for the metro. Captions run all the time.
 - Checks before rendering (all from the project dir):
   - `$S/checkshots.py` → look at **every** tile (crop applied): no burned-in text, no bars, no celebrity, no wrong shot.
@@ -114,6 +131,8 @@ TikHub Douyin search $0.01/call (by far the main cost), video fetch $0.001. **Do
 | Renderer shifted in-points back with the cut lead and exposed frames of the previous source shot | In-points are used exactly; `slivercheck.py` must pass |
 | Celebrity frame 1 frame inside a Gentle Monster shot | Scan brand/event clips at 0.25 s, keep windows inside clean shots |
 | Crop given by shot index drifted onto the wrong shot after a re-edit | Crop is part of the shot entry |
+| John said "yuan" like "yen" | Say prices in dollars; label shows ¥ and $ |
+| Music at −9 dB masked "Tank" under the male voice | −11 dB for John; qa.py lists words lost in the mix |
 | Watermark signature at ~80% height survived a 1.3 crop | Check the cropped frames; (1.5, 0.3) for corner signatures |
 | 3:4 source was squashed | Renderer fills 9:16 with `force_original_aspect_ratio=increase` + centre crop |
 | Music tracks faded out at ~45 s of 53 | Generate 15 s longer, use an offset, fade yourself |

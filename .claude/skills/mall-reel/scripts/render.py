@@ -55,7 +55,7 @@ for la, lb, txt, cx, cy, ang in edl.LABELS:
 for pa, pb, lines, py in edl.PILLS:
     im = gfx.pill_img(lines); items.append((at(pa), at(pb), im, (W - im.width) // 2, py, 'pop'))
 fa, fb = edl.FOLLOW
-fol = gfx.follow_img()
+fol = gfx.follow_img(getattr(edl, 'FOLLOW_TEXT', ('FOLLOW ME', 'FOR MORE')))   # end sticker text = the CTA
 items.append((at(fa), NF if fb is None else at(fb), fol, (W - fol.width) // 2, gfx.FOLLOW_Y, 'pop'))
 
 dec = subprocess.Popen(['ffmpeg', '-v', 'error', '-i', 'out/base.mp4', '-f', 'rawvideo', '-pix_fmt', 'rgba', '-'], stdout=subprocess.PIPE)

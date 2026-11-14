@@ -99,7 +99,10 @@ def follow_img(lines=('FOLLOW ME', 'FOR MORE')):
     w = max(r.width for r in rows); h = sum(r.height for r in rows) - 18
     im = Image.new('RGBA', (w + 120, h + 40), (0, 0, 0, 0)); y = 10
     for r in rows: im.alpha_composite(r, ((im.width - r.width) // 2, y)); y += r.height - 18
-    return im.transform(im.size, Image.AFFINE, (1, 0.2, -0.1 * im.height, 0, 1, 0), resample=Image.BICUBIC)
+    im = im.transform(im.size, Image.AFFINE, (1, 0.2, -0.1 * im.height, 0, 1, 0), resample=Image.BICUBIC)
+    if im.width > 960:   # long CTA text: shrink to keep ~60 px side margins
+        k = 960 / im.width; im = im.resize((960, int(im.height * k)), Image.LANCZOS)
+    return im
 
 
 def place(frame, im, x, y, anim, f, s0, e0):
