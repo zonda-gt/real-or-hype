@@ -1,0 +1,23 @@
+{
+ "id": "cgt-20261114121412-1b9mj",
+ "model": "doubao-seedance-2-5-260628",
+ "status": "succeeded",
+ "content": {},
+ "usage": {
+  "completion_tokens": 87300,
+  "total_tokens": 87300
+ },
+ "created_at": 1794629653,
+ "updated_at": 1794629756,
+ "seed": 93962,
+ "resolution": "720p",
+ "ratio": "9:16",
+ "duration": 4,
+ "framespersecond": 24,
+ "service_tier": "default",
+ "execution_expires_after": 172800,
+ "generate_audio": false,
+ "draft": false,
+ "priority": 0,
+ "output_format": "mp4"
+}

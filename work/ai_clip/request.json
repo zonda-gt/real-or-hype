@@ -1,0 +1,28 @@
+{
+ "model": "doubao-seedance-2-5-260628",
+ "content": [
+  {
+   "type": "text",
+   "text": "图片1中的男子站在上海西岸梦中心的黄浦江边木栈道栏杆旁，场景参考图片2：江水、远处的卢浦大桥拱桥和江对岸的建筑，傍晚金色斜阳。他原本看着江面，随后转身面向镜头，露出自然轻松的微笑，抬起一只手朝镜头随意招手，像在邀请朋友过来。手机竖屏拍摄、轻微手持晃动的真实生活质感，自然光，真实皮肤质感，人物外貌、发型、服装与图片1一致。画面中只有这一个人物，不要出现图片2里的其他路人，无字幕，无文字，无水印。"
+  },
+  {
+   "type": "image_url",
+   "image_url": {
+    "url": "asset://asset-20261114110202-8gttx"
+   },
+   "role": "reference_image"
+  },
+  {
+   "type": "image_url",
+   "image_url": {
+    "url": "<scene_riverfront.jpg base64>"
+   },
+   "role": "reference_image"
+  }
+ ],
+ "resolution": "720p",
+ "ratio": "9:16",
+ "duration": 4,
+ "generate_audio": false,
+ "watermark": false
+}
