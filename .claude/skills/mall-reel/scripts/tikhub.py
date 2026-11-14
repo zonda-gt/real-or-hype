@@ -1,8 +1,7 @@
-# Douyin / TikTok search and download through TikHub (api.tikhub.io; key in $TIKHUB_API_KEY, the proxy may inject it).
-# Prices (Nov 2026): Douyin search v2 $0.01 per call (the main cost), single-video fetch $0.001, TikTok search $0.001.
+# Douyin search and download through TikHub (Douyin only: the user wants Douyin footage, not TikTok) (api.tikhub.io; key in $TIKHUB_API_KEY, the proxy may inject it).
+# Prices (Nov 2026): Douyin search v2 $0.01 per call (the main cost), single-video fetch $0.001.
 #
 #   search  <out.json> "<keyword>" [--sort 0|1|2] [--days 0|1|7|180] [--dur 0|0-1|1-5]   Douyin video search (8 results/call)
-#   tsearch <out.json> "<keyword>"                                                       TikTok video search (~20 results)
 #   list    <json ...> [--days N]                     table of results: id, likes, length, size, date, author, description
 #   descs   <json ...> [--days N] [--top N]          full descriptions, most-liked first (shop names live here)
 #   preview <outdir> <json-glob> <id ...>            download the search-result stream (576-720p H.264) for triage
@@ -34,9 +33,6 @@ def awemes(files):
         for b in data.get('business_data') or []:              # Douyin search
             a = (b.get('data') or {}).get('aweme_info')
             if a: seen[a['aweme_id']] = a
-        for it in data.get('search_item_list') or []:          # TikTok search
-            a = it.get('aweme_info') or it
-            if a.get('aweme_id'): seen[a['aweme_id']] = a
     return seen
 
 
@@ -53,10 +49,6 @@ if cmd == 'search':
     out, kw = sys.argv[2], sys.argv[3]
     d = call('/api/v1/douyin/search/fetch_video_search_v2', {'keyword': kw, 'cursor': 0, 'sort_type': arg('--sort', '1'),
              'publish_time': arg('--days', '180'), 'filter_duration': arg('--dur', '0'), 'content_type': '1'})
-    json.dump(d, open(out, 'w'), ensure_ascii=False); print(out, len(awemes([out])), 'videos')
-elif cmd == 'tsearch':
-    out, kw = sys.argv[2], sys.argv[3]
-    d = call('/api/v1/tiktok/app/v3/fetch_video_search_result', params='keyword=' + urllib.parse.quote(kw) + '&offset=0&count=20&sort_type=0&publish_time=0')
     json.dump(d, open(out, 'w'), ensure_ascii=False); print(out, len(awemes([out])), 'videos')
 elif cmd in ('list', 'descs'):
     files = [a for a in sys.argv[2:] if not a.startswith('--') and not a.isdigit()]

@@ -1,6 +1,6 @@
 ---
 name: mall-reel
-description: Make a 60-75 s Instagram Reel / TikTok that introduces a multi-spot place in Shanghai (mall, lifestyle district, street, old town, park) from Douyin/TikTok b-roll plus an AI narration, in the style of travel creator @wynnejael — named highlights, one shot per phrase, small one-word captions, serif title card, handwritten labels. Covers research (Douyin + Doubao), footage search and checks, script, voice, edit, mix, QA and delivery. Use when asked for a video "like her", a mall/district intro video, or a re-edit of one.
+description: Make a 60-75 s Instagram Reel / TikTok that introduces a multi-spot place in Shanghai (mall, lifestyle district, street, old town, park) from Douyin b-roll plus an AI narration, in the style of travel creator @wynnejael — named highlights, one shot per phrase, small one-word captions, serif title card, handwritten labels. Covers research (Douyin + Doubao), footage search and checks, script, voice, edit, mix, QA and delivery. Use when asked for a video "like her", a mall/district intro video, or a re-edit of one.
 ---
 
 # mall-reel
@@ -42,6 +42,7 @@ Also run an English check (WebSearch) for official English names and what touris
 ## 2. Footage
 
 - Triage cheaply: `$S/tikhub.py list p_*.json`, then `$S/tikhub.py preview prev/ "p_*.json" <ids>` (576–720p from search results), then `$S/dense.py prev sheets 2.5 110 3` and **look at every sheet**.
+- **Douyin only**, no TikTok.
 - **Reject**: burned-in subtitles in the middle of the frame, watermarks you can't crop, talking heads, celebrities/brand ambassadors (crop to the product or skip), the reference creator's own videos, landscape clips (too soft when cropped to 9:16), rotated/sideways files.
 - Bottom captions / letterbox bars are fixable with `CROP` (zoom 1.4 top-anchored drops text at 74–80%; letterboxed 720×960 content → 1.3334). Text in the middle of the frame is not fixable.
 - HD for the clips you use: `$S/tikhub.py hd hd/ <ids>`. Takes 1080p HEVC when offered; **ByteVC2 (`is_h265=2`) can't be decoded**, so those fall back to 720p H.264 automatically.
@@ -92,7 +93,7 @@ Copy `templates/edl_template.py` to `edl.py` (full example: `episodes/gatem/edl.
 
 ## Costs (Nov 2026)
 
-TikHub Douyin search $0.01/call (by far the main cost), video fetch $0.001. GATE M deep version: ~30 searches + ~40 fetches ≈ $0.35. Doubao lite with web search: a few cents for 6–10 questions. ElevenLabs: ~3 v3 takes × ~1,300 characters + 1–3 music tracks.
+TikHub Douyin search $0.01/call (by far the main cost), video fetch $0.001. **Douyin only** (the user's choice): no TikTok searches or footage. GATE M deep version: ~30 searches + ~40 fetches ≈ $0.35. Doubao lite with web search: a few cents for 6–10 questions. ElevenLabs: ~3 v3 takes × ~1,300 characters + 1–3 music tracks.
 
 ## Mistakes log
 
