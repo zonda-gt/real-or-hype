@@ -1,15 +1,15 @@
 ---
 name: mall-reel
-description: Make a 60-75 s Instagram Reel / TikTok that introduces a multi-spot place in Shanghai (mall, lifestyle district, street, old town, park) from Douyin b-roll plus an AI narration, in the style of travel creator @wynnejael — named highlights, one shot per phrase, small one-word captions, serif title card, handwritten labels. Covers research (Douyin + Doubao), footage search and checks, script, voice, edit, mix, QA and delivery. Use when asked for a video "like her", a mall/district intro video, or a re-edit of one.
+description: Make a dense 30-60 s Instagram Reel / TikTok that introduces a multi-spot place in Shanghai (mall, lifestyle district, street, old town, park) from Douyin b-roll plus an AI narration, in the style of travel creator @wynnejael — named highlights, one shot per phrase, small one-word captions, serif title card, handwritten labels. Covers research (Douyin + Doubao), footage search and checks, script, voice, edit, mix, QA and delivery. Use when asked for a video "like her", a mall/district intro video, or a re-edit of one.
 ---
 
 # mall-reel
 
-A **many-spot place** explained in 60–75 s: what it is, 4–6 named highlights with one concrete detail each, how to get there, what's next door. Example: `episodes/gatem/` (GATE M West Bund Dream Center, Nov 2026, 66 s). Look at these before starting:
+A **many-spot place** explained so that **every sentence tells the viewer something new**: what it is, 4–6 named highlights with one concrete detail each, how to get there, what's next door. **Length is not the goal, density is**: cut every sentence that doesn't add a fact; the video is as long as the facts. Example: `episodes/gatem/` (GATE M West Bund Dream Center, Nov 2026, final 33 s; `long_66s/` is the earlier version the user found padded). Look at these before starting:
 
 - `reference/style_frames.jpg` — every on-screen text style, annotated with font, size and position.
-- `reference/gatem_shots.jpg` — first/middle/last frame of all 46 shots of the GATE M video: the pace and how each shot matches its words.
-- `reference/script_example.md` — the GATE M script beat by beat, with the reasons.
+- `reference/gatem_shots.jpg` — first/middle/last frame of the 46 shots of the long GATE M version: the pace and how each shot matches its words.
+- `reference/script_example.md` — the final dense GATE M script, plus the padded 66 s version with what was wrong with each line.
 - `scripts/gfx.py` — the exact text styles in code. **Never restyle by hand; change gfx.py.**
 
 All scripts run from the **project dir** (e.g. `work/<place>/`), as `python3 -I .claude/skills/mall-reel/scripts/<x>.py` (below: `$S/<x>.py`). Put downloaded clips in their own folders; they are third-party footage and stay out of git.
@@ -18,7 +18,7 @@ All scripts run from the **project dir** (e.g. `work/<place>/`), as `python3 -I 
 
 | | Her reels | Use |
 |---|---|---|
-| Length | 48–86 s | 60–75 s |
+| Length | 48–86 s | whatever the facts need (GATE M: 33 s). Never pad to reach a length |
 | Voice pace | 200–240 wpm, voice covers ~100% of runtime | 205–215 wpm after tightening |
 | Pauses | 0.2–0.5 s, never longer | max 0.30 s |
 | Shot length | median 1.2–1.6 s, min ~0.7 | same; 2–3 s only for the hero/ending |
@@ -51,9 +51,16 @@ Also run an English check (WebSearch) for official English names and what touris
 
 ## 3. Script (read `reference/script_example.md`)
 
+**Density first** (the user's rule): every sentence must earn its place and keep attention. Before generating any voice run
+`$S/script_audit.py` → must print **AUDIT PASS**. It fails on a content word said 3+ times (the 66 s version said "river" 8 times),
+filler phrases ("one of the coolest places", "the whole place lights up", "full of shops and cafés", "everywhere") and any sentence
+with no name / number / price / how-to. Then ask of each sentence: *would the viewer miss it if it were gone?* If not, cut it.
+
 Beats: **hook** (surprise + fact + "Shanghai", ≤5 s) → **name + where** → **walkthrough, one named spot after another** (name + one concrete detail: dish, price, size, year, what's inside) → **night/second wind** → **practical** (free?, metro line + station + exit) → **next door** ("Afterward, you can walk to…, so it's easy to make a whole evening out of it") → **"Follow me for more Shanghai spots worth exploring."**
 
-- 200–240 words. Full joined sentences, second person, movement words ("Down by the water…", "Inside the silos…", "Once it gets dark…").
+- ~100–200 words, as few as the facts allow. Short joined sentences, second person, one idea per sentence.
+- Say each thing once: the river, the silos, the name. Don't restate the hook later ("the silos are still standing" after "cement factory").
+- No vague mood lines ("lights up", "chill vibes") and no seasonal events that are over (light festival, last winter's rink) unless the video is about them.
 - Every noun needs a shot. **No clean footage → cut the spot from the script.**
 - Present tense only for things confirmed current; old seasonal footage → "Last winter, they even had…".
 - Chinese place names you want said in Mandarin: write them in characters (`龙耀路`), and add the caption replacement in `CAPTION_REPLACE`.
@@ -66,7 +73,7 @@ Chosen by comparing 14 takes of 8 female voices with her real narration (speaker
 1. `script.txt` starts with `[excited] ` (v3 tag). Generate 3 takes, one at a time:
    `$S/el.py XrExE9yKIg1WjnnlVkGX eleven_v3 vo/take1 '{"stability":0.5,"similarity_boost":0.8}' "$(cat script.txt)"` (key `$ELEVENLABS_API_KEY`; `mp3_44100_128` only — 192 needs a higher tier).
 2. Whisper-check each take against the script (see `qa.py` logic) and keep the one with no real word errors.
-3. `$S/tighten.py 1.08 take2` (in the project dir): shrinks pauses >0.30 s to 0.24 s, speeds up 8%, loudnorms, and writes `vo/narr.wav` + `vo/words.json` (word, start, end on the final timeline, from ElevenLabs' character alignment; matches Whisper within ~0.03 s).
+3. `$S/tighten.py 1.08 take2` (in the project dir): shrinks pauses >0.30 s to 0.24 s, speeds up (1.08–1.17: pick the factor that lands 200–210 wpm; it prints wpm), loudnorms, and writes `vo/narr.wav` + `vo/words.json` (word, start, end on the final timeline, from ElevenLabs' character alignment; matches Whisper within ~0.03 s).
 
 ## 5. Music
 
@@ -74,7 +81,7 @@ ElevenLabs Music (`POST /v1/music`), prompt in `episodes/gatem/music_prompt.txt`
 
 ## 6. Edit
 
-Copy `templates/edl_template.py` to `edl.py` (full example: `episodes/gatem/edl.py`).
+Copy `templates/edl_template.py` to `edl.py` (full example: `episodes/gatem/edl.py`). Crops are the optional 4th item of a shot, so they can't land on the wrong shot when shots are added or removed (that happened once: black bars on the sunset shot).
 - One shot per phrase; list items get one shot each. `t0` = the word's onset from `vo/words.json`; the renderer cuts 0.07 s earlier.
 - Open on the most beautiful wide shot (title card over the first 2 shots, ~3 s). End on a striking shot that holds ~3 s under the follow sticker.
 - Labels: one per highlight shot (name, or one fact like `about ¥180 / person`), placed near the subject, never over a face. One info pill for the metro. Captions run all the time.
@@ -86,7 +93,7 @@ Copy `templates/edl_template.py` to `edl.py` (full example: `episodes/gatem/edl.
 
 ## 7. QA and delivery
 
-- `$S/qa.py` → must print **QA PASS**: −14 ±1 LUFS, true peak ≤ −1.5, every script word heard over the music (spelling-only diffs are fine), no flash/black frames.
+- `$S/script_audit.py` again (with `vo/words.json` it prints seconds per sentence) and `$S/qa.py` → must print **AUDIT PASS** / **QA PASS**: −14 ±1 LUFS, true peak ≤ −1.5, every script word heard over the music (spelling-only diffs are fine), no flash/black frames.
 - Send `final_540.mp4` as the preview and `upload_ig.mp4` + `instagram_caption.txt` + `footage_sources.txt` as files.
 - Caption format (`episodes/gatem/instagram_caption.txt`): hook line + emoji, 📍 name (Chinese) · address, 🚇 metro, then one line per highlight with building/price/tip, the "check before you go" caveats, then hashtags.
 - Commit the project's scripts, edl, script, vo, music and the upload file; never `src/`, `segs/`, previews or intermediates (`.gitignore` like `work/gatem/.gitignore`).
@@ -99,12 +106,15 @@ TikHub Douyin search $0.01/call (by far the main cost), video fetch $0.001. **Do
 
 | Mistake | Rule |
 |---|---|
+| 66 s version: good facts spread thin, "river" 8×, mood lines, an over festival and last winter's rink | `script_audit.py` must pass; length follows the facts |
 | First version said "shops, cafés and restaurants": generic, no depth | 4–6 named spots, each with one concrete detail; research before scripting |
 | Broad Douyin searches gave ~1 usable clip in 4 (burned-in subtitles) | Search per spot name for footage |
 | Doubao suggested spots with no 2026 evidence (rooftop, McDonald's) | Present only what has a recent dated source; otherwise past tense or caption caveat |
 | BLOOMARKET and McDonald's had no clean footage | Cut the spot rather than show the wrong footage |
 | Renderer shifted in-points back with the cut lead and exposed frames of the previous source shot | In-points are used exactly; `slivercheck.py` must pass |
 | Celebrity frame 1 frame inside a Gentle Monster shot | Scan brand/event clips at 0.25 s, keep windows inside clean shots |
+| Crop given by shot index drifted onto the wrong shot after a re-edit | Crop is part of the shot entry |
+| Watermark signature at ~80% height survived a 1.3 crop | Check the cropped frames; (1.5, 0.3) for corner signatures |
 | 3:4 source was squashed | Renderer fills 9:16 with `force_original_aspect_ratio=increase` + centre crop |
 | Music tracks faded out at ~45 s of 53 | Generate 15 s longer, use an offset, fade yourself |
 | `urllib` default User-Agent got 403 from TikHub | Send `User-Agent: curl/8.5.0` |
