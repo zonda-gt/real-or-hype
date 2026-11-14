@@ -1,0 +1,16 @@
+{
+ "prompt": "图片1中的男子坐在图片2所示的餐厅吧台前：上海西岸梦中心的野渡 Wild Dock 炭火餐厅，身后是开放式炭火厨房，墙上有“野渡 Wild Dock”字样，暖黄色餐厅灯光。他面前的盘子里是图片3中的炭烤菜肴。他用筷子夹起一块送进嘴里，嚼了一下，然后满意地看向镜头，自然地笑着点头。手机竖屏拍摄，轻微手持晃动，真实生活质感，真实皮肤质感，人物外貌、发型、服装与图片1一致。画面中只有这一个人物，无字幕，无额外文字，无水印。",
+ "refs": [
+  "asset://asset-20261114110202-8gttx",
+  "scene_wilddock.jpg",
+  "dish_wilddock.jpg"
+ ],
+ "params": {
+  "model": "doubao-seedance-2-5-260628",
+  "resolution": "720p",
+  "ratio": "9:16",
+  "duration": 4,
+  "generate_audio": false,
+  "watermark": false
+ }
+}

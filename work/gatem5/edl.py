@@ -22,7 +22,7 @@ EDL = [(0.0, 'A_night', 0.5),        # Shanghai turned Asia's biggest cement fac
  (24.436, 'S_dogs', 26.45),
  (25.458, 'A_night', 42.0),
  (27.724, 'A_night', 51.5),
- (29.679, 'B_gatem', 38.3)]
+ (29.679, 'U_me_river', 1.53)]   # AI clip (Seedance 2.5): you turn, smile, wave
 TITLE = ("SHANGHAI'S", 'Cement Factory', 'turned riverside hangout', 0.0, 3.08, 'headline')
 LABELS = [(6.439, 7.787, 'dog-friendly', 540, 560, -4),
  (10.936, 12.074, 'Wild Dock', 540, 1150, -4),
@@ -46,3 +46,4 @@ def shots():
     return out
 FOLLOW_TEXT = ('COMMENT "WOW"', 'WE PLAN YOUR TRIP')
 CAPTION_SKIP = [(3.0, 4.05)]   # 'It's called Gate M' over the GATE M sign
+CAPTION_SKIP = CAPTION_SKIP + [(29.58, 32.08)]   # CTA: sticker says it; captions would cover the face

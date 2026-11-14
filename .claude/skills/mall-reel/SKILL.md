@@ -98,6 +98,16 @@ Matilda was chosen by comparing 14 takes of 8 female voices with her real narrat
 
 **Changing the voice or the CTA of a finished edit**: new project dir with the new `vo/` (tightened), then `$S/revoice.py <old_project>` re-times every cut, label and pill to the same words in the new narration (changed words are mapped proportionally), then `slivercheck.py` (timing shifts can create slivers; nudge the in-point or move a cut to a nearby word) and render.
 
+## 4b. AI clip of the creator (Seedance 2.5, optional)
+
+Ark video API (`$ARK_API_KEY`): `POST /api/v3/contents/generations/tasks`, model `doubao-seedance-2-5-260628`, `resolution 720p`, `ratio 9:16`, `duration 4` (minimum), `generate_audio false`, `watermark false`; poll `GET …/tasks/<id>`; download `content.video_url` within 24 h.
+- The creator's face is a pre-registered Ark asset: `{"type":"image_url","image_url":{"url":"asset://asset-20261114110202-8gttx"},"role":"reference_image"}` (group `group-20261114110124-fsxjq`). Real faces can't be sent as plain images.
+- Add real frames from the episode's footage as more `reference_image`s (base64 data URLs) and say in the prompt which is which (图片1 = person, 图片2 = scene, 图片3 = dish). Prompt in Chinese; end with 画面中只有这一个人物，无字幕，无文字，无水印.
+- **Put him INSIDE a named spot from the script** (Wild Dock counter with the logo behind him, Gentle Monster's sculptures), not a generic view: the riverfront version looked like any river (user feedback).
+- Cost: 4 s 720p = 87,300 tokens × ¥70/M = **¥6.11** per try (2.0 would be ~¥4.0 at ¥46/M). ~2 min per clip. Show it to the user before cutting it in.
+- Cut in under the CTA (he waves / nods while the CTA plays); `CAPTION_SKIP` over it so captions don't cover the face. Example: `work/ai_clip/`, used in `work/gatem5`.
+- Label the post with Instagram's AI info label.
+
 ## 5. Music
 
 ElevenLabs Music (`POST /v1/music`), prompt in `episodes/gatem/music_prompt.txt`. Ask for **15 s more than the video** (tracks fade early) and "no breakdown, no fade-out"; generate 2–3, check level over time and that a Demucs vocal stem is silent (< −60 dB). Start the track past its quiet intro (`MUSIC` offset). Or leave music to an Instagram trending sound and render with very low music.
