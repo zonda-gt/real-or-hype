@@ -1,0 +1,20 @@
+# third-party source footage, search dumps and large intermediates stay out of git
+src/
+segs/
+cat/
+search/
+music/sep/
+music/m1.mp3
+music/m2.mp3
+vo/tight.f32
+vo/take1*
+vo/take3*
+out/gfx.mp4
+out/final_1080*.mp4
+out/mix.wav
+out/yavg.txt
+out/gatem_deep_ig.mp4
+out/stylecheck_test.jpg
+fonts/
+__pycache__/
+*.jpg

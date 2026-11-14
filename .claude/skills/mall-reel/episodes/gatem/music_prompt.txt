@@ -1,0 +1,4 @@
+ElevenLabs Music, POST /v1/music, music_length_ms 65000 (make it ~15 s longer than the video: generated tracks fade out early).
+Used with offset 6.0 s (skips the thin intro) at -9 dB after -16 LUFS normalise.
+
+Instrumental only, no vocals. Dreamy, warm chill-pop / lo-fi house for a travel vlog of a stylish riverside district at golden hour turning into a glowing city night. Soft Rhodes chords, airy plucked synths, light finger snaps, gentle four-on-the-floor kick, warm bass, 104 BPM, uplifting and relaxed. The groove starts within the first second and keeps full, steady energy for the entire track with no breakdown and no fade-out.

@@ -28,3 +28,7 @@ Footage is best shared as a Google Drive folder set to "anyone with the link".
 ## Aliyun Drive (阿里云盘) footage
 
 `.claude/skills/aliyunpan-login/` logs in to Aliyun Drive with a QR code and downloads original files of any size. The environment's network must allow `alipan.com`, `aliyundrive.com`, `aliyundrive.net` and `api.tickstep.com`.
+
+## mall-reel skill
+
+`.claude/skills/mall-reel/` makes 60-75 s intro reels of many-spot places (malls, districts, streets) from Douyin b-roll and an AI narration, in the style of @wynnejael: research with Douyin search + Doubao, per-spot footage search, script rules, ElevenLabs v3 voice, renderer with the exact text styles, and QA. Example episode: GATE M West Bund Dream Center (`work/gatem2/`). Keys: `TIKHUB_API_KEY`, `ARK_API_KEY` (Doubao), `ELEVENLABS_API_KEY`.
