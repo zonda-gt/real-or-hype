@@ -27,3 +27,8 @@ Rejected: 7627668117356308721 (camera-app UI, location unclear), 736087178449473
 
 ## Trip-guide outline (for the "Comment GIRAFFE" DM)
 湖州长颈鹿庄园 + address for taxis · Shanghai → Huzhou train, then ~20 min taxi/DiDi · book a breakfast package on Trip.com (weekends/holidays sell out; May Day 2025 was 99.86% full) · deals ~¥800–1,100, list ~¥2,000+ · breakfast 7:00, queue by 6:30 for a window table · ask for carrots at check-in · book the animal wake-up call at check-in (9 am slot) · cold or rainy days: giraffes may stay indoors · apps: Alipay, DiDi, Trip.com · "Want a full China itinerary? Reply PLAN". Date-stamp it.
+
+## E2me: creator inserted with Seedance 2.0 (creator's request)
+- One clip: `doubao-seedance-2-0-260128`, 720p, 9:16, 4 s, no audio, no watermark. References: the creator's verified portrait **asset** `asset://asset-20261114110202-8gttx` (a group id like `group-…` is rejected as "asset not found": reference an asset inside the group) and a frame of B2 @22.0 (breakfast table with a giraffe at the window, cropped to 9:16) as a data URL. Prompt (Chinese): 图片1中的男人坐在图片2的早餐桌旁… 把一根胡萝卜递给长颈鹿… 竖屏，手机实拍质感，自然柔和的日光，真实感，镜头轻微手持晃动。
+- Result: 87,300 tokens ≈ ¥4.0 (480p 4 s ≈ 40,600 tokens ≈ ¥1.9). Realistic first try. Saved as `broll/ai_me_breakfast.mp4` (24 fps).
+- Used 3 times, ~1 s each, on the matching words: "stops at your window" (0.20–1.65), "hold out a carrot" (2.95–4.0), "here's the part nobody expects" (1.55–2.55). `plan_E2me.py`.
