@@ -1,0 +1,17 @@
+# downloaded third-party source footage and large intermediates stay out of git
+src/
+segs/
+cat/
+cat1/
+music/sep/
+music/m1.mp3
+music/m2.mp3
+vo/tight.f32
+vo/take2*
+vo/take3*
+out/gfx.mp4
+out/gatem_1080.mp4
+out/mix.wav
+yavg.txt
+*.jpg
+__pycache__/
