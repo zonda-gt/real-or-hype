@@ -42,7 +42,7 @@ words = json.load(open('vo/words.json'))
 items = []   # (start_frame, end_frame, image, x, y, anim)
 a, b, c, t0, t1, *tstyle = edl.TITLE
 title = gfx.title_img(a, b, c, *(tstyle or ['name']))
-items.append((round(t0 * FPS), round(t1 * FPS), title, (W - title.width) // 2, -42, 'fadeout'))
+items.append((round(t0 * FPS), round(t1 * FPS), title, (W - title.width) // 2, -42 + getattr(edl, 'TITLE_DY', 0), 'fadeout'))   # TITLE_DY < 0 moves it up (e.g. over a host's head)
 REPL = getattr(edl, 'CAPTION_REPLACE', {})
 SKIP = getattr(edl, 'CAPTION_SKIP', [])          # (start, end): no captions while the words are already on screen (e.g. a sign)
 for i, (w, wa, wb) in enumerate(words):          # one word on screen at a time

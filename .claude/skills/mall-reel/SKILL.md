@@ -117,6 +117,8 @@ Ark video API (`$ARK_API_KEY`): `POST /api/v3/contents/generations/tasks`, model
 - Cost: 4 s 720p = 87,300 tokens × ¥70/M = **¥6.11** per try (2.0 would be ~¥4.0 at ¥46/M). ~2 min per clip. Show it to the user before cutting it in.
 - Cut in under the CTA (he waves / nods while the CTA plays); `CAPTION_SKIP` over it so captions don't cover the face. Example: `work/ai_clip/`, used in `work/gatem5`.
 - Label the post with Instagram's AI info label.
+- **Host clip (user's idea, Panlong A2):** one 5 s clip (¥7.6) of him presenting the place, used twice: first ~1.7 s at the very start (he sweeps a hand toward the place, headline above him with `TITLE_DY = -270`), last ~3 s under the CTA (he walks on, looks back, waves). Prompt: 竖屏半身中景, 人物在画面下半部分, 头顶留天空; 前2秒正对镜头一挥手, 然后转身走两步回头招手; 全程不说话嘴巴闭合. `CAPTION_SKIP` over both host segments.
+- **Always check every AI clip frame by frame**: the first host take had glowing white eyes (rejected). Add 眼睛自然真实，瞳孔正常，眼睛里没有任何发光 to the prompt.
 
 ## 5. Music
 
