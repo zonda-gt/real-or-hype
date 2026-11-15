@@ -14,6 +14,16 @@ A **many-spot place** explained so that **every sentence tells the viewer someth
 
 All scripts run from the **project dir** (e.g. `work/<place>/`), as `python3 -I .claude/skills/mall-reel/scripts/<x>.py` (below: `$S/<x>.py`). Put downloaded clips in their own folders; they are third-party footage and stay out of git.
 
+## 0. Cadence: one place a day, two videos per place (user's rule, Nov 2026)
+
+- Next place: top unchecked row of `work/places/shanghai_places.md` (mark it done after posting).
+- Each place gets **two different videos**, not two endings of one video:
+  - different narration **angle** (e.g. "X turned into this" walkthrough vs "one evening / how to spend it" plan),
+  - different **edit**: different shots and order (no shot reused between the two),
+  - different **CTA**: A `Comment WOW, and we'll plan your trip for you.` / C `Comment WOW for more incredible places in Shanghai.`
+- Post **both to Instagram as trial reels** (instagram-trial-reel skill), and **the stronger one to Facebook** as a normal Page reel (no trial option there).
+- Optional AI clip of the creator inside one named spot (section 4b), shown to the user before cutting it in.
+
 ## Target numbers (measured from her reels, matched by GATE M)
 
 | | Her reels | Use |

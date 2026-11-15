@@ -1,7 +1,7 @@
 # usage: doubao.py out.json "question" [model]
 import sys,os,json,urllib.request,time
 out,q=sys.argv[1],sys.argv[2]; model=sys.argv[3] if len(sys.argv)>3 else 'doubao-seed-2-1-lite-260915'
-body={"model":model,"input":q,"tools":[{"type":"web_search","max_keyword":3}],"thinking":{"type":"disabled"},"max_output_tokens":1200}
+body={"model":model,"input":q,"tools":[{"type":"web_search","max_keyword":3}],"thinking":{"type":"disabled"},"max_output_tokens":4000}
 req=urllib.request.Request('https://ark.cn-beijing.volces.com/api/v3/responses',data=json.dumps(body).encode(),
     headers={'Authorization':'Bearer '+os.environ['ARK_API_KEY'],'Content-Type':'application/json','User-Agent':'curl/8.5.0'})
 for k in range(3):
