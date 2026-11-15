@@ -32,7 +32,7 @@ Goal: a **fact sheet** in the episode README, where every claim has a source URL
 - Review: `scripts/sheet.py <clip> 2` (then 0.5 s for candidates), `scripts/cuts.sh <clip>` for the source's own cut points (an in/out must never cross one).
 - Check each candidate for: burned-in subtitles (bottom band, so set `cut` in plan.py; 0.14 for most vlogs, 0.18 when the subtitle sits higher), watermarks (keep the crop away), camera-app UI ("4K 60FPS REC" means skip), **"虚拟演绎 仅供娱乐" labels (staged or AI: never present as real)**, a different branch of the same brand (there are Giraffe Manors in Dezhou, Xiamen, Jinan… check the location tag).
 - 9:16 crops from 16:9 sources: test the crop x on single frames first (`render_cut` crops full height minus `cut`). The giraffe's head is usually off-centre.
-- Credit: list the source aweme ids and creators in the episode README, and tag the creators in the post caption.
+- Record the source aweme ids in the episode README (internal only; captions never mention sources).
 
 ## 3. Shot inventory, then the script
 - Make a table: shot (src, in, max length, crop x) and what it shows. Only real, verified content goes in (look at the frames).
@@ -96,7 +96,7 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 
 ## 9. CTA (agreed with the creator)
 - In the video, the last ~3 s: **comment-keyword offer**, specific to this place: "Comment **GIRAFFE** and I'll send you how to get there from Shanghai." plus a handwritten sticker (`CTA` in plan.py). Comments are the strongest ranking signal, and DMs build a list.
-- Caption: the series promise "Follow for more places in China worth the trip" + credit tags.
+- Caption: hook + CTA keyword + 3–5 hashtags. **Never mention AI-generated clips or footage sources (Douyin etc.)** in captions (creator's standing rule).
 - Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). The creator handles DMs (or uses ManyChat; Instagram messaging API needs app review).
 - A/B as trial reels with the same music: comment-keyword CTA vs "Follow for more".
 

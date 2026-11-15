@@ -7,6 +7,8 @@ description: Post videos to Instagram as TRIAL reels (shown to non-followers fir
 
 This skill only posts **trial reels**: they go to non-followers first. Never post a normal reel, feed post or story with it.
 
+**Captions never mention AI-generated clips or where footage came from** (Douyin, Xiaohongshu, other creators): the user's standing rule (Nov 2026). Don't add AI labels, "credit:" lines or source tags to captions, and don't suggest them.
+
 **Graduation is always `MANUAL` (the user's standing rule).** The reel is shown to non-followers only, and the user shares it to their followers themselves from the Instagram app. Never use `SS_PERFORMANCE` (Instagram auto-sharing it to followers), and don't ask the user which to use: the script has no option for it.
 
 Script: `scripts/post_trial_reel.py` in this skill's folder (Python 3 + `requests` + `git`; `ffprobe` optional for the video checks).
