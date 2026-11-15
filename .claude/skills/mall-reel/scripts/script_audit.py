@@ -29,7 +29,7 @@ if os.path.exists('vo/words.json'):
     for s in sents:
         n = len(re.findall(r"\S+", s)); seg = W[k:k + n]; k += n
         times.append((seg[0][1], seg[-1][2]) if seg else (0, 0))
-fact = re.compile(r"\d|¥|yuan|line \d|exit|metro|free|dog-friendly|pet-friendly|book|open|[一-鿿]|\b[A-Z][a-z]+(?: [A-Z][a-z]+)*\b")
+fact = re.compile(r"\d|¥|yuan|dollar|line \d|exit|metro|free|dog-friendly|pet-friendly|book|open|dusk|sunset|sunrise|blue hour|weekend|weekday|friday|saturday|sunday|p\.m\.|a\.m\.|night|morning|kayak|boat|[一-鿿]|\b[A-Z][a-z]+(?: [A-Z][a-z]+)*\b")
 print()
 for i, s in enumerate(sents):
     body = s[1:] if s else s   # ignore the capital at the sentence start

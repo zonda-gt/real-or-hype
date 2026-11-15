@@ -1,7 +1,7 @@
 # Shanghai places for mall-reel (researched 2026-11-15)
 
-Sources: Claude web search (English), Doubao web search (Chinese web: d1/d3/d4.json), Douyin popularity check (douyin_check.json:
-one search per place, most-liked, last 180 days, under 1 min; "median likes" of the top results = how much good footage exists).
+Sources: Claude web search (English), Doubao web search (Chinese web: d1/d3/d4.json). The user's picks override the ranking.
+(The Douyin "median likes" column is only a footage hint; the user does not want places ranked by it.)
 Doubao facts without sources (e.g. "+150% visitors") are NOT verified: re-check every fact during that place's own research.
 
 ## Ranked list (posting order)
@@ -15,7 +15,7 @@ Doubao facts without sources (e.g. "+150% visitors") are NOT verified: re-check 
 | 5 | Zhangyuan 张园 | Shikumen lanes + luxury | biggest Shikumen block, new east block (Jun 2026) | 545 | evening blue hour | |
 | 6 | Yu Garden & old city 豫园 | classical garden + bazaar | iconic; Hanfu photo shoots | 750 | lantern festival Jan–Feb = 2nd visit | |
 | 7 | Zhujiajiao 朱家角 | water town (Line 17) | canals, boats, Fangsheng Bridge | 1,857 | day trip | |
-| 8 | Panlong Tiandi 蟠龙天地 | water-town-style district (Line 17) | canals + modern shops, free | 533 | night lights | |
+| 8 | Panlong Tiandi 蟠龙天地 | water-town-style district (Line 17) | canals + modern shops, free | 533 | night lights | done 2026-11-15 |
 | 9 | Xintiandi 新天地 | Shikumen dining district | restaurants, nightlife | 115 | night | |
 | 10 | Qibao 七宝古镇 | old town (Line 9) | closest old town to downtown, street food | 586 | weekend evening | |
 | 11 | Xinchang 新场古镇 | old town | quiet, film location (Lust, Caution) | 1,423 | weekday | |
@@ -29,7 +29,10 @@ Doubao facts without sources (e.g. "+150% visitors") are NOT verified: re-check 
 | 19 | Suzhou River MixC + Suzhou Creek walk 苏河湾 | riverside mall + walk | "Shanghai's Seine" | 57 / 122 | evening | |
 | 20 | M50 art district M50创意园 | galleries, graffiti | art | 137 | day | |
 
-Too little recent footage for now (re-check later): FFC Riverside (opened Aug 2026), BFC, 1933 Old Millfun, Wuzhong Market,
-Donghu Rd / Yanqing Fang. Already used in another series: 1000 Trees (Real or Hype). Done: GATE M West Bund Dream Center.
+| 21 | BFC Bund Finance Center 外滩金融中心 | riverside mall + Fosun Foundation | Bund-side, moving "curtain" art building | | user pick | |
+| 22 | Wuzhong Market 乌中市集 | wet market turned lifestyle market | real local market + coffee, on cruise tour routes | | user pick | |
+| 23 | Donghu Rd / Yanqing Fang 东湖路·延庆坊 | new youth block | 10+ first stores, pop-ups (Oct 2026) | | user pick | |
+
+Later: FFC Riverside (opened Aug 2026), 1933 Old Millfun. Already used in another series: 1000 Trees (Real or Hype). Done: GATE M West Bund Dream Center.
 
 Seasonal specials (single parks, Nov–Dec): Nanyuan Riverside ginkgo bridge 南园滨江, Yunling Park red maples 云岭公园.

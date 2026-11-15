@@ -14,14 +14,14 @@ A **many-spot place** explained so that **every sentence tells the viewer someth
 
 All scripts run from the **project dir** (e.g. `work/<place>/`), as `python3 -I .claude/skills/mall-reel/scripts/<x>.py` (below: `$S/<x>.py`). Put downloaded clips in their own folders; they are third-party footage and stay out of git.
 
-## 0. Cadence: one place a day, two videos per place (user's rule, Nov 2026)
+## 0. Two videos per place (user's rule, Nov 2026)
 
-- Next place: top unchecked row of `work/places/shanghai_places.md` (mark it done after posting).
+- **Input: a place the user gives.** Choosing which places to cover is NOT part of this skill (the user keeps a list); this skill researches that one place and turns it into two beautiful videos.
 - Each place gets **two different videos**, not two endings of one video:
   - different narration **angle** (e.g. "X turned into this" walkthrough vs "one evening / how to spend it" plan),
   - different **edit**: different shots and order (no shot reused between the two),
   - different **CTA**: A `Comment WOW, and we'll plan your trip for you.` / C `Comment WOW for more incredible places in Shanghai.`
-- Post **both to Instagram as trial reels** (instagram-trial-reel skill), and **the stronger one to Facebook** as a normal Page reel (no trial option there).
+- When done, **post without asking**: both to Instagram as trial reels (instagram-trial-reel skill), and the stronger one (usually the 'plan your trip' video with the creator's AI clip) to the Facebook Page as a normal reel (flow in the instagram-trial-reel skill; no trial option on Facebook).
 - Optional AI clip of the creator inside one named spot (section 4b), shown to the user before cutting it in.
 
 ## Target numbers (measured from her reels, matched by GATE M)
@@ -167,3 +167,6 @@ TikHub Douyin search $0.01/call (by far the main cost), video fetch $0.001. **Do
 | Music tracks faded out at ~45 s of 53 | Generate 15 s longer, use an offset, fade yourself |
 | `urllib` default User-Agent got 403 from TikHub | Send `User-Agent: curl/8.5.0` |
 | Doubao pro + web search returned 502 after 30 s | Use the lite model for web-search questions |
+
+| Rare characters (蟠) are misread by the voice ("Qilong") | Use the official English name for stations ("Panlong Road"); check Chinese words with Whisper `language='zh'` |
+| Clip in-points landed on a dissolve between two source shots | `checkshots.py` first tile shows it; start 0.2–0.3 s later |
