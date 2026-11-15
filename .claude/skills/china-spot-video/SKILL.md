@@ -106,7 +106,7 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 ### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`)
 The keyword DMs run on ChinaPal's own system (www.chinapal.co/comment, the inbox password), not ManyChat:
 - **One reply per keyword** on /comment ("every post" works when the keyword is unique, e.g. `giraffe`): public replies, the opener with a button, the DM with the link, a follow-up, and the **Explore buttons** box.
-- **The link goes to a place guide page:** `/discover/<city>/<slug>`, a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`), photos in `public/media/<city>/<slug>/`. Build it from the episode fact sheet, hedge single-source facts, and get the page live **before the reel is posted** (comments older than 7 days can't get a DM).
+- **The link goes to a place guide page:** `/discover/<city>/<slug>`, a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`), photos in `public/uploads/discover/<city>/<slug>/` (not `/media/`: that path never reaches the site). Build it from the episode fact sheet, hedge single-source facts, and get the page live **before the reel is posted** (comments older than 7 days can't get a DM).
 - **Explore buttons** (show me more → vibes → photo cards; plan my trip → sales agent) are in `src/lib/inbox/explore-data.ts`. Add a new episode's place there once it has a guide page (give it `guide:`). Only checked places, photos without captions or watermarks (1200×628).
 - Same rule as the captions: DMs and guide pages never mention AI clips or where footage came from.
 
