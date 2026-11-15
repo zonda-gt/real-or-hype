@@ -100,7 +100,7 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 ## 9. CTA (agreed with the creator)
 - In the video, the last ~3 s: **comment-keyword offer**, specific to this place: "Comment **GIRAFFE** and I'll send you how to get there from Shanghai." plus a handwritten sticker (`CTA` in plan.py). Comments are the strongest ranking signal, and DMs build a list.
 - Caption: hook + CTA keyword + 3–5 hashtags. **Never mention AI-generated clips or footage sources (Douyin etc.)** in captions (creator's standing rule).
-- Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). The creator handles DMs (or uses ManyChat; Instagram messaging API needs app review).
+- Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). It is sent automatically: see "The DM side of the CTA" below.
 - A/B as trial reels with the same music: comment-keyword CTA vs "Follow for more".
 
 ### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`)
