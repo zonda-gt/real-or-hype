@@ -103,12 +103,31 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 - Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). It is sent automatically: see "The DM side of the CTA" below.
 - A/B as trial reels with the same music: comment-keyword CTA vs "Follow for more".
 
-### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`)
-The keyword DMs run on ChinaPal's own system (www.chinapal.co/comment, the inbox password), not ManyChat:
-- **One reply per keyword** on /comment ("every post" works when the keyword is unique, e.g. `giraffe`): public replies, the opener with a button, the DM with the link, a follow-up, and the **Explore buttons** box.
-- **The link goes to a place guide page:** `/discover/<city>/<slug>`, a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`), photos in `public/uploads/discover/<city>/<slug>/` (not `/media/`: that path never reaches the site). Build it from the episode fact sheet, hedge single-source facts, and get the page live **before the reel is posted** (comments older than 7 days can't get a DM).
-- **Explore buttons** (show me more → vibes → photo cards; plan my trip → sales agent) are in `src/lib/inbox/explore-data.ts`. Add a new episode's place there once it has a guide page (give it `guide:`). Only checked places, photos without captions or watermarks (1200×628).
-- Same rule as the captions: DMs and guide pages never mention AI clips or where footage came from.
+### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`): automatic, never by hand
+The creator does NOT use the /comment page. Every reel with a "Comment KEYWORD" CTA gets its reply in code, and it goes **live before the reel is posted**:
+1. **Guide page** `/discover/<city>/<slug>`: a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`; register the city in `CITY_NAMES` in `src/lib/discover/data.ts`). Photos go in `public/uploads/discover/<city>/<slug>/`, never `/media/`, because that path never reaches the site. Build it from the episode fact sheet and hedge single-source facts.
+2. **The reply**: add an entry to `src/lib/inbox/code-rules.ts` with a NEW random UUID (`python3 -c "import uuid;print(uuid.uuid4())"`).
+   - Fields:
+     - **keyword:** lower-case, matching the video's CTA
+     - **public replies:** 2 options, one per line
+     - **opener:** short, one line plus 👇
+     - **button:** at most 20 characters
+     - **message:** guide link + 3 tips
+     - **follow-up**
+     - `explore: true`
+   - `media_id: null` (every post) is fine when the keyword is unique; otherwise use the reel's media id.
+3. **Explore cards**: add the place to a vibe in `src/lib/inbox/explore-data.ts` with `guide:` set, and a 1200×628 photo in `public/uploads/explore/` with no captions or watermarks.
+4. Run `npm run test:inbox`, `npx tsc --noEmit` and `npx next build`.
+5. Open a PR, wait for the Vercel check, then merge. The creator asked for this to be automatic, so merging is pre-approved for this flow.
+6. Check that `https://www.chinapal.co/discover/<city>/<slug>` and its photos return 200. **Only then post the reel.**
+
+What happens after that:
+- The site copies the reply into the database after the next Instagram webhook. The first time, it also answers matching comments from the last 7 days, so a reel posted before its reply still gets its DMs.
+- Each comment gets one DM at most.
+
+Then people go through: the button → the guide link → explore buttons (more places by vibe, or Plan my trip → 4 one-tap questions) → the sales agent. Who answered what, and who's a 🔥 hot lead, shows on /comment → People. That page is read-only for these replies.
+
+Same rule as the captions: DMs and guide pages never mention AI clips or where footage came from.
 
 ## 10. The creator on screen, and AI video
 - The best personal touch is **real footage of the creator**: a reaction to the clip on his phone, browsing the booking page, on-the-move B-roll, a to-camera hook and CTA. Never let the narration claim he was there.

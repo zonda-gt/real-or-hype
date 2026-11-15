@@ -13,6 +13,8 @@ This skill only posts **trial reels**: they go to non-followers first. Never pos
 
 Script: `scripts/post_trial_reel.py` in this skill's folder (Python 3 + `requests` + `git`; `ffprobe` optional for the video checks).
 
+**A caption or video with a "Comment KEYWORD" call to action needs its auto-reply live first.** Check that `src/lib/inbox/code-rules.ts` in the ChinaPal repo (`zonda-gt/ChinaPal`) has that keyword, and that its guide link answers 200 on www.chinapal.co. If either is missing, set it up first, following the china-spot-video skill ("The DM side of the CTA"). Never send the user to the /comment page for it.
+
 ## How posting works (and why)
 
 Instagram takes a reel **only from a public video URL** with our Instagram Login token. A direct file upload (`upload_type=resumable`) is rejected with `The parameter video_url is required`. That comes from Instagram's server, so it is the same from the cloud or a local computer. Every trial reel so far was posted from a public URL.
