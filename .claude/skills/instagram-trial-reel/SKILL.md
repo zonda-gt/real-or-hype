@@ -77,6 +77,15 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 - Formats: H.264 (or HEVC) + AAC ≤ 48 kHz, 23–60 fps, 3 s to 15 min, 9:16 (1080×1920) recommended; ≤ ~95 MB for GitHub hosting. Caption ≤ 2200 characters, ≤ 30 hashtags.
 - Set `GRAPH_VERSION` to change the Graph API version (default v24.0).
 
+## Facebook Page reels (no trial option)
+
+Facebook's Reels API has no trial-reels setting, so a Facebook post is a normal Page reel (followers see it). Token: a **Page** access token for ChinaPal (page id `1320731184454757`) with `pages_manage_posts` + `pages_read_engagement` + `pages_show_list`, read from env `FACEBOOK_PAGE_ACCESS_TOKEN` (never from chat). Flow (Graph v24.0):
+1. `POST /{page}/video_reels` `upload_phase=start` → `video_id`, `upload_url`
+2. `POST <upload_url>` with headers `Authorization: OAuth <token>` and `file_url: <public raw.githubusercontent URL>` (host the file in the repo first, as for Instagram)
+3. `POST /{page}/video_reels` `upload_phase=finish`, `video_id`, `video_state=PUBLISHED`, `description=<caption>`
+4. poll `GET /{video_id}?fields=status,permalink_url` until `video_status=ready`; save `<video>.fb.json` next to the file.
+Limit: 30 API posts per Page per 24 h.
+
 ## Posted so far
 
 | Video | Permalink | Date |
@@ -89,3 +98,4 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | China Vlog remake (9:16, new footage) | https://www.instagram.com/reel/DfkY2QznPtZ/ | 2026-11-10 |
 | GATE M: one evening in Shanghai (CTA: plan your trip, AI clips) | https://www.instagram.com/reel/DfthWYUkdWd/ | 2026-11-14 |
 | GATE M: walkthrough (CTA: more incredible places, AI wave) | https://www.instagram.com/reel/DfthilBgVUr/ | 2026-11-14 |
+| GATE M: one evening re-cut (Facebook Page reel, normal) | https://www.facebook.com/reel/1119480950801391/ | 2026-11-15 |
