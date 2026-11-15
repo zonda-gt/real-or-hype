@@ -3,3 +3,4 @@ search/
 cat/
 shots.json
 *.jpg
+ai/*rejected*
