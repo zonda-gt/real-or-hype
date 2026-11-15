@@ -99,3 +99,6 @@ Limit: 30 API posts per Page per 24 h.
 | GATE M: one evening in Shanghai (CTA: plan your trip, AI clips) | https://www.instagram.com/reel/DfthWYUkdWd/ | 2026-11-14 |
 | GATE M: walkthrough (CTA: more incredible places, AI wave) | https://www.instagram.com/reel/DfthilBgVUr/ | 2026-11-14 |
 | GATE M: one evening re-cut (Facebook Page reel, normal) | https://www.facebook.com/reel/1119480950801391/ | 2026-11-15 |
+| Panlong Tiandi A: water town on the metro (CTA: more places, AI noodles) | https://www.instagram.com/reel/DfwZZ9AjWRS/ | 2026-11-15 |
+| Panlong Tiandi B: no need to leave Shanghai (CTA: plan your trip, AI boat) | https://www.instagram.com/reel/DfwZgCPAbnp/ | 2026-11-15 |
+| Panlong Tiandi B (Facebook Page reel) | https://www.facebook.com/reel/ (see work/panlong/B/out/upload_ig.mp4.fb.json) | 2026-11-15 |

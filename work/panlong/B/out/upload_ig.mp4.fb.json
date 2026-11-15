@@ -1,0 +1,29 @@
+{
+ "video_id": "2290699714994514",
+ "page": "1320731184454757",
+ "status": {
+  "status": {
+   "video_status": "ready",
+   "uploading_phase": {
+    "status": "complete",
+    "bytes_transferred": 34657581
+   },
+   "processing_phase": {
+    "status": "complete"
+   },
+   "publishing_phase": {
+    "status": "complete",
+    "publish_status": "published",
+    "publish_time": "2026-11-15T08:55:11+0000"
+   },
+   "copyright_check_status": {
+    "status": "complete",
+    "matches_found": false
+   }
+  },
+  "permalink_url": "/reel/2290699714994514/",
+  "id": "2290699714994514"
+ },
+ "video_url": "https://raw.githubusercontent.com/zonda-gt/real-or-hype/refs/heads/claude/gracious-wright-5bjq4z/work/panlong/B/out/upload_ig.mp4",
+ "posted": "2026-11-15"
+}
