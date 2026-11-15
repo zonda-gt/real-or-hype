@@ -13,6 +13,9 @@ The first giraffe cuts wrote the script before the footage arrived and generated
 
 Scripts are in `scripts/` (paths below are relative to this skill). An episode lives in a work dir (e.g. `work/<slug>/`, gitignored) with `broll/`, `plan.py`, `script.txt`.
 
+## 0. Pick the place
+Master list of every scouted place (status, hook, sources): `reference/places.csv`. Update it when a place is done, dropped or verified; details in `reference/scouting_2026-11.md`.
+
 ## 1. Research the place (always, before any footage)
 Goal: a **fact sheet** in the episode README, where every claim has a source URL and a confidence (2+ sources / single / unverified).
 - Basics: official name in **Chinese characters** (people search it on Trip.com, Dianping and Didi), district, address, opening year, how to get there from Shanghai or Hangzhou, opening hours.

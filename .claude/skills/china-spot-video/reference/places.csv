@@ -1,0 +1,61 @@
+﻿#,name_en,name_cn,city,hours_from_shanghai,category,hook,found_by,status,notes
+1,Huzhou Giraffe Manor,湖州长颈鹿庄园,Huzhou (Wuxing),2,animal hotel,Giraffes put their heads through the breakfast windows,douyin; web agent,DONE (episode 1),Posted Nov 2026: trial reels E2me/F/G + Facebook
+2,"Red panda hotel, Nantong Forest Safari Park (Sendi Hotel / treehouses)",南通森林野生动物园 森迪酒店·树屋 小熊猫,Nantong,1.5,animal hotel,Red pandas wander into your hotel room; giraffes and zebras under the balcony,douyin; web agent,TOP 3,"395k/175k likes; Sendi Hotel opened 2025, from ~€197; check which property has the red pandas + welfare"
+3,"Center of the Earth, Suichang",遂昌地心世界,Lishui (Suichang),3.5-4,underground / hotel,A hotel and hot springs 200 m underground in an old mine,douyin,TOP 3,Former fluorite mine (one post says gold: check); underground rafting; posts daily
+4,Double Dragon Cave,双龙洞,Jinhua,2.5,cave / experience,Lie flat in a boat to squeeze into the cave,douyin; web agent,TOP 3,140k likes; ¥80 (2025); from Ye Shengtao's textbook essay; ~18°C
+5,Deep Blue Plan quarry café,深蓝计划,Anji (Huzhou),2,café / quarry lake,China's little Iceland: coffee in a flooded quarry,douyin; web agent,STRONG,"¥68 incl. coffee; 8,818 cups in a day; open (posts Nov 2026)"
+6,Yucun Waterfall Coffee,余村瀑布咖啡,Anji (Huzhou),2,café / quarry,Another quarry café with a waterfall,web agent,BACKUP,Xinhua Oct 2026
+7,Shanxiahu pearl town,山下湖珍珠,Zhuji (Shaoxing),2,market / experience,Open a mussel and keep the pearl,douyin; web agent,STRONG,~70% of world freshwater pearls; blind-box mussels
+8,Shanghai Greenhouse Garden,上海温室花园,Shanghai (Expo Culture Park),0,garden / indoor jungle,"This isn't Singapore, it's Shanghai",douyin,STRONG,200k/167k likes; underwater forest; check price
+9,Sendi Tribe tiger & lion rooms,森迪部落树屋 老虎房,Nantong & Suqian,1.5-3,animal hotel,Wake up with a tiger outside your window,douyin,CANDIDATE,Cub handling = welfare-sensitive
+10,Panda pig ranch,熊猫猪猪两头乌国际牧场,Jinhua,2.5,farm / hotel,"Pigs that look like pandas, and pig-view rooms",douyin,CANDIDATE,Liangtouwu breed; '7-star pig farm'
+11,Shitang cliff village,温岭石塘,Wenling (Taizhou),3.5,village / coast,Not Italy: a cliffside seaside village,douyin,CANDIDATE,
+12,Anji 'City in the Sky' cloud hotel,安吉天空之城,Anji (Huzhou),2.5,hotel / clouds,Sleep above a sea of clouds for three figures,douyin,CANDIDATE,
+13,Pan'an Yunhai Ark cliff hotel,磐安云海方舟,Pan'an (Jinhua),3.5,cliff hotel,A hotel hanging off a cliff above the clouds,douyin,CANDIDATE,
+14,Sci-fi cliff hotel (location to confirm),科幻悬崖酒店,?,?,cliff hotel,Sci-fi pods on a cliff,douyin,UNVERIFIED,28k likes; location not identified
+15,Tonglu Provincial Road 210,桐庐210省道,Tonglu (Hangzhou),2.5,scenic drive,The 'ceiling of provincial roads': every frame is a wallpaper,douyin,CANDIDATE,19k likes
+16,Lingshan secret realm / Xianqiao cave,杭州灵山秘境 / 仙桥洞,Hangzhou,2,cave / nature,A real-life Wizard of Oz cave valley,douyin,CANDIDATE,25k likes
+17,Yangjiatang village,松阳杨家堂,Songyang (Lishui),4,village,National Geographic's 'last secret land of Jiangnan',douyin,CANDIDATE,Further away
+18,Wuxi 'Wizard of Oz' summer garden,无锡绿野仙踪,Wuxi,1.5,garden,A real-life Wizard of Oz in Wuxi,douyin,CANDIDATE,11k likes; exact name to confirm
+19,Anji Hello Kitty Park,安吉Hello Kitty乐园,Anji (Huzhou),2,theme park,China's Hello Kitty park,douyin,SKIP (known),Already well known
+20,Yunzhongjing hotel,云中径酒店,Hangzhou (Yunqi),2.5,hotel / forest,"Wake up among 1,000-year-old trees inside West Lake's bamboo path",douyin,CANDIDATE,
+21,China Golden Larch Forest Park (Jiumu Village),中国金钱松森林公园（九亩村）,Anji (Huzhou),2.5-3,nature,"Walk through 50,000 golden larches above the clouds",douyin; doubao,CANDIDATE,Autumn only; Doubao figure unverified
+22,Wonderland quarry hotel,上海佘山世茂洲际酒店（深坑酒店）,Shanghai (Songjiang),1,hotel / quarry,"A hotel 88 m down a quarry, 2 floors underwater",douyin; web agent,CANDIDATE,Some English press 2018-19; ¥2 bn
+23,Huzhu leaning pagoda,护珠塔,Shanghai (Songjiang),1,architecture,Shanghai's tower leans more than Pisa (7.1° vs ~4°),web agent,CANDIDATE,Weak visuals; free
+24,Zhuge Bagua Village,诸葛八卦村,Lanxi (Jinhua),3,village,A village laid out as the eight trigrams,web agent,CANDIDATE,¥90; 200+ Ming-Qing buildings
+25,Longyou Grottoes,龙游石窟,Longyou (Quzhou),2.5,caves / mystery,"2,000-year-old man-made caves nobody can explain",web agent,CANDIDATE,"Found 1992; 24 caves, 5 open"
+26,Danyang Glasses City,丹阳眼镜城,Danyang (Zhenjiang),1-1.5,market,Glasses in an hour where the world's lenses are made,web agent,CANDIDATE,400 m lenses/yr
+27,Zhenhu embroidery town,镇湖刺绣,Suzhou,1.5,craft town,"A town where 8,000 women embroider",web agent,CANDIDATE,"1.7 km street, ~400 workshops"
+28,Xin'anjiang river fog,新安江白沙奇雾,Jiande (Hangzhou),2.5-3,nature,A river that steams all year,web agent,CANDIDATE,Weather-dependent
+29,Shaoxing East Lake,绍兴东湖,Shaoxing,1.5,nature / boat,Quarry cliffs toured in boats rowed by foot,web agent,CANDIDATE,
+30,Qiantang tidal bore,钱塘江大潮（盐官）,Haining (Jiaxing),1.5,nature,A river wave that charges upstream,web agent,SEASONAL,Late Sep-early Oct
+31,Qianduo floating flower fields,兴化千垛,"Xinghua (Taizhou, Jiangsu)",3,nature,Rapeseed fields on hundreds of islands,web agent,SEASONAL,April
+32,Nayun Sky City,那云天空之城,Jingning (Lishui),4.5-5,resort / mine,"White castle resort on an old iron mine, 120 m cliff pool",web agent,CANDIDATE (far),
+33,Qiandao Lake underwater Lion City,千岛湖水下狮城,Chun'an (Hangzhou),3.5,underwater ruins,A city under a lake,web agent,DROPPED,Diving restricted
+34,Nianhua Bay,拈花湾,Wuxi,1.5,town,Zen-style town,web agent,DROPPED,Reopening unclear
+35,Houtouwan abandoned village,后头湾,Shengsi (Zhoushan),4-5,village,Village swallowed by vines,web agent,DROPPED,Already viral in English
+36,Qianshu dragon kiln,前墅龙窑,Yixing (Wuxi),2,craft,A working 600-year-old dragon kiln,web agent,DROPPED,Firings irregular
+37,Haichang Ocean Park penguin hotel,上海海昌海洋公园酒店,Shanghai,1,animal hotel,Penguin hotel,web agent,DROPPED,Penguins only in lobby/restaurant
+38,Liyang Meijie treehouse resort,溧阳美岕山野温泉度假村,Liyang (Changzhou),3,hotel / treehouse,31 stilted treehouses on a bamboo mountain,doubao,UNVERIFIED,
+39,The Lucid Resort Fuchun River (boat houses),杭州富春芳草地臻品之选度假酒店,Jiande (Hangzhou),3,hotel / boat,Sleep in a wooden boat house on the Fuchun River,doubao,UNVERIFIED,
+40,Anji Qingshishang cave hot-spring homestay,安吉青石上·Cave汤泉民宿,Anji (Huzhou),2.8,hotel / cave,Cave-style private hot-spring rooms in a bamboo forest,doubao,UNVERIFIED,
+41,Nanjing Beehive Hotel,南京蜂巢酒店,Nanjing (Pukou),3,hotel / quarry,Honeycomb towers on a restored quarry mountain,doubao,UNVERIFIED,
+42,Green Train hotel,绿皮火车·漫时光酒店（扬州高铁东站店）,Yangzhou,3,hotel / train,Sleep in a real retired green-skinned train,doubao,UNVERIFIED,
+43,Anji Yunshang 1168 astronomy hotel,安吉云上草原1168星空天文酒店,Anji (Huzhou),3,hotel / mountain,"Sleep at 1,168 m with planet-roof rooms",doubao,UNVERIFIED,
+44,Fuzhi Mountain glacial stone waves,覆卮山冰川石浪,Shangyu (Shaoxing),3,nature,A frozen 'river' of house-sized boulders,doubao,UNVERIFIED,
+45,Shoutao Lake,寿桃湖公园,Suzhou (Wuzhong),1.5-2,quarry lake,A 230-ft quarry glowing neon turquoise,doubao,UNVERIFIED,Figure unverified
+46,Longmen ancient town,龙门古镇,Fuyang (Hangzhou),2.8-3,town,90% of residents share one surname: Sun,doubao,UNVERIFIED,
+47,Guizishan basalt column forest,桂子山石柱林,Luhe (Nanjing),2.5-3,nature / geology,A volcano's wall of hexagonal stone organ pipes,doubao,UNVERIFIED,Very visual
+48,Wushan seaside grottoes,伍山海滨石窟,Ninghai (Ningbo),3,caves / coast,Medieval quarry caves opening onto the sea,doubao,UNVERIFIED,
+49,Meet the Earth Core cave café,遇见地心（洞穴咖啡）馆,Moganshan (Deqing),2.5,café / cave,Coffee inside a mountain cave with a waterfall,doubao,UNVERIFIED,Strong newcomer
+50,Xuanhang Railway Park train restaurant,宣杭拾忆铁路主题公园·永乐站列车餐厅,Yuhang (Hangzhou),2.5,restaurant / train,Eat inside a retired 1999 green train among rice fields,doubao,UNVERIFIED,
+51,Siffon chocolate factory,歌斐颂巧克力工厂,Jiashan (Jiaxing),1.5,factory / experience,Walk a cacao forest and make your own chocolate,doubao,UNVERIFIED,
+52,Caixiang market soy-milk coffee,彩香菜市场·豆乳咖啡,Suzhou,1.5,café / market,Soy-milk lattes from a 4th-generation tofu maker in a wet market,doubao,UNVERIFIED,
+53,One Step Coffee,一步咖啡,Shanghai (Yangpu),0,café,Coffee inside a sunken tank of a century-old power plant,doubao,UNVERIFIED,
+54,Wild Space forest kitchen,野空间·森林咖啡·西餐,"Shanghai (Minhang, Pujiang Country Park)",1,restaurant,Dine under giant trees in an open forest kitchen,doubao,UNVERIFIED,
+55,1933 Old Millfun,1933老场坊,Shanghai,0,architecture,A concrete labyrinth of sky-bridges and cattle ramps,doubao,UNVERIFIED,Some English awareness
+56,1000 Trees,天安千树,Shanghai,0,architecture,"A mall with 1,000 trees",doubao,DONE (Real or Hype? ep.),Already made
+57,Hangzhou Little Iceland (Phoenix Creative Park),杭州小冰岛（凤凰创意国际）,Hangzhou,1.5,quarry lake / industrial,A Nordic-style cliff lake in an old cement factory,doubao,UNVERIFIED,
+58,China Cartoon & Animation Museum,中国动漫博物馆,Hangzhou,1.5,museum / architecture,A giant white cloud building full of animation,doubao,UNVERIFIED,
+59,Suzhou Imperial Kiln Brick Museum,苏州御窑金砖博物馆,Suzhou,1.5,museum / craft,Where the Forbidden City's floor bricks were made,doubao,UNVERIFIED,
+60,China Imperial Examination Museum,中国科举博物馆,Nanjing,3,museum / underground,Four underground floors beneath a mirror pool,doubao,UNVERIFIED,
