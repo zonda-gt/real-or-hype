@@ -103,6 +103,13 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 - Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). The creator handles DMs (or uses ManyChat; Instagram messaging API needs app review).
 - A/B as trial reels with the same music: comment-keyword CTA vs "Follow for more".
 
+### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`)
+The keyword DMs run on ChinaPal's own system (www.chinapal.co/comment, the inbox password), not ManyChat:
+- **One reply per keyword** on /comment ("every post" works when the keyword is unique, e.g. `giraffe`): public replies, the opener with a button, the DM with the link, a follow-up, and the **Explore buttons** box.
+- **The link goes to a place guide page:** `/discover/<city>/<slug>`, a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`), photos in `public/media/<city>/<slug>/`. Build it from the episode fact sheet, hedge single-source facts, and get the page live **before the reel is posted** (comments older than 7 days can't get a DM).
+- **Explore buttons** (show me more → vibes → photo cards; plan my trip → sales agent) are in `src/lib/inbox/explore-data.ts`. Add a new episode's place there once it has a guide page (give it `guide:`). Only checked places, photos without captions or watermarks (1200×628).
+- Same rule as the captions: DMs and guide pages never mention AI clips or where footage came from.
+
 ## 10. The creator on screen, and AI video
 - The best personal touch is **real footage of the creator**: a reaction to the clip on his phone, browsing the booking page, on-the-move B-roll, a to-camera hook and CTA. Never let the narration claim he was there.
 - **Don't generate AI clips of him at a place he hasn't visited** (it misleads viewers, and Instagram expects an AI label on realistic AI video of people).
