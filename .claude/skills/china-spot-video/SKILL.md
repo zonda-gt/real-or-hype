@@ -74,6 +74,7 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 ```
 - Shots fill their slot in order; if the slot is longer than the shots, they slow down. Flagged below 0.72× for 50/60 fps sources and 0.9× for 30 fps: then add a second shot instead.
 - Cut rhythm like hers: 1.2–1.9 s per shot, a new shot on every listed noun (EKG, ENT, dental… each gets its own shot).
+- **Looks beat novelty** (creator's rule): pick the most beautiful shot for each line (4K, good light, clean frame, subject well placed) even if another version already uses it. Variants may share B-roll; don't swap in weaker footage just to be different.
 - Frame-exact (total frames = round(T·30)). HLG sources are tone-mapped automatically.
 
 ## 6. Graphics (her look): `scripts/graphics.py <workdir>`
