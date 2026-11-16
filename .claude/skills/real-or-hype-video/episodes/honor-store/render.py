@@ -9,7 +9,9 @@ FONTS = SK + '/scripts'
 SFX = {'whoosh': SK + '/sfx/whoosh_es.wav', 'pop': SK + '/sfx/pop_es.wav', 'ding': SK + '/sfx/ding.wav'}
 SFXVOL = {'whoosh': 0.45, 'pop': 0.5, 'ding': 0.35}
 AMB = 0.35; MUSIC = 'music/pop1.mp3'; MDB = -6.0
-FULL = 'scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,fps=30,setsar=1,format=yuv420p'
+# The OneDrive clips are flat SDR conversions of HDR recordings (lifted shadows, low saturation): restore contrast + some colour.
+GRADE = "curves=all='0/0 0.12/0.07 0.5/0.5 0.88/0.91 1/1',eq=saturation=1.1"
+FULL = 'scale=1080:1920:force_original_aspect_ratio=increase:flags=lanczos,crop=1080:1920,fps=30,setsar=1,' + GRADE + ',format=yuv420p'
 ENC = ['-c:v', 'libx264', '-preset', 'veryfast', '-crf', '17', '-pix_fmt', 'yuv420p', '-color_primaries', 'bt709',
        '-color_trc', 'bt709', '-colorspace', 'bt709', '-c:a', 'pcm_s16le', '-ar', '48000', '-ac', '2']
 AF = 'aresample=48000,aformat=channel_layouts=stereo'

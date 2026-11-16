@@ -12,6 +12,7 @@ Reference episode: 1000 Trees, final = trial reels A/B/C (Nov 2026). Pipeline: `
 ## Pre-delivery checklist (run before sending any cut)
 
 1. **Colour**: every HLG/HDR source (`color_transfer=arib-std-b67`, i.e. all iPhone IMG_* clips) is tone-mapped to BT.709; no saturation boost. Make a before/after frame if anything changed.
+   - **HDR clips already converted to SDR** (e.g. Samsung/OneDrive: HEVC Main 8-bit, bt709, no PQ/HLG) can't be tone-mapped, but they come out flat: lifted shadows (signalstats YLOW ~60–66 vs ~40 for normal SDR) and low saturation. Grade them with `curves=all='0/0 0.12/0.07 0.5/0.5 0.88/0.91 1/1',eq=saturation=1.1` (sat 1.3 turned skin orange). Check with signalstats and a before/after frame.
 2. **His real lines end in silence**: `scripts/cutcheck.py "$PWD" scripts/<render>.py` must print **ALL OK** (it exits 1 otherwise). It measures against each clip's own noise floor, because mall noise ~-38 dB defeats a fixed threshold. It needs ≥0.15 s of silence before the cut and no speech within 0.05 s after. **Never accept a FAIL.** If he runs straight into the next word, there is no safe cut: find **another take of the same words** (he usually repeats lines; e.g. "absolutely huge" came from take 1 at IMG_4855 25.50–27.30), splice takes as a jump cut, or end on b-roll.
 3. **Don't trust Whisper alone for cut words**: it "completes" clipped words. Use the energy checks above; use Whisper only to confirm the right words are present.
 4. **Narration never overlaps**: each AI line ends before the next starts, and the last line ends before the video does.
@@ -160,3 +161,4 @@ Gotchas: shot files can be a few ms shorter than their slot (stretch with `speed
 | True peak -0.2 dBTP | Final limiter ≤ -1 dBTP; check with `earshot measure` |
 | Verdict ticks looked the same for REAL and HYPE | Green ✓ for REAL, red ✗ for HYPE, different sounds |
 | His real lines ~19 dB quieter than the narration | loudnorm real-voice segments to -16 LUFS |
+| Honor store: HDR footage arrived as flat SDR and I shipped it ungraded ("colour looks off") | Check signalstats on every source; grade flat SDR conversions |

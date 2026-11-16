@@ -25,7 +25,7 @@ Two variants differ in the narration angle:
 - The cat massage gun's brand and price weren't found, so neither is stated.
 
 ## Footage
-OneDrive folder "Honor shop" (20 × Samsung 1080p SDR, rotated portrait, so no tone-map is needed). A public `1drv.ms` folder link resolves anonymously:
+OneDrive folder "Honor shop" (20 × Samsung 1080p, rotated portrait). They were shot in HDR but arrived as 8-bit SDR BT.709 conversions, so there's nothing to tone-map. They look flat (YLOW ~60, SATAVG ~10), so `render.py` applies `GRADE` (contrast curve + saturation 1.1), which brings them to YLOW ~45 and SAT ~15, in line with her reels. A public `1drv.ms` folder link resolves anonymously:
 POST `https://api-badgerp.svc.ms/v1.0/token` `{"appId":"5cbed6ac-a083-4e14-b191-b4ba07653de2"}`, then GET `https://my.microsoftpersonalcontent.com/_api/v2.0/shares/u!<base64url(link)>/driveitem?$expand=children` with `Authorization: Badger <token>` and `Prefer: autoredeem`. Each child has `@content.downloadUrl`. All sizes were checked.
 Only `214352` has usable speech (his line, 0–3.35 s; cut at 3.5 s into silence, played at 1.2×). Whisper invents "Thanks for watching" on the other, quiet clips.
 
