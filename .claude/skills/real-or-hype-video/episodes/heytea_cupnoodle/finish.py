@@ -28,6 +28,7 @@ for sid,txt in REAL.items(): allw.append(align(txt,f'out/seg/{sid}.mov',st[sid])
 allw=[w for w in allw if w]
 def ts(x): return f'{int(x//3600)}:{int(x%3600//60):02d}:{x%60:05.2f}'
 ass=open(SK+'episodes/heytea_cupnoodle/ass_head.txt').read()
+EVS=[]
 for ws in allw:
     chunks=[];cur=[]
     for w in ws:
@@ -39,7 +40,11 @@ for ws in allw:
         for wi,(a,b,w) in enumerate(ch):
             e=ch[wi+1][0] if wi+1<len(ch) else endc
             txt=' '.join(('{\\c&H1AE2FF&}'+x[2]+'{\\c&HFFFFFF&}') if j==wi else x[2] for j,x in enumerate(ch))
-            ass+=f'Dialogue: 0,{ts(a)},{ts(max(e,a+0.05))},main,,0,0,0,,{txt}\n'
+            EVS.append([a,max(e,a+0.05),txt])
+EVS.sort(key=lambda x:x[0])          # never two subtitle events on screen at once
+for i in range(len(EVS)-1): EVS[i][1]=min(EVS[i][1],EVS[i+1][0])
+for a,e,txt in EVS:
+    if e-a>0.02: ass+=f'Dialogue: 0,{ts(a)},{ts(e)},main,,0,0,0,,{txt}\n'
 open('out/subs.ass','w').write(ass)
 # audio: base (room sound + his lines) + narration + effects
 def peak_db(f): return 20*np.log10(np.abs(pcm(f)).max()+1e-9)

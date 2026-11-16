@@ -2,7 +2,10 @@
 import os,sys,json,subprocess
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); from segs import *
 W=sys.argv[1]; os.chdir(W); os.makedirs('out/seg',exist_ok=True)
-TM='zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p'
+# HDR (HLG) -> SDR: BT.2446 Method A tone mapping baked into a 3D LUT (hlg2sdr_lut.py, exposure 1.5); the old zscale+hable
+# chain tone-mapped each channel separately and left a yellow/orange cast.
+LUT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'hlg2sdr_bt2446a_exp1.5.cube')
+TM=f'scale=in_color_matrix=bt2020:in_range=tv:out_range=pc,format=gbrpf32le,lut3d={LUT}:interp=tetrahedral,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p'
 FULL='scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1'
 ENC=['-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','pcm_s16le','-ar','48000','-ac','2']
 AF='aresample=48000,aformat=channel_layouts=stereo'

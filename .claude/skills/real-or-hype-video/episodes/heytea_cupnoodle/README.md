@@ -24,3 +24,16 @@ Pipeline (workdir has raw/, vo/L*.wav):
 1. `python3 hook.py <wd>/hook 150`
 2. `python3 render.py <wd>`  shots from `segs.py`, gap check against his measured speech spans
 3. `python3 finish.py <wd>`  subtitles, title card, narration, whoosh/pop, loudnorm -15 LUFS, limiter
+
+## v3 (creator notes: open on him + cup, "make the colour normal", re-pick aesthetic shots, write narration TO the clips)
+- **Colour**: the zscale+`tonemap=hable` chain tone-maps R, G, B separately, which pushed bright areas yellow/orange
+  ("looks a bit off"). Now: ITU-R BT.2446-1 Method A (luma-based, hue-preserving) baked into a 65³ LUT
+  (`hlg2sdr_lut.py out.cube 65 1.5` → `hlg2sdr_bt2446a_exp1.5.cube`, exposure 1.5), applied with
+  `scale=in_color_matrix=bt2020…,lut3d,scale=out_color_matrix=bt709`. White cups, natural skin. libplacebo bt.2390 was
+  tried via lavapipe (software Vulkan) but renders stripe artefacts in this container.
+- **Picture first**: all 18 clips re-reviewed at 0.5 s in the new colour; shots picked for looks and ordered as a journey
+  (`segs.py`), then one short narration line written per shot it describes (`vo_lines_v3.json`, N1–N13) and anchored
+  to that shot's start. `fitcheck.py <vo_dir>` checks fit without rendering; shot lengths were nudged to lines, not the
+  other way round. Detail found on review: staff wear "CUP HEYTEA" chef hats (N4 "Even the chef hats!").
+- Hook shot: 173008 9.2–10.96 s at 0.8× (his steadiest pose; the creator picked it).
+- Subtitles: events are made non-overlapping (two Whisper word times out of order had stacked a line twice).
