@@ -11,11 +11,13 @@ def run(c):
     if r.returncode: print(r.stderr[-1500:]); sys.exit(1)
 def dur(f): return float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',f],capture_output=True,text=True).stdout)
 st={}; t=0.0; parts=[]
-for sid,clip,a,ln,sp,au in SEGS:
+for seg in SEGS:
+    sid,clip,a,ln,sp,au=seg[:6]; z=seg[6:]
     o=f'out/seg/{sid}.mov'; d=ln/sp
+    zc=f',scale=iw*{z[0]}:ih*{z[0]},crop=1080:1920:(iw-1080)*{z[1]}:(ih-1920)*{z[2]}' if z else ''
     if au=='real': af=f'{AF},atempo={sp},highpass=f=80,loudnorm=I=-16:TP=-1.5:LRA=11,{AF},afade=t=in:d=0.03,afade=t=out:st={d-0.05:.3f}:d=0.05'
     else: af=f'{AF},atempo={sp},highpass=f=100,volume=0.35' if sp<=2 else f'{AF},atempo=2.0,atempo={sp/2},highpass=f=100,volume=0.35'
-    fc=f'[0:v]setpts=(PTS-STARTPTS)/{sp},{TM},{FULL}[v];[0:a]{af},apad[a]'
+    fc=f'[0:v]setpts=(PTS-STARTPTS)/{sp},{TM},{FULL}{zc}[v];[0:a]{af},apad[a]'
     run(['ffmpeg','-loglevel','error','-y','-ss',f'{a:.3f}','-t',f'{ln+0.1:.3f}','-i',f'raw/20261115_{clip}.mp4','-filter_complex',fc,'-map','[v]','-map','[a]','-t',f'{d:.3f}']+ENC+[o])
     st[sid]=t; md=dur(o); t+=md; parts.append(o); print(f'{sid:4s} {st[sid]:6.2f} +{md:.2f}')
 open('out/list.txt','w').write(''.join(f"file 'seg/{os.path.basename(p)}'\n" for p in parts))
@@ -25,7 +27,7 @@ total=dur('out/base.mov'); st['_end']=total
 vo=[]; ok=True
 for k,sid,off in VO:
     s=st[sid]+off; vo.append((k,s,s+dur(f'vo/{k}.wav')))
-reals=[(sid,st[sid]+(SPEECH[sid][0]-a)/sp,st[sid]+(SPEECH[sid][1]-a)/sp) for sid,c,a,ln,sp,au in SEGS if au=='real']
+reals=[(sid,st[sid]+(SPEECH[sid][0]-a)/sp,st[sid]+(SPEECH[sid][1]-a)/sp) for sid,c,a,ln,sp,au,*_ in SEGS if au=='real']
 ev=sorted([(s,e,k) for k,s,e in vo]+[(s,e,k) for k,s,e in reals])
 for (s1,e1,k1),(s2,e2,k2) in zip(ev,ev[1:]):
     if e1+0.05>s2: print(f'OVERLAP {k1} ends {e1:.2f} > {k2} starts {s2:.2f}'); ok=False
