@@ -1,0 +1,137 @@
+{
+ "city": "Guangzhou",
+ "shots": [
+  [
+   "hookA_6712897455240924430",
+   1.0,
+   "HOOK"
+  ],
+  [
+   "hookB_7689665115877271665",
+   0.3,
+   "HOOK"
+  ],
+  [
+   "haixinsha_7662899973881254518",
+   1.0,
+   "Haixinsha Fountain"
+  ],
+  [
+   "haixinsha_7633064714940341632",
+   9.2,
+   "Haixinsha Fountain"
+  ],
+  [
+   "huacheng_7536517154968751403",
+   0.3,
+   "Huacheng Square"
+  ],
+  [
+   "huacheng_7658793811594212267",
+   5.0,
+   "Huacheng Square"
+  ],
+  [
+   "library_7648966243358433401",
+   2.0,
+   "Guangzhou Library"
+  ],
+  [
+   "library_7696134445661772274",
+   3.0,
+   "Guangzhou Library"
+  ],
+  [
+   "museum_7648259311080992667",
+   0.5,
+   "Guangdong Museum"
+  ],
+  [
+   "museum_6982441424876834056",
+   6.5,
+   "Guangdong Museum"
+  ],
+  [
+   "cathedral_7633688464740057442",
+   3.35,
+   "Sacred Heart Cathedral"
+  ],
+  [
+   "cathedral_7652694096167794406",
+   3.5,
+   "Sacred Heart Cathedral"
+  ],
+  [
+   "shamian_6855547622350933256",
+   5.5,
+   "Shamian Island"
+  ],
+  [
+   "shamian_7621755265696347825",
+   3.3,
+   "Shamian Island"
+  ],
+  [
+   "yongqing_7688617515563411944",
+   3.2,
+   "Yongqing Fang"
+  ],
+  [
+   "yongqing_7682383824197866618",
+   5.2,
+   "Yongqing Fang"
+  ],
+  [
+   "enning_7703935111528594762",
+   9.5,
+   "Enning Road"
+  ],
+  [
+   "enning_7690960927671717798",
+   10.5,
+   "Enning Road"
+  ],
+  [
+   "beijingroad_6875334744792501512",
+   5.5,
+   "Beijing Road"
+  ],
+  [
+   "beijingroad_7539748779546856723",
+   2.2,
+   "Beijing Road"
+  ],
+  [
+   "endB_6982848940874009863",
+   3.0,
+   "END"
+  ],
+  [
+   "endA_7521602724711304498",
+   18.2,
+   "END"
+  ]
+ ],
+ "blur": {
+  "16": [
+   [
+    400,
+    1080,
+    280,
+    90
+   ]
+  ],
+  "13": [
+   [
+    830,
+    480,
+    200,
+    60
+   ]
+  ]
+ },
+ "precrop": {},
+ "speed": {
+  "15": 0.82
+ }
+}
