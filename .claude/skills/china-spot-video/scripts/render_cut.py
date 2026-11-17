@@ -46,5 +46,7 @@ segs=['seg/000.mp4']
 for j,(a,b,src,tin,sp,x) in enumerate(plan): o=f'seg/{j+1:03d}.mp4'; shot(o,src,tin,b-a,sp,x); segs.append(o)
 open('concat.txt','w').write(''.join(f"file '{os.path.abspath(s)}'\n" for s in segs))
 run(['ffmpeg','-y','-loglevel','error','-f','concat','-safe','0','-i','concat.txt','-c','copy','video.mp4'])
-json.dump({'T':T,'starts':starts,'cue_words':[i for i,_ in P.CUES],'collage_end':starts[0]},open('timeline.json','w'))
+shots=[{'start':round(a/FPS,3),'end':round(b/FPS,3),'src':src,'in':round(tin,3),'out':round(tin+(b-a)/FPS*sp,3)} for a,b,src,tin,sp,x in plan]
+collage=[{'src':src,'in':round(tin,3),'out':round(tin+n0/FPS*min(1.0,mx/(n0/FPS)),3)} for src,tin,mx,x in P.COLLAGE]
+json.dump({'T':T,'starts':starts,'cue_words':[i for i,_ in P.CUES],'collage_end':starts[0],'shots':shots,'collage':collage},open('timeline.json','w'))
 print('video.mp4',round(T,2),'s, frames',n0+sum(b-a for a,b,*_ in plan),'expected',fr(T))
