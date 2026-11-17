@@ -24,6 +24,7 @@ TAG={
  'b9':"[excited] Hit that follow button, because I'm showing you more things to do in China!",
 }
 L=json.load(open('lines.json'))
+if os.path.exists('tags_c.json'): TAG.update(json.load(open('tags_c.json')))
 NUM={'1400':'fourteen hundred','1,400':'fourteen hundred','3':'three','2':'two','1':'one'}
 def norm(s):
     s=s.lower().replace('$','').replace('-',' ')
@@ -53,4 +54,4 @@ for k in (sys.argv[1:] or list(TAG)):
         print(f'{k} t{take} {d:5.2f}s range {rg:4.1f} match {r:.2f} | {hyp.strip()}',flush=True)
         cands.append((r>=0.93,rg,-d,out))
     ok=[c for c in cands if c[0]] or sorted(cands,key=lambda c:-c[1])[:1]
-    best=max(ok,key=lambda c:c[1]); os.replace(best[3],f'{OD}/{k}.wav'); print(' ->',k,'keeps',best[3],'OK' if best[0] else 'NO PASSING TAKE',flush=True)
+    best=min(ok,key=lambda c:abs(c[1]-15)+(10 if c[1]>20 else 0)); os.replace(best[3],f'{OD}/{k}.wav'); print(' ->',k,'keeps',best[3],'OK' if best[0] else 'NO PASSING TAKE',flush=True)

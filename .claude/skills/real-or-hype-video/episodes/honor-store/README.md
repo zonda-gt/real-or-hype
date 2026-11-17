@@ -72,3 +72,14 @@ B3 is a copy of B with two shots lengthened (b2 → 214202 8.0–10.0, b6 → 21
 - v3 talks about 20% longer, so `render.py`'s **autofit** (AX/BX) lengthens the beat's shots from the end backwards within each source, or pulls in-points earlier.
   Watch for repeats: BX's b6 autofit ran into b8's 213203 footage, so BX extends the poster shot instead.
 - Results: AX 39.8 s and BX 41.2 s, both about -15 LUFS with a -1.4 dB peak, and the final-mix Whisper check is clean.
+
+## Variant C + posting (Nov 17)
+- **CX** is the cat-punch hook with a comedy / bait-and-switch angle: "I let a cat punch me in the face… in a phone store in China" → "But that's not why I came here" → Robot Phone → price → telescope → "Which one would you try first? The cat, or the robot? Tell me in the comments!"
+  - The title is "Punched by a cat in a phone store?! 😹". The lines `c1`–`c9` are in `tags_c.json`.
+  - "the Honor store" came out as "honest store" in all 3 takes, so that line became "…why I came here".
+  - Autofit had stretched shots into footage the next beat reuses, so CX sets those shots by hand. Always check for repeats after autofit.
+  - 37.1 s, -14.6 LUFS.
+- **Posted as trial reels (MANUAL graduation), same caption on all three:**
+  - A: https://www.instagram.com/reel/Df2DfsBlMDI/
+  - B: https://www.instagram.com/reel/Df2DopaD68P/
+  - C: https://www.instagram.com/reel/Df2DuulD_q2/

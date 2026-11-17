@@ -2,7 +2,7 @@
 import sys, os, json, subprocess, numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from variants import VARIANTS
-V = sys.argv[1]; BEATS = VARIANTS[V]; VODIR = {'A3': 'vo3', 'B3': 'vo3', 'AX': 'vox', 'BX': 'vox'}.get(V, 'vo')
+V = sys.argv[1]; BEATS = VARIANTS[V]; VODIR = {'A3': 'vo3', 'B3': 'vo3', 'AX': 'vox', 'BX': 'vox', 'CX': 'vox'}.get(V, 'vo')
 os.makedirs(f'seg{V}', exist_ok=True); os.makedirs('out', exist_ok=True)
 SK = '/home/user/real-or-hype/.claude/skills/real-or-hype-video'
 FONTS = SK + '/scripts'
@@ -27,7 +27,7 @@ def pcm(f, sr=16000):
 
 # ---- 0. autofit (AX/BX): lengthen shots (from the end of the beat backwards) so each line ends >=0.18 s before its beat does
 import copy
-if V in ('AX', 'BX'):
+if V in ('AX', 'BX', 'CX'):
     BEATS = copy.deepcopy(BEATS)
     _sd = {}
     def srcdur(n):

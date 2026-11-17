@@ -87,3 +87,6 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | China Vlog remake (16:9) | https://www.instagram.com/reel/DfjXsxGHJnG/ | 2026-11-10 |
 | Baixiangju 8D building recreation | https://www.instagram.com/reel/DfkWXqVH3D-/ | 2026-11-10 |
 | China Vlog remake (9:16, new footage) | https://www.instagram.com/reel/DfkY2QznPtZ/ | 2026-11-10 |
+| Honor store A: Robot Phone hook (excited v3) | https://www.instagram.com/reel/Df2DfsBlMDI/ | 2026-11-17 |
+| Honor store B: top-3 countdown (excited v3) | https://www.instagram.com/reel/Df2DopaD68P/ | 2026-11-17 |
+| Honor store C: cat-punch hook (excited v3) | https://www.instagram.com/reel/Df2DuulD_q2/ | 2026-11-17 |
