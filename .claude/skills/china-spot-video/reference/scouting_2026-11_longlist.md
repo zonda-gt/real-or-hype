@@ -174,3 +174,18 @@ Found by two methods: Jilong Castle (A+B), Wuyuan sinkhole library (A+B), Meixin
 | 50 | Bomb-shelter hotpot (Lao Tongxue Waiguan) | 洞子火锅（老同学歪馆火锅） | Chongqing | café/food | Eat numbing-spicy hotpot deep inside a WWII-era air-raid tunnel that stays 18–24 °C all year. | Made famous by the film "Hot Pot Hero"; long queues in Ctrip reviews; a staple of Chongqing 打卡 lists. | https://www.ourchinastory.com/cn/10164 |
 
 Caveats from C: Wang Po matchmaking (Kaifeng) and Tianshui malatang peaked in 2024; Gexian Village NPCs caused a scandal in May 2026; Shuisi Tower hotel 2026 status unconfirmed; viral evidence weaker for Guangfulin, Huaniao Island, Yangchan, Shitan. A: Wuhu Fantawild phase 1 (abandoned) was excluded as not visitable.
+
+## Who runs it: private business vs government (judgement, 17 Nov 2026)
+
+Classified from what each place is, plus a few web searches; ownership searches mostly returned nothing, so treat this as a best guess and check business registration (企查查 / 天眼查) before approaching a place. "Government" includes local state-owned tourism companies (文旅集团 / 城投), which often run scenic areas commercially. "Public place" = no single operator (nature, a road, a village, a street), though private businesses may work inside it (BBQ stalls, flower-crown shops, astronaut-suit rental).
+
+| Method | Private business | Government / state-owned | Public place, no operator | Unsure |
+|---|---|---|---|---|
+| A. Douyin | 23 | 5 | 10 | 12 |
+| B. Doubao | 26 | 19 | 3 | 2 |
+| C. Web research | 10 | 24 | 12 | 4 |
+| **Total** | **59** | **48** | **25** | **18** |
+
+**A. Douyin.** Private: 3, 4, 7, 10, 13, 15, 16, 20, 21, 22, 23, 25, 29, 31, 34, 37, 38, 39, 42, 43, 44, 47, 50. Government: 6, 24, 27, 32, 49. Public: 8, 9, 14, 17 (temple), 18, 33, 36, 40, 46, 48. Unsure: 1, 2, 5, 11, 12, 19 (Dalian Sun Asia, listed company with a state shareholder), 26, 28, 30 (Salt Lake City, possibly China National Salt-linked), 35, 41, 45.
+**B. Doubao.** Private: 2–12, 23, 25, 27 (private university), 28, 30, 32, 33, 35, 37, 39, 40, 41, 43, 45, 49. Government: 13, 14, 15, 16 (Gulong, Xiamen state-owned), 17, 19, 20, 21, 24, 26, 29, 31, 34, 36, 42, 44 (Harbin Pharma), 47, 48, 50. Public: 18, 22, 46. Unsure: 1, 38.
+**C. Web research.** Private: 1 (Lvxing disaster base), 17, 28, 29, 33, 38, 39, 43, 44, 50. Government: 2, 3, 5, 7, 8, 9, 12, 13, 14, 15, 16, 19, 21, 22, 26, 31, 32 (Qujiang, Xi'an state-owned), 35, 36, 37, 41, 45, 48, 49. Public: 4, 10, 11, 18 (temple), 20, 23, 24, 25, 27, 34, 46, 47. Unsure: 6, 30, 40, 42.
