@@ -49,3 +49,15 @@ caption-style descriptions of each shot. Lines are short and punchy and carry op
 - Run: `render.py <wd> A` / `finish.py <wd> A` (segs_A, vo_A/, hook_A/, out_A/); `fitcheck.py <vo_dir> A`.
 - John (stability 0.3, style 0.55, atempo 1.1). Mishearings fixed by rewording: "Soup, or drink?" → "Is it soup... or a drink?",
   "22 yuan" → "about $3" (B), "Pour" retaken.
+
+## v5: creator prefers the FIRST cut + narration (v1); re-voiced with HIS clone, lively
+- The creator preferred v1 (Dev narration, plain informative pacing, original cut) over the "journey"/picture-first
+  versions and the story/listicle scripts. Kept from later rounds: BT.2446A colour and the serif hook (now over h1+h2,
+  `HOOK=('h1',[..],'h2')`).
+- Voice: his clone `KdPzirZUC0HY6WhfwyeE` on **eleven_v3, stability 0.0 (creative), similarity 0.85, speaker boost**, with
+  audio tags `[excited]` / `[curious]` at line starts. Measured vs multilingual_v2 settings: pitch range 10.8 st vs
+  5.3 to 6.9 st (v2 stays calm because the clone was trained on a calm read). v3 is ~33% slower: `gen_vo.py` makes 3 takes per
+  line, Whisper-checks each (match ≥0.85, tags stripped), keeps the shortest pass; then trim + pause squeeze + atempo 1.25.
+  Shots lengthened to fit (s4, s6, s7, s8, s12, s14, s15), and the sip sped up to 1.5x. "Nissin" needed 5 takes (missing/Misson).
+- `segs_O.py`: v1 narration. `segs_N.py`: same cut, new direction "Would you drink a cup of noodles?" + comment CTA.
+- finish.py strips [tags] from subtitle text and writes "Heytea".

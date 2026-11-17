@@ -25,9 +25,10 @@ def align(text,f,off,ss=None,t=None):
         a=s0+(s1-s0)*acc/L; acc+=len(w); res.append((off+a,off+s0+(s1-s0)*acc/L,w))
     return res
 allw=[]
-hs=HOOK[0]; HOOK_END=st[SEGS[[x[0] for x in SEGS].index(hs)+1][0]]
+hs=HOOK[0]; he=HOOK[2] if len(HOOK)>2 else hs; HOOK_END=st[SEGS[[x[0] for x in SEGS].index(he)+1][0]]
 for k,s,e in J['vo']:
-    ws=align(VOTXT.get(k,lines[k]),f'{VOD}/{k}.wav',s)
+    import re; txt=re.sub(r'\s+',' ',re.sub(r'\[[^\]]*\]','',VOTXT.get(k,lines[k]))).strip().replace('Hey Tea','Heytea')   # drop v3 audio tags
+    ws=align(txt,f'{VOD}/{k}.wav',s)
     allw.append([w for w in ws if w[0]>=HOOK_END-0.05])   # hook text already says it; subtitles start after the hook
 for sid,txt in REAL.items(): allw.append(align(txt,f'{OUT}/seg/{sid}.mov',st[sid]))
 allw=[w for w in allw if w]
