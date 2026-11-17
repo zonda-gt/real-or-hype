@@ -37,3 +37,16 @@ Only `214352` has usable speech (his line, 0–3.35 s; cut at 3.5 s into silence
 4. `render.py A|B`: renders the shots, places narration per beat with a fit check (each line must end ≥0.1 s before its beat ends), adds captions and overlays, and mixes in **numpy**.
    The mix: shot ambience 0.35, narration loudnormed to -16, music (ElevenLabs Music, upbeat pop at 118 BPM) at -6 dB and ducked 9 dB under the narration and his line, effects peak-normalised, and `alimiter 0.84`. That gives **-15.4 LUFS** and a -1.4 dB peak.
    An ffmpeg `asplit`/`sidechaincompress` graph had produced a 0.075 s file, which is why the mix is done in numpy.
+
+## Real-voice versions RA / RB (Nov 17)
+He recorded the Honor clone script (`rec/read.wav`: 119 s, 48 kHz/24-bit mono, -34.5 LUFS, SNR ~26 dB) and ad-libbed much of it.
+`cutrec.py` cuts it into narration lines and jump-cuts the inner pauses:
+- every edge must be ≤10 dB over the noise floor (fine envelope at 10 ms); "phone" ran to 44.24, past Whisper's word end
+- then highpass 80, `afftdn nf=-45` (for the video only, never for cloning), atempo 1.1
+- each cut is Whisper-checked
+He skipped the "Number three/two/one" lines, so RB carries the countdown with on-screen badges only.
+`variants.py` `RA` (46.7 s) / `RB` (39.5 s); `render.py RA|RB`. Both measure about -15 LUFS and a -1.4 dB peak, and per-beat loudness stays within ±1.5 LU.
+Captions follow what he actually says ("It's literally, look at me", "I have to try it").
+
+**Clone v3** `Y8yZ6Nt4TKaEQy0ASAFX` ("Real or Hype - creator voice v3 (Honor read)"): IVC trained on this read (highpass 60, long pauses shortened, loudnorm -18, 97 s mp3 192k, `remove_background_noise=false`).
+With stability 0.45, sim 0.9, style 0.3, Whisper passed 5/5 test lines, including "This mall…" and "The mall is hype". v2 still exists; the creator picks between them by ear (`exports/honor-store/clone_*_test.mp3`).
