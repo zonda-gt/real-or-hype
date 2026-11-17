@@ -41,7 +41,7 @@ Goal: a **fact sheet** in the episode README, where every claim has a source URL
 **Every place gets THREE versions by default** (the creator's rule, Nov 2026): three different angles on the same place. Each has its own script and its own cut that **feels like a different video**. The keyword, CTA and caption stay the same on all three, so the trial reels compare the angle and nothing else.
 
 **Different cuts, same clips allowed** (creator's rule): reusing the best clips is fine. What must differ is the feel:
-- **Opening**: a different hook (the first 1.5 seconds) and hook format, e.g. a 2×2 collage, one full-screen hero shot, or a price/title card over a shot. Never the same opening moment.
+- **Opening**: a different hook (the first 1.5 seconds) and hook format, e.g. a 2×2 collage, one full-screen hero shot, or a price/title card over a shot. Never the same opening moment. In plan.py, `COLLAGE` takes 4 panels (2×2), 1 entry (one full-screen hero shot under the title), or `[]` (no hook panel: the first cue starts at 0, so put the hook on a card from word 0).
 - **Order**: a different shot order, following that version's script (walkthrough, comparison or numbered list). No two versions in roughly the same sequence.
 - **Rhythm**: a different pace, e.g. one fast (about 0.8 s a shot), one relaxed (about 1.5 s), one in between. Cut on different words.
 - **Graphics**: each version's own treatment, e.g. handwritten labels, price cards, or numbered #1–#4 stickers.
@@ -112,6 +112,8 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 - Cut rhythm like hers: 1.2–1.9 s per shot, a new shot on every listed noun (EKG, ENT, dental… each gets its own shot).
 - **Looks beat novelty** (creator's rule): pick the most beautiful shot for each line (4K, good light, clean frame, subject well placed) even if another version already uses it. Variants may share B-roll; don't swap in weaker footage just to be different.
 - Frame-exact (total frames = round(T·30)). HLG sources are tone-mapped automatically.
+- Re-voiced a take after cutting? `scripts/remap_cues.py <workdir> <old words.json>` moves every word index in plan.py to the new take. Check the printed moves: a reworded word maps to the next matched word.
+- compare_cuts' order score divides by the shorter sequence of distinct sources, so a fast version with many alternating sources scores "same order" easily. Group consecutive shots from one source (same clip, different moments) to keep its rhythm fast but its order distinct.
 
 ## 6. Graphics (her look): `scripts/graphics.py <workdir>`
 - **Hook**: a 2×2 collage of the four best shots + a title in **DM Serif Display** on **pale-yellow highlight boxes** (like her "SHANGHAI'S / Basement Seafood"), plus a small handwritten tag (Chewy). Visible from frame 1.
@@ -205,3 +207,6 @@ When the creator says "make a video about <place>" (and post it), do all of this
 | John said "capybaras" so Whisper heard "Happy bars" when the sentence started with it | A leading word ("Outside, capybaras…"); vo_take.py re-checks the FINAL vo.wav |
 | Music at -6 dB blurred "Hold out" and "yuan" in the mix | Music at -8 dB (default); Whisper the full mix |
 | Labels stay up until the next cue, not the next shot | Put a label on the cue word whose first shot shows the thing |
+| Asked for "Apollo Cafe, the Harry Potter cafe": no such place; it was APOLI bakery, nicknamed the Harry Potter bakery, and not licensed | Confirm the real name in Chinese first; say "not official" when a place is only nicknamed after a franchise |
+| Gap-squeezing swallowed a short leading word ("Then come the counters" became "come the counters") and "Comment" was heard as "Common" | Reword with a two-word lead ("And then, the counters", "So, comment castle") and re-voice |
+| A card naming one product sat over a different product (mentaiko card over a strawberry cake) | Put a product card only on shots whose shelf label matches |

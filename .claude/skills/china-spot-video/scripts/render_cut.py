@@ -1,4 +1,5 @@
 # Cut picture to the narration. usage: render_cut.py <workdir>
+# plan.py: COLLAGE may hold 4 panels (2x2), 1 full-screen hero shot, or be [] (first cue starts at 0).
 # plan.py: SRC={id:{'cut':frac_of_height_to_drop_at_bottom}}, CUES=[(word_idx,[(src,t_in,max_src_secs,x_centre),...]),...],
 #          COLLAGE=[4 x (src,t_in,max_src_secs,x)] (TL,TR,BL,BR) for the hook until the first cue, TAIL=secs after last word.
 # Each cut lands LEAD s before its cue word. Shots fill their slot in order; a slot longer than the shots slows them
@@ -24,6 +25,7 @@ def shot(out,src,tin,nf,sp,x,wo=1080,ho=1920):
          '-frames:v',str(nf),'-an','-c:v','libx264','-preset','fast','-crf','16','-pix_fmt','yuv420p',out])
 fr=lambda t: int(round(t*FPS))
 T=words[-1][1]+P.TAIL; starts=[words[i][0]-LEAD for i,_ in P.CUES]+[T]; plan=[]
+if not getattr(P,'COLLAGE',None): starts[0]=0.0   # no hook panel: the first cue starts the video
 for ci,(i,shots) in enumerate(P.CUES):
     f0,f1=fr(starts[ci]),fr(starts[ci+1]); L=(f1-f0)/FPS; avail=sum(s[2] for s in shots)
     if avail>=L:
@@ -39,14 +41,17 @@ for ci,(i,shots) in enumerate(P.CUES):
         nf=f1-cur if k==len(alloc)-1 else fr(d); src,tin,mx,x=shots[k]
         flag='  <-- SLOW' if sp[k]<(0.72 if probe(src)[2]>45 else 0.9) else ''
         plan.append((cur,cur+nf,src,tin,sp[k],x)); print(f'{cur/FPS:6.2f}-{(cur+nf)/FPS:6.2f}  w{i:<3d} {src[-6:]} @{tin:6.2f} x{sp[k]:.2f}{flag}'); cur+=nf
-n0=fr(starts[0])
-for k,(src,tin,mx,x) in enumerate(P.COLLAGE): shot(f'seg/c{k}.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x,540,960)
-run(['ffmpeg','-y','-loglevel','error']+sum([['-i',f'seg/c{k}.mp4'] for k in range(4)],[])+['-filter_complex','[0:v][1:v][2:v][3:v]xstack=inputs=4:layout=0_0|540_0|0_960|540_960,format=yuv420p[v]','-map','[v]','-frames:v',str(n0),'-c:v','libx264','-preset','fast','-crf','16','seg/000.mp4'])
-segs=['seg/000.mp4']
+n0=fr(starts[0]); HOOK=list(getattr(P,'COLLAGE',None) or [])
+if len(HOOK)==4:   # 2x2 collage
+    for k,(src,tin,mx,x) in enumerate(HOOK): shot(f'seg/c{k}.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x,540,960)
+    run(['ffmpeg','-y','-loglevel','error']+sum([['-i',f'seg/c{k}.mp4'] for k in range(4)],[])+['-filter_complex','[0:v][1:v][2:v][3:v]xstack=inputs=4:layout=0_0|540_0|0_960|540_960,format=yuv420p[v]','-map','[v]','-frames:v',str(n0),'-c:v','libx264','-preset','fast','-crf','16','seg/000.mp4'])
+elif len(HOOK)==1: # one full-screen hero shot under the title
+    src,tin,mx,x=HOOK[0]; shot('seg/000.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x)
+segs=['seg/000.mp4'] if HOOK and n0>0 else []
 for j,(a,b,src,tin,sp,x) in enumerate(plan): o=f'seg/{j+1:03d}.mp4'; shot(o,src,tin,b-a,sp,x); segs.append(o)
 open('concat.txt','w').write(''.join(f"file '{os.path.abspath(s)}'\n" for s in segs))
 run(['ffmpeg','-y','-loglevel','error','-f','concat','-safe','0','-i','concat.txt','-c','copy','video.mp4'])
 shots=[{'start':round(a/FPS,3),'end':round(b/FPS,3),'src':src,'in':round(tin,3),'out':round(tin+(b-a)/FPS*sp,3)} for a,b,src,tin,sp,x in plan]
-collage=[{'src':src,'in':round(tin,3),'out':round(tin+n0/FPS*min(1.0,mx/(n0/FPS)),3)} for src,tin,mx,x in P.COLLAGE]
+collage=[{'src':src,'in':round(tin,3),'out':round(tin+n0/FPS*min(1.0,mx/(n0/FPS)),3)} for src,tin,mx,x in HOOK] if n0>0 else []
 json.dump({'T':T,'starts':starts,'cue_words':[i for i,_ in P.CUES],'collage_end':starts[0],'shots':shots,'collage':collage},open('timeline.json','w'))
 print('video.mp4',round(T,2),'s, frames',n0+sum(b-a for a,b,*_ in plan),'expected',fr(T))
