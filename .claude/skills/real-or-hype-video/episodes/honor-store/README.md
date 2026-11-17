@@ -57,3 +57,18 @@ v3 reads A about 10% faster than v2, so every line fits.
 B3 is a copy of B with two shots lengthened (b2 → 214202 8.0–10.0, b6 → 213203 3.0–4.4), because v3 reads "Number three…" and "And number one…" slightly slower.
 `render.py A3|B3` gives 34.5 s and 32.2 s at about -15.5 LUFS, and the final-mix Whisper check is clean.
 `exports/honor-store/COMPARE_{A,B}_old-vs-new-clone.mp4` plays the v2 version and then the v3 version, labelled, so he can pick the narrator by ear.
+
+## Excited versions AX / BX (Nov 17): FINAL
+- The creator rejected both his own read and clone v3. **v3 was deleted** from ElevenLabs. The old clone `KdPzirZUC0HY6WhfwyeE` stays the narrator.
+- **Why the clones sounded flat:** the model and settings, not his delivery. A livelier sample (v3) changed nothing under the same settings, because an instant clone copies timbre more than energy.
+- **Measurement:** praat-parselmouth pitch range (5–95th percentile, in semitones), via `f0.py`.
+  - his real excited read: 10–12 st
+  - old clone on multilingual_v2 at 0.45/0.9/0.3: 8.7–9 st
+  - multilingual_v2 with stability 0.2–0.3 and style 0.6–0.85: no better (7–11 st)
+  - **`eleven_v3`, stability 0.5 ("natural"), sim 0.85, with tags** (`[excited]`, `[amazed]`, `[laughs]`, `[amused]`, `[impressed]`): 10.6–16 st
+  - v3 creative (stability 0) went to 21 st and misread "cat" as "cap".
+- `tts_x.py` makes 3 takes per line, trims, squeezes pauses and applies atempo 1.12, then Whisper-matches each take (ratio ≥0.93).
+  It keeps the passing take whose range is closest to about 15 st. Takes over 20 st (usually laugh tags) read as overacted, and a1's take with "robot's camera" was rejected.
+- v3 talks about 20% longer, so `render.py`'s **autofit** (AX/BX) lengthens the beat's shots from the end backwards within each source, or pulls in-points earlier.
+  Watch for repeats: BX's b6 autofit ran into b8's 213203 footage, so BX extends the poster shot instead.
+- Results: AX 39.8 s and BX 41.2 s, both about -15 LUFS with a -1.4 dB peak, and the final-mix Whisper check is clean.

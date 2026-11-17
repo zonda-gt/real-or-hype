@@ -2,7 +2,7 @@
 import sys, os, json, subprocess, numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from variants import VARIANTS
-V = sys.argv[1]; BEATS = VARIANTS[V]; VODIR = 'vo3' if V in ('A3', 'B3') else 'vo'
+V = sys.argv[1]; BEATS = VARIANTS[V]; VODIR = {'A3': 'vo3', 'B3': 'vo3', 'AX': 'vox', 'BX': 'vox'}.get(V, 'vo')
 os.makedirs(f'seg{V}', exist_ok=True); os.makedirs('out', exist_ok=True)
 SK = '/home/user/real-or-hype/.claude/skills/real-or-hype-video'
 FONTS = SK + '/scripts'
@@ -25,6 +25,27 @@ def pcm(f, sr=16000):
     return np.frombuffer(subprocess.run(['ffmpeg', '-v', 'error', '-i', f, '-ac', '1', '-ar', str(sr), '-f', 'f32le', '-'],
                                         capture_output=True).stdout, np.float32)
 
+# ---- 0. autofit (AX/BX): lengthen shots (from the end of the beat backwards) so each line ends >=0.18 s before its beat does
+import copy
+if V in ('AX', 'BX'):
+    BEATS = copy.deepcopy(BEATS)
+    _sd = {}
+    def srcdur(n):
+        if n not in _sd: _sd[n] = float(subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', f'src/{n}.mp4'], capture_output=True, text=True).stdout)
+        return _sd[n]
+    for bi, (vo, shots, ex) in enumerate(BEATS):
+        if not vo or vo == 'TALK': continue
+        need = len(pcm(f'{VODIR}/{vo}.wav')) / 16000 + 0.18 - sum((b - a) / sp for _, a, b, sp in shots)
+        for si in range(len(shots) - 1, -1, -1):
+            if need <= 0: break
+            n, a, b, sp = shots[si]; room = srcdur(n) - 0.15 - b
+            add = max(0, min(room, need * sp)); shots[si] = (n, a, b + add, sp); need -= add / sp
+            if add: print(f'autofit {vo}: shot {si} {n} out {b:.2f}->{b + add:.2f}')
+        for si in range(len(shots)):   # then pull in-points earlier
+            if need <= 0.001: break
+            n, a, b, sp = shots[si]; add = max(0, min(a, need * sp)); shots[si] = (n, a - add, b, sp); need -= add / sp
+            if add: print(f'autofit {vo}: shot {si} {n} in {a:.2f}->{a - add:.2f}')
+        if need > 0.001: raise SystemExit(f'autofit: {vo} still {need:.2f}s short')
 # ---- 1. shots
 segs, t, beat_t = [], 0.0, []
 for bi, (vo, shots, ex) in enumerate(BEATS):
