@@ -38,7 +38,14 @@ Goal: a **fact sheet** in the episode README, where every claim has a source URL
 - Record the source aweme ids in the episode README (internal only; captions never mention sources).
 
 ## 3. Shot inventory, then the script
-**Every place gets THREE versions by default** (the creator's rule, Nov 2026): three different angles on the same place. Each has its own script and its own edit (shot order and, where the footage allows, different clips). The keyword, CTA and caption stay the same on all three, so the trial reels compare the angle and nothing else.
+**Every place gets THREE versions by default** (the creator's rule, Nov 2026): three different angles on the same place. Each has its own script and its own cut that **feels like a different video**. The keyword, CTA and caption stay the same on all three, so the trial reels compare the angle and nothing else.
+
+**Different cuts, same clips allowed** (creator's rule): reusing the best clips is fine. What must differ is the feel:
+- **Opening**: a different hook (the first 1.5 seconds) and hook format, e.g. a 2×2 collage, one full-screen hero shot, or a price/title card over a shot. Never the same opening moment.
+- **Order**: a different shot order, following that version's script (walkthrough, comparison or numbered list). No two versions in roughly the same sequence.
+- **Rhythm**: a different pace, e.g. one fast (about 0.8 s a shot), one relaxed (about 1.5 s), one in between. Cut on different words.
+- **Graphics**: each version's own treatment, e.g. handwritten labels, price cards, or numbered #1–#4 stickers.
+- **Reused clips**: if one appears in two versions, use a different moment or crop of it where possible.
 
 **You choose the three angles** from the research and the footage. There's no fixed template, because a hotel, a bakery, a shop and a cave each have different stories. Find the three strongest *different* reasons someone would stop scrolling for this place. A good angle:
 - has a hook you can say in one line and **show on frame 1**
@@ -117,6 +124,7 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "strong" for a light, happy travel video) loudnormed, -8 dB (at -6 Whisper misheard words in the mix), sidechain-ducked under the voice; a whoosh out of the collage; soft pops on labels and cards. Master: **-15 LUFS, true peak ≤ -1 dBTP** (limiter 0.84). Writes `<name>_1080.mp4` + `<name>_540.mp4`.
 
 ## 8. QA (before sending)
+- **Do the three feel different?** Run `python3 scripts/compare_cuts.py <workdirA> <workdirB> <workdirC>` after `render_cut.py`. It flags pairs with the same opening, a similar shot order or the same rhythm. Shared clips are listed for information only. Re-cut any flagged pair, then look at the three contact sheets side by side.
 1. `scripts/sheet.py <name>_1080.mp4 0.5`: every cue shows its noun; no burned subtitles, watermarks or UI; labels sit on the right shot; nothing crops the subject's head off.
 2. Whisper the final mix (real-or-hype-video `scripts/wtx.py`): every line is intelligible over the music.
 3. Loudness printed by finish.py: -15 LUFS ±0.5, TP ≤ -1.
