@@ -7,9 +7,13 @@ description: Post videos to Instagram as TRIAL reels (shown to non-followers fir
 
 This skill only posts **trial reels**: they go to non-followers first. Never post a normal reel, feed post or story with it.
 
+**Captions never mention AI-generated clips or where footage came from** (Douyin, Xiaohongshu, other creators): the user's standing rule (Nov 2026). Don't add AI labels, "credit:" lines or source tags to captions, and don't suggest them.
+
 **Graduation is always `MANUAL` (the user's standing rule).** The reel is shown to non-followers only, and the user shares it to their followers themselves from the Instagram app. Never use `SS_PERFORMANCE` (Instagram auto-sharing it to followers), and don't ask the user which to use: the script has no option for it.
 
 Script: `scripts/post_trial_reel.py` in this skill's folder (Python 3 + `requests` + `git`; `ffprobe` optional for the video checks).
+
+**A caption or video with a "Comment KEYWORD" call to action needs its auto-reply live first.** Check that `src/lib/inbox/code-rules.ts` in the ChinaPal repo (`zonda-gt/ChinaPal`) has that keyword, and that its guide link answers 200 on www.chinapal.co. If either is missing, set it up first, following the china-spot-video skill ("The DM side of the CTA"). Never send the user to the /comment page for it.
 
 ## How posting works (and why)
 
@@ -87,3 +91,9 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | China Vlog remake (16:9) | https://www.instagram.com/reel/DfjXsxGHJnG/ | 2026-11-10 |
 | Baixiangju 8D building recreation | https://www.instagram.com/reel/DfkWXqVH3D-/ | 2026-11-10 |
 | China Vlog remake (9:16, new footage) | https://www.instagram.com/reel/DfkY2QznPtZ/ | 2026-11-10 |
+| Giraffe Manor E2me (full tour) | https://www.instagram.com/reel/DfwVcgvFL6b/ | 2026-11-15 |
+| Giraffe Manor F (Kenya vs China) | https://www.instagram.com/reel/DfwVlUTDETB/ | 2026-11-15 |
+| Giraffe Manor G (4 things nobody tells you) | https://www.instagram.com/reel/DfwVrTRjjJK/ | 2026-11-15 |
+
+Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
+Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.

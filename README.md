@@ -28,3 +28,9 @@ Footage is best shared as a Google Drive folder set to "anyone with the link".
 ## Aliyun Drive (阿里云盘) footage
 
 `.claude/skills/aliyunpan-login/` logs in to Aliyun Drive with a QR code and downloads original files of any size. The environment's network must allow `alipan.com`, `aliyundrive.com`, `aliyundrive.net` and `api.tickstep.com`.
+
+## China spot videos (second series)
+
+`.claude/skills/china-spot-video/` makes narrated B-roll reels about one place in China (no reaction or verdict; the creator may not have been there). Clips-first workflow modelled on @wynnejael: place research with sources, Douyin footage via TikHub, script written to the shots, one continuous AI narration take (voice shortlist: John, Andy Lin, Chris), picture cut on the spoken nouns, collage + serif-title hook, handwritten labels, comment-keyword CTA. Start with: `Make a China spot video about <place>`.
+
+Keys (environment, never in the repo): `TIKHUB_API_KEY` (Douyin/Instagram), `ELEVENLABS_API_KEY` (voices, music, SFX), `ARK_API_KEY` (Seedance, optional).
