@@ -61,3 +61,7 @@ caption-style descriptions of each shot. Lines are short and punchy and carry op
   Shots lengthened to fit (s4, s6, s7, s8, s12, s14, s15), and the sip sped up to 1.5x. "Nissin" needed 5 takes (missing/Misson).
 - `segs_O.py`: v1 narration. `segs_N.py`: same cut, new direction "Would you drink a cup of noodles?" + comment CTA.
 - finish.py strips [tags] from subtitle text and writes "Heytea".
+- **Variants must be different VIDEOS, not just different narration** (creator): N was re-cut (`segs_N.py`) with a new
+  opener (overhead noodles), a different shop sequence (neon → queue → screen), chef hat in ordering, hero cup → lid →
+  noodles-in-lid reveal, different icy/stir windows, verdict before his coconut line, and a different ending shot (lifting
+  the cup to his face). The same-cut version is kept as `segs_N_samecut.py`. 39.4 s.
