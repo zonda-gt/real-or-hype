@@ -14,6 +14,7 @@ TM=f'scale=in_color_matrix=bt2020:in_range=tv:out_range=pc,format=gbrpf32le,lut3
 FULL='scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1'
 ENC=['-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','pcm_s16le','-ar','48000','-ac','2']
 AF='aresample=48000,aformat=channel_layouts=stereo'
+AMB=float(os.environ.get('AMBVOL','0.35'))   # room sound under narration (0.06 = mostly gone; creator: too much background noise)
 def run(c):
     r=subprocess.run(c,capture_output=True,text=True)
     if r.returncode: print(r.stderr[-1500:]); sys.exit(1)
@@ -24,7 +25,7 @@ for seg in SEGS:
     o=f'{OUT}/seg/{sid}.mov'; d=ln/sp
     zc=f',scale=iw*{z[0]}:ih*{z[0]},crop=1080:1920:(iw-1080)*{z[1]}:(ih-1920)*{z[2]}' if z else ''
     if au=='real': af=f'{AF},atempo={sp},highpass=f=80,loudnorm=I=-16:TP=-1.5:LRA=11,{AF},afade=t=in:d=0.03,afade=t=out:st={d-0.05:.3f}:d=0.05'
-    else: af=f'{AF},atempo={sp},highpass=f=100,volume=0.35' if sp<=2 else f'{AF},atempo=2.0,atempo={sp/2},highpass=f=100,volume=0.35'
+    else: af=f'{AF},atempo={sp},highpass=f=100,volume={AMB}' if sp<=2 else f'{AF},atempo=2.0,atempo={sp/2},highpass=f=100,volume={AMB}'
     fc=f'[0:v]setpts=(PTS-STARTPTS)/{sp},{TM},{FULL}{zc}[v];[0:a]{af},apad[a]'
     run(['ffmpeg','-loglevel','error','-y','-ss',f'{a:.3f}','-t',f'{ln+0.1:.3f}','-i',f'raw/20261115_{clip}.mp4','-filter_complex',fc,'-map','[v]','-map','[a]','-t',f'{d:.3f}']+ENC+[o])
     st[sid]=t; md=dur(o); t+=md; parts.append(o); print(f'{sid:4s} {st[sid]:6.2f} +{md:.2f}')

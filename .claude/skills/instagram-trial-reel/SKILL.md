@@ -87,3 +87,5 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | China Vlog remake (16:9) | https://www.instagram.com/reel/DfjXsxGHJnG/ | 2026-11-10 |
 | Baixiangju 8D building recreation | https://www.instagram.com/reel/DfkWXqVH3D-/ | 2026-11-10 |
 | China Vlog remake (9:16, new footage) | https://www.instagram.com/reel/DfkY2QznPtZ/ | 2026-11-10 |
+| Heytea × Cup Noodle O (first cut, clone voice) | https://www.instagram.com/reel/Df2UumZmWqb/ | 2026-11-17 |
+| Heytea × Cup Noodle N (re-cut, "would you drink") | https://www.instagram.com/reel/Df2U1MOgDC-/ | 2026-11-17 |

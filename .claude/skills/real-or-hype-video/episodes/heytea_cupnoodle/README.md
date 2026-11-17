@@ -65,3 +65,13 @@ caption-style descriptions of each shot. Lines are short and punchy and carry op
   opener (overhead noodles), a different shop sequence (neon → queue → screen), chef hat in ordering, hero cup → lid →
   noodles-in-lid reveal, different icy/stir windows, verdict before his coconut line, and a different ending shot (lifting
   the cup to his face). The same-cut version is kept as `segs_N_samecut.py`. 39.4 s.
+
+## v6: music + quieter background, posted as trial reels (2026-11-17)
+- Room sound under narration lowered to 6% (`AMBVOL=0.06 render.py`); the creator found the background noise too loud.
+  His real lines keep full level.
+- Music: ElevenLabs Music, 3 candidates, ranked by earshot for "upbeat playful cute background music for a fun food
+  review": funky whistle pop 118 BPM (`music/funky_whistle_pop_el.mp3`) strong z+4.2 > ukulele/pizzicato z+3.6 > lo-fi
+  (no match). `MUSIC=<file> MUSICDB=-10 finish.py <wd> O`: loudnorm -16, -10 dB, -5 dB more under the hook, sidechain-ducked
+  under all voice, 1.6 s fade-out. Gaps ~-28 dB RMS vs narration ~-17. At -10 without the hook dip, "cup" was heard as
+  "cut" in the first line; the dip fixed it (medium.en).
+- Posted (trial, MANUAL): O https://www.instagram.com/reel/Df2UumZmWqb/ · N https://www.instagram.com/reel/Df2U1MOgDC-/

@@ -72,8 +72,18 @@ for j,(png,sid,off,dd) in enumerate(OVL):
     t0=st[sid]+off; t1=t0+dd
     fc+=(f"[{5+j}:v]format=rgba,fade=t=in:st={t0:.2f}:d=0.3:alpha=1,fade=t=out:st={t1-0.3:.2f}:d=0.3:alpha=1[o{j}];"
          f"[{last}][o{j}]overlay=x=0:y='if(lt(t,{t0}),18,if(lt(t,{t0+0.35}),18*(1-(t-{t0})/0.35),0))':enable='between(t,{t0},{t1})'[w{j}];"); last=f'w{j}'
-fc+=(f"[{last}]subtitles={OUT}/subs.ass:fontsdir={SK}scripts[v];"
-     f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.84:level=false[a]")
+fc+=(f"[{last}]subtitles={OUT}/subs.ass:fontsdir={SK}scripts[v];")
+MUSIC=os.environ.get('MUSIC'); MDB=float(os.environ.get('MUSICDB','-13'))
+if MUSIC:   # background music: loudnormed, set MDB below, sidechain-ducked under every voice, faded in/out
+    inp+=['-stream_loop','-1','-i',MUSIC]; mi=n; n+=1
+    vmix=[x for x in mix if x.startswith('[v') or x=='[0:a]']; fxm=[x for x in mix if x not in vmix]
+    fc+=(f"{''.join(vmix)}amix=inputs={len(vmix)}:normalize=0:duration=first,asplit=2[vbus][vkey];"
+         f"[{mi}:a]atrim=0:{total:.3f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-16:TP=-2:LRA=11,aresample=48000,"
+         f"volume={MDB}dB,volume='if(lt(t,{HOOK_END:.2f}),0.56,1)':eval=frame,afade=t=in:d=0.4,afade=t=out:st={total-1.6:.2f}:d=1.6[mus];"
+         f"[mus][vkey]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=350:makeup=1[mduck];"
+         f"[vbus][mduck]{''.join(fxm)}amix=inputs={2+len(fxm)}:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.84:level=false[a]")
+else:
+    fc+=f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.84:level=false[a]"
 subprocess.run(['ffmpeg','-loglevel','error','-y']+inp+['-filter_complex',fc,'-map','[v]','-map','[a]','-t',f'{total:.3f}',
   '-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709',
   '-c:a','aac','-b:a','192k','-movflags','+faststart',OUT+'/final.mp4'],check=True)
