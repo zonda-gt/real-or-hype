@@ -57,3 +57,8 @@ APOLI ITABAKERY, 长宁区兴国路380号 (武康大楼斜对面)
 - **Payment:** Alipay / WeChat.
 - **Order:** pistachio tart, Roman matcha cream bun, chicken & truffle bread (warm the savoury ones).
 - Then photos at Wukang Mansion.
+
+## Final cut (17 Nov 2026)
+- Ending changed to "Comment the word castle, and we'll send you the full guide." (creator's wording), and captions are now 120 px. The re-recorded takes shifted word indexes, so the plans were remapped by aligning the old and new transcripts.
+- Lengths: A 35.5 s, B 31.0 s, C 28.7 s. compare_cuts.py passes (B 1.07 s/shot, A 1.48, C 1.79).
+- DM: keyword `castle` in ChinaPal `code-rules.ts`, linking https://www.chinapal.co/itinerary/p/hogwarts-bakery-shanghai. The page spec was built with itinerary-builder `--code`. Its photos are Xiaohongshu posts plus frames from E (hall 27.5), A1 (door 3.6), D (pistachio donuts 30.2), W1 and W3. Its videos are Douyin 7662654833274632698 (APOLI walk-in) and 7556970872243129659 (Columbia Circle pool).

@@ -118,7 +118,7 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 - **Hook**: a 2×2 collage of the four best shots + a title in **DM Serif Display** on **pale-yellow highlight boxes** (like her "SHANGHAI'S / Basement Seafood"), plus a small handwritten tag (Chewy). Visible from frame 1.
 - **Labels** on things in handwriting ("capybara", "6:30 AM"), like her "crispy pork belly".
 - **Cards** (serif, big line on yellow) for numbers: price, comparison, a record ("1.85 m at birth").
-- **Captions** (in finish.py): **one word at a time**, Poppins SemiBold 54, uppercase, centred (the creator wanted captions centred and not heavy), hidden under the title, cards and CTA.
+- **Captions** (in finish.py): **one word at a time**, Poppins SemiBold **120** (`CAPTION_SIZE` in plan.py; the creator asked for bigger in Nov 2026: 54 was too small and 80 barely showed), uppercase, centred, not heavy, hidden under the title, cards and CTA.
 - No emoji in fonts. DM Serif has no "≈", so write "about $140".
 
 ## 7. Mix + master: `scripts/finish.py <workdir> <name>`
@@ -137,14 +137,19 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
   - **One word** that names the place's hook, in capitals in the video (GIRAFFE, PANDA, CAVE, PEARL). Easy to spell on a phone; no spaces, numbers or emoji.
   - **Not already used:** check `CODE_RULES` in ChinaPal's `src/lib/inbox/code-rules.ts`. Avoid words people type anyway (CHINA, WOW, LOVE, HOTEL), which already trigger other replies or fire by accident.
   - **If a word is taken**, use the place's second hook (REDPANDA → PANDAHOTEL, for example) and keep the same word in the voice-over, the end sticker and the caption.
-- In the video, the last ~3 s: **comment-keyword offer**, specific to this place: "Comment **GIRAFFE** and I'll send you how to get there from Shanghai." plus a handwritten sticker (`CTA` in plan.py). Comments are the strongest ranking signal, and DMs build a list.
+- In the video, the last ~3 s: **comment-keyword offer**, specific to this place: "Comment **the word castle**, and we'll send you the full guide." Say "the word" (the voice blurred "Comment castle" into "Comet castle"), and say "we", since the team replies. plus a handwritten sticker (`CTA` in plan.py). Comments are the strongest ranking signal, and DMs build a list.
 - Caption: hook + CTA keyword + 3–5 hashtags. **Never mention AI-generated clips or footage sources (Douyin etc.)** in captions (creator's standing rule).
 - Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). It is sent automatically: see "The DM side of the CTA" below.
 - A/B as trial reels with the same music: comment-keyword CTA vs "Follow for more".
 
 ### The DM side of the CTA (ChinaPal repo, `zonda-gt/ChinaPal`): automatic, never by hand
 The creator does NOT use the /comment page. Every reel with a "Comment KEYWORD" CTA gets its reply in code, and it goes **live before the reel is posted**:
-1. **Guide page** `/discover/<city>/<slug>`: a JSON file in `src/data/discover/<city>/` (copy `huzhou/giraffe-manor.json`; register the city in `CITY_NAMES` in `src/lib/discover/data.ts`). Photos go in `public/uploads/discover/<city>/<slug>/`, never `/media/`, because that path never reaches the site. Build it from the episode fact sheet and hedge single-source facts.
+1. **Guide page:** an itinerary-style place page at `/itinerary/p/<slug>`, built with ChinaPal's `itinerary-builder` skill. It has a cover, "Good to know" facts, a sample day or trip around the place with photos and Douyin videos, nearby picks, and "Want a plan like this?".
+   - Publish it with `build_page.py <spec> --code` (step 6b of that skill), which needs no database access.
+   - Examples: `giraffe-hotel-v2` and `hogwarts-bakery-shanghai` (spec in `episodes/apoli-bakery/README.md`).
+   - The older format, a `/discover/<city>/<slug>` JSON (`src/data/discover/`), is fine for a single venue; if the place already has one, link the new page to it.
+   - Photos go in `public/uploads/...`, never `/media/`, because that path never reaches the site.
+   - Build it from the episode fact sheet and hedge single-source facts.
 2. **The reply**: add an entry to `src/lib/inbox/code-rules.ts` with a NEW random UUID (`python3 -c "import uuid;print(uuid.uuid4())"`).
    - Fields:
      - **keyword:** lower-case, matching the video's CTA
@@ -155,6 +160,7 @@ The creator does NOT use the /comment page. Every reel with a "Comment KEYWORD" 
      - **follow-up**
      - `explore: true`
    - `media_id: null` (every post) is fine when the keyword is unique; otherwise use the reel's media id.
+   - For Shanghai places the team now uses `trip: true` (the trip questions after the guide) instead of `explore: true`. CASTLE is an example.
 3. **Explore cards**: add the place to a vibe in `src/lib/inbox/explore-data.ts` with `guide:` set, and a 1200×628 photo in `public/uploads/explore/` with no captions or watermarks.
 4. Run `npm run test:inbox`, `npx tsc --noEmit` and `npx next build`.
 5. Open a PR, wait for the Vercel check, then merge. The creator asked for this to be automatic, so merging is pre-approved for this flow.

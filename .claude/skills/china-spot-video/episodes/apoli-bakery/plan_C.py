@@ -1,5 +1,5 @@
 # Version C "4 things before you go": insider list. Night hero hook, relaxed pace, numbered stickers.
-import sys; sys.path.insert(0,'/home/user/real-or-hype/work/apollo')  # copy common.py from this folder into the work dir; from common import *
+import sys; sys.path.insert(0,'/home/user/real-or-hype/work/apollo'); from common import *
 HERO=(M,54.6,3.2,0.5)
 COLLAGE=[]
 CUES=[
@@ -23,3 +23,4 @@ TITLE=["4 THINGS","before you go"]; TAG="Shanghai's Hogwarts bakery"
 LABELS=[("#1 not official",10),("#2 no bookings",27),("#3 self-service",42),("#4 Wukang Mansion",58)]
 CARDS=[("most pastries","under $3","about ¥20",76,82)]
 CTA=('Comment "CASTLE"',82)
+CAPTION_FIX={'1.':'One,','2.':'Two,','3.':'Three,','4.':'Four,'}
