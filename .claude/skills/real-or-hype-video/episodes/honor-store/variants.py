@@ -70,3 +70,9 @@ RB = [
     ('r_ask', ASK, {}),
 ]
 VARIANTS.update({'RA': RA, 'RB': RB})
+VARIANTS.update({'A3': A, 'B3': B})
+import copy as _cp
+B3 = _cp.deepcopy(B)
+B3[1] = ('b2', [(C('214202'), 8.0, 10.0, 1.0)], B3[1][2])
+B3[5] = ('b6', [(C('214720'), 0.0, 1.0, 1.0), (C('213203'), 3.0, 4.4, 1.0)], B3[5][2])
+VARIANTS['B3'] = B3

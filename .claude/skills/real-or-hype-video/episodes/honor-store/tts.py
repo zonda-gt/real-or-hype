@@ -1,7 +1,7 @@
 # generate each line with the creator's clone, trim, atempo, whisper-check; up to 3 takes
 import json,subprocess,os,sys,re,time,urllib.request,numpy as np
 from faster_whisper import WhisperModel
-KEY=os.environ['ELEVENLABS_API_KEY']; VID='KdPzirZUC0HY6WhfwyeE'
+KEY=os.environ['ELEVENLABS_API_KEY']; VID=os.environ.get('VID','KdPzirZUC0HY6WhfwyeE'); OD=os.environ.get('VODIR','vo'); os.makedirs(OD,exist_ok=True)
 VS={"stability":0.45,"similarity_boost":0.9,"style":0.3,"use_speaker_boost":True}
 L=json.load(open('lines.json')); only=sys.argv[1:] or list(L)
 m=WhisperModel("small",compute_type="int8")
@@ -17,8 +17,8 @@ def tts(text,out):
 for k in only:
     text=L[k]; best=None
     for take in range(3):
-        raw=f'vo/{k}_raw{take}.mp3'; tts(text,raw)
-        out=f'vo/{k}_t{take}.wav'
+        raw=f'{OD}/{k}_raw{take}.mp3'; tts(text,raw)
+        out=f'{OD}/{k}_t{take}.wav'
         subprocess.run(['ffmpeg','-v','error','-y','-i',raw,'-af','silenceremove=start_periods=1:start_threshold=-55dB:start_silence=0.03,areverse,silenceremove=start_periods=1:start_threshold=-55dB:start_silence=0.08,areverse,atempo=1.2,aresample=48000','-ac','1',out],check=True)
         a=np.frombuffer(subprocess.run(['ffmpeg','-v','error','-i',out,'-ac','1','-ar','16000','-f','f32le','-'],capture_output=True).stdout,np.float32)
         hyp=' '.join(s.text for s in m.transcribe(a,language='en')[0])
@@ -26,4 +26,4 @@ for k in only:
         d=len(a)/16000; print(k,take,f'{d:.2f}s','OK' if ok else 'MISMATCH',hyp,flush=True)
         if ok: best=out; break
         if best is None: best=out
-    os.replace(best,f'vo/{k}.wav')
+    os.replace(best,f'{OD}/{k}.wav')

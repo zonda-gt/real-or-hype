@@ -50,3 +50,10 @@ Captions follow what he actually says ("It's literally, look at me", "I have to 
 
 **Clone v3** `Y8yZ6Nt4TKaEQy0ASAFX` ("Real or Hype - creator voice v3 (Honor read)"): IVC trained on this read (highpass 60, long pauses shortened, loudnorm -18, 97 s mp3 192k, `remove_background_noise=false`).
 With stability 0.45, sim 0.9, style 0.3, Whisper passed 5/5 test lines, including "This mall…" and "The mall is hype". v2 still exists; the creator picks between them by ear (`exports/honor-store/clone_*_test.mp3`).
+
+## New-clone versions A3 / B3 (Nov 17)
+He chose generated narration over his own read. `VID=Y8yZ6Nt4TKaEQy0ASAFX VODIR=vo3 python3 tts.py <keys>` regenerates the A/B lines with clone v3 (same settings as v2).
+v3 reads A about 10% faster than v2, so every line fits.
+B3 is a copy of B with two shots lengthened (b2 → 214202 8.0–10.0, b6 → 213203 3.0–4.4), because v3 reads "Number three…" and "And number one…" slightly slower.
+`render.py A3|B3` gives 34.5 s and 32.2 s at about -15.5 LUFS, and the final-mix Whisper check is clean.
+`exports/honor-store/COMPARE_{A,B}_old-vs-new-clone.mp4` plays the v2 version and then the v3 version, labelled, so he can pick the narrator by ear.

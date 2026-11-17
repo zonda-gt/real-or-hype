@@ -2,7 +2,7 @@
 import sys, os, json, subprocess, numpy as np
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 from variants import VARIANTS
-V = sys.argv[1]; BEATS = VARIANTS[V]
+V = sys.argv[1]; BEATS = VARIANTS[V]; VODIR = 'vo3' if V in ('A3', 'B3') else 'vo'
 os.makedirs(f'seg{V}', exist_ok=True); os.makedirs('out', exist_ok=True)
 SK = '/home/user/real-or-hype/.claude/skills/real-or-hype-video'
 FONTS = SK + '/scripts'
@@ -56,7 +56,7 @@ for bi, (vo, shots, ex) in enumerate(BEATS):
         n, a, bb, sp = shots[0]
         ww = [(b0 + (x - a) / sp, b0 + (y - a) / sp, w) for x, y, w in WJ[n] if x >= a and y <= bb + 0.05]
     elif vo:
-        f = f'vo/{vo}.wav'; d = len(pcm(f)) / 16000; st = b0 + 0.06
+        f = f'{VODIR}/{vo}.wav'; d = len(pcm(f)) / 16000; st = b0 + 0.06
         if st + d > b1 - 0.1: bad.append(f'{vo}: ends {st + d:.2f} > beat end {b1:.2f}-0.1')
         vo_ev.append((f, st))
         segw = [w for s in wm.transcribe(pcm(f), language='en', word_timestamps=True)[0] for w in s.words]
