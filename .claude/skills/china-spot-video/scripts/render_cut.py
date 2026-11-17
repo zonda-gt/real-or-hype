@@ -1,6 +1,7 @@
 # Cut picture to the narration. usage: render_cut.py <workdir>
 # plan.py: SRC={id:{'cut':frac_of_height_to_drop_at_bottom}}, CUES=[(word_idx,[(src,t_in,max_src_secs,x_centre),...]),...],
 #          COLLAGE=[4 x (src,t_in,max_src_secs,x)] (TL,TR,BL,BR) for the hook until the first cue, TAIL=secs after last word.
+#          or HERO=(src,t_in,max_src_secs,x): one full-screen shot for the hook instead of the collage.
 # Each cut lands LEAD s before its cue word. Shots fill their slot in order; a slot longer than the shots slows them
 # (flagged if below 0.72x for 50/60 fps sources or 0.9x for 24-30 fps). Frame-exact: total frames == round(T*30).
 import json,subprocess,os,sys
@@ -40,13 +41,17 @@ for ci,(i,shots) in enumerate(P.CUES):
         flag='  <-- SLOW' if sp[k]<(0.72 if probe(src)[2]>45 else 0.9) else ''
         plan.append((cur,cur+nf,src,tin,sp[k],x)); print(f'{cur/FPS:6.2f}-{(cur+nf)/FPS:6.2f}  w{i:<3d} {src[-6:]} @{tin:6.2f} x{sp[k]:.2f}{flag}'); cur+=nf
 n0=fr(starts[0])
-for k,(src,tin,mx,x) in enumerate(P.COLLAGE): shot(f'seg/c{k}.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x,540,960)
-run(['ffmpeg','-y','-loglevel','error']+sum([['-i',f'seg/c{k}.mp4'] for k in range(4)],[])+['-filter_complex','[0:v][1:v][2:v][3:v]xstack=inputs=4:layout=0_0|540_0|0_960|540_960,format=yuv420p[v]','-map','[v]','-frames:v',str(n0),'-c:v','libx264','-preset','fast','-crf','16','seg/000.mp4'])
+HERO=getattr(P,'HERO',None); OPEN=[HERO] if HERO else P.COLLAGE
+if HERO:
+    src,tin,mx,x=HERO; shot('seg/000.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x)
+else:
+    for k,(src,tin,mx,x) in enumerate(P.COLLAGE): shot(f'seg/c{k}.mp4',src,tin,n0,min(1.0,mx/(n0/FPS)),x,540,960)
+    run(['ffmpeg','-y','-loglevel','error']+sum([['-i',f'seg/c{k}.mp4'] for k in range(4)],[])+['-filter_complex','[0:v][1:v][2:v][3:v]xstack=inputs=4:layout=0_0|540_0|0_960|540_960,format=yuv420p[v]','-map','[v]','-frames:v',str(n0),'-c:v','libx264','-preset','fast','-crf','16','seg/000.mp4'])
 segs=['seg/000.mp4']
 for j,(a,b,src,tin,sp,x) in enumerate(plan): o=f'seg/{j+1:03d}.mp4'; shot(o,src,tin,b-a,sp,x); segs.append(o)
 open('concat.txt','w').write(''.join(f"file '{os.path.abspath(s)}'\n" for s in segs))
 run(['ffmpeg','-y','-loglevel','error','-f','concat','-safe','0','-i','concat.txt','-c','copy','video.mp4'])
 shots=[{'start':round(a/FPS,3),'end':round(b/FPS,3),'src':src,'in':round(tin,3),'out':round(tin+(b-a)/FPS*sp,3)} for a,b,src,tin,sp,x in plan]
-collage=[{'src':src,'in':round(tin,3),'out':round(tin+n0/FPS*min(1.0,mx/(n0/FPS)),3)} for src,tin,mx,x in P.COLLAGE]
+collage=[{'src':src,'in':round(tin,3),'out':round(tin+n0/FPS*min(1.0,mx/(n0/FPS)),3)} for src,tin,mx,x in OPEN]
 json.dump({'T':T,'starts':starts,'cue_words':[i for i,_ in P.CUES],'collage_end':starts[0],'shots':shots,'collage':collage},open('timeline.json','w'))
 print('video.mp4',round(T,2),'s, frames',n0+sum(b-a for a,b,*_ in plan),'expected',fr(T))

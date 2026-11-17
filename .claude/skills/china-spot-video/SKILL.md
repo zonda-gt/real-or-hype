@@ -101,6 +101,7 @@ plan.py (see `episodes/giraffe-manor/plan_E2.py`):
 ```python
 SRC={'<aweme_id>':{'cut':0.14}, ...}                 # bottom fraction to crop off (burned subtitles)
 COLLAGE=[(src,t_in,max_src_secs,x)]*4               # TL,TR,BL,BR hook panels, until the first cue
+HERO=(src,t_in,max_src_secs,x)                      # OR one full-screen hook shot instead of the collage (set COLLAGE=[])
 CUES=[(word_idx,[(src,t_in,max_src_secs,x),...]),]  # shot(s) starting LEAD=0.10 s before that word
 TAIL=1.3                                            # seconds after the last word
 TITLE=["CHINA'S","Giraffe Hotel"]; TAG="breakfast included"
@@ -205,3 +206,8 @@ When the creator says "make a video about <place>" (and post it), do all of this
 | John said "capybaras" so Whisper heard "Happy bars" when the sentence started with it | A leading word ("Outside, capybaras…"); vo_take.py re-checks the FINAL vo.wav |
 | Music at -6 dB blurred "Hold out" and "yuan" in the mix | Music at -8 dB (default); Whisper the full mix |
 | Labels stay up until the next cue, not the next shot | Put a label on the cue word whose first shot shows the thing |
+| The creator said "Apollo Cafe, the Harry Potter café"; it was APOLI ITABAKERY, a castle-style Italian bakery, not licensed Harry Potter | Pin down the real place (Chinese name, Douyin location tags) before downloading; say "the bakery people call Shanghai's Hogwarts", never official or themed |
+| "Comment castle" was heard as "Comet Castle" / "Common Castle" | "Comment the word castle" |
+| "yuan" heard as "wen" again | Say the dollar figure in the voice; show ¥ on the price card |
+| Whisper writes made-up names as separate words ("a Polly") | Merge them in words.json before writing plan.py (indexes shift); don't use CAPTION_FIX for common words like "a" |
+| compare_cuts flagged "same order" because one long walk-through source covers many scenes | It now compares source + 4 s windows; a scene change inside one file counts as a new moment |

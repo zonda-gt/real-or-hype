@@ -2,7 +2,7 @@
 # Sharing clips is fine (creator's rule); what must differ is the feel: the opening, the order, the rhythm.
 # Reads each workdir's timeline.json (written by render_cut.py) and prints, for every pair:
 #   opening: whether the first 1.5 s (the hook) use the same source moments; the hook must look different
-#   order:   how similar the order of sources is (0 = unrelated, 1 = same order); must be <= 0.5
+#   order:   how similar the order of on-screen moments is (source + 4 s window; 0 = unrelated, 1 = same order); must be <= 0.5
 #   rhythm:  average shot length of each; two versions within 15% of each other cut at the same pace
 #   shared:  seconds of the same source moments used in both (information only, never a failure)
 import json,sys,os,itertools
@@ -28,7 +28,8 @@ def lcs(x,y):
         for j,b in enumerate(y): m[i+1][j+1]=m[i][j]+1 if a==b else max(m[i][j+1],m[i+1][j])
     return m[-1][-1]
 def order(A,B):
-    x=[s['src'] for s in A['shots']]; y=[s['src'] for s in B['shots']]
+    # compare what's on screen, not which file: the same source 4 s apart is a different scene
+    x=[(s['src'],int(s['in']//4)) for s in A['shots']]; y=[(s['src'],int(s['in']//4)) for s in B['shots']]
     x=[s for i,s in enumerate(x) if i==0 or s!=x[i-1]]; y=[s for i,s in enumerate(y) if i==0 or s!=y[i-1]]
     return lcs(x,y)/max(1,min(len(x),len(y)))
 V=[load(w) for w in sys.argv[1:]]
