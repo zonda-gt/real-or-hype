@@ -2,10 +2,11 @@
 #   k0  small tracked caps  "HEYTEA × CUP NOODLES"   Inter Medium 30 px, letter-spacing 9 px
 #   k1  "a cup noodle"      Instrument Serif 132 px
 #   k2  "you drink?"        Instrument Serif Italic 132 px
-# Soft drop shadow only (no outline). Usage: hook.py <outdir> [y_top]
+# Soft drop shadow only (no outline). Usage: hook.py <outdir> [y_top] [kicker line1 line2]
 import sys,os
 from PIL import Image,ImageDraw,ImageFont,ImageFilter
 D=os.path.dirname(os.path.abspath(__file__)); out=sys.argv[1]; Y=int(sys.argv[2]) if len(sys.argv)>2 else 300
+KICK,L1,L2=(sys.argv[3:6] if len(sys.argv)>5 else ('HEYTEA  ×  CUP NOODLES','a cup noodle','you drink?'))
 INTER='/usr/share/fonts/opentype/inter/InterDisplay-Medium.otf'
 W,H=1080,1920
 def layer(draw_fn):
@@ -18,12 +19,12 @@ def tracked(d,y,s,f,sp,fill):
     for c in s: d.text((x,y),c,font=f,fill=fill); x+=d.textlength(c,font=f)+sp
 small=ImageFont.truetype(INTER,30); ser=ImageFont.truetype(D+'/fonts/InstrumentSerif-Regular.ttf',132); it=ImageFont.truetype(D+'/fonts/InstrumentSerif-Italic.ttf',132)
 def k0(d):
-    tracked(d,Y,'HEYTEA  ×  CUP NOODLES',small,9,(255,255,255,235))
+    tracked(d,Y,KICK,small,9,(255,255,255,235))
     d.line([(W/2-60,Y+56),(W/2+60,Y+56)],fill=(255,255,255,200),width=2)
 def k1(d):
-    s='a cup noodle'; d.text(((W-d.textlength(s,font=ser))/2,Y+80),s,font=ser,fill=(255,255,255,255))
+    s=L1; d.text(((W-d.textlength(s,font=ser))/2,Y+80),s,font=ser,fill=(255,255,255,255))
 def k2(d):
-    s='you drink?'; d.text(((W-d.textlength(s,font=it))/2,Y+215),s,font=it,fill=(255,236,170,255))
+    s=L2; d.text(((W-d.textlength(s,font=it))/2,Y+215),s,font=it,fill=(255,236,170,255))
 for n,fn in (('k0',k0),('k1',k1),('k2',k2)): layer(fn).save(f'{out}/{n}.png')
 # soft top gradient behind the text (black 45% -> 0 over the top 760 px)
 g=Image.new('RGBA',(W,H),(0,0,0,0)); px=g.load()

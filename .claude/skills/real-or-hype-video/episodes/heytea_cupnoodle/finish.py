@@ -1,10 +1,15 @@
-# usage: finish.py <workdir> -> out/final.mp4 (1080p) + out/preview540.mp4
+# usage: finish.py <workdir> [VAR] -> out/final.mp4 (1080p) + out/preview540.mp4
 # Subtitles (≤3 words, current word yellow, Montserrat ExtraBold 66 / 6px outline, MarginV 430), title card, narration, SFX, loudness.
 import os,sys,json,subprocess,numpy as np
-sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); from segs import *
-W=sys.argv[1]; os.chdir(W); J=json.load(open('out/starts.json')); st=J['starts']; total=st['_end']
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+import importlib
+VAR=sys.argv[2] if len(sys.argv)>2 else ''
+_m=importlib.import_module('segs'+('_'+VAR if VAR else '')); globals().update({k:v for k,v in vars(_m).items() if not k.startswith('__')})
+OUT='out'+('_'+VAR if VAR else ''); VOD='vo'+('_'+VAR if VAR else ''); HK='hook'+('_'+VAR if VAR else '')
+OVL=globals().get('OVL',[])
+W=sys.argv[1]; os.chdir(W); J=json.load(open(OUT+'/starts.json')); st=J['starts']; total=st['_end']
 SK='/home/user/real-or-hype/.claude/skills/real-or-hype-video/'
-lines=json.load(open('vo/lines.json'))
+lines=json.load(open(VOD+'/lines.json'))
 from faster_whisper import WhisperModel
 m=WhisperModel('small.en',device='cpu',compute_type='int8')
 def pcm(f,ss=None,t=None):
@@ -22,9 +27,9 @@ def align(text,f,off,ss=None,t=None):
 allw=[]
 hs=HOOK[0]; HOOK_END=st[SEGS[[x[0] for x in SEGS].index(hs)+1][0]]
 for k,s,e in J['vo']:
-    ws=align(VOTXT.get(k,lines[k]),f'vo/{k}.wav',s)
+    ws=align(VOTXT.get(k,lines[k]),f'{VOD}/{k}.wav',s)
     allw.append([w for w in ws if w[0]>=HOOK_END-0.05])   # hook text already says it; subtitles start after the hook
-for sid,txt in REAL.items(): allw.append(align(txt,f'out/seg/{sid}.mov',st[sid]))
+for sid,txt in REAL.items(): allw.append(align(txt,f'{OUT}/seg/{sid}.mov',st[sid]))
 allw=[w for w in allw if w]
 def ts(x): return f'{int(x//3600)}:{int(x%3600//60):02d}:{x%60:05.2f}'
 ass=open(SK+'episodes/heytea_cupnoodle/ass_head.txt').read()
@@ -45,12 +50,12 @@ EVS.sort(key=lambda x:x[0])          # never two subtitle events on screen at on
 for i in range(len(EVS)-1): EVS[i][1]=min(EVS[i][1],EVS[i+1][0])
 for a,e,txt in EVS:
     if e-a>0.02: ass+=f'Dialogue: 0,{ts(a)},{ts(e)},main,,0,0,0,,{txt}\n'
-open('out/subs.ass','w').write(ass)
+open(OUT+'/subs.ass','w').write(ass)
 # audio: base (room sound + his lines) + narration + effects
 def peak_db(f): return 20*np.log10(np.abs(pcm(f)).max()+1e-9)
-inp=['-i','out/base.mov']+sum([['-loop','1','-t',f'{HOOK_END:.2f}','-i',f'hook/{k}.png'] for k in ('kgrad','k0','k1','k2')],[]); fc=''; mix=['[0:a]']; n=5
+inp=['-i',OUT+'/base.mov']+sum([['-loop','1','-t',f'{HOOK_END:.2f}','-i',f'{HK}/{k}.png'] for k in ('kgrad','k0','k1','k2')],[])+sum([['-loop','1','-t',f'{total:.2f}','-i',f'{HK}/{o[0]}'] for o in OVL],[]); fc=''; mix=['[0:a]']; n=5+len(OVL)
 for k,s,e in J['vo']:
-    ms=int(s*1000); inp+=['-i',f'vo/{k}.wav']
+    ms=int(s*1000); inp+=['-i',f'{VOD}/{k}.wav']
     fc+=f'[{n}:a]aresample=48000,aformat=channel_layouts=stereo,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000,adelay={ms}|{ms}[v{n}];'; mix.append(f'[v{n}]'); n+=1
 fx=[('whoosh_es',0.31,st[s],0.45) for s in WHOOSH]
 for name,po,t,vol in fx:
@@ -61,10 +66,15 @@ fc+=f"[1:v]format=rgba,fade=t=in:st=0:d=0.3:alpha=1,fade=t=out:st={T1-0.35:.2f}:
 for i,rt in enumerate(R):
     fc+=(f"[{i+2}:v]format=rgba,fade=t=in:st={rt}:d=0.45:alpha=1,fade=t=out:st={T1-0.35:.2f}:d=0.35:alpha=1[h{i}];"
          f"[v{i}][h{i}]overlay=x=0:y='if(lt(t,{rt}),24,if(lt(t,{rt+0.45}),24*(1-(t-{rt})/0.45),0))':eof_action=pass[v{i+1}];")
-fc+=(f"[v3]subtitles=out/subs.ass:fontsdir={SK}scripts[v];"
+last='v3'
+for j,(png,sid,off,dd) in enumerate(OVL):
+    t0=st[sid]+off; t1=t0+dd
+    fc+=(f"[{5+j}:v]format=rgba,fade=t=in:st={t0:.2f}:d=0.3:alpha=1,fade=t=out:st={t1-0.3:.2f}:d=0.3:alpha=1[o{j}];"
+         f"[{last}][o{j}]overlay=x=0:y='if(lt(t,{t0}),18,if(lt(t,{t0+0.35}),18*(1-(t-{t0})/0.35),0))':enable='between(t,{t0},{t1})'[w{j}];"); last=f'w{j}'
+fc+=(f"[{last}]subtitles={OUT}/subs.ass:fontsdir={SK}scripts[v];"
      f"{''.join(mix)}amix=inputs={len(mix)}:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000,alimiter=limit=0.84:level=false[a]")
 subprocess.run(['ffmpeg','-loglevel','error','-y']+inp+['-filter_complex',fc,'-map','[v]','-map','[a]','-t',f'{total:.3f}',
   '-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709',
-  '-c:a','aac','-b:a','192k','-movflags','+faststart','out/final.mp4'],check=True)
-subprocess.run(['ffmpeg','-loglevel','error','-y','-i','out/final.mp4','-vf','scale=540:-2','-c:v','libx264','-crf','24','-preset','medium','-c:a','aac','-b:a','128k','-movflags','+faststart','out/preview540.mp4'],check=True)
+  '-c:a','aac','-b:a','192k','-movflags','+faststart',OUT+'/final.mp4'],check=True)
+subprocess.run(['ffmpeg','-loglevel','error','-y','-i',OUT+'/final.mp4','-vf','scale=540:-2','-c:v','libx264','-crf','24','-preset','medium','-c:a','aac','-b:a','128k','-movflags','+faststart',OUT+'/preview540.mp4'],check=True)
 print('final',total)

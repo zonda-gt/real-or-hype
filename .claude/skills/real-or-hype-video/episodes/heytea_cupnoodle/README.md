@@ -37,3 +37,15 @@ Pipeline (workdir has raw/, vo/L*.wav):
   other way round. Detail found on review: staff wear "CUP HEYTEA" chef hats (N4 "Even the chef hats!").
 - Hook shot: 173008 9.2–10.96 s at 0.8× (his steadiest pose; the creator picked it).
 - Subtitles: events are made non-overlapping (two Whisper word times out of order had stacked a line twice).
+
+## v4: two variants, script first (creator: v3 narration "too dry"; write narration as good as the reference, THEN match clips)
+Lesson: "write the narration to the clips" meant a lively, story-driven script like the reference (setup, disbelief,
+reveal, question, reaction, verdict, CTA), with each line then matched to the shot that fits it best. Not
+caption-style descriptions of each shot. Lines are short and punchy and carry opinion and personality.
+- `segs_A.py` + `vo_lines_A.json`: "I had to try this" story (hook "a cup noodle / you drink?" on him + cup).
+- `segs_B.py` + `vo_lines_B.json`: "3 things to know before you order": opens on the overhead noodles ("these noodles /
+  are a drink."), numbered tip labels (`tips.py`: Instrument Serif italic "No. 1" + tracked caps) via `OVL`, ends "Save this
+  for your China trip!" (save-driven).
+- Run: `render.py <wd> A` / `finish.py <wd> A` (segs_A, vo_A/, hook_A/, out_A/); `fitcheck.py <vo_dir> A`.
+- John (stability 0.3, style 0.55, atempo 1.1). Mishearings fixed by rewording: "Soup, or drink?" → "Is it soup... or a drink?",
+  "22 yuan" → "about $3" (B), "Pour" retaken.

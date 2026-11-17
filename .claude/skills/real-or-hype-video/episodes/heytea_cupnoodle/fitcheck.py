@@ -1,6 +1,8 @@
 # Dry-run timing check from nominal shot lengths (no render): each narration line must end >=0.05 s before the next event.
 import sys,os,subprocess
-sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); from segs import *
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+import importlib; VAR=sys.argv[2] if len(sys.argv)>2 else ''
+_m=importlib.import_module('segs'+('_'+VAR if VAR else '')); globals().update({k:v for k,v in vars(_m).items() if not k.startswith('__')})
 vod=sys.argv[1]
 def dur(f): return float(subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','csv=p=0',f],capture_output=True,text=True).stdout)
 st={};t=0
