@@ -1,6 +1,6 @@
 ---
 name: china-spot-video
-description: Research, script, voice and edit narrated B-roll reels (Instagram / TikTok, 30–45 s) about one place in China that the creator has NOT necessarily visited: a hotel, attraction, restaurant or experience (first episode: Huzhou Giraffe Manor). Clips-first workflow modelled on @wynnejael's reels: place research with sources, Douyin footage via TikHub, script written to the shots, one continuous lively AI narration take, picture cut on the spoken nouns, collage + serif-title hook, handwritten labels, comment-keyword CTA. Use for "make a video about <place>", new variants, voice auditions, or studying a reference creator. Not for the "Real or Hype?" reaction series (that is real-or-hype-video).
+description: End to end, from place to posted reel with automatic DMs. Research, script, voice and edit narrated B-roll reels (Instagram / TikTok, 30–45 s) about one place in China that the creator has NOT necessarily visited: a hotel, attraction, restaurant or experience (first episode: Huzhou Giraffe Manor). Clips-first workflow modelled on @wynnejael's reels: place research with sources, Douyin footage via TikHub, script written to the shots, one continuous lively AI narration take, picture cut on the spoken nouns, collage + serif-title hook, handwritten labels, comment-keyword CTA, then set up that keyword's automatic DM reply and guide page on chinapal.co and post the reel (instagram-trial-reel skill). Use for "make a video about <place>", new variants, voice auditions, or studying a reference creator. Not for the "Real or Hype?" reaction series (that is real-or-hype-video).
 ---
 
 # China spot video (B-roll explainer series)
@@ -98,6 +98,10 @@ VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "s
 5. Under ~45 s unless the creator asks for longer.
 
 ## 9. CTA (agreed with the creator)
+- **Choose the keyword** while writing the script:
+  - **One word** that names the place's hook, in capitals in the video (GIRAFFE, PANDA, CAVE, PEARL). Easy to spell on a phone; no spaces, numbers or emoji.
+  - **Not already used:** check `CODE_RULES` in ChinaPal's `src/lib/inbox/code-rules.ts`. Avoid words people type anyway (CHINA, WOW, LOVE, HOTEL), which already trigger other replies or fire by accident.
+  - **If a word is taken**, use the place's second hook (REDPANDA → PANDAHOTEL, for example) and keep the same word in the voice-over, the end sticker and the caption.
 - In the video, the last ~3 s: **comment-keyword offer**, specific to this place: "Comment **GIRAFFE** and I'll send you how to get there from Shanghai." plus a handwritten sticker (`CTA` in plan.py). Comments are the strongest ranking signal, and DMs build a list.
 - Caption: hook + CTA keyword + 3–5 hashtags. **Never mention AI-generated clips or footage sources (Douyin etc.)** in captions (creator's standing rule).
 - Deliver what was promised: a one-page guide (Chinese name for taxis and Trip.com, how to get there, booking and prices with the date checked, the best-time tip, nearby, apps: Alipay / DiDi / Trip.com, and a footer "Want a full China itinerary? Reply PLAN"). It is sent automatically: see "The DM side of the CTA" below.
@@ -135,7 +139,14 @@ Same rule as the captions: DMs and guide pages never mention AI clips or where f
 - Seedance (Volcano Engine Ark, `ark.cn-beijing.volces.com`, key proxy-injected). **Default model: Seedance 2.5 `doubao-seedance-2-5-260628`** (creator's choice from Nov 2026; activated 14 Nov 2026; clip length 4–30 s per provider docs, so generate 4 s). Fallbacks: `doubao-seedance-2-0-260128`, `-2-0-mini-260615`. Costs measured on 2.0: 480p 4 s ≈ 40.6k tokens ≈ ¥1.9; 720p 4 s = 87.3k tokens ≈ ¥4.0. **2.5 pricing not yet measured: read `usage.completion_tokens` from the first 2.5 job and record it here.**
 - The creator **may** choose to appear via Seedance (his decision; done on E2me at his request; he chose no AI label and no source credits in captions). Recipe: his verified portrait asset `asset://asset-20261114110202-8gttx` (real faces only work as verified assets; a `group-…` id is rejected) + a 9:16 frame of the real place as a second `reference_image` (data URL), Chinese prompt describing one simple action + "竖屏，手机实拍质感，自然柔和的日光，真实感，镜头轻微手持晃动", model `doubao-seedance-2-5-260628`, 720p, `generate_audio:false`, `watermark:false`. Poll `GET /api/v3/contents/generations/tasks/<id>`, download `content.video_url` (expires in 24 h). **Cut AI shots like every other shot** (same 1.0–1.7 s rhythm, on the matching words; no special time limit, the creator's final call after trying 1 s / 0.5 s / 0.8 s / ≤1 s). **Prompt for natural, understated behaviour** (one calm action; "表情自然平静，带一点淡淡的微笑，动作缓慢自然，不夸张，不大笑"): "惊喜地笑着" produced an over-animated face. Use 2+ clips in different scenes (breakfast window, capybara pool…) so they don't read as one moment. Ask before paid jobs above 480p; the classifier blocks unconfirmed ones.
 
-## 11. Deliver
+## 11. Deliver: the whole order, end to end
+When the creator says "make a video about <place>" (and post it), do all of this without asking them to touch any page:
+1. Steps 0–8: research, footage, script with the keyword, voice, cut, graphics, mix, QA.
+2. **Send the previews** (540p) and get the creator's pick and OK on the edit.
+3. **Set up the DM side** ("The DM side of the CTA" above): guide page, the reply in `code-rules.ts`, explore card, tests, PR, wait for Vercel, merge, then check the guide link answers 200. ChinaPal must be in the session: `add_repo` zonda-gt/ChinaPal with push access.
+4. **Post** with the `instagram-trial-reel` skill: same caption on every trial version, the keyword in the caption, no AI or source mentions. Then the Facebook reel if wanted (the recipe is in that skill). That skill shows the creator the files and caption once and asks "Post these?" before publishing.
+5. **After posting**, check within the hour that keyword comments are getting replies. Count the comments that have our public reply under them (the Graph API `/{media}/comments` with `replies`), and report the count.
+
 540p previews via SendUserFile; keep the 1080p in the work dir (not committed, too big; tell the creator it's lost when the session ends unless uploaded). Commit the episode's plan, script, words.json, fact sheet and README under `episodes/<slug>/`. Trial reels: the `instagram-trial-reel` skill.
 
 ## Study a new reference creator
