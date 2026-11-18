@@ -218,3 +218,6 @@ When the creator says "make a video about <place>" (and post it), do all of this
 | "yuan" heard as "wen" again | Say the dollar figure in the voice; show ¥ on the price card |
 | Whisper writes made-up names as separate words ("a Polly") | Merge them in words.json before writing plan.py (indexes shift); don't use CAPTION_FIX for common words like "a" |
 | compare_cuts flagged "same order" because one long walk-through source covers many scenes | It now compares source + 4 s windows; a scene change inside one file counts as a new moment |
+| A phone clip with a -90° rotation flag (ffprobe `rotation=-90`, often HLG) is probed as landscape, so render_cut's crop is wrong (tiger episode) | Check `stream_side_data=rotation` on every download; re-encode those upright and tone-mapped to SDR before planning |
+| The best guest clips had subtitles in the middle of the frame (0.54–0.72), which `cut` can't remove | Make a derived source with ffmpeg `crop` of the clean rows (`<id>_w.mp4`) and plan from it; find the rows with a white-pixel scan of one frame |
+| HERO title at y 760 sat on the animal's face | Redraw `ov/title.png` higher for that version (tiger episode `title_at.py`) |
