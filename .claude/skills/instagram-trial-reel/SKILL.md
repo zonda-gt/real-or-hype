@@ -97,6 +97,9 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | APOLI Hogwarts bakery A | https://www.instagram.com/reel/Df17ZBpjqoT/ | 2026-11-17 |
 | APOLI Hogwarts bakery B | https://www.instagram.com/reel/Df17e6IgV7H/ | 2026-11-17 |
 | APOLI Hogwarts bakery C | https://www.instagram.com/reel/Df17k6NgQg1/ | 2026-11-17 |
+| Tiger-view rooms A | https://www.instagram.com/reel/Df5DqSmit4W/ | 2026-11-18 |
+| Tiger-view rooms B | https://www.instagram.com/reel/Df5DxMgFLGA/ | 2026-11-18 |
+| Tiger-view rooms C | https://www.instagram.com/reel/Df5D2SrCbVI/ | 2026-11-18 |
 
 Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
 Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.
