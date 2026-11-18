@@ -42,6 +42,7 @@ Goal: a **fact sheet** in the episode README, where every claim has a source URL
 
 **Different cuts, same clips allowed** (creator's rule): reusing the best clips is fine. What must differ is the feel:
 - **Opening**: a different hook (the first 1.5 seconds) and hook format, e.g. a 2×2 collage, one full-screen hero shot, or a price/title card over a shot. Never the same opening moment.
+- **The opening is always the biggest wow** (creator's rule, Nov 2026): whatever the format, frame 1 shows the most jaw-dropping clips in the footage, the moment people will share (the animal in your face, the cliff drop, the glowing cave). A HERO opens on the single best clip; a COLLAGE uses the four most wow clips, best one top-left. Never open on an entrance, a sign, a room without the wow, or a slow establishing shot; save those for later. Each version may open on a different wow moment, but always one from the top of your shot inventory.
 - **Order**: a different shot order, following that version's script (walkthrough, comparison or numbered list). No two versions in roughly the same sequence.
 - **Rhythm**: a different pace, e.g. one fast (about 0.8 s a shot), one relaxed (about 1.5 s), one in between. Cut on different words.
 - **Graphics**: each version's own treatment, e.g. handwritten labels, price cards, or numbered #1–#4 stickers.
@@ -115,7 +116,7 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 - Frame-exact (total frames = round(T·30)). HLG sources are tone-mapped automatically.
 
 ## 6. Graphics (her look): `scripts/graphics.py <workdir>`
-- **Hook**: a 2×2 collage of the four best shots + a title in **DM Serif Display** on **pale-yellow highlight boxes** (like her "SHANGHAI'S / Basement Seafood"), plus a small handwritten tag (Chewy). Visible from frame 1.
+- **Hook**: a 2×2 collage of the four **most wow** shots (or one HERO shot: the single most wow clip) + a title in **DM Serif Display** on **pale-yellow highlight boxes** (like her "SHANGHAI'S / Basement Seafood"), plus a small handwritten tag (Chewy). Visible from frame 1.
 - **Labels** on things in handwriting ("capybara", "6:30 AM"), like her "crispy pork belly".
 - **Cards** (serif, big line on yellow) for numbers: price, comparison, a record ("1.85 m at birth").
 - **Captions** (in finish.py): **one word at a time**, Poppins SemiBold **120** (`CAPTION_SIZE` in plan.py; the creator asked for bigger in Nov 2026: 54 was too small and 80 barely showed), uppercase, centred, not heavy, hidden under the title, cards and CTA.
