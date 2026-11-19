@@ -75,3 +75,13 @@ caption-style descriptions of each shot. Lines are short and punchy and carry op
   under all voice, 1.6 s fade-out. Gaps ~-28 dB RMS vs narration ~-17. At -10 without the hook dip, "cup" was heard as
   "cut" in the first line; the dip fixed it (medium.en).
 - Posted (trial, MANUAL): O https://www.instagram.com/reel/Df2UumZmWqb/ · N https://www.instagram.com/reel/Df2U1MOgDC-/
+
+## Cinematic grade test (creator's reference: DJI "Osmo Action 5 Pro + color grade power", YouTube FMFNFpcgmC8)
+- yt-dlp hits YouTube's bot check here; TikHub `youtube/web_v2/get_video_streams(_v2)` gives metadata, but its
+  googlevideo URLs are bound to TikHub's IP (403 from here; `_v3` needs our own residential proxy). For grading, stills
+  are enough: `https://i.ytimg.com/vi/<id>/oar1.jpg` … `oar3.jpg` are full 1080×1920 frames at ~25/50/75 %.
+- Reference signature (`gradestats.py`): dark, moody (median L 18–34, p2 ≈ 4), saturation 0.29–0.55, warm orange
+  mids, golden highlights, cool shadows/sky. Ours was bright (median 62–69), lifted shadows, saturation 0.14–0.22.
+- `grade_lut.py in.cube out.cube [strength]` stacks a teal-orange grade on the HLG→SDR cube: black point, darker mids,
+  S-curve, hue-preserving luma remap, teal shadows / golden highlights / orange mids, +28 % saturation (×strength).
+  Add `vignette=angle=PI/5,noise=alls=3:allf=t` after it. At 1.0: median L ≈ 47–51, saturation 0.23–0.55.
