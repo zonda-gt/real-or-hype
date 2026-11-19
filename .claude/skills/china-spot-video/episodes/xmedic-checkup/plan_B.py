@@ -21,6 +21,7 @@ CUES=[
  (idx('eyes'),[('039',0.0,1.3,0.5)]),                        # Eyes -> door 208
  (idx('heart'),[('047',0.3,2.2,0.5)]),                       # Heart and lungs
  (idx('ecg') if any('ecg' in w[2].lower() for w in words) else idx('ekg'),[('055',47.0,3.0,0.5)]),
+ (idx('ct'),[('CT',3.4,1.85,0.5)]),                         # and a CT scan -> CT console, scans on screen
  (idx('crowds'),[('038',3.0,2.5,0.5)]),                      # No crowds
  (idx('quiet'),[('043',26.0,2.6,0.5)]),                      # just these quiet corridors
  (idx('favourite') if any('favo' in w[2].lower() for w in words) else idx('favorite'),[('062',0.0,3.0,0.5)]),

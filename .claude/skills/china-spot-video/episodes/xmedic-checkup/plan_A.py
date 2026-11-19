@@ -18,6 +18,7 @@ CUES=[
  (idx('spine'),[('047',8.0,2.0,0.5)]),                       # your spine
  (idx('reflexes'),[('048',1.4,2.4,0.5)]),                    # even your reflexes
  (idx('ecg') if any('ecg' in w[2].lower() for w in words) else idx('ekg'),[('055',47.0,3.0,0.5),('055',58.0,2.0,0.5)]),
+ (idx('ct'),[('CT',3.4,1.85,0.5)]),                         # and a CT scan -> CT console, scans on screen
  (idx('lie'),[('044',1.0,3.0,0.5)]),                         # I'm not gonna lie, I expected a hospital
  (idx('hotel'),[('043',12.0,2.6,0.5)]),                      # felt more like a hotel -> corridor
  (idx('when',1,idx('hotel')),[('062',0.5,1.0,0.5),('061',12.3,1.8,0.5)]),                  # breakfast is waiting -> steamer lid
