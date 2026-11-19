@@ -4,12 +4,13 @@ sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import importlib
 VAR=sys.argv[2] if len(sys.argv)>2 else ''
 _m=importlib.import_module('segs'+('_'+VAR if VAR else '')); globals().update({k:v for k,v in vars(_m).items() if not k.startswith('__')})
-OUT='out'+('_'+VAR if VAR else ''); VOD='vo'+('_'+VAR if VAR else ''); HK='hook'+('_'+VAR if VAR else '')
+OUT='out'+('_'+VAR if VAR else '')+os.environ.get('OUTSUF',''); VOD='vo'+('_'+VAR if VAR else ''); HK='hook'+('_'+VAR if VAR else '')
 OVL=globals().get('OVL',[])
 W=sys.argv[1]; os.chdir(W); os.makedirs(OUT+'/seg',exist_ok=True)
 # HDR (HLG) -> SDR: BT.2446 Method A tone mapping baked into a 3D LUT (hlg2sdr_lut.py, exposure 1.5); the old zscale+hable
 # chain tone-mapped each channel separately and left a yellow/orange cast.
-LUT=os.path.join(os.path.dirname(os.path.abspath(__file__)),'hlg2sdr_bt2446a_exp1.5.cube')
+LUT=os.environ.get('LUT') or os.path.join(os.path.dirname(os.path.abspath(__file__)),'hlg2sdr_bt2446a_exp1.5.cube')
+POSTVF=os.environ.get('POSTVF','')   # e.g. vignette + grain for the cinematic grade
 TM=f'scale=in_color_matrix=bt2020:in_range=tv:out_range=pc,format=gbrpf32le,lut3d={LUT}:interp=tetrahedral,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p'
 FULL='scale=1080:1920:force_original_aspect_ratio=increase,crop=1080:1920,fps=30,setsar=1'
 ENC=['-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-color_primaries','bt709','-color_trc','bt709','-colorspace','bt709','-c:a','pcm_s16le','-ar','48000','-ac','2']
@@ -26,7 +27,7 @@ for seg in SEGS:
     zc=f',scale=iw*{z[0]}:ih*{z[0]},crop=1080:1920:(iw-1080)*{z[1]}:(ih-1920)*{z[2]}' if z else ''
     if au=='real': af=f'{AF},atempo={sp},highpass=f=80,loudnorm=I=-16:TP=-1.5:LRA=11,{AF},afade=t=in:d=0.03,afade=t=out:st={d-0.05:.3f}:d=0.05'
     else: af=f'{AF},atempo={sp},highpass=f=100,volume={AMB}' if sp<=2 else f'{AF},atempo=2.0,atempo={sp/2},highpass=f=100,volume={AMB}'
-    fc=f'[0:v]setpts=(PTS-STARTPTS)/{sp},{TM},{FULL}{zc}[v];[0:a]{af},apad[a]'
+    fc=f'[0:v]setpts=(PTS-STARTPTS)/{sp},{TM},{FULL}{zc}{(","+POSTVF) if POSTVF else ""}[v];[0:a]{af},apad[a]'
     run(['ffmpeg','-loglevel','error','-y','-ss',f'{a:.3f}','-t',f'{ln+0.1:.3f}','-i',f'raw/20261115_{clip}.mp4','-filter_complex',fc,'-map','[v]','-map','[a]','-t',f'{d:.3f}']+ENC+[o])
     st[sid]=t; md=dur(o); t+=md; parts.append(o); print(f'{sid:4s} {st[sid]:6.2f} +{md:.2f}')
 open(OUT+'/list.txt','w').write(''.join(f"file 'seg/{os.path.basename(p)}'\n" for p in parts))

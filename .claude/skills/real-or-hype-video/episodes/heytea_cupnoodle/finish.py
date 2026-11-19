@@ -5,7 +5,7 @@ sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
 import importlib
 VAR=sys.argv[2] if len(sys.argv)>2 else ''
 _m=importlib.import_module('segs'+('_'+VAR if VAR else '')); globals().update({k:v for k,v in vars(_m).items() if not k.startswith('__')})
-OUT='out'+('_'+VAR if VAR else ''); VOD='vo'+('_'+VAR if VAR else ''); HK='hook'+('_'+VAR if VAR else '')
+OUT='out'+('_'+VAR if VAR else '')+os.environ.get('OUTSUF',''); VOD='vo'+('_'+VAR if VAR else ''); HK='hook'+('_'+VAR if VAR else '')
 OVL=globals().get('OVL',[])
 W=sys.argv[1]; os.chdir(W); J=json.load(open(OUT+'/starts.json')); st=J['starts']; total=st['_end']
 SK='/home/user/real-or-hype/.claude/skills/real-or-hype-video/'

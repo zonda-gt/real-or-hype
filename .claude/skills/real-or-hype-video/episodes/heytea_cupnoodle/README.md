@@ -85,3 +85,5 @@ caption-style descriptions of each shot. Lines are short and punchy and carry op
 - `grade_lut.py in.cube out.cube [strength]` stacks a teal-orange grade on the HLG→SDR cube: black point, darker mids,
   S-curve, hue-preserving luma remap, teal shadows / golden highlights / orange mids, +28 % saturation (×strength).
   Add `vignette=angle=PI/5,noise=alls=3:allf=t` after it. At 1.0: median L ≈ 47–51, saturation 0.23–0.55.
+- Graded render of O (v7): `LUT=hlg2sdr_bt2446a_exp1.5_cinematic.cube POSTVF="vignette=angle=PI/5:mode=forward,noise=alls=3:allf=t"
+  OUTSUF=_graded AMBVOL=0.06 render.py <wd> O`, then `OUTSUF=_graded MUSIC=… MUSICDB=-10 finish.py <wd> O`.
