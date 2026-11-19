@@ -1,9 +1,11 @@
 # One continuous narration take, chosen by Whisper, tightened to reference pace.
 # usage: vo_take.py <workdir> <voice_id> [takes=3] [target_wpm=200]
+# Optional env VO_SETTINGS='{json voice_settings}' overrides the lively preset (e.g. the creator's own clone).
 # Reads <workdir>/script.txt. Writes take*.mp3, vo.wav (loudnorm -16) and words.json [(start,end,word),...], then prints
 # every word with its index: those indices are the cue points in plan.py.
 import sys,os,subprocess,re,json,numpy as np
-sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); from eleven import tts
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))); from eleven import tts,LIVELY
+SET=json.loads(os.environ['VO_SETTINGS']) if os.environ.get('VO_SETTINGS') else LIVELY   # e.g. the creator's clone settings
 W,vid=sys.argv[1],sys.argv[2]; N=int(sys.argv[3]) if len(sys.argv)>3 else 3; WPM=float(sys.argv[4]) if len(sys.argv)>4 else 200
 os.chdir(W); text=open('script.txt').read().strip()
 from faster_whisper import WhisperModel
@@ -14,7 +16,7 @@ ref=re.sub(r"[^a-z0-9 ]","",text.lower().replace('-',' ')).split()
 NUM={'a','one','two','three','four','five','six','seven','eight','nine','ten','twenty','thirty','forty','fifty','hundred','thousand','fourteen','dollars'}
 res=[]
 for t in range(1,N+1):
-    if not os.path.exists(f'take{t}.mp3'): tts(vid,text,f'take{t}.mp3')
+    if not os.path.exists(f'take{t}.mp3'): tts(vid,text,f'take{t}.mp3',SET)
     sq='silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-42dB:stop_silence=0.14'
     subprocess.run(['ffmpeg','-loglevel','error','-y','-i',f'take{t}.mp3','-af',sq,'-ar','44100','-ac','1',f'take{t}_sq.wav'],check=True)
     ws=words(f'take{t}_sq.wav'); wpm=len(ws)/(ws[-1][1]-ws[0][0])*60; sp=min(1.25,max(1.0,WPM/wpm))

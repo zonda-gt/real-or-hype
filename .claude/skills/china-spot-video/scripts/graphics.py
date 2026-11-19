@@ -4,6 +4,7 @@
 #   LABELS= [("capybara", word_idx), ...]   handwritten labels on things
 #   CARDS = [(top, big, bottom, i0, i1), ...] serif info cards (big line on yellow), shown from word i0 to i1
 #   CTA   = ('Comment "GIRAFFE"', word_idx) or None   handwritten sticker at the end
+#   DISCLAIMER = 'Personal experience only. Not medical advice.'  small line at the bottom for the whole video (or None)
 import sys,os
 from PIL import Image,ImageDraw,ImageFont
 SK=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,4 +39,7 @@ for k,(top,big,bot,_,_) in enumerate(getattr(P,'CARDS',[])):
     im.save(f'{W}/ov/card{k}.png')
 if getattr(P,'CTA',None):
     im=new(); hand(im,P.CTA[0],92,540,1250,rot=-5); im.save(f'{W}/ov/cta.png')
+if getattr(P,'DISCLAIMER',None):
+    im=new(); f=ImageFont.truetype(SERIF,30); d=ImageDraw.Draw(im); w=d.textlength(P.DISCLAIMER,font=f)
+    d.text(((1080-w)/2,1800),P.DISCLAIMER,font=f,fill=(255,255,255,215),stroke_width=2,stroke_fill=(0,0,0,150)); im.save(f'{W}/ov/disclaimer.png')
 print('graphics ->',f'{W}/ov')

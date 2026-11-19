@@ -88,3 +88,11 @@ There is no footage of a blood draw, ultrasound, CT, an eye test (only its door 
 ## Voice
 He is on camera, so the narration is his own voice (clone `KdPzirZUC0HY6WhfwyeE`, see real-or-hype-video §4), or his own recording. Write 幸元会 in Chinese characters for `eleven_v3` (it says them in Mandarin); "XMEDIC" reads as "X-Medic".
 On-screen disclaimer from frame 1, as in her reel: "Personal experience only. Not medical advice."
+
+## Edit (19 Nov 2026)
+- Final narration: `script_A_final.txt`, `script_B_final.txt`. Price and disclaimer removed (creator's call). CTA: "Comment the word checkup, and we'll send you all the info on how to book." Hook A = "six doctors in one morning" (the visit took about 3 hours; report in 5 days).
+- Voice: creator clone `KdPzirZUC0HY6WhfwyeE`, livelier settings `VO_SETTINGS='{"stability":0.35,"similarity_boost":0.85,"style":0.45,"use_speaker_boost":true}'`, `vo_take.py … 3 210` (both hit the 1.25× cap).
+- B's take slurred "breakfast", so "When you're done, breakfast is waiting." was spliced in from A's take (same voice, same phrase).
+- B's real line: `insert_real.py <B> waiting 061 18.55 19.95 "Why is it all buns?!"` with `VOICED0=18.75 VOICED1=19.50` (energy-measured speech; 0.15 s of silence on each side).
+- Plans: `plan_A.py`, `plan_B.py` (cue words are looked up by text through `common.py`). Lesson: in a short slot (under 1 s), a second shot only shows if the first one's max length leaves at least 0.5 s for it. Otherwise render_cut merges it away (it hid the VIP room twice).
+- Results: A 43.6 s, B 41.6 s, both -15.0 LUFS, TP -2.3 dBTP; Whisper hears every narration line in the final mix.

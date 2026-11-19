@@ -11,6 +11,7 @@ ovs=[('title',0.0,tl['collage_end']-0.02)]
 for k,(_,i) in enumerate(getattr(P,'LABELS',[])): a=wt(i)+0.15; ovs.append((f'label{k}',a,until_next_cut(a)-0.05))
 for k,(_,_,_,i0,i1) in enumerate(getattr(P,'CARDS',[])): ovs.append((f'card{k}',wt(i0),wt(i1)-0.03))
 if getattr(P,'CTA',None): ovs.append(('cta',wt(P.CTA[1]),T))
+if getattr(P,'DISCLAIMER',None): ovs.append(('disclaimer',0.0,T))
 # captions: one word at a time, small caps, centred; hidden under title/cards/CTA
 def ts(x): return f'{int(x//3600)}:{int(x%3600//60):02d}:{x%60:05.2f}'
 ass=('[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\n\n[V4+ Styles]\n'
