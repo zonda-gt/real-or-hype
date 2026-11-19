@@ -2,12 +2,12 @@
 # door signs on the specialities, his real line at the buffet.
 import sys,os,json; sys.path.insert(0,'/home/user/real-or-hype/work/xmedic'); from common import loader
 D=os.path.dirname(os.path.abspath(__file__)); words,idx=loader(D)
-SRC={}
+SRC={'dy':{'cut':0.12},'dyF':{'cut':0.32}}   # dy = Douyin CT clip 7438392919872130364 (720p; burned subtitles at the very bottom)
 HERO=('053',11.5,2.4,0.5)                                    # hook: doctor checking his neck
 i1=idx('instead',1); i2=idx('instead',2); i3=idx('instead',3); i4=idx('instead',4)
 real=json.load(open(f'{D}/real.json')) if os.path.exists(f'{D}/real.json') else None
 CUES=[
- (idx('long'),[('047',0.3,1.0,0.5),('048',1.4,1.0,0.5)]),  # ...long queues and crowded hallways -> stethoscope, knee reflex
+ (idx('long'),[('dyF',59.3,1.0,0.5),('048',1.4,1.0,0.5)]),  # ...long queues and crowded hallways -> stethoscope, knee reflex
  (idx('heres'),[('043',12.0,1.6,0.5)]),                     # Here's what I actually got -> a bit of the hallway walk
  (i1,[('033',12.6,2.4,0.5)]),                                # Instead of a taxi, the clinic's shuttle
  (idx('leather'),[('034',0.3,3.0,0.5)]),                     # with leather recliners

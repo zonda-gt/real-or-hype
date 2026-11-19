@@ -1,7 +1,7 @@
 # Version A "The VIP walkthrough": her structure. 2x2 collage hook of the doctors at work, medium pace, a card for the report.
 import sys,os; sys.path.insert(0,'/home/user/real-or-hype/work/xmedic'); from common import loader
 words,idx=loader(os.path.dirname(os.path.abspath(__file__)))
-SRC={}
+SRC={'dy':{'cut':0.12}}   # dy = Douyin CT clip 7438392919872130364 (720p; burned subtitles at the very bottom)
 COLLAGE=[('053',12.0,4.0,0.5),('047',0.5,4.0,0.5),('048',1.2,3.0,0.5),('055',47.0,4.0,0.5)]
 b=idx('booked'); fr=idx('front'); vip=idx('vip'); th=idx('then',1,vip)
 CUES=[
@@ -18,8 +18,8 @@ CUES=[
  (idx('spine'),[('047',8.0,2.0,0.5)]),                       # your spine
  (idx('reflexes'),[('048',1.4,2.4,0.5)]),                    # even your reflexes
  (idx('ecg') if any('ecg' in w[2].lower() for w in words) else idx('ekg'),[('055',47.0,3.0,0.5),('055',58.0,2.0,0.5)]),
- (idx('ct'),[('CT',3.4,1.85,0.5)]),                         # and a CT scan -> CT console, scans on screen
- (idx('lie'),[('044',1.0,3.0,0.5)]),                         # I'm not gonna lie, I expected a hospital
+ (idx('ct'),[('CT',3.4,0.9,0.5),('dy',30.2,2.0,0.5)]),                         # and a CT scan -> CT console, scans on screen
+ (idx('expected'),[('044',1.0,3.0,0.5)]),                         # I'm not gonna lie, I expected a hospital
  (idx('hotel'),[('043',12.0,2.6,0.5)]),                      # felt more like a hotel -> corridor
  (idx('when',1,idx('hotel')),[('062',0.5,1.0,0.5),('061',12.3,1.8,0.5)]),                  # breakfast is waiting -> steamer lid
  (idx('buns'),[('061',4.4,1.2,0.5)]),                        # buns
