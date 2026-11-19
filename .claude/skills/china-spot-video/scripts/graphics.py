@@ -1,6 +1,7 @@
 # Reference-style graphics from <workdir>/plan.py -> <workdir>/ov/*.png (1080x1920 RGBA).
 #   TITLE = ["CHINA'S", "Giraffe Hotel"]  serif lines on pale-yellow highlight boxes, over the collage
 #   TAG   = "breakfast included"           handwritten tag under the title (or None)
+#   TITLE_STYLE='stack' + TITLE=[topic, hook] + TITLE_Y=<top px>: topic on a white box, hook on a bigger yellow box (no TAG)
 #   LABELS= [("capybara", word_idx), ...]   handwritten labels on things
 #   CARDS = [(top, big, bottom, i0, i1), ...] serif info cards (big line on yellow), shown from word i0 to i1
 #   CTA   = ('Comment "GIRAFFE"', word_idx) or None   handwritten sticker at the end
@@ -25,9 +26,13 @@ def hand(im,text,size,cx,y,rot=-5):
     while d.textlength(text,font=f)>980: size-=4; f=ImageFont.truetype(HAND,size)
     w=d.textlength(text,font=f); d.text(((1080-w)/2,100),text,font=f,fill=WHITE,stroke_width=6,stroke_fill=(40,30,20))
     im.alpha_composite(tmp.rotate(rot,resample=Image.BICUBIC),(int(cx-540),y-100))
-im=new(); y=760
-for k,line in enumerate(P.TITLE): y=box(im,line,108 if k==0 else 132,500+80*k,y-6*k,YEL)
-if getattr(P,'TAG',None): hand(im,P.TAG,62,640,y+100,rot=-6)
+im=new()
+if getattr(P,'TITLE_STYLE','')=='stack':   # TITLE=[topic, hook]: topic on white, hook bigger on yellow, one serif, stacked tight (topic stays readable)
+    y=box(im,P.TITLE[0],86,540,getattr(P,'TITLE_Y',825),WHITE,padx=30,pady=14); box(im,P.TITLE[1],136,540,y+4,YEL,padx=32,pady=14)
+else:
+    y=760
+    for k,line in enumerate(P.TITLE): y=box(im,line,108 if k==0 else 132,500+80*k,y-6*k,YEL)
+    if getattr(P,'TAG',None): hand(im,P.TAG,62,640,y+100,rot=-6)
 im.save(f'{W}/ov/title.png')
 for k,(txt,_) in enumerate(getattr(P,'LABELS',[])):
     im=new(); hand(im,txt,74,540,1260,rot=-4); im.save(f'{W}/ov/label{k}.png')

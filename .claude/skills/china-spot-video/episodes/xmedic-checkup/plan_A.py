@@ -30,7 +30,7 @@ CUES=[
  (idx('comment'),[('071',0.0,2.4,0.5),('033',15.5,3.0,0.5)]),# CTA
 ]
 TAIL=1.3
-TITLE=["6 DOCTORS","One Morning Check-up"]; TAG="in Shanghai"
+TITLE_STYLE="stack"; TITLE_Y=825; TITLE=["My health check-up in Shanghai","6 Doctors, 1 Morning"]; TAG=None
 LABELS=[("knee reflex",idx('reflexes'))]
 CARDS=[("","3 hours","full report in 5 days",idx('whole'),idx('comment'))]
 CTA=('Comment "CHECKUP"',idx('comment'))

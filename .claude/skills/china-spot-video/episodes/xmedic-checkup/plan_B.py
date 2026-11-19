@@ -36,7 +36,7 @@ CUES+=[
 ]
 TAIL=1.3
 TITLE_UNTIL=i1
-TITLE=["WHAT I EXPECTED","vs What I Got"]; TAG="health check-up in Shanghai"
+TITLE_STYLE="stack"; TITLE_Y=1095; TITLE=["My health check-up in China","Expected vs Reality"]; TAG=None
 LABELS=[("6 doctors",idx('six')),("VIP Room 10",idx('vip'))]
 CARDS=[]
 CTA=('Comment "CHECKUP"',idx('comment'))
