@@ -35,7 +35,7 @@ CUES+=[
  (idx('comment'),[('043',41.9,1.8,0.5),('033',15.5,3.0,0.5)]), # CTA
 ]
 TAIL=1.3
-TITLE_UNTIL=i1
+TITLE_UNTIL=idx("long")
 TITLE_STYLE="stack"; TITLE_Y=1095; TITLE=["My health check-up in China","Expected vs Reality"]; TAG=None
 LABELS=[("6 doctors",idx('six')),("VIP Room 10",idx('vip'))]
 CARDS=[]

@@ -19,7 +19,7 @@ ass=('[Script Info]\nScriptType: v4.00+\nPlayResX: 1080\nPlayResY: 1920\n\n[V4+ 
  'Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding\n'
  f'Style: w,Poppins SemiBold,{getattr(P,"CAPTION_SIZE",120)},&H00FFFFFF,&H00FFFFFF,&H60000000,&H70000000,0,0,0,0,100,100,2,0,1,2.2,2.6,5,60,60,0,1\n\n[Events]\n'
  'Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n')
-blocked=[(0,TEND)]+[(wt(c[3]),wt(c[4])) for c in getattr(P,'CARDS',[])]+([(wt(P.CTA[1]),T)] if getattr(P,'CTA',None) else [])
+blocked=([] if getattr(P,'CAPTIONS_OVER_TITLE',False) else [(0,TEND)])+[(wt(c[3]),wt(c[4])) for c in getattr(P,'CARDS',[])]+([(wt(P.CTA[1]),T)] if getattr(P,'CTA',None) else [])
 FIX=getattr(P,'CAPTION_FIX',{})
 toks=[]
 for a,b,w in words:   # Whisper splits "6:30" as "6" ".30" and "wake-up" as "wake" "-up": merge; CAPTION_FIX maps misheard tokens ('' = drop)
