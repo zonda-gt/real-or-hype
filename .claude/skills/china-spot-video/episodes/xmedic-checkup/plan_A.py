@@ -22,7 +22,7 @@ CUES=[
  (idx('lie'),[('044',1.0,3.0,0.5)]),                         # I'm not gonna lie, I expected a hospital
  (idx('hotel'),[('043',12.0,2.6,0.5)]),                      # felt more like a hotel -> corridor
  (idx('when',1,idx('hotel')),[('062',0.5,1.0,0.5),('061',12.3,1.8,0.5)]),                  # breakfast is waiting -> steamer lid
- (idx('bamboo'),[('061',4.4,2.3,0.5)]),                      # Bamboo steamers full of buns
+ (idx('buns'),[('061',4.4,1.2,0.5)]),                        # buns
  (idx('congee'),[('069',1.4,2.4,0.5)]),                      # congee
  (idx('eggs'),[('065',0.8,3.0,0.5)]),                        # eggs -> eating by the window
  (idx('whole'),[('036',5.0,3.0,0.5)]),                       # The whole thing took about three hours -> lobby walk
@@ -30,8 +30,8 @@ CUES=[
  (idx('comment'),[('071',0.0,2.4,0.5),('033',15.5,3.0,0.5)]),# CTA
 ]
 TAIL=1.3
-TITLE=["SHANGHAI","Health Check-up"]; TAG="6 doctors, 1 morning"
+TITLE=["6 DOCTORS","One Morning Check-up"]; TAG="in Shanghai"
 LABELS=[("knee reflex",idx('reflexes'))]
-CARDS=[("full report in","5 days","about 3 hours in total",idx('whole'),idx('comment'))]
+CARDS=[("","3 hours","full report in 5 days",idx('whole'),idx('comment'))]
 CTA=('Comment "CHECKUP"',idx('comment'))
 CAPTION_FIX={'XMedic':'XMEDIC','X-Medic':'XMEDIC','Xmedic':'XMEDIC'}

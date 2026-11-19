@@ -29,13 +29,10 @@ CUES=[
 ]
 if real: CUES.append((real['idx'],[('061',real['voiced0']-0.10,real['clip_out']-real['voiced0']+0.8,0.5)]))  # his real line, synced
 CUES+=[
- (idx('buns',1,real['idx']+4 if real else -1),[('061',4.4,1.6,0.5)]),  # Buns
- (idx('congee'),[('069',1.4,2.2,0.5)]),                      # congee
- (idx('coffee'),[('063',0.0,1.26,0.5),('064',0.0,0.9,0.5)]), # eggs and coffee
  (idx('zero'),[('065',0.8,3.0,0.5)]),                        # Zero complaints
  (idx('called'),[('067',0.0,2.8,0.5),('066',0.2,2.2,0.5)]),  # It's called XMEDIC
  (idx('report'),[('054',4.0,3.0,0.5)]),                      # the full report comes in five days
- (idx('comment'),[('070',0.0,2.3,0.5),('033',15.5,2.5,0.5)]), # CTA
+ (idx('comment'),[('043',41.9,1.8,0.5),('033',15.5,3.0,0.5)]), # CTA
 ]
 TAIL=1.3
 TITLE_UNTIL=i1
