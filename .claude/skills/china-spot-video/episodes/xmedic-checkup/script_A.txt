@@ -1,0 +1,33 @@
+# A — "The VIP walkthrough" (her storytelling structure). ~165 words, ~48 s at her pace.
+# [brackets] = fact needed from the creator. <shots> = planned footage (clip@seconds).
+
+Can you believe, in Shanghai, my health check-up started on a bus with first-class seats?
+  <HOOK collage: 033@10 bus seats | 033@16 me in recliner | 043@40 VIP ROOM 10 sign | 069 congee>
+
+The backstory is, I hadn't had a proper check-up in [years], so I booked a full one at XMEDIC.
+  <066 sign, 067 sign wide>
+
+The shuttle drops you at the tower, and someone walks you all the way up.
+  <035@3 stepping off the bus, 035@13 revolving door, 036@8 lobby with the guide>
+
+At the front desk you just check in, and they take you to your own VIP room to change.
+  <040@22 front desk, 043@14 corridor, 043@40 VIP ROOM 10, 043@42 the room>
+
+Then it's one room after another. Height and weight. Blood pressure. Heart and lungs.
+  <060 scale, 058@5 BP machine, 047@1 stethoscope>
+A doctor checks your stomach, your spine, even your reflexes. Then the ECG.
+  <046@10 abdomen, 047@8 spine, 048@2 knee reflex, 055@58 ECG clips>
+
+I'm not gonna lie, I expected a hospital. This felt more like a hotel.
+  <038@4 corridor, 043@30 corridor>
+
+But here's the part I didn't see coming. When you're done, breakfast is waiting.
+  <062 walking into the dining room>
+Bamboo steamers full of buns, congee, eggs.
+  <061@12 steamer lid, 069@2 congee spoon, 065@1 eating a bun>
+
+The whole thing took about [an hour], and the full report comes to your phone in [X] days.
+  <070 breakfast tray, 071 walking out/in>
+
+Comment the word CHECKUP, and we'll send you the clinic, the price and how to book.
+  <033@24 hands-in-hair reaction or 064 plate; handwritten CTA sticker>

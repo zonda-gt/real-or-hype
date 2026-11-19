@@ -1,0 +1,30 @@
+# B — "What I expected vs what I got" (contrast story). ~150 words, ~45 s.
+# [brackets] = fact needed from the creator. <shots> = planned footage (clip@seconds).
+
+I thought a health check-up in China meant long queues and crowded hallways. Here's what I actually got.
+  <HOOK hero shot: 043@12 me walking the empty hotel-style corridor; title "What I expected / vs what I got">
+
+Instead of a taxi, the clinic's shuttle, with leather recliners.
+  <033@10 bus interior, 034@2 me sinking into the seat>
+Instead of a queue, someone walks you straight to your own VIP room.
+  <043@3 leaving reception, 043@40 VIP ROOM 10 sign>
+Instead of a paper gown, matching navy pyjamas.
+  <057@6 me in pyjamas at the BP machine>
+
+And instead of one rushed doctor, it's room after room. Surgery. Eyes. Heart and lungs. An ECG.
+  <049 "213 SURGERY" door, 039 "208 EYESIGHT" door, 047@1 stethoscope, 055@58 ECG>
+
+No crowds, no numbers being shouted, just these quiet corridors.
+  <038@4 corridor, 043@20 corridor>
+
+And my favourite part? You come in on an empty stomach, so breakfast is waiting at the end.
+  <062 dining room, 061@6 steamers>
+REAL LINE (him, 061 @18.4–20.0): "这怎么都是包子啊?"   subtitle: "Why is it ALL buns?!"
+Buns, congee, eggs and coffee. Zero complaints.
+  <069@2 congee, 063 coffee machine, 065@1 eating by the window>
+
+It's called 幸元会 XMEDIC, and the full check-up was about [PRICE].
+  <067 sign wide, 066 sign; price card "[¥…] / about $[…]">
+
+Comment the word CHECKUP, and we'll send you the address, the price and how to book.
+  <070 me at the breakfast tray; handwritten CTA sticker>
