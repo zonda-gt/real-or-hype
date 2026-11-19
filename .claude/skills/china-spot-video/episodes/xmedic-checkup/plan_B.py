@@ -3,10 +3,12 @@
 import sys,os,json; sys.path.insert(0,'/home/user/real-or-hype/work/xmedic'); from common import loader
 D=os.path.dirname(os.path.abspath(__file__)); words,idx=loader(D)
 SRC={}
-HERO=('043',12.0,6.0,0.5)                                    # walking the empty hotel-style corridor
+HERO=('053',11.5,2.4,0.5)                                    # hook: doctor checking his neck
 i1=idx('instead',1); i2=idx('instead',2); i3=idx('instead',3); i4=idx('instead',4)
 real=json.load(open(f'{D}/real.json')) if os.path.exists(f'{D}/real.json') else None
 CUES=[
+ (idx('long'),[('047',0.3,1.0,0.5),('048',1.4,1.0,0.5)]),  # ...long queues and crowded hallways -> stethoscope, knee reflex
+ (idx('heres'),[('043',12.0,1.6,0.5)]),                     # Here's what I actually got -> a bit of the hallway walk
  (i1,[('033',12.6,2.4,0.5)]),                                # Instead of a taxi, the clinic's shuttle
  (idx('leather'),[('034',0.3,3.0,0.5)]),                     # with leather recliners
  (i2,[('043',2.5,2.5,0.5)]),                                 # Instead of a queue, someone walks you
@@ -35,6 +37,7 @@ CUES+=[
  (idx('comment'),[('070',0.0,2.3,0.5),('033',15.5,2.5,0.5)]), # CTA
 ]
 TAIL=1.3
+TITLE_UNTIL=i1
 TITLE=["WHAT I EXPECTED","vs What I Got"]; TAG="health check-up in Shanghai"
 LABELS=[("6 doctors",idx('six')),("VIP Room 10",idx('vip'))]
 CARDS=[]
