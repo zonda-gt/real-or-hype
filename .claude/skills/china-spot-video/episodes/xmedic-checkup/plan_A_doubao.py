@@ -2,7 +2,7 @@
 import sys,os; sys.path.insert(0,'/home/user/real-or-hype/work/xmedic'); from common import loader
 words,idx=loader(os.path.dirname(os.path.abspath(__file__)))
 SRC={'dy':{'cut':0.12}}   # dy = Douyin CT clip 7438392919872130364 (720p; burned subtitles at the very bottom)
-COLLAGE=[('053',12.0,4.0,0.5),('047',0.5,4.0,0.5),('048',1.2,3.0,0.5),('dy',12.5,4.0,0.5)]   # BR: patient going into the CT scanner
+COLLAGE=[('053',12.0,4.0,0.5),('dy',12.5,4.0,0.5),('048',1.2,3.0,0.5),('047',0.5,4.0,0.5)]   # TL neck, TR CT scanner, BL knee tap, BR stethoscope
 b=idx('booked'); fr=idx('front'); vip=idx('vip'); th=idx('then',1,vip)
 CUES=[
  (b,[('067',0.0,2.6,0.5),('066',0.2,2.2,0.5)]),             # I booked ... at XMEDIC -> the sign
