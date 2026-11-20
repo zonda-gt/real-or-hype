@@ -68,3 +68,10 @@ Skipped: 7637170889439710464 (AI "1930s" time-travel video), 7603582496253356763
 - **Evening:** dinner + shows (pricier; check).
 - **Nearby:** Jing'an Temple, Yuyuan Road (愚园路) walk, Jing'an Park; in-house 1930s costume photo studio (百乐门民国妆造).
 - Apps: Alipay, DiDi, Trip.com. Footer: "Want a full China itinerary? Reply PLAN".
+
+## Final cut (20 Nov 2026)
+- Voices: A and B = ElevenLabs creator clone (vivid, 1.2×; A had "after a three-year restoration" and "Dancing, tea," spliced out of the take to stay under 45 s). C = Doubao clone `S_hgDXnnfk2`, punchy rewrite ("It's called the Paramount", "Number four" so Doubao reads them). words.json merges: B "o'clock"; C "jazz-age", "90-year-old", "18+", "2-5" and text fixes.
+- Music: `music_swing_el.mp3` (ElevenLabs Music, 1930s swing), set via `MUSIC` in common.py.
+- Lengths: A 43.6 s (22 shots, 1.98 s/shot), B 43.6 s (38 shots, 1.15), C 43.7 s (32 shots, 1.37). compare_cuts: all pairs ok.
+- Loudness: A -15.0 LUFS / -2.4 dBTP, B -15.1 / -2.3, C -15.1 / -2.1. Whisper on the mixes: all lines intelligible.
+- p709a (0–4 s) is an inset picture with blurred borders: don't use it.

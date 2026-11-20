@@ -1,0 +1,8 @@
+# Paramount (百乐门) sources. Keys are Douyin aweme ids (p7xx = derived: p709a/p709b = 7709885774531647995 top 14% cropped
+# (stickers), 60 fps, windows 0-30 s and 60-110 s; p703r = 7703869604007232698 rotated upright, HLG kept).
+HALL='7707034155632906662'; LIN='7238019233236520229'; WIDE='7409609930245688628'; SALSA='7637807822490886281'
+RUMBA='7370880943332101403'; P709A='p709a'; P709B='p709b'; WALK='p703r'; EXT='7530621385950104895'
+VLOG='7684887921217057529'; PROMO='7410729734218222875'; NIGHT='7029266052802497799'; TEA='7669951302618071161'
+SRC={HALL:{'cut':0.20},LIN:{},WIDE:{'cut':0.16},SALSA:{'cut':0.22},RUMBA:{},P709A:{},P709B:{},WALK:{},EXT:{'cut':0.25},
+     VLOG:{'cut':0.27},PROMO:{},NIGHT:{'cut':0.25},TEA:{}}
+MUSIC='/home/user/real-or-hype/work/paramount/music_swing_el.mp3'
