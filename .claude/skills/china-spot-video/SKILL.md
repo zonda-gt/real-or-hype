@@ -85,7 +85,10 @@ Write the three chosen angles, one line each with why, at the top of the episode
 - Words TTS stumbles on: write Chinese place names in the most pronounceable form and Whisper-check them (John said "Huzhou" fine in 1 of 3 takes); "yuan" is often heard as "when". Keep it inside a phrase ("a thousand yuan"), or say "RMB".
 
 ## 4. Voice
-- Approved voices (creator's shortlist, Nov 2026, all ElevenLabs library voices usable by id):
+- **Default from 20 Nov 2026: the creator's own clone**, "Real or Hype - creator voice v2" `KdPzirZUC0HY6WhfwyeE`, at the **vivid** setting (stability 0.15, similarity 0.75, style 0.95, speaker boost) and **1.2× speed**:
+  `VO_SETTINGS='{"stability":0.15,"similarity_boost":0.75,"style":0.95,"use_speaker_boost":true}' VO_SPEED=1.2 python3 scripts/vo_take.py <workdir> KdPzirZUC0HY6WhfwyeE 3`
+  The creator heard 4 settings: the lively preset was too flat, and style 1.0 / stability 0.08 was also fine. He asked for 1.2× because the clone reads slowly. The "zonda" clone was bad and has been deleted; don't recreate it.
+- Library voices (creator's shortlist, Nov 2026, usable by id), now the fallback:
   | voice | id | notes |
   |---|---|---|
   | **John "Passionate Founder"** (Korean accent) | `PXo7njgt8slUVdtKa3La` | **default**, liveliest of 30+ tested |
