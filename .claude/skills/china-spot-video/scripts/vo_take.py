@@ -2,6 +2,9 @@
 # usage: vo_take.py <workdir> <voice_id> [takes=3] [target_wpm=200]
 # Optional env: VO_SETTINGS='{"stability":0.15,"similarity_boost":0.75,"style":0.95,"use_speaker_boost":true}' (default: LIVELY)
 #               VO_SPEED=1.2  (fixed speed-up after pause squeeze, instead of fitting target_wpm)
+# Doubao clone: pass an S_ voice id (e.g. S_hgDXnnfk2, the creator's 'steven_voice'). Speed is set inside Doubao with
+#   DOUBAO_RATE (default 20, about 1.2x) and the take is NOT sped up again; DOUBAO_STYLE / DOUBAO_LOUD optional.
+#   Doubao ignores style instructions in English: write the script punchy (short fragments, ? and !) instead.
 # Reads <workdir>/script.txt. Writes take*.mp3, vo.wav (loudnorm -16) and words.json [(start,end,word),...], then prints
 # every word with its index: those indices are the cue points in plan.py.
 import sys,os,subprocess,re,json,numpy as np
@@ -17,10 +20,15 @@ ref=re.sub(r"[^a-z0-9 ]","",text.lower().replace('-',' ')).split()
 NUM={'a','one','two','three','four','five','six','seven','eight','nine','ten','twenty','thirty','forty','fifty','hundred','thousand','fourteen','dollars'}
 res=[]
 for t in range(1,N+1):
-    if not os.path.exists(f'take{t}.mp3'): tts(vid,text,f'take{t}.mp3',SET)
+    if not os.path.exists(f'take{t}.mp3'):
+        if vid.startswith('S_'):
+            cmd=['python3',os.path.join(os.path.dirname(os.path.abspath(__file__)),'doubao_tts.py'),vid,text,f'take{t}.mp3','--rate',os.environ.get('DOUBAO_RATE','20'),'--loud',os.environ.get('DOUBAO_LOUD','10')]
+            if os.environ.get('DOUBAO_STYLE'): cmd+=['--style',os.environ['DOUBAO_STYLE']]
+            subprocess.run(cmd,check=True)
+        else: tts(vid,text,f'take{t}.mp3',SET)
     sq='silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=start_periods=1:start_threshold=-50dB,areverse,silenceremove=stop_periods=-1:stop_duration=0.2:stop_threshold=-42dB:stop_silence=0.14'
     subprocess.run(['ffmpeg','-loglevel','error','-y','-i',f'take{t}.mp3','-af',sq,'-ar','44100','-ac','1',f'take{t}_sq.wav'],check=True)
-    ws=words(f'take{t}_sq.wav'); wpm=len(ws)/(ws[-1][1]-ws[0][0])*60; sp=FIX if FIX else min(1.25,max(1.0,WPM/wpm))
+    ws=words(f'take{t}_sq.wav'); wpm=len(ws)/(ws[-1][1]-ws[0][0])*60; sp=1.0 if vid.startswith('S_') else (FIX if FIX else min(1.25,max(1.0,WPM/wpm)))
     subprocess.run(['ffmpeg','-loglevel','error','-y','-i',f'take{t}_sq.wav','-af',f'atempo={sp:.3f}',f'take{t}_fast.wav'],check=True)
     h=re.sub(r"[^a-z0-9 ]","",' '.join(w[2] for w in words(f'take{t}_fast.wav')).lower().replace('-',' ')).split()
     miss=[w for w in ref if w not in h and w not in NUM]
