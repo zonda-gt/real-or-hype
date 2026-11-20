@@ -42,14 +42,14 @@ The voice says "Chen Go" (two words) so the TTS says it right; captions show CHE
 ## Footage (Douyin aweme ids; internal only, never in captions). All at Chengo Shanghai.
 | key | id | what | crop notes |
 |---|---|---|---|
-| K49 | 7683856501748182399 | 1080p30 vlog, 49k ♥: lookbook binder 11.1–15.3, brushes 22.0–23.1, makeup 24.4–28.3, hair 42.0–44.2, pink wall 50.0–51.3 and 60.0–61.5, backstage 63.5–64.5 / 67.0–68.8, stage wide 86.0–87.9, her + her face on screen 89.0–91.8 / 98.5–101.5 / 103.5–105.8, fan-sign 120.0–123.5, DJ booth 138.0–139.9, Inkigayo MC desk 140.0–141.9, photocards 151.0–154.6 | subs at about 0.66: **cut 0.37**; overlays at 28.5–29, 35–38, 52–54, 58.5–59.5, 88, 92–93, 95–98, 110–113 |
+| K49 | 7683856501748182399 | 1080p30 vlog, 49k ♥: lookbook binder 11.1–15.3, brushes 22.0–23.1, makeup 24.4–28.3, hair 42.0–44.2, pink wall 50.0–51.3 and 60.0–61.5, backstage 63.5–64.5 / 67.0–68.8, stage wide 86.0–87.9, her + her face on screen 89.0–91.8 / 98.5–101.5 / 103.5–105.8, (118–126 is a letterboxed photo slideshow with whip-blur transitions: avoid), DJ booth 138.0–139.9, Inkigayo MC desk 140.0–141.9, photocards 151.0–154.6 | subs at about 0.66: **cut 0.37**; overlays at 28.5–29, 35–38, 52–54, 58.5–59.5, 88, 92–93, 95–98, 110–113 |
 | KR | 7703171104194397775 | 1080p Korean visitor (Nov 2026): lookbook 8.0–12.5, makeup on eyes 16.0–18.7, curling 20.2–22.2 / 22.5–24.8, pink wall 25.5–28.6, backstage + mic 42.0–45.6, fan-sign with fans' hands 53.2–56.3, MC with mic 60.5–62.4, Inkigayo desk 65.0–66.2 and **waving 68.5–71.0**, close-up 73.5–76 | subs at about 0.76: **cut 0.27**; stickers 4–8, top captions 31–41, circles 56.5–60 |
 | KS | 7627736289027109499 | 720p Korean student (Apr 2026): pink wall 3.15–3.6, **CHEN GO entrance banner 5.65–7.1**, wardrobe 7.3–9.0 / 9.1–11.3, **boots wall 11.45–12.1**, lookbook 12.2–14.3, makeup table 19.0–21.1, makeup mirror 21.2–21.8, artist 22.0–23.3, wig wall 26.4–27.1, hair 32.4–34.5, "done" selfie 35.0–37.2, stage wide 42.0–45.1, Inkigayo set 57.4–58.1, two girls at MC set 58.2–60.0, DJ booth 66.0–67.5 / 68.0–69.4, classroom 72.5–73.2 | subs at about 0.83: **cut 0.20** |
 | YT | 7706818090939798258 | 1440p, 32k ♥: wardrobe 23.5–25.5, binder 26.0–26.9, makeup mirror 34.5–35.1, hair 38.0–38.6, boots-arch selfie 42.0–43.1, **photographer** backstage 46.0–47.0 / classroom 49.0–49.6 / on stage 54.0–54.9 / at the MC set 55.0–55.9 / crew 92.5–93.5, fan-sign 61.0–61.9, face on screen 72.0–72.8, stage 76.5–79.2, fan-sign portrait 81.5–82.3, pink wall 84.5–85.4, chalkboard 85.5–86.4 | subs at about 0.78: **cut 0.25**; heavy stickers 22, 27–30, 36–37, 52, 57–60, 63–67 |
 | BUB | 7524980074819456302 | 1080p studio clip, clean: guest on the stage with her face on the LED screen 0–2.6, posing 2.6–7.7, screen close 7.7–10.2 | cut 0 |
 | SCR | 7500456784822652179 | 1080p60 studio clip, clean: twin-tail guest + giant screen face 0–3.38, 3.38–5.23, 6.69–9.96 | cut 0 |
 | DUO | 7699420697072950626 | 1080p: two guests on stage with big screen 0–13.2, confetti 20.5–23.5 | subs 0.72–0.88: **cut 0.30**; 28.5+ letterboxed |
-| GAB | 7635405931203746225 | 720×960, 33.7k ♥ (tagged Chengo), male guest: stage + confetti + face on screen 9.0–13.2, makeup 30–60 | subs at about 0.78: cut 0.24; "爱豆体验" title 6–8.8 |
+| GAB | 7635405931203746225 | 720×960, 33.7k ♥ (tagged Chengo), male guest: stage + confetti + face on screen 9.0–13.2, makeup 30–60, **fan-sign desk 182.2–193.0** | subs at about 0.78: cut 0.24; "爱豆体验" title 6–8.8 |
 | HU | 7490131673993022770 | 720×960: **Chengo neon sign at the door 107.2–108.7**, photocard printer 175.5–177.8 | subs at about 0.78: cut 0.24 |
 | STG, HAI | 7532861100603608329, 7656393478586354994 | studio stage tour (subs at 0.68); male before/after (720p, subs at 0.58–0.68) | downloaded; not used (too much crop) |
 Rejected: 7436000391327714586 (video call with a real celebrity, phone UI), 7360718564954770703 (2024 walk-through, subs mid-frame, old layout), 7539546567612468506 (guest is a TV personality), 7646293883747463782 (letterboxed, text), 7499020275565055273 (concert footage on the LED), IDOL-X clips (very few, low quality).
@@ -74,3 +74,14 @@ Rejected: 7436000391327714586 (video call with a real celebrity, phone UI), 7360
 - **Apps:** Alipay or WeChat Pay, DiDi, WeChat (for booking).
 - **Nearby:** Lujiazui skyline (10 min by car); Century Park.
 - Footer: "Want a full China itinerary? Reply PLAN."
+
+## Voices and build (20 Nov 2026)
+- **A and B:** the creator's ElevenLabs clone `KdPzirZUC0HY6WhfwyeE`, vivid (stability 0.15, style 0.95), 1.2×. A: take 1 of 3, word-perfect, 42.7 s. B: take 1 of 2, 39.3 s; Whisper writes "12", "$18" and "colored" for twelve, eighteen and coloured, which is fine. ElevenLabs credits ran out before C.
+- **C:** rewritten punchy (fragments, ? and !) and voiced with the creator's Doubao clone `S_hgDXnnfk2` (`vo_take.py <wd> S_hgDXnnfk2 2`, rate 20 ≈ 1.2× inside Doubao). Take 1 of 2, word-perfect, 41.7 s. `plan_C.py` looks up its cue words by phrase in words.json (`finder()` in `common.py`), so a new take needs no remap.
+- Shared sources and crop cuts are in `common.py`; copy it next to the plans. Rebuild each version with `graphics.py` → `render_cut.py` → `finish.py <wd> idol-studio_<v>`.
+- **Overlays found in QA and avoided:**
+  - KR 68.4–76 has "总结一下:" across the top, and KR 61–62.5 has a "转场" sticker, so neither is used.
+  - K49 102–103 has a Korean title card, and K49 11–13 has "每个都想试!" mid-frame.
+  - K49 118–126 (the fan-sign part) is a letterboxed slideshow with whip blurs; use GAB 182.3 or YT 81.4/83.4 for the fan-sign.
+- KS needs cut 0.25, not 0.20: at 0.20 the subtitles at 7–12 s leak into the bottom.
+- **Caption (all three):** "This studio in Shanghai turns you into a K-pop idol for a day. Makeup, hair, a stage outfit and 12 K-pop sets for about $50. Comment IDOL and we'll send you the full guide. #shanghai #kpop #chinatravel #kpopidol #shanghaitravel"
