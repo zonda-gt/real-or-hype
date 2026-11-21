@@ -94,6 +94,9 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | Giraffe Manor E2me (full tour) | https://www.instagram.com/reel/DfwVcgvFL6b/ | 2026-11-15 |
 | Giraffe Manor F (Kenya vs China) | https://www.instagram.com/reel/DfwVlUTDETB/ | 2026-11-15 |
 | Giraffe Manor G (4 things nobody tells you) | https://www.instagram.com/reel/DfwVrTRjjJK/ | 2026-11-15 |
+| Avengers HQ A (Shanghai's Avengers HQ) | https://www.instagram.com/reel/DgAL8aqDLv5/ | 2026-11-21 |
+| Avengers HQ B (Iron Man is the villain now) | https://www.instagram.com/reel/DgAMBOJiZQ6/ | 2026-11-21 |
+| Avengers HQ C (3 photo spots) | https://www.instagram.com/reel/DgAMHeZip8_/ | 2026-11-21 |
 
 Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
 Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.
