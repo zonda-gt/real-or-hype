@@ -1,4 +1,6 @@
 # Graphics + one-word captions + VO + ducked music + sfx, mastered to -15 LUFS / TP <= -1. usage: finish.py <workdir> <name>
+# Env overrides: MUSIC=<file> (instead of plan.MUSIC), MUSIC_DB=<dB>, NO_MUSIC=1 (voice + sfx only, for reels whose
+# music is attached from Instagram's licensed library at publish time).
 # Writes <name>_1080.mp4 and <name>_540.mp4 in <workdir>. Run graphics.py and render_cut.py first.
 import json,subprocess,re,sys,os,numpy as np
 W,NAME=sys.argv[1],sys.argv[2]; sys.path.insert(0,W); import plan as P; os.chdir(W)
@@ -37,9 +39,9 @@ for k,(png,a,b) in enumerate(ovs):
     fc+=f"[{k+1}:v]format=rgba,{fade}[o{k}];[v{k}][o{k}]overlay=0:0:enable='between(t,{a:.3f},{b:.3f})'[v{k+1}];"
 fc+=f"[v{len(ovs)}]ass=subs.ass:fontsdir={SK}/fonts[vout];"
 def pk(f): return 20*np.log10(np.abs(np.frombuffer(subprocess.run(['ffmpeg','-loglevel','error','-i',f,'-ac','1','-f','f32le','-'],capture_output=True).stdout,dtype=np.float32)).max()+1e-9)
-music=getattr(P,'MUSIC',f'{SK}/sfx/music_marimba_el.mp3'); n=len(ovs)+1; ain=['-i','vo.wav','-i',music]
+music=os.environ.get('MUSIC') or getattr(P,'MUSIC',f'{SK}/sfx/music_marimba_el.mp3'); MDB=-90 if os.environ.get('NO_MUSIC') else float(os.environ.get('MUSIC_DB',getattr(P,'MUSIC_DB',-8))); n=len(ovs)+1; ain=['-i','vo.wav','-i',music]
 fa=f'[{n}:a]aresample=48000,aformat=channel_layouts=stereo,apad=whole_dur={T:.3f}[vo];[vo]asplit=2[vo1][key];'
-fa+=f'[{n+1}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{T:.3f},loudnorm=I=-16:TP=-2,volume={getattr(P,"MUSIC_DB",-8)}dB,afade=t=out:st={T-1.2:.2f}:d=1.2[mus];[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=300[musd];'
+fa+=f'[{n+1}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:{T:.3f},loudnorm=I=-16:TP=-2,volume={MDB}dB,afade=t=out:st={T-1.2:.2f}:d=1.2[mus];[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=300[musd];'
 # pops land 0.15 s BEFORE the word that triggers the graphic, never on it (a pop on the word masked "capybaras" and "giraffe")
 trig=[wt(i) for _,i in getattr(P,'LABELS',[])]+[wt(c[3]) for c in getattr(P,'CARDS',[])]+([wt(P.CTA[1])] if getattr(P,'CTA',None) else [])
 ev=[('whoosh_es',0.31,tl['collage_end'],0.30)]+[('pop_es',0.0,t-0.05,0.18) for t in trig]

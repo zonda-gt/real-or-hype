@@ -127,6 +127,35 @@ CTA=('Comment "GIRAFFE"',word_idx)                  # optional sticker at the en
 ## 7. Mix + master: `scripts/finish.py <workdir> <name>`
 VO + music bed (default `sfx/music_marimba_el.mp3`, ElevenLabs Music, earshot "strong" for a light, happy travel video) loudnormed, -8 dB (at -6 Whisper misheard words in the mix), sidechain-ducked under the voice; a whoosh out of the collage; soft pops on labels and cards. Master: **-15 LUFS, true peak ≤ -1 dBTP** (limiter 0.84). Writes `<name>_1080.mp4` + `<name>_540.mp4`.
 
+## 7b. Music that fits the place (from Nov 2026)
+Every place gets its own track, matched to its mood, from **Instagram's licensed music library** (the Audio API). Then:
+- the posted reel links to that sound, and
+- nothing copyrighted is baked into the file.
+
+Never download songs from YouTube or elsewhere.
+1. **Search.** Run `ig_audio` (see the instagram-trial-reel skill) with mood and genre words, e.g. "k-pop" / "korean pop" / "seoul", "guzheng" / "chinese traditional", "spa relax" / "chill lofi", "cinematic epic", "swing jazz". The catalogue has no big-label hits, so search by sound, not by artist.
+2. **Shortlist 2–3 per place.**
+   - Prefer **instrumentals**: lyrics fight the narration. Whisper the `download_url` preview; a track with sung words is out.
+   - The track must be at least as long as the reel.
+   - Instagram plays a track from its start, so check that the first 45 s works.
+3. **Record the pick.** Put it in `work/music_picks.json` and the episode README (audio_id, title, artist).
+4. **Export twice.** Both use the same plan:
+   - `NO_MUSIC=1 python3 scripts/finish.py <dir> <slug>_<V>_voice` makes the **posting file** (voice + SFX only).
+   - `MUSIC=<dir>/../music_ig.wav python3 scripts/finish.py <dir> <slug>_<V>` makes the **review copy** with the track mixed in at the usual level (for previews and OneDrive only; never post it).
+5. **Post** the voice file with `--audio-id <id>` (instagram-trial-reel), music volume 25 under the voice at 100.
+
+First picks (Nov 2026):
+
+| Episode | Track | audio_id |
+|---|---|---|
+| idol-studio | Seoul Vibes (Instrumental), Sugartapes | 1105478964958211 |
+| palace-banquet | Colorful Clouds Chasing The Moon (彩云追月), Mike Block | 1516724508945302 |
+| bathhouse | Lofi Street, bbox | 544713431841568 |
+| helicopter | Momentum Rising, Auralux | 2569981020089689 |
+| paramount | Swing String Fling, Global Genius | 977536832781184 |
+
+The old default bed (`sfx/music_marimba_el.mp3`) is only a fallback for review cuts.
+
 ## 8. QA (before sending)
 - **Do the three feel different?** Run `python3 scripts/compare_cuts.py <workdirA> <workdirB> <workdirC>` after `render_cut.py`. It flags pairs with the same opening, a similar shot order or the same rhythm. Shared clips are listed for information only. Re-cut any flagged pair, then look at the three contact sheets side by side.
 1. `scripts/sheet.py <name>_1080.mp4 0.5`: every cue shows its noun; no burned subtitles, watermarks or UI; labels sit on the right shot; nothing crops the subject's head off.
@@ -191,7 +220,7 @@ When the creator says "make a video about <place>" (and post it), do all of this
 4. **Post all three** as trial reels with the `instagram-trial-reel` skill: same caption on all three, the keyword in the caption, no AI or source mentions. Then post the creator's pick, or the leader by likes after a day, as the Facebook reel (the recipe is in that skill). That skill shows the creator the files and caption once and asks "Post these?" before publishing.
 5. **After posting**, check within the hour that keyword comments are getting replies. Count the comments that have our public reply under them (the Graph API `/{media}/comments` with `replies`), and report the count.
 
-540p previews via SendUserFile; keep the 1080p in the work dir (not committed, too big; tell the creator it's lost when the session ends unless uploaded). Commit the episode's plan, script, words.json, fact sheet and README under `episodes/<slug>/`. Trial reels: the `instagram-trial-reel` skill.
+540p previews via SendUserFile; the 1080p review copies go to the creator's OneDrive (one folder per place) with `node scripts/onedrive_upload.js <shared-folder link> --folder <slug> <files>` (same-name files are replaced); keep the 1080p in the work dir (not committed, too big; tell the creator it's lost when the session ends unless uploaded). Commit the episode's plan, script, words.json, fact sheet and README under `episodes/<slug>/`. Trial reels: the `instagram-trial-reel` skill.
 
 ## Study a new reference creator
 `scripts/ig_fetch.py <reel_url> <dir>` (TikHub) → `scripts/study_ref.py <dir>/<code>.mp4`: wpm, pauses, cut rhythm, a sheet of every shot with the words said over it, voice pitch range. Write the findings into `reference/<creator>_study.md`.

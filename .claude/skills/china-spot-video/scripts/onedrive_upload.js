@@ -1,4 +1,5 @@
 // Upload files into a OneDrive shared-folder link (edit link), optionally into a sub-folder it creates if missing.
+// Same-name files are replaced.
 // usage: node onedrive_upload.js <share_link> [--folder <name>] <file> [<file>...]
 const { chromium } = require('playwright');
 (async () => {
@@ -30,6 +31,13 @@ const { chromium } = require('playwright');
   await p.getByText('Create or upload').first().click(); await p.waitForTimeout(1500);
   const [chooser] = await Promise.all([p.waitForEvent('filechooser', { timeout: 20000 }), p.getByText(/^Files? upload$/i).first().click()]);
   await chooser.setFiles(files);
+  // same-name files: OneDrive asks whether to replace; always replace
+  for (let i = 0; i < 20; i++) {
+    await p.waitForTimeout(1500);
+    const rep = p.getByRole('button', { name: /^Replace( all)?$/i }).first();
+    if (await rep.count()) { await rep.click(); console.log('replacing existing file(s)'); }
+    else if (i > 3) break;
+  }
   const names = files.map(f => f.split('/').pop()); const t0 = Date.now(); let ok = false;
   while (Date.now() - t0 < 60*60*1000) {
     await p.waitForTimeout(5000);

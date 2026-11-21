@@ -41,6 +41,9 @@ ap.add_argument("--repo", default=None, help="git checkout used for hosting (def
 ap.add_argument("--host-dir", default="media/trial-reels", help="folder in the repo for hosted videos")
 ap.add_argument("--commit-message-file", default=None, help="commit message for the hosting commit (e.g. with attribution lines)")
 ap.add_argument("--direct-upload", action="store_true")
+ap.add_argument("--audio-id", help="attach licensed music from Instagram's library (Audio API, needs the Facebook Login token)")
+ap.add_argument("--audio-volume", type=int, default=25, help="music volume 1-100 (default 25, under the narration)")
+ap.add_argument("--video-volume", type=int, default=100, help="volume of the video's own sound 1-100 (default 100)")
 m = ap.add_mutually_exclusive_group(required=True)
 m.add_argument("--dry-run", action="store_true"); m.add_argument("--yes", action="store_true")
 a = ap.parse_args()
@@ -73,6 +76,13 @@ def call(method, url, **kw):
 
 def account():
     tried = []
+    if a.audio_id:   # music can only be attached with the Facebook Login (or Unified Login) token on graph.facebook.com
+        if not (os.environ.get("INSTAGRAM_FB_TOKEN") and os.environ.get("INSTAGRAM_USER_ID")):
+            sys.exit("--audio-id needs INSTAGRAM_FB_TOKEN (with instagram_content_publish) and INSTAGRAM_USER_ID.")
+        tok = os.environ["INSTAGRAM_FB_TOKEN"]; uid = os.environ["INSTAGRAM_USER_ID"]; base = f"https://graph.facebook.com/{VER}"
+        sc, d = call("GET", f"{base}/{uid}", params={"fields": "username", "access_token": tok})
+        if sc == 200 and d.get("username"): return base, tok, uid, d["username"]
+        sys.exit(f"Facebook Login token did not work for music posts: {sc} {clean(d)}")
     if os.environ.get("INSTAGRAM_ACCESS_TOKEN"):
         tok = os.environ["INSTAGRAM_ACCESS_TOKEN"]; base = f"https://graph.instagram.com/{VER}"
         sc, d = call("GET", f"{base}/me", params={"fields": "user_id,username", "access_token": tok})
@@ -217,6 +227,7 @@ for vid, remote, logs, state in items:
     cid = state.get("container")
     if not cid:
         data = {"media_type": "REELS", "caption": caption, "trial_params": json.dumps({"graduation_strategy": GRADUATION}), "access_token": tok}
+        if a.audio_id: data["audio_configuration"] = json.dumps({"audio_id": a.audio_id, "audio_volume": a.audio_volume, "video_volume": a.video_volume})
         if video_url: data["video_url"] = video_url
         else: data["upload_type"] = "resumable"
         sc, d = call("POST", f"{base}/{uid}/media", data=data)
