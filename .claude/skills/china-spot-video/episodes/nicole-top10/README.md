@@ -13,7 +13,7 @@ make 3 videos per place and post them as trial reels, 3 every 12 hours, without 
 |---|---|---|---|---|
 | 1 | Harbin Ice-Snow World (哈尔滨冰雪大世界) | [De1USPhyy1_](https://www.instagram.com/reel/De1USPhyy1_/) | 968,399 | Df95gc3SDt9 329k, DewUVcZIhl8 317k, DerIZlkyrfQ 267k |
 | 2 | Aurora village, Altay, Xinjiang | [DeRSANzFOKU](https://www.instagram.com/reel/DeRSANzFOKU/) | 962,678 | |
-| 3 | Go-kart boats on water (location to identify) | [DeG9FEiD5pt](https://www.instagram.com/reel/DeG9FEiD5pt/) | 491,510 | |
+| 3 | Go-kart boats (卡丁船), Yuntaishan / Fenglin Gorge, Jiaozuo, Henan | [DeG9FEiD5pt](https://www.instagram.com/reel/DeG9FEiD5pt/) | 491,510 | |
 | 4 | Guangzhou kart racing (venue to identify) | [DclH6T0yABG](https://www.instagram.com/reel/DclH6T0yABG/) | 345,224 | |
 | 5 | Shanghai 4,000 m² indoor playground, 100+ activities (venue to identify) | [Dfo59N0ya_R](https://www.instagram.com/reel/Dfo59N0ya_R/) | 259,521 | DfzJKi6yyqy 171k |
 | 6 | Dunhuang (old city, desert sunset concert) | [DegqVrMSVKZ](https://www.instagram.com/reel/DegqVrMSVKZ/) | 221,255 | DdQ_hfXyr4R 125k |
@@ -31,9 +31,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 2 | 1 | B | blocked: ElevenLabs out of credit (57 left, needs ~274) | script ready in work/harbin_B | |
 | 3 | 1 | C | blocked: ElevenLabs credit | | |
 | 4 | 2 | A | posted 22 Nov (Hemu, Altay) | xinjiang_A_1080.mp4 | https://www.instagram.com/reel/DgDTtrYnARq/ |
-| 5 | 2 | B | todo | | |
-| 6 | 2 | C | todo | | |
-| 7 | 3 | A | todo | | |
+| 5 | 2 | B | blocked: ElevenLabs credit | | |
+| 6 | 2 | C | blocked: ElevenLabs credit | | |
+| 7 | 3 | A | posted 22 Nov (Yuntaishan, Henan; music: Gotta Go Faster - Kolektivo) | kartboat_A_1080.mp4 | https://www.instagram.com/reel/DgDvmvTiN7L/ |
 | 8 | 3 | B | todo | | |
 | 9 | 3 | C | todo | | |
 | 10 | 4 | A | todo | | |
