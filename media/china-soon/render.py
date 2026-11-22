@@ -1,4 +1,4 @@
-# Render the China version: Seedance sink opener (0-4.2 s) + 19 montage shots on the original reel's cut times.
+# Render the China version: original sink opener (0-4.2 s) + 19 montage shots on the original reel's cut times.
 import subprocess, sys, os
 W=sys.argv[1]; os.chdir(W); os.makedirs('seg',exist_ok=True)
 B=[4.2,4.6,5.0667,5.5667,5.8667,6.2,6.4667,6.9,7.4667,7.7333,8.1,8.4,8.8333,9.3,9.6667,10.0333,10.2667,10.7333,11.2333,11.9]
@@ -16,10 +16,11 @@ TM="zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:t=linear:npl=100,format=gbrp
 def run(a): subprocess.run(a,check=True)
 fr=lambda t: round(t*30)
 lst=[]
-# opener: last 4.2 s of the Seedance clip, captioned
+# opener: the original reel's first 4.2 s (sink.src.mp4), its caption blurred out and replaced (cap2.png/mask2.png from caption2.py)
 n0=fr(B[0])
-run(['ffmpeg','-v','error','-y','-sseof','-4.25','-i','sink.mp4','-i','cap.png','-filter_complex',
- f'[0]fps=30,scale=1080:1920:flags=lanczos,setsar=1[b];[b][1]overlay,format=yuv420p,trim=end_frame={n0}','-an','-c:v','libx264','-crf','16','-preset','medium','seg/00.mp4'])
+run(['ffmpeg','-v','error','-y','-i','sink.src.mp4','-i','mask2.png','-i','cap2.png','-filter_complex',
+ f'[0:v]fps=30,scale=1080:1920:flags=lanczos,setsar=1,split[a][b];[b]gblur=sigma=28[bl];[bl][1:v]alphamerge[blm];[a][blm]overlay[c];[c][2:v]overlay,format=yuv420p,trim=end_frame={n0}',
+ '-an','-c:v','libx264','-crf','16','-preset','medium','seg/00.mp4'])
 lst.append('seg/00.mp4')
 for i,(c,ss,cr,xb) in enumerate(SH,1):
     nf=fr(B[i])-fr(B[i-1]); f=f'broll/{ID[c]}.mp4'
