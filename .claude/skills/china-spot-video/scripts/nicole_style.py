@@ -1,9 +1,9 @@
 # "Version A" renderer: a no-narration reel in the style of @nicole.inchina (long POV takes, one small
 # meme-style text line, music only). usage: nicole_style.py <workdir> <name>   (reads <workdir>/plan_A.py)
 # plan_A.py:
-#   SRC={id:{'cut':0.14,'top':0.0}}            # optional bottom / top crop (burned subtitles, letterbox)
+#   SRC={id:{'cut':0.14,'top':0.0,'pre':'delogo=x=..'}}  # optional bottom/top crop; 'pre' = filter before the crop (e.g. delogo a text band)
 #   SHOTS=[(src,t_in,secs,x_centre[,speed])]  # hard cuts, in order; speed<1 slows (default 1)
-#   TEXTS=[("line one\nline two",t0,t1)]      # small centred text, Nicole-style (white, soft shadow)
+#   TEXTS=[("line one\nline two",t0,t1[,y])]  # small centred text, Nicole-style (white, soft shadow); y = centre, 0-1
 #   TEXT_Y=0.40; TEXT_SIZE=50                  # optional
 #   MUSIC='path.mp3'; MUSIC_IN=0.0             # music bed and start offset
 #   AMBIENT=[(shot_index,db)]                  # optional: keep a shot's own sound under the music
@@ -14,14 +14,17 @@ W,NAME=sys.argv[1],sys.argv[2]; SK=os.path.dirname(os.path.dirname(os.path.abspa
 sys.path.insert(0,W); import plan_A as P; os.chdir(W); os.makedirs('segA',exist_ok=True)
 FPS=30; run=lambda c: subprocess.run(c,check=True)
 def probe(src):
-    s=json.loads(subprocess.run(['ffprobe','-v','error','-select_streams','v:0','-show_entries','stream=width,height,color_transfer','-of','json',f'broll/{src}.mp4'],capture_output=True,text=True).stdout)['streams'][0]
-    return s['width'],s['height'],s.get('color_transfer','')
+    s=json.loads(subprocess.run(['ffprobe','-v','error','-select_streams','v:0','-show_entries','stream=width,height,color_transfer:stream_side_data=rotation:stream_tags=rotate','-of','json',f'broll/{src}.mp4'],capture_output=True,text=True).stdout)['streams'][0]
+    rot=int(float(next((d.get('rotation',0) for d in s.get('side_data_list',[]) if 'rotation' in d),s.get('tags',{}).get('rotate',0))))
+    w,h=(s['height'],s['width']) if abs(rot)%180==90 else (s['width'],s['height'])   # ffmpeg autorotates, so crop in display orientation
+    return w,h,s.get('color_transfer','')
 def vf(src,x):
     w,h,tr=probe(src); o=getattr(P,'SRC',{}).get(src,{}); c=o.get('cut',0.0); top=o.get('top',0.0); ch=h*(1-c-top); cw=ch*1080/1920
     if cw>w: cw=w; ch=cw*1920/1080
     X=min(max(x*w-cw/2,0),w-cw); Y=int(h*top)//2*2
     tm='zscale=tin=arib-std-b67:min=bt2020nc:pin=bt2020:t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv,format=yuv420p,' if tr=='arib-std-b67' else ''
-    return f"{tm}crop={int(cw)//2*2}:{int(ch)//2*2}:{int(X)}:{Y},scale=1080:1920:flags=lanczos,setsar=1"
+    pre=o.get('pre',''); pre=pre+',' if pre else ''
+    return f"{tm}{pre}crop={int(cw)//2*2}:{int(ch)//2*2}:{int(X)}:{Y},scale=1080:1920:flags=lanczos,setsar=1"
 segs=[]; t=0.0
 for k,s in enumerate(P.SHOTS):
     src,tin,d,x=s[:4]; sp=s[4] if len(s)>4 else 1.0; nf=int(round((t+d)*FPS))-int(round(t*FPS)); o=f'segA/{k:03d}.mp4'
@@ -31,9 +34,10 @@ T=t; open('concatA.txt','w').write(''.join(f"file '{os.path.abspath(o)}'\n" for 
 run(['ffmpeg','-y','-loglevel','error','-f','concat','-safe','0','-i','concatA.txt','-c','copy','videoA.mp4'])
 # text overlays (PNG, full frame)
 font=ImageFont.truetype(f'{SK}/fonts/poppins-latin-600-normal.ttf',getattr(P,'TEXT_SIZE',50)); ov=[]
-for k,(txt,t0,t1) in enumerate(P.TEXTS):
+for k,tx in enumerate(P.TEXTS):
+    txt,t0,t1=tx[:3]; ty=tx[3] if len(tx)>3 else getattr(P,'TEXT_Y',0.40)
     im=Image.new('RGBA',(1080,1920),(0,0,0,0)); d=ImageDraw.Draw(im); lines=txt.split('\n'); lh=int(font.size*1.25)
-    y0=int(1920*getattr(P,'TEXT_Y',0.40))-lh*len(lines)//2
+    y0=int(1920*ty)-lh*len(lines)//2
     sh=Image.new('RGBA',(1080,1920),(0,0,0,0)); sd=ImageDraw.Draw(sh)
     for j,l in enumerate(lines):
         w=d.textlength(l,font=font); xx=(1080-w)/2; yy=y0+j*lh

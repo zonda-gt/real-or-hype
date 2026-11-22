@@ -28,9 +28,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | # | place | version | status | file | permalink |
 |---|---|---|---|---|---|
 | 1 | 1 | A | posted 22 Nov | harbin_A_1080.mp4 | https://www.instagram.com/reel/DgDEi6pIet3/ |
-| 2 | 1 | B | todo | | |
-| 3 | 1 | C | todo | | |
-| 4 | 2 | A | todo | | |
+| 2 | 1 | B | blocked: ElevenLabs out of credit (57 left, needs ~274) | script ready in work/harbin_B | |
+| 3 | 1 | C | blocked: ElevenLabs credit | | |
+| 4 | 2 | A | posted 22 Nov (Hemu, Altay) | xinjiang_A_1080.mp4 | https://www.instagram.com/reel/DgDTtrYnARq/ |
 | 5 | 2 | B | todo | | |
 | 6 | 2 | C | todo | | |
 | 7 | 3 | A | todo | | |
@@ -59,9 +59,14 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 30 | 10 | C | todo | | |
 
 ## How each run works (scheduled every 4 h, one video per run)
+0. **While ElevenLabs is out of credit (22 Nov 16:57 UTC): skip B/C rows, make the next A row instead, and mark the B/C rows `blocked`.** When credit is back (test a 1-word TTS call), do the blocked rows first, in order.
 1. Take the first `todo` row. Work dir: `work/<slug>/` (gitignored); committed files go in `episodes/nicole-top10/<slug>/`.
 2. First run for a place (version A): watch Nicole's best reel for it (`scripts/ig_fetch.py` + `sheet.py`), identify the exact place (Chinese name), search Douyin, download the most **aesthetic** clips. Looks are the only filter: camera watermarks (DJI etc.) and 720p are fine if the shot is beautiful; skip TikTok/Douyin watermarks, staged/AI labels and other branches.
 3. Version A: `scripts/nicole_style.py <workdir> <slug>_A` (plan_A.py: long POV takes ~3-6 s, one small meme-style text line in the first ~8 s, a "save this" line at the end, music bed). Check the contact sheet for scene changes inside a shot (`cuts.sh` misses some).
 4. Versions B/C: china-spot-video skill, sections 1-8 (fact sheet in `<slug>/README.md`, John voice, ~35-45 s), two different angles. CTA "Follow for more China" (no keyword). Write B's fact sheet before B.
 5. One caption per place (same for A/B/C), no AI/source mentions. Post with the instagram-trial-reel skill, `--yes` (pre-approved by the creator on 22 Nov 2026).
 6. Mark the row posted with its permalink, commit plan/caption/README + `.ig.json`, push.
+
+## Notes per place
+- **Harbin**: facts for B/C (checked 22 Nov 2026): 28th edition, 1.25 million m², biggest ever, Disney Frozen area (smzdm x2 + Nicole); opens mid-December (Harbin govt press conference 10 Nov via smzdm; Nicole); last season 24 slides, longest 521 m (Douyin titles + smzdm); last season's adult ticket ¥328, about $45 (2 guides); 2026-27 price not announced. B script: `harbin/script_B.txt` (angle: the full experience). C angle to write: numbers (521 m slide, 1.25 million m², -20°C, ¥328).
+- **Xinjiang**: Nicole's aurora reel looks AI-made, and many Douyin "阿勒泰的极光" clips are templated (one is labelled AI生成). Use only real footage: Hemu blue hour (author-declared Jan 2026), aurora 7424563400702758171 (11 Oct 2024 storm; lyric text removed with delogo). Never promise auroras: "on rare nights".
