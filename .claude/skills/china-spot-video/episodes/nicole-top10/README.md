@@ -40,9 +40,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 11 | 4 | B | blocked: ElevenLabs credit | | |
 | 12 | 4 | C | blocked: ElevenLabs credit | | |
 | 13 | 5 | A | posted 23 Nov (WUNPARK Sun Palace; music: Level Up - Giulio Cercato) | shplay_A_1080.mp4 | https://www.instagram.com/reel/DgEnHGFjGCJ/ |
-| 14 | 5 | B | todo | | |
-| 15 | 5 | C | todo | | |
-| 16 | 6 | A | todo | | |
+| 14 | 5 | B | blocked: ElevenLabs credit | | |
+| 15 | 5 | C | blocked: ElevenLabs credit | | |
+| 16 | 6 | A | posted 23 Nov (Mingsha Mountain, Mogao, Crescent Lake; music: Silk Road Vibes - LoFluent) | dunhuang_A_1080.mp4 | https://www.instagram.com/reel/DgFA7XYkqGf/ |
 | 17 | 6 | B | todo | | |
 | 18 | 6 | C | todo | | |
 | 19 | 7 | A | todo | | |

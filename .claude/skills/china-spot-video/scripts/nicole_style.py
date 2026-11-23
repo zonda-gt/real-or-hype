@@ -65,9 +65,9 @@ fc+=f"{mix}amix=inputs={1+len(amb)}:normalize=0:duration=first,atrim=0:{T:.3f}[a
 run(['ffmpeg','-y','-loglevel','error']+ins+['-filter_complex',fc,'-map',last,'-map','[a]','-c:v','libx264','-preset','medium','-crf','18','-maxrate','22M','-bufsize','44M','-pix_fmt','yuv420p','-r',str(FPS),
      '-c:a','pcm_s16le','-t',f'{T:.3f}','premixA.mov'])
 # two-pass loudnorm to -15 LUFS, TP -1.5 (AAC adds a little), so the master lands at TP <= -1
-m=subprocess.run(['ffmpeg','-hide_banner','-i','premixA.mov','-af','loudnorm=I=-15:TP=-1.5:LRA=11:print_format=json','-f','null','-'],capture_output=True,text=True).stderr
+m=subprocess.run(['ffmpeg','-hide_banner','-i','premixA.mov','-af','loudnorm=I=-15:TP=-2:LRA=11:print_format=json','-f','null','-'],capture_output=True,text=True).stderr
 m=json.loads(m[m.rindex('{'):m.rindex('}')+1])
-ln=f"loudnorm=I=-15:TP=-1.5:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,alimiter=limit=0.84:level=false"
+ln=f"loudnorm=I=-15:TP=-2:LRA=11:measured_I={m['input_i']}:measured_TP={m['input_tp']}:measured_LRA={m['input_lra']}:measured_thresh={m['input_thresh']}:offset={m['target_offset']}:linear=true,alimiter=limit=0.84:level=false"
 run(['ffmpeg','-y','-loglevel','error','-i','premixA.mov','-af',ln,'-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000','-movflags','+faststart',f'{NAME}_1080.mp4'])
 run(['ffmpeg','-y','-loglevel','error','-i',f'{NAME}_1080.mp4','-vf','scale=540:960','-c:v','libx264','-crf','23','-c:a','copy','-movflags','+faststart',f'{NAME}_540.mp4'])
 r=subprocess.run(['ffmpeg','-hide_banner','-i',f'{NAME}_1080.mp4','-af','ebur128=peak=true','-f','null','-'],capture_output=True,text=True).stderr
