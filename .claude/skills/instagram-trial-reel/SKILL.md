@@ -27,6 +27,8 @@ So for a **local file** the script hosts it in this repo first, which is public:
 
 A **public URL** given by the user is used as it is, with no hosting.
 
+**Alibaba Cloud OSS instead of GitHub (the user prefers it, Nov 2026):** upload the file to the public-read bucket `chinapal-media` (region `oss-cn-hongkong`) under `reels/`, then pass its URL (`https://chinapal-media.oss-cn-hongkong.aliyuncs.com/reels/<name>.mp4`) to the script. The upload key is the RAM user `claude-uploader`, allowed only `oss:PutObject` on `chinapal-media/reels/*`, read from `OSS_ACCESS_KEY_ID` / `OSS_ACCESS_KEY_SECRET` in the environment. Sign the PUT like `putOss` in ChinaPal's `src/lib/autopage/photos.ts`. No size limit like GitHub's, and the video doesn't sit in a public repo. A post from a URL writes no `.ig.json`: note it in the table below, and read its media id from `GET /{ig-user-id}/media?fields=id,permalink`.
+
 Consequences to tell the user once: hosted videos stay downloadable from the repo; GitHub takes files up to ~95 MB (re-encode bigger ones); the repo must stay public.
 
 `--direct-upload` keeps the resumable upload for a **Facebook Login** token with `instagram_content_publish`. It has not been tested yet: try it only when the user has such a token, and fall back to hosting if it fails.
@@ -94,6 +96,7 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | Giraffe Manor E2me (full tour) | https://www.instagram.com/reel/DfwVcgvFL6b/ | 2026-11-15 |
 | Giraffe Manor F (Kenya vs China) | https://www.instagram.com/reel/DfwVlUTDETB/ | 2026-11-15 |
 | Giraffe Manor G (4 things nobody tells you) | https://www.instagram.com/reel/DfwVrTRjjJK/ | 2026-11-15 |
+| How many days per city (DAYS CTA, hosted on OSS `chinapal-media/reels/days_per_city.mp4`, media id 18025076090930240) | https://www.instagram.com/reel/DgGHyJkDgo5/ | 2026-11-23 |
 
 Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
 Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.
