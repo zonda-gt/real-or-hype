@@ -46,9 +46,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 17 | 6 | B | blocked: ElevenLabs credit | | |
 | 18 | 6 | C | blocked: ElevenLabs credit | | |
 | 19 | 7 | A | posted 23 Nov (一线天滑道 + glass bridge; music: Cartoon Chase - Yaki's Music Box) | zjjslide_A_1080.mp4 | https://www.instagram.com/reel/DgFcenxDSHZ/ |
-| 20 | 7 | B | todo | | |
-| 21 | 7 | C | todo | | |
-| 22 | 8 | A | todo | | |
+| 20 | 7 | B | blocked: ElevenLabs credit | | |
+| 21 | 7 | C | blocked: ElevenLabs credit | | |
+| 22 | 8 | A | posted 23 Nov (window reveal + lasers; music: Dragon Throne - 降噪STAYLOWKEY) | qilou_A_1080.mp4 | https://www.instagram.com/reel/DgF4EYAEcif/ |
 | 23 | 8 | B | todo | | |
 | 24 | 8 | C | todo | | |
 | 25 | 9 | A | todo | | |
