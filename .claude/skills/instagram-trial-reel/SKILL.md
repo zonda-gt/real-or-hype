@@ -100,6 +100,9 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | Bathhouse A, music: Lofi Street | https://www.instagram.com/reel/DgC5qUHFdI8/ | 2026-11-22 |
 | Bathhouse B, same music | https://www.instagram.com/reel/DgC50dRCCzy/ | 2026-11-22 |
 | Bathhouse C, same music | https://www.instagram.com/reel/DgC588lApUt/ | 2026-11-22 |
+| Idol studio A, music: Seoul Vibes (Instrumental) | https://www.instagram.com/reel/DgGF_A_ks7o/ | 2026-11-23 |
+| Idol studio B, same music | https://www.instagram.com/reel/DgGGHUclLUs/ | 2026-11-23 |
+| Idol studio C, same music | https://www.instagram.com/reel/DgGGOaZjpki/ | 2026-11-23 |
 
 Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
 Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.
@@ -110,5 +113,6 @@ Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook
 - An env file only fills variables that aren't already set (setdefault). If the environment holds an older `INSTAGRAM_FB_TOKEN`, run `env -u INSTAGRAM_FB_TOKEN python3 scripts/post_trial_reel.py --env-file <file> ...`.
 - Find tracks: `GET graph.facebook.com/v22.0/ig_audio?audio_type=music&user_id=<ig id>&search_query=<words>` (with no query it returns trending tracks); `GET /<audio_id>?user_id=...` gives a `download_url` preview (about 1.5 days). The catalogue is only music cleared for third-party apps, so there are no big-label hits (searching BLACKPINK returns unrelated tracks). Search by mood or genre instead.
 - There's no preview of the final mix before publishing. 25/100 was chosen without hearing it: check the first post, then adjust.
+- From 23 Nov 2026 the environment's own `INSTAGRAM_FB_TOKEN` is the Unified Login token (it can publish), so `env -u` and `--env-file` are no longer needed.
 - First use: the 3 helicopter reels (21 Nov 2026), published fine; `GET /<media_id>?fields=media_audio_type` returns `MUSIC` when the track is attached.
 - Never bake in songs downloaded from YouTube or elsewhere (copyright; Instagram mutes or limits matched audio).

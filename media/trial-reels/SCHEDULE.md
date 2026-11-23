@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|
 | 2026-11-21 | helicopter | helicopter_{A,B,C}_voice_1080.mp4 | (posted) | 2569981020089689 Momentum Rising | HELICOPTER |
 | 2026-11-22 (posted 13:2x UTC) | bathhouse | bathhouse_{A,B,C}_voice_1080.mp4 | captions/bathhouse.txt (posted) | 544713431841568 Lofi Street | BATHHOUSE |
-| 2026-11-23 | idol-studio | idol-studio_{A,B,C}_voice_1080.mp4 | captions/idol-studio.txt | 1105478964958211 Seoul Vibes (Instrumental) | IDOL |
+| 2026-11-23 | idol-studio | idol-studio_{A,B,C}_voice_1080.mp4 | captions/idol-studio.txt (posted) | 1105478964958211 Seoul Vibes (Instrumental) | IDOL |
 | 2026-11-24 | palace-banquet | palace-banquet_{A,B,C}_voice_1080.mp4 | captions/palace-banquet.txt | 1516724508945302 Colorful Clouds Chasing The Moon | BANQUET |
 | 2026-11-25 | paramount | paramount_{A,B,C}_voice_1080.mp4 | captions/paramount.txt | 977536832781184 Swing String Fling | PARAMOUNT |
 
