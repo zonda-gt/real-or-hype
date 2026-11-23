@@ -15,7 +15,7 @@ make 3 videos per place and post them as trial reels, 3 every 12 hours, without 
 | 2 | Aurora village, Altay, Xinjiang | [DeRSANzFOKU](https://www.instagram.com/reel/DeRSANzFOKU/) | 962,678 | |
 | 3 | Go-kart boats (卡丁船), Yuntaishan / Fenglin Gorge, Jiaozuo, Henan | [DeG9FEiD5pt](https://www.instagram.com/reel/DeG9FEiD5pt/) | 491,510 | |
 | 4 | Canyon karting 峡道飞车, Gulongxia 古龙峡, Qingyuan (day trip from Guangzhou) | [DclH6T0yABG](https://www.instagram.com/reel/DclH6T0yABG/) | 345,224 | |
-| 5 | Shanghai 4,000 m² indoor playground, 100+ activities (venue to identify) | [Dfo59N0ya_R](https://www.instagram.com/reel/Dfo59N0ya_R/) | 259,521 | DfzJKi6yyqy 171k |
+| 5 | WUNPARK 超体运动中心, Ruihong Tiandi Sun Palace (太阳宫), Hongkou, Shanghai | [Dfo59N0ya_R](https://www.instagram.com/reel/Dfo59N0ya_R/) | 259,521 | DfzJKi6yyqy 171k |
 | 6 | Dunhuang (old city, desert sunset concert) | [DegqVrMSVKZ](https://www.instagram.com/reel/DegqVrMSVKZ/) | 221,255 | DdQ_hfXyr4R 125k |
 | 7 | Zhangjiajie Grand Canyon slide | [DfExn_gSOM8](https://www.instagram.com/reel/DfExn_gSOM8/) | 145,682 | |
 | 8 | Zhangjiajie 72 Qilou (72奇楼) | [DdoFhxHyg4-](https://www.instagram.com/reel/DdoFhxHyg4-/) | 140,133 | |
@@ -37,9 +37,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 8 | 3 | B | blocked: ElevenLabs credit | | |
 | 9 | 3 | C | blocked: ElevenLabs credit | | |
 | 10 | 4 | A | posted 23 Nov (Gulongxia, Qingyuan; music: Drift Skunk - Company Money) | gulongxia_A_1080.mp4 | https://www.instagram.com/reel/DgEKYMzmcFi/ |
-| 11 | 4 | B | todo | | |
-| 12 | 4 | C | todo | | |
-| 13 | 5 | A | todo | | |
+| 11 | 4 | B | blocked: ElevenLabs credit | | |
+| 12 | 4 | C | blocked: ElevenLabs credit | | |
+| 13 | 5 | A | posted 23 Nov (WUNPARK Sun Palace; music: Level Up - Giulio Cercato) | shplay_A_1080.mp4 | https://www.instagram.com/reel/DgEnHGFjGCJ/ |
 | 14 | 5 | B | todo | | |
 | 15 | 5 | C | todo | | |
 | 16 | 6 | A | todo | | |
@@ -71,3 +71,4 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 ## Notes per place
 - **Harbin**: facts for B/C (checked 22 Nov 2026): 28th edition, 1.25 million m², biggest ever, Disney Frozen area (smzdm x2 + Nicole); opens mid-December (Harbin govt press conference 10 Nov via smzdm; Nicole); last season 24 slides, longest 521 m (Douyin titles + smzdm); last season's adult ticket ¥328, about $45 (2 guides); 2026-27 price not announced. B script: `harbin/script_B.txt` (angle: the full experience). C angle to write: numbers (521 m slide, 1.25 million m², -20°C, ¥328).
 - **Xinjiang**: Nicole's aurora reel looks AI-made, and many Douyin "阿勒泰的极光" clips are templated (one is labelled AI生成). Use only real footage: Hemu blue hour (author-declared Jan 2026), aurora 7424563400702758171 (11 Oct 2024 storm; lyric text removed with delogo). Never promise auroras: "on rare nights".
+- **WUNPARK**: every Douyin clip has burned-in Chinese subtitles mid-frame. Fix used: Nicole-style white label boxes ('box' in TEXTS) placed over the subtitle line, plus delogo on the band for 3:4 sources; `cut` 0.03 on 7602544090656702577 hides its 广告 mark. Avoid the Wuhan branch (王家湾摩尔城). Avoid long 4K originals (a 204 s one was >1.1 GB): check duration first.

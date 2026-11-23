@@ -3,7 +3,7 @@
 # plan_A.py:
 #   SRC={id:{'cut':0.14,'top':0.0,'pre':'delogo=x=..'}}  # optional bottom/top crop; 'pre' = filter before the crop (e.g. delogo a text band)
 #   SHOTS=[(src,t_in,secs,x_centre[,speed])]  # hard cuts, in order; speed<1 slows (default 1)
-#   TEXTS=[("line one\nline two",t0,t1[,y])]  # small centred text, Nicole-style (white, soft shadow); y = centre, 0-1
+#   TEXTS=[("line one\nline two",t0,t1[,y[,'box']])]  # small centred text (white, soft shadow); y = centre 0-1; 'box' = white label box (LABEL_SIZE, LABEL_MIN_W/H)
 #   TEXT_Y=0.40; TEXT_SIZE=50                  # optional
 #   MUSIC='path.mp3'; MUSIC_IN=0.0             # music bed and start offset
 #   AMBIENT=[(shot_index,db)]                  # optional: keep a shot's own sound under the music
@@ -39,6 +39,14 @@ for k,tx in enumerate(P.TEXTS):
     im=Image.new('RGBA',(1080,1920),(0,0,0,0)); d=ImageDraw.Draw(im); lines=txt.split('\n'); lh=int(font.size*1.25)
     y0=int(1920*ty)-lh*len(lines)//2
     sh=Image.new('RGBA',(1080,1920),(0,0,0,0)); sd=ImageDraw.Draw(sh)
+    if len(tx)>4 and tx[4]=='box':   # Nicole-style label: black text on a white rounded box (also hides a burned-in subtitle band)
+        lf=ImageFont.truetype(f'{SK}/fonts/poppins-latin-600-normal.ttf',getattr(P,'LABEL_SIZE',56)); lh2=int(lf.size*1.3)
+        bw=max(tx[5] if len(tx)>5 else getattr(P,'LABEL_MIN_W',0),max(d.textlength(l,font=lf) for l in lines)+80); bh=max(getattr(P,'LABEL_MIN_H',0),lh2*len(lines)+44)
+        cy=int(1920*ty); x0=(1080-bw)/2; y1=cy-bh/2
+        d.rounded_rectangle([x0,y1,x0+bw,y1+bh],radius=26,fill=(255,255,255,245))
+        for j,l in enumerate(lines):
+            w=d.textlength(l,font=lf); d.text(((1080-w)/2,y1+(bh-lh2*len(lines))/2+j*lh2+4),l,font=lf,fill=(20,20,20))
+        im.save(f'segA/text{k}.png'); ov.append((f'segA/text{k}.png',t0,min(t1,T))); continue
     for j,l in enumerate(lines):
         w=d.textlength(l,font=font); xx=(1080-w)/2; yy=y0+j*lh
         sd.text((xx+2,yy+3),l,font=font,fill=(0,0,0,200)); d.text((xx,yy),l,font=font,fill='white',stroke_width=2,stroke_fill=(0,0,0,110))
