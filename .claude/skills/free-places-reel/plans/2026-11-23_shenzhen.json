@@ -1,0 +1,129 @@
+{
+ "city": "Shenzhen",
+ "shots": [
+  [
+   "hookA_7591899410347429135",
+   0.3,
+   "HOOK"
+  ],
+  [
+   "hookA_7696344792904547136",
+   8.2,
+   "HOOK"
+  ],
+  [
+   "nantou_7688896053978557882",
+   9.47,
+   "Nantou Ancient City"
+  ],
+  [
+   "nantou_7688896053978557882",
+   13.25,
+   "Nantou Ancient City"
+  ],
+  [
+   "wutong_6844152769176259848",
+   2.0,
+   "Wutong Mountain"
+  ],
+  [
+   "wutong_7028565072276442375",
+   1.0,
+   "Wutong Mountain"
+  ],
+  [
+   "dameisha_7665534256843952618",
+   0.3,
+   "Dameisha Beach"
+  ],
+  [
+   "dameisha_7632922304301521323",
+   12.3,
+   "Dameisha Beach"
+  ],
+  [
+   "dapeng_7709142168782643300",
+   0.5,
+   "Dapeng Ancient City"
+  ],
+  [
+   "dapeng_7664208095367647562",
+   6.0,
+   "Dapeng Ancient City"
+  ],
+  [
+   "huaqiang_7293845668806790440",
+   2.1,
+   "Huaqiangbei"
+  ],
+  [
+   "huaqiang_7293845668806790440",
+   6.5,
+   "Huaqiangbei"
+  ],
+  [
+   "yantian_7694594039350521841",
+   2.0,
+   "Yantian Seaside Boardwalk"
+  ],
+  [
+   "yantian_6914618422261337356",
+   4.0,
+   "Yantian Seaside Boardwalk"
+  ],
+  [
+   "gankeng_7396642889712930088",
+   0.2,
+   "Gankeng Hakka Town"
+  ],
+  [
+   "gankeng_7368065008728558863",
+   6.55,
+   "Gankeng Hakka Town"
+  ],
+  [
+   "qianhai_7661979473453950630",
+   4.0,
+   "Qianhai Stone Park"
+  ],
+  [
+   "qianhai_7661979473453950630",
+   8.0,
+   "Qianhai Stone Park"
+  ],
+  [
+   "joyharbor_7003636677356932355",
+   0.3,
+   "Joy Harbor"
+  ],
+  [
+   "joyharbor_7491729246499392828",
+   6.0,
+   "Joy Harbor"
+  ],
+  [
+   "endA_7650868346577039473",
+   10.6,
+   "END"
+  ],
+  [
+   "endB_7687974300897130468",
+   6.0,
+   "END"
+  ]
+ ],
+ "blur": {
+  "6": [
+   [
+    140,
+    140,
+    800,
+    140
+   ]
+  ]
+ },
+ "precrop": {},
+ "speed": {
+  "2": 0.85
+ }
+}
