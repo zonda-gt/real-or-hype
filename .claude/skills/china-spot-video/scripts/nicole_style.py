@@ -54,7 +54,7 @@ for j,(si,db) in enumerate(amb):
     o,t0,d,src,tin,sp=segs[si]; ins+=['-ss',f'{tin:.3f}','-t',f'{d*sp:.3f}','-i',f'broll/{src}.mp4']
     fc+=f"[{mi+1+j}:a]aresample=48000,aformat=channel_layouts=stereo,atempo={max(sp,0.5):.3f},volume={db}dB,adelay={int(t0*1000)}|{int(t0*1000)},apad[amb{j}];"; mix+=f'[amb{j}]'
 fc+=f"{mix}amix=inputs={1+len(amb)}:normalize=0:duration=first,atrim=0:{T:.3f}[a]"
-run(['ffmpeg','-y','-loglevel','error']+ins+['-filter_complex',fc,'-map',last,'-map','[a]','-c:v','libx264','-preset','medium','-crf','18','-pix_fmt','yuv420p','-r',str(FPS),
+run(['ffmpeg','-y','-loglevel','error']+ins+['-filter_complex',fc,'-map',last,'-map','[a]','-c:v','libx264','-preset','medium','-crf','18','-maxrate','22M','-bufsize','44M','-pix_fmt','yuv420p','-r',str(FPS),
      '-c:a','pcm_s16le','-t',f'{T:.3f}','premixA.mov'])
 # two-pass loudnorm to -15 LUFS, TP -1.5 (AAC adds a little), so the master lands at TP <= -1
 m=subprocess.run(['ffmpeg','-hide_banner','-i','premixA.mov','-af','loudnorm=I=-15:TP=-1.5:LRA=11:print_format=json','-f','null','-'],capture_output=True,text=True).stderr
