@@ -19,7 +19,7 @@ make 3 videos per place and post them as trial reels, 3 every 12 hours, without 
 | 6 | Dunhuang (old city, desert sunset concert) | [DegqVrMSVKZ](https://www.instagram.com/reel/DegqVrMSVKZ/) | 221,255 | DdQ_hfXyr4R 125k |
 | 7 | Zhangjiajie Grand Canyon slide | [DfExn_gSOM8](https://www.instagram.com/reel/DfExn_gSOM8/) | 145,682 | |
 | 8 | Zhangjiajie 72 Qilou (72奇楼) | [DdoFhxHyg4-](https://www.instagram.com/reel/DdoFhxHyg4-/) | 140,133 | |
-| 9 | Sea-view hotel, Yunnan (Fuxian Lake? to identify) | [Dcio0kPS2bP](https://www.instagram.com/reel/Dcio0kPS2bP/) | 116,549 | |
+| 9 | Sea-view hotel on Erhai Lake, Dali, Yunnan (exact hotel not identified; Nicole keyword "WJ") | [Dcio0kPS2bP](https://www.instagram.com/reel/Dcio0kPS2bP/) | 116,549 | |
 | 10 | Suichang Center of the Earth, Lishui (遂昌地心世界) | [DfhOuJsyfuJ](https://www.instagram.com/reel/DfhOuJsyfuJ/) | 99,306 | |
 
 Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the window; DXwCE7IyAX0 Apr; DS--vqEikGD Jan).
@@ -49,9 +49,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 20 | 7 | B | blocked: ElevenLabs credit | | |
 | 21 | 7 | C | blocked: ElevenLabs credit | | |
 | 22 | 8 | A | posted 23 Nov (window reveal + lasers; music: Dragon Throne - 降噪STAYLOWKEY) | qilou_A_1080.mp4 | https://www.instagram.com/reel/DgF4EYAEcif/ |
-| 23 | 8 | B | todo | | |
-| 24 | 8 | C | todo | | |
-| 25 | 9 | A | todo | | |
+| 23 | 8 | B | blocked: ElevenLabs credit | | |
+| 24 | 8 | C | blocked: ElevenLabs credit | | |
+| 25 | 9 | A | posted 23 Nov (Erhai sea-view stays, no hotel named; music: Luxury Escape - Nish Rymz) | erhai_A_1080.mp4 | https://www.instagram.com/reel/DgGTXPDE2F3/ |
 | 26 | 9 | B | todo | | |
 | 27 | 9 | C | todo | | |
 | 28 | 10 | A | todo | | |
