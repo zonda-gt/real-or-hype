@@ -43,9 +43,9 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 14 | 5 | B | blocked: ElevenLabs credit | | |
 | 15 | 5 | C | blocked: ElevenLabs credit | | |
 | 16 | 6 | A | posted 23 Nov (Mingsha Mountain, Mogao, Crescent Lake; music: Silk Road Vibes - LoFluent) | dunhuang_A_1080.mp4 | https://www.instagram.com/reel/DgFA7XYkqGf/ |
-| 17 | 6 | B | todo | | |
-| 18 | 6 | C | todo | | |
-| 19 | 7 | A | todo | | |
+| 17 | 6 | B | blocked: ElevenLabs credit | | |
+| 18 | 6 | C | blocked: ElevenLabs credit | | |
+| 19 | 7 | A | posted 23 Nov (一线天滑道 + glass bridge; music: Cartoon Chase - Yaki's Music Box) | zjjslide_A_1080.mp4 | https://www.instagram.com/reel/DgFcenxDSHZ/ |
 | 20 | 7 | B | todo | | |
 | 21 | 7 | C | todo | | |
 | 22 | 8 | A | todo | | |
