@@ -52,14 +52,14 @@ Left out: pinned older reels (DcTC8i0S_-X 21 Aug, 3.69M, one day outside the win
 | 23 | 8 | B | blocked: ElevenLabs credit | | |
 | 24 | 8 | C | blocked: ElevenLabs credit | | |
 | 25 | 9 | A | posted 23 Nov (Erhai sea-view stays, no hotel named; music: Luxury Escape - Nish Rymz) | erhai_A_1080.mp4 | https://www.instagram.com/reel/DgGTXPDE2F3/ |
-| 26 | 9 | B | todo | | |
-| 27 | 9 | C | todo | | |
-| 28 | 10 | A | todo | | |
-| 29 | 10 | B | todo | | |
-| 30 | 10 | C | todo | | |
+| 26 | 9 | B | blocked: ElevenLabs credit | | |
+| 27 | 9 | C | blocked: ElevenLabs credit | | |
+| 28 | 10 | A | posted 24 Nov (shuttle train, glowing tunnels, hot spring; music: Underground Adventure - Nomoto) | suichang_A_1080.mp4 | https://www.instagram.com/reel/DgGvaMBgQR2/ |
+| 29 | 10 | B | blocked: ElevenLabs credit | | |
+| 30 | 10 | C | blocked: ElevenLabs credit | | |
 
 ## How each run works (scheduled every 4 h, one video per run)
-0. **While ElevenLabs is out of credit (22 Nov 16:57 UTC): skip B/C rows, make the next A row instead, and mark the B/C rows `blocked`.** When credit is back (test a 1-word TTS call), do the blocked rows first, in order.
+0. **All 10 A versions are posted (24 Nov). Quick exit: if the 1-word ElevenLabs test still fails, stop the run right there (no other work) and report one line.** While ElevenLabs is out of credit (22 Nov 16:57 UTC): skip B/C rows, make the next A row instead, and mark the B/C rows `blocked`.** When credit is back (test a 1-word TTS call), do the blocked rows first, in order.
 1. Take the first `todo` row. Work dir: `work/<slug>/` (gitignored); committed files go in `episodes/nicole-top10/<slug>/`.
 2. First run for a place (version A): watch Nicole's best reel for it (`scripts/ig_fetch.py` + `sheet.py`), identify the exact place (Chinese name), search Douyin, download the most **aesthetic** clips. Looks are the only filter: camera watermarks (DJI etc.) and 720p are fine if the shot is beautiful; skip TikTok/Douyin watermarks, staged/AI labels and other branches.
 3. Version A: `scripts/nicole_style.py <workdir> <slug>_A` (plan_A.py: long POV takes ~3-6 s, one small meme-style text line in the first ~8 s, a "save this" line at the end, music bed). Check the contact sheet for scene changes inside a shot (`cuts.sh` misses some).
