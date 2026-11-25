@@ -106,6 +106,9 @@ The skill lives in the `zonda-gt/real-or-hype` repo (`.claude/skills/instagram-t
 | Palace banquet A, music: Colorful Clouds Chasing The Moon | https://www.instagram.com/reel/DgIq3sDjcqy/ | 2026-11-24 |
 | Palace banquet B, same music | https://www.instagram.com/reel/DgIrDMYjOtC/ | 2026-11-24 |
 | Palace banquet C, same music | https://www.instagram.com/reel/DgIrPOviWgJ/ | 2026-11-24 |
+| Paramount A, music: Swing String Fling | https://www.instagram.com/reel/DgLPh5cFIIx/ | 2026-11-25 |
+| Paramount B, same music | https://www.instagram.com/reel/DgLPom2gWNw/ | 2026-11-25 |
+| Paramount C, same music | https://www.instagram.com/reel/DgLPxAGilpy/ | 2026-11-25 |
 
 Facebook (normal reel on the ChinaPal Page 1320731184454757, Page token with `pages_manage_posts`): Giraffe Manor E2me, https://www.facebook.com/reel/2196029041327397/ (2026-11-15), log `media/trial-reels/giraffe_E2me_1080.mp4.fb.json`.
 Recipe: `POST /{page}/video_reels upload_phase=start` → `POST rupload.facebook.com/video-upload/v24.0/{video_id}` with headers `Authorization: OAuth <token>` + `file_url: <public raw URL>` → `POST /{page}/video_reels upload_phase=finish video_state=PUBLISHED description=…` → poll `GET /{video_id}?fields=status,permalink_url`. Took ~1 min.
