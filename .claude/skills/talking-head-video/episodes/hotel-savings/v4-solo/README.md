@@ -1,0 +1,9 @@
+# Hotel savings v4: solo traveller (source 20261126_164823.mp4), 28.9 s
+
+Takes (source s): A 6.16-7.72 "Travelling to China alone?" (2nd take) · B 7.80-9.71 · C 15.80-19.45 (after "We, we know. Windy-" false starts) · D 24.87-27.66 · E 30.96-33.24 · F 39.03-42.46 · G 42.76-44.19 · H 46.56-47.98 · I 60.24-61.44 + J 61.98-64.78 (0.7 s pause cut out of "Travel independently, | but with a local friend...") · K 69.24-72.62 · L 74.40-75.75 · M 76.04-77.74 (ends in room tone before a mumble at 77.82).
+Hiccups: false starts "We, we know. Windy-" and the first "Going to China alone" / "Travelling to China alone" / "Turn" takes left out by take choice; scan of the cut is clean. K: "your hotel s?ms could" - one 0.3 s syllable then a 0.22 s hesitation, single take; captioned "savings" (Whisper heard seems/sims/scenes/savings across runs) - creator to confirm by ear.
+Words: `words_seg.py` (Whisper per segment, mapped onto the script) - whole-track Whisper put "and" before segment D started.
+Builder: local copy of build_hf.py with a one-frame overlap between A-roll clips (separately rounded start/duration left a 1-frame black gap at 17.067 s).
+B-roll (Douyin aweme ids, internal): clouds + backpack 7650357780292870257 (HLG HDR, tone-mapped to SDR) · station 7691261035748255417 (Hangzhou East crowd, cropped 1.15x top-left to drop a watermark) · phone 7281563004766915875 (3.65 s, home screen tap - later part shows 我想你了 messages) · reused from v1: J Hotel 7565148395124854074, Ritz 7466023247272840483, train 7369562650730155279, Bund 7608048919034301416. Rejected: 7512412219576814887, 7573903998521981001 (burned-in subtitles).
+Music: How We Do (Instrumental) from 5.09 s, mix_music.py dB-under 3.
+Kept warnings: contrast 2.49:1 on the huge red HOTEL over the dark chair (same style as v1); closing line 1.7 s (no more clean room tone).

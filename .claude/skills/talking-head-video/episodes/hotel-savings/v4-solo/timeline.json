@@ -1,0 +1,106 @@
+[
+ {
+  "k": "A",
+  "src_in": 6.16,
+  "src_out": 7.72,
+  "start": 0,
+  "dur": 1.5667,
+  "text": "Travelling to China alone?"
+ },
+ {
+  "k": "B",
+  "src_in": 7.8,
+  "src_out": 9.71,
+  "start": 1.5667,
+  "dur": 1.9,
+  "text": "You don't need to figure out everything yourself."
+ },
+ {
+  "k": "C",
+  "src_in": 15.8,
+  "src_out": 19.45,
+  "start": 3.4667,
+  "dur": 3.6667,
+  "text": "We negotiate directly with hotels to get you better prices."
+ },
+ {
+  "k": "D",
+  "src_in": 24.87,
+  "src_out": 27.66,
+  "start": 7.1333,
+  "dur": 2.8,
+  "text": "and we will design your trip around your interest."
+ },
+ {
+  "k": "E",
+  "src_in": 30.96,
+  "src_out": 33.24,
+  "start": 9.9333,
+  "dur": 2.2667,
+  "text": "help you book trains and attractions."
+ },
+ {
+  "k": "F",
+  "src_in": 39.03,
+  "src_out": 42.46,
+  "start": 12.2,
+  "dur": 3.4333,
+  "text": "and if you ever get lost, confused or need help in China."
+ },
+ {
+  "k": "G",
+  "src_in": 42.76,
+  "src_out": 44.19,
+  "start": 15.6333,
+  "dur": 1.4333,
+  "text": "We're here to support you."
+ },
+ {
+  "k": "H",
+  "src_in": 46.56,
+  "src_out": 47.98,
+  "start": 17.0667,
+  "dur": 1.4333,
+  "text": "Just send us a message."
+ },
+ {
+  "k": "I",
+  "src_in": 60.24,
+  "src_out": 61.44,
+  "start": 18.5,
+  "dur": 1.2,
+  "text": "Travel independently,"
+ },
+ {
+  "k": "J",
+  "src_in": 61.98,
+  "src_out": 64.78,
+  "start": 19.7,
+  "dur": 2.8,
+  "text": "but with a local friend by your side."
+ },
+ {
+  "k": "K",
+  "src_in": 69.24,
+  "src_out": 72.62,
+  "start": 22.5,
+  "dur": 3.3667,
+  "text": "And your hotel savings could cover our concierge fee alone."
+ },
+ {
+  "k": "L",
+  "src_in": 74.4,
+  "src_out": 75.75,
+  "start": 25.8667,
+  "dur": 1.3667,
+  "text": "Comment hotel,"
+ },
+ {
+  "k": "M",
+  "src_in": 76.04,
+  "src_out": 77.74,
+  "start": 27.2333,
+  "dur": 1.7,
+  "text": "to get more info."
+ }
+]
