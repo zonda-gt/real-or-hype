@@ -110,7 +110,7 @@ css = """.full { position: absolute; inset: 0; display: flex; align-items: cente
     .tl { line-height: 0.88; white-space: nowrap; }
     .heavy { font-family: "Inter Display Heavy"; font-weight: 900; font-style: italic; color: var(--ink); letter-spacing: -0.045em; text-transform: uppercase; text-shadow: 0 6px 30px rgba(0,0,0,0.35); }
     .heavy-red { font-family: "Inter Display Heavy"; font-weight: 900; font-style: italic; color: var(--accent); letter-spacing: -0.045em; text-transform: uppercase; text-shadow: 0 6px 30px rgba(0,0,0,0.25); }
-    .serif-red { font-family: "Playfair HF"; font-weight: 700; font-style: italic; color: var(--accent); letter-spacing: -0.03em; margin: -4px 0 18px; text-shadow: 0 0 2px rgba(255,255,255,0.35), 0 4px 18px rgba(0,0,0,0.25); }
+    .serif-red { font-family: "Playfair HF"; font-weight: 700; font-style: italic; color: #d4494f; letter-spacing: -0.03em; margin: -4px 0 18px; text-shadow: 0 0 2px rgba(255,255,255,0.35), 0 4px 18px rgba(0,0,0,0.25); }
     .pillwrap { position: absolute; left: 0; width: 1080px; display: flex; justify-content: center; }
     .pill { width: 760px; height: 116px; border-radius: 58px; background: #f7f3ee; display: flex; align-items: center; justify-content: space-between; padding: 0 18px 0 46px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); }
     .pill-text { font-family: "Inter Display HF"; font-weight: 700; font-size: 50px; letter-spacing: -0.03em; color: #111; }

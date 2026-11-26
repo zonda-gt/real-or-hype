@@ -4,10 +4,12 @@ import sys,json,subprocess,os
 src,cf,E=sys.argv[1:4]; os.makedirs(E+'/seg',exist_ok=True)
 def dur(f,s): return float(subprocess.run(['ffprobe','-v','error','-select_streams',s,'-show_entries','stream=duration','-of','csv=p=0',f],capture_output=True,text=True).stdout)
 t=0;tl=[];al=[]
+FADEIN={}  # per-segment fade-in override (s), for cuts that land right before a soft onset
+if len(sys.argv)>4: FADEIN=json.loads(sys.argv[4])
 for k,s,e,txt in json.load(open(cf)):
-    d=round(e-s,3); mov=f'{E}/seg/{k}.mov'
+    d=round(e-s,3); fi=FADEIN.get(k,0.012); mov=f'{E}/seg/{k}.mov'
     subprocess.run(['ffmpeg','-v','error','-y','-ss',str(s),'-i',src,'-t',str(d),'-vf','fps=30,scale=1080:1920,eq=contrast=1.06:saturation=1.04:gamma=0.98,colorbalance=rm=0.02:bm=-0.02',
-      '-af',f'afade=t=in:d=0.012,afade=t=out:st={d-0.012:.3f}:d=0.012','-ar','48000','-ac','1','-c:v','libx264','-crf','15','-preset','fast','-pix_fmt','yuv420p','-c:a','pcm_s16le',mov],check=True)
+      '-af',f'afade=t=in:d={fi},afade=t=out:st={d-0.012:.3f}:d=0.012','-ar','48000','-ac','1','-c:v','libx264','-crf','15','-preset','fast','-pix_fmt','yuv420p','-c:a','pcm_s16le',mov],check=True)
     vd=dur(mov,'v'); subprocess.run(['ffmpeg','-v','error','-y','-i',mov,'-map','0:a','-af',f'apad,atrim=end={vd}',f'{E}/seg/{k}.wav'],check=True)
     subprocess.run(['ffmpeg','-v','error','-y','-i',mov,'-an','-c','copy',f'{E}/seg/{k}.mp4'],check=True)
     tl.append({"k":k,"src_in":s,"src_out":e,"start":round(t,4),"dur":round(vd,4),"text":txt}); t+=vd; al.append(f"file '{E}/seg/{k}.wav'")

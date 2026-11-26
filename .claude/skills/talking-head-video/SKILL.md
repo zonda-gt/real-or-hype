@@ -18,6 +18,12 @@ description: Edit the creator's own talking-head recordings (ChinaPal concierge 
 - `scripts/cut_aroll.py <src.mp4> cuts.json <dir>`: one accurate-seek encode per segment (several `trim`s of one 1080p60 input in one filter graph got OOM-killed), 12 ms audio fades, each segment's audio padded/trimmed to its video length (no drift), `voice.wav` processed with highpass, afftdn, compressor, loudnorm. **afftdn delays audio 25 ms**: the script trims it back (checked by cross-correlation: 0 ms).
 - `scripts/verify.py voice.wav timeline.json words.json voice_raw.wav`: Whisper the cut voice (every scripted word present, in order) and check each join lands in silence on the **unprocessed** audio (thresholds on the compressed track are meaningless).
 
+## 2b. Hiccups (stutters, false starts, repeats, fillers) - run on every cut
+- Plain Whisper hides them: it folds "pl- planning" into one long "Planning" (1.0 s) and "we we will" into a long "We". Suspicious sign: a short word lasting > 0.4 s.
+- `scripts/hiccups.py <src.wav> cuts.json`: verbatim Whisper (an initial prompt full of disfluencies, so it transcribes them) on each kept segment; flags a word ending in "-", a word that is a prefix of the next ("Plan" -> "planning"), the same word twice, fillers (uh/um/er), and words not in the script line; proposes the cut at the quietest 5 ms frame before the replacing word, with its level above the noise floor (at the floor = clean cut).
+- Move the segment's in-point to that cut; when the next word starts < 30 ms after it, pass a short fade-in: `cut_aroll.py ... '{"D":0.004}'`. Re-run hiccups.py on the new cut (voice_raw.wav + timeline) until only known mishears remain ("saving alone" -> "loan"/"sleeping").
+- hotel v1: "Plan- planning" (in-point 4.22 -> 4.80) and "We- we will" (46.93 -> 47.225, dip at the floor, 4 ms fade-in).
+
 ## 3. Build in HyperFrames
 - `hyperframes init <dir> --non-interactive --resolution portrait --skip-transcribe` (telemetry: `hyperframes telemetry disable`). Copy segments (re-encoded `-g 30`), B-roll (cut to 1080x1920 cover, `-g 30`), fonts, voice, music, sfx into `assets/`.
 - Episode `make_plan.py` turns words.json + timeline.json into `plan.json` (caption groups by word index, accent words, B-roll windows, cards, sfx); `scripts/build_hf.py <project> plan.json` writes `index.html` + `compositions/{aroll,broll,cards,captions}.html`.
@@ -30,7 +36,12 @@ description: Edit the creator's own talking-head recordings (ChinaPal concierge 
 - Full-screen word cards: cream `#efe6d8` with red text, navy `#101a20` with off-white text, ~0.8 s.
 - Cuts: alternate punch-in 1.0 / 1.1-1.15 (origin 50% 30%); zoom-blur whip (scale x1.16-1.2, blur 14-16 px -> 0 in 0.22 s expo.out) into B-roll and back to the face.
 - CTA: white pill with the keyword in quotes and a red send button, back.out pop on the keyword, held ~1 s after the last word (extend the last take into room tone; never freeze a frame).
-- Mix: voice -15 LUFS, music bed (china-spot-video `sfx/music_marimba_el.mp3`) at volume 0.25 (~11 dB under), whoosh into B-roll, pop on cards; final two-pass loudnorm to -14 LUFS, TP -1.5, video stream copied.
+- Music (creator: "lively hip-hop, like the reference"): the reference's own bed, separated with demucs, is a ~96 BPM hip-hop groove, bass-heavy (bass stem -27 dB, drums -25, melody only -36), sitting 7 dB under the voice (-22.3 vs -15.1 LUFS). The marimba bed was the wrong genre and too quiet.
+- Niche research (TikHub search_reels, 102 China-travel / travel-planner reels): almost all top reels use "Original audio" (music mixed in); licensed vocal songs appear on montages, not talking heads. Instagram library search (`/api/v1/instagram/v2/search_music`, `has_lyrics` false) gives previews; popularity lookups (`fetch_music_posts`) failed for these ids.
+- Render with music volume 0, then `scripts/mix_music.py <video> <bed.wav> <out.mp4> 3`: bed set 3 dB under the measured voice, EQ dip -4 dB at 2.5 kHz (without it "than" -> "get", "concierge" -> "exchange"), sidechain duck ~2-3 dB, two-pass loudnorm -14 LUFS / TP -1.5, video copied. Check the balance by separating the mix with demucs (target: music ~7 dB under voice) and Whisper the mix.
+- Bed sections start at Instagram's `highlight_start_times_in_ms`, snapped to the strongest low-band beat near it, 1.2 s fade at the end.
+- Licensing: Instagram library tracks are licensed when added in the Instagram app. The trial-reel API can't attach them; a baked-in major-label track (e.g. "How We Do") can be muted. Options: post the music-free render and add the sound in-app, or bake in a track whose licence allows it. ElevenLabs Music (`POST /v1/music`) is the usual source of a safe custom bed, but the account had no credits (Nov 2026).
+- SFX: whoosh into B-roll, pop on cards.
 
 ## Before delivery
 - Rendered file: no black frames, freezes only on the cards (`freezedetect`), audio offset vs voice.wav 0 ms, -14 LUFS, Whisper of the final mix hears every word, a frame either side of every cut.
