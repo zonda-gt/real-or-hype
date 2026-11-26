@@ -1,0 +1,10 @@
+# v5 "No tour group" (source 20261126_165002.mp4), 29.6 s
+
+Script as cut: "Want to travel China without joining the tour group or spend thousands on a private tour? For just $89, we'll personalize your itinerary, help you with your bookings, recommend the best local restaurants and support you throughout your trip. You get the freedom of traveling independently without having to organize everything yourself. And we negotiate special hotel prices for you, so your hotel savings alone can already cover our concierge fee. Comment hotel below to find out more."
+
+Takes (source s): A 11.86-16.92 hook (3rd take, the only one with "or spend thousands on a private tour") · B 39.28-44.18 "$89 ... bookings" (one take covers both lines) · C 51.88-55.63 · D 65.42-68.52 (starts after the "you get the -" false start at 64.6) · E 71.34-73.87 · F 79.32-82.87 · G 90.27-93.31 (only complete take of the fee line) · H 97.06-100.66 (room tone to 100.66, before "Okay" at 101.1).
+Hiccups removed: "you get the - you get the" (D in-point after the false start); "for just f-" and the "will help you per-" / "Personalize it" fragments skipped by take choice. hiccups.py on the cut: none left.
+"concierge fee" is rushed: plain Whisper hears "current CHP"; every model hears "concierge fee" when given context ("fee" p 0.85-0.96). "fee" onset set by hand from the envelope (source 93.04 s), Whisper folds it into "concierge". Creator: listen to 25.3-25.9 s.
+B-roll (Douyin, internal): tour group 7700385734855569103 (HDR HLG 10-bit: tone-mapped to SDR with zscale+tonemap, otherwise the browser decodes it as HDR), solo traveller 7490898261943881012 (source 1.85-4.65 s, between its own cuts at 1.8 and 4.7), hotpot + J Hotel from v1.
+Cards: hook title "OR SPEND / THOUSANDS / on a private tour?", cream "for just $89" ($89 at 300 px), navy "everything yourself.", savings title, closing "comment / HOTEL / below to find out more.". Logo on.
+build_hf.py here = shared builder + per-word size in cream/navy cards + each A-roll take held 1 frame past its cut under the next (a render showed one black frame at the G->H cut: the next take's first frame wasn't ready).

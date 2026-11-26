@@ -1,0 +1,66 @@
+[
+ {
+  "k": "A",
+  "src_in": 11.86,
+  "src_out": 16.92,
+  "start": 0,
+  "dur": 5.0667,
+  "text": "Want to travel China without joining the tour group or spend thousands on a private tour?"
+ },
+ {
+  "k": "B",
+  "src_in": 39.28,
+  "src_out": 44.18,
+  "start": 5.0667,
+  "dur": 4.9,
+  "text": "For just $89, we'll personalize your itinerary, help you with your bookings,"
+ },
+ {
+  "k": "C",
+  "src_in": 51.88,
+  "src_out": 55.63,
+  "start": 9.9667,
+  "dur": 3.7667,
+  "text": "recommend the best local restaurants and support you throughout your trip."
+ },
+ {
+  "k": "D",
+  "src_in": 65.42,
+  "src_out": 68.52,
+  "start": 13.7333,
+  "dur": 3.1,
+  "text": "You get the freedom of traveling independently"
+ },
+ {
+  "k": "E",
+  "src_in": 71.34,
+  "src_out": 73.87,
+  "start": 16.8333,
+  "dur": 2.5333,
+  "text": "without having to organize everything yourself."
+ },
+ {
+  "k": "F",
+  "src_in": 79.32,
+  "src_out": 82.87,
+  "start": 19.3667,
+  "dur": 3.5667,
+  "text": "And we negotiate special hotel prices for you,"
+ },
+ {
+  "k": "G",
+  "src_in": 90.27,
+  "src_out": 93.31,
+  "start": 22.9333,
+  "dur": 3.0333,
+  "text": "so your hotel savings alone can already cover our concierge fee."
+ },
+ {
+  "k": "H",
+  "src_in": 97.06,
+  "src_out": 100.66,
+  "start": 25.9667,
+  "dur": 3.6,
+  "text": "Comment hotel below to find out more."
+ }
+]

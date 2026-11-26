@@ -48,8 +48,9 @@ def scene(cid, z, body, script, extra_css=""):
 # ---------- A-roll: every take its own <video>, one wrapper carries punch-ins and whips ----------
 body, js = [], ['    tl.set("#aroll-cam", { scale: 1, filter: "blur(0px)" }, 0);']
 body.append('    <div id="aroll-cam" class="cam">')
-for s in plan["aroll"]:
-    body.append(f'      <video id="a-{s["k"]}" class="clip seg" src="assets/aroll/{s["k"]}.mp4" data-start="{f3(s["start"])}" data-duration="{f3(s["dur"])}" data-track-index="0" muted playsinline></video>')
+for si, s in enumerate(plan["aroll"]):   # each take stays 1 frame past its cut, under the next, so a late first frame never shows black
+    d = s["dur"] + (0.034 if si + 1 < len(plan["aroll"]) else 0)
+    body.append(f'      <video id="a-{s["k"]}" class="clip seg" src="assets/aroll/{s["k"]}.mp4" data-start="{f3(s["start"])}" data-duration="{f3(d)}" data-track-index="0" muted playsinline style="z-index:{si + 1}"></video>')
 body.append('    </div>')
 if plan.get("logo"):   # brand mark on the wall above his head: outside the cam wrapper (stays put on punch-ins); B-roll and cards cover it
     body.append('    <img id="aroll-logo" class="logo" src="assets/logo.png" alt="ChinaPal Travel" />')
@@ -82,9 +83,10 @@ for i, c in enumerate(plan["cards"]):
     cid = f"card{i}"
     st, du = c["start"], c["dur"]
     if c["kind"] in ("cream", "navy"):
-        words = "".join(f'<span class="w" id="{cid}-w{j}">{html.escape(t)}</span> ' for j, (t, _) in enumerate(c["words"]))
+        words = "".join(f'<span class="w" id="{cid}-w{j}"' + (f' style="display:block;font-size:{w[2]}px;line-height:0.95"' if len(w) > 2 else '') + f'>{html.escape(w[0])}</span> ' for j, w in enumerate(c["words"]))   # optional per-word size
         body.append(f'    <div id="{cid}" class="clip full {c["kind"]}" data-start="{f3(st)}" data-duration="{f3(du)}" data-track-index="1"><div class="card-text">{words.strip()}</div></div>')
-        for j, (t, wt) in enumerate(c["words"]):
+        for j, w in enumerate(c["words"]):
+            wt = w[1]
             js.append(f'    tl.fromTo("#{cid}-w{j}", {{ opacity: 0 }}, {{ opacity: 1, duration: 0.04 }}, {f3(max(st, wt - 0.03))});')
     elif c["kind"] == "title":
         lines = []
