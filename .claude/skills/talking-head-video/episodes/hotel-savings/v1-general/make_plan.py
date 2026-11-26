@@ -12,7 +12,7 @@ br=[("skyline",t(4)-0.04,SEG['B']),("jhotel",t(15)-0.04,t(17)),("ritz",t(17),t(2
 CREAM=(t(21)-0.03,t(23)-0.02); NAVY=(t(35)-0.04,SEG['E'])
 EM={4,15,34,51}                               # red serif accent words
 GROUPS=[[0,1,2],[3,4],[11,12,13],[14,15,16],[17,18,19,20],[23,24],[25,26],[27,28,29],[30,31,32],[33,34],
-        [37,38,39],[40],[41,42,43],[44],[45,46,47],[48,49,50],[51,52,53],[63,64,65],[66,67,68,69]]
+        [37,38,39],[40],[41,42,43],[44],[45,46,47],[48,49,50],[51,52,53]]   # 63-69 "Comment hotel below to find out more" is told by the CTA itself
 BLOCK=[(SEG['B'],SEG['C']),CREAM,NAVY,(SEG['G'],SEG['H'])]   # full cards / titles: no captions
 caps=[]
 for gi,g in enumerate(GROUPS):
@@ -27,7 +27,7 @@ for gi,g in enumerate(GROUPS):
     cap={"start":round(st,3),"end":round(en,3),"words":[[txt(i),t(i),('emw' if onb(i) else 'em') if i in EM else ''] for i in g]}
     if g[0]>=63: cap["top"]=1150          # under the comment pill
     caps.append(cap)
-scale={'A':1.0,'B':1.14,'C':1.0,'D':1.1,'E':1.0,'F':1.15,'G':1.0,'H':1.12,'I':1.0}
+scale={'A':1.0,'B':1.14,'C':1.0,'D':1.1,'E':1.0,'F':1.15,'G':1.0,'H':1.0,'I':1.06}
 whip={'B','F','E','G','H'}
 aroll=[{"k":s['k'],"start":s['start'],"dur":s['dur'],"scale":scale[s['k']],"whip":s['k'] in whip} for s in TL]
 broll=[{"id":n,"src":n,"start":round(a,3),"dur":round(b-a,3)} for n,a,b in br]
@@ -42,9 +42,12 @@ cards=[
    {"style":"serif-red","size":78,"words":[["your",t(54)],["hotel",t(55)],["saving",t(56)],["alone",t(57)]]},
    {"style":"heavy","size":104,"words":[["can",t(58)],["cover",t(59)],["our",t(60)]]},
    {"style":"heavy-red","size":104,"words":[["concierge",t(61)],["fee.",t(62)]]}]},
- {"kind":"pill","start":t(64)-0.02,"dur":round(DUR-t(64)+0.02,3),"top":1010,"text":"HOTEL"}]
+ {"kind":"cta","start":round(t(63)-0.2,3),"dur":round(DUR-t(63)+0.2,3),"top":1080,"keyword":"HOTEL",
+  "t_type":round(t(64)+0.02,3),"t_send":round(t(65)+0.10,3),"t_dm":round(t(66)+0.05,3),
+  "brand":"ChinaPal Travel","reward":"We'll check how much you can save on your hotels \U0001F3E8"}]
+CTA=cards[-1]
 sfx=[["whoosh_es.wav",br[0][1]-0.12,0.35],["whoosh_es.wav",br[1][1]-0.10,0.3],["whoosh_es.wav",br[3][1]-0.08,0.3],
-     ["pop_es.wav",t(5)-0.02,0.35],["pop_es.wav",CREAM[0]-0.03,0.35],["pop_es.wav",NAVY[0]-0.03,0.35],["pop_es.wav",t(54)-0.02,0.35],["pop_es.wav",t(64)-0.05,0.45]]
+     ["pop_es.wav",t(5)-0.02,0.35],["pop_es.wav",CREAM[0]-0.03,0.35],["pop_es.wav",NAVY[0]-0.03,0.35],["pop_es.wav",t(54)-0.02,0.35],["whoosh_es.wav",CTA["start"]-0.05,0.18],["pop_es.wav",CTA["t_send"]-0.02,0.45],["pop_es.wav",CTA["t_dm"]-0.02,0.5]]
 sfx=[[f,round(a,3),v] for f,a,v in sfx]
 json.dump({"duration":DUR,"aroll":aroll,"broll":broll,"captions":caps,"cards":cards,"sfx":sfx,"cap_top":1060,
            "music":MUSIC},open(f'{E}/plan.json','w'),indent=1)
