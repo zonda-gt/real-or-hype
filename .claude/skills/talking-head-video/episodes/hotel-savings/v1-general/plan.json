@@ -1,4 +1,5 @@
 {
+ "logo": true,
  "duration": 24.167,
  "aroll": [
   {
@@ -571,16 +572,60 @@
    ]
   },
   {
-   "kind": "cta",
-   "start": 20.28,
-   "dur": 3.887,
-   "top": 1080,
-   "keyword": "HOTEL",
-   "t_type": 20.88,
-   "t_send": 21.5,
-   "t_dm": 21.95,
-   "brand": "ChinaPal Travel",
-   "reward": "We'll check how much you can save on your hotels \ud83c\udfe8"
+   "kind": "title",
+   "hold": true,
+   "start": 20.43,
+   "dur": 3.737,
+   "top": 925,
+   "lines": [
+    {
+     "style": "small-ink",
+     "size": 68,
+     "words": [
+      [
+       "comment",
+       20.48
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 218,
+     "slam": true,
+     "words": [
+      [
+       "hotel",
+       20.86
+      ]
+     ]
+    },
+    {
+     "style": "small-ink",
+     "size": 58,
+     "words": [
+      [
+       "below",
+       21.4
+      ],
+      [
+       "to",
+       21.9
+      ],
+      [
+       "find",
+       22.46
+      ],
+      [
+       "out",
+       22.74
+      ],
+      [
+       "more.",
+       22.9
+      ]
+     ]
+    }
+   ]
   }
  ],
  "sfx": [
@@ -620,19 +665,9 @@
    0.35
   ],
   [
-   "whoosh_es.wav",
-   20.23,
-   0.18
-  ],
-  [
    "pop_es.wav",
-   21.48,
-   0.45
-  ],
-  [
-   "pop_es.wav",
-   21.93,
-   0.5
+   20.81,
+   0.55
   ]
  ],
  "cap_top": 1060,

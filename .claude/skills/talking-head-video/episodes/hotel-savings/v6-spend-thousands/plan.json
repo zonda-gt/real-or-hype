@@ -1,0 +1,779 @@
+{
+ "logo": true,
+ "duration": 27.867,
+ "aroll": [
+  {
+   "k": "A",
+   "start": 0,
+   "dur": 4.1,
+   "scale": 1.0,
+   "whip": false
+  },
+  {
+   "k": "B",
+   "start": 4.1,
+   "dur": 4.6667,
+   "scale": 1.12,
+   "whip": true
+  },
+  {
+   "k": "C",
+   "start": 8.7667,
+   "dur": 2.7,
+   "scale": 1.0,
+   "whip": false
+  },
+  {
+   "k": "D",
+   "start": 11.4667,
+   "dur": 1.5333,
+   "scale": 1.08,
+   "whip": true
+  },
+  {
+   "k": "E",
+   "start": 13.0,
+   "dur": 3.7333,
+   "scale": 1.0,
+   "whip": true
+  },
+  {
+   "k": "F",
+   "start": 16.7333,
+   "dur": 3.7,
+   "scale": 1.0,
+   "whip": true
+  },
+  {
+   "k": "G",
+   "start": 20.4333,
+   "dur": 3.0667,
+   "scale": 1.12,
+   "whip": true
+  },
+  {
+   "k": "H",
+   "start": 23.5,
+   "dur": 4.3667,
+   "scale": 1.0,
+   "whip": true
+  }
+ ],
+ "broll": [
+  {
+   "id": "jview",
+   "src": "jview",
+   "start": 1.8,
+   "dur": 1.62
+  },
+  {
+   "id": "ritz",
+   "src": "ritz",
+   "start": 5.52,
+   "dur": 0.88
+  },
+  {
+   "id": "train",
+   "src": "train",
+   "start": 11.94,
+   "dur": 1.06
+  },
+  {
+   "id": "hotpot",
+   "src": "hotpot",
+   "start": 14.04,
+   "dur": 1.04
+  },
+  {
+   "id": "localrest",
+   "src": "localrest",
+   "start": 15.08,
+   "dur": 1.653
+  },
+  {
+   "id": "bund",
+   "src": "bund",
+   "start": 22.74,
+   "dur": 0.76
+  }
+ ],
+ "captions": [
+  {
+   "start": 1.8,
+   "end": 2.49,
+   "words": [
+    [
+     "on",
+     1.84,
+     ""
+    ],
+    [
+     "hotels",
+     2.1,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 2.49,
+   "end": 3.42,
+   "words": [
+    [
+     "in",
+     2.54,
+     ""
+    ],
+    [
+     "China,",
+     2.72,
+     "emw"
+    ]
+   ]
+  },
+  {
+   "start": 4.27,
+   "end": 5.23,
+   "words": [
+    [
+     "we",
+     4.32,
+     ""
+    ],
+    [
+     "work",
+     4.42,
+     ""
+    ],
+    [
+     "directly",
+     4.72,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 5.23,
+   "end": 6.35,
+   "words": [
+    [
+     "with",
+     5.28,
+     ""
+    ],
+    [
+     "local",
+     5.56,
+     "emw"
+    ],
+    [
+     "hotels",
+     5.9,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 6.35,
+   "end": 7.35,
+   "words": [
+    [
+     "to",
+     6.4,
+     ""
+    ],
+    [
+     "negotiate",
+     6.8,
+     "em"
+    ]
+   ]
+  },
+  {
+   "start": 8.16,
+   "end": 8.67,
+   "words": [
+    [
+     "for",
+     8.18,
+     ""
+    ],
+    [
+     "you",
+     8.44,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 8.67,
+   "end": 9.69,
+   "words": [
+    [
+     "and",
+     8.72,
+     ""
+    ],
+    [
+     "we",
+     9.2,
+     ""
+    ],
+    [
+     "will",
+     9.32,
+     ""
+    ],
+    [
+     "design",
+     9.5,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 9.69,
+   "end": 10.25,
+   "words": [
+    [
+     "a",
+     9.74,
+     ""
+    ],
+    [
+     "whole",
+     9.96,
+     ""
+    ],
+    [
+     "trip",
+     10.16,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 10.25,
+   "end": 11.53,
+   "words": [
+    [
+     "to",
+     10.3,
+     ""
+    ],
+    [
+     "your",
+     10.52,
+     ""
+    ],
+    [
+     "preference.",
+     10.76,
+     "em"
+    ]
+   ]
+  },
+  {
+   "start": 11.53,
+   "end": 11.93,
+   "words": [
+    [
+     "Get",
+     11.58,
+     ""
+    ],
+    [
+     "your",
+     11.76,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 11.93,
+   "end": 12.79,
+   "words": [
+    [
+     "bookings",
+     11.98,
+     ""
+    ],
+    [
+     "sorted",
+     12.24,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 12.79,
+   "end": 13.77,
+   "words": [
+    [
+     "and",
+     12.84,
+     ""
+    ],
+    [
+     "help",
+     13.36,
+     ""
+    ],
+    [
+     "book",
+     13.6,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 13.77,
+   "end": 14.63,
+   "words": [
+    [
+     "the",
+     13.82,
+     ""
+    ],
+    [
+     "incredible",
+     14.08,
+     "emw"
+    ]
+   ]
+  },
+  {
+   "start": 14.63,
+   "end": 15.53,
+   "words": [
+    [
+     "local",
+     14.68,
+     ""
+    ],
+    [
+     "restaurants",
+     15.12,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 15.53,
+   "end": 16.733,
+   "words": [
+    [
+     "that",
+     15.58,
+     ""
+    ],
+    [
+     "people",
+     15.76,
+     ""
+    ],
+    [
+     "go",
+     15.92,
+     ""
+    ],
+    [
+     "into.",
+     16.12,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 20.433,
+   "end": 21.11,
+   "words": [
+    [
+     "so",
+     20.3,
+     ""
+    ],
+    [
+     "you",
+     20.66,
+     ""
+    ],
+    [
+     "can",
+     20.8,
+     ""
+    ],
+    [
+     "spend",
+     21.0,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 21.74,
+   "end": 22.73,
+   "words": [
+    [
+     "but",
+     21.76,
+     ""
+    ],
+    [
+     "get",
+     22.08,
+     ""
+    ],
+    [
+     "a",
+     22.3,
+     ""
+    ],
+    [
+     "better",
+     22.54,
+     "em"
+    ]
+   ]
+  },
+  {
+   "start": 22.73,
+   "end": 23.59,
+   "words": [
+    [
+     "China",
+     22.78,
+     ""
+    ],
+    [
+     "trip.",
+     23.16,
+     ""
+    ]
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "kind": "title",
+   "start": 0,
+   "dur": 1.8,
+   "top": 975,
+   "lines": [
+    {
+     "style": "small-ink",
+     "size": 60,
+     "words": [
+      [
+       "before",
+       0.0
+      ],
+      [
+       "you",
+       0.32
+      ],
+      [
+       "spend",
+       0.58
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 140,
+     "slam": true,
+     "words": [
+      [
+       "thousands",
+       0.8
+      ]
+     ]
+    },
+    {
+     "style": "heavy",
+     "size": 84,
+     "words": [
+      [
+       "of",
+       1.16
+      ],
+      [
+       "dollars",
+       1.44
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "navy",
+   "start": 3.42,
+   "dur": 0.68,
+   "words": [
+    [
+     "hear",
+     3.46
+    ],
+    [
+     "me",
+     3.54
+    ],
+    [
+     "out.",
+     3.74
+    ]
+   ]
+  },
+  {
+   "kind": "cream",
+   "start": 7.35,
+   "dur": 0.81,
+   "words": [
+    [
+     "better",
+     7.38
+    ],
+    [
+     "prices",
+     7.76
+    ]
+   ]
+  },
+  {
+   "kind": "title",
+   "start": 16.7333,
+   "dur": 3.7,
+   "top": 1012,
+   "lines": [
+    {
+     "style": "small-ink",
+     "size": 56,
+     "words": [
+      [
+       "we",
+       17.26
+      ],
+      [
+       "will",
+       17.5
+      ],
+      [
+       "pass",
+       17.8
+      ],
+      [
+       "down",
+       18.14
+      ]
+     ]
+    },
+    {
+     "style": "serif-ink",
+     "size": 70,
+     "words": [
+      [
+       "the",
+       18.36
+      ],
+      [
+       "hotel",
+       18.68
+      ],
+      [
+       "savings",
+       18.96
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 108,
+     "slam": true,
+     "words": [
+      [
+       "all",
+       19.46
+      ],
+      [
+       "to",
+       19.8
+      ],
+      [
+       "you.",
+       20.0
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "cream",
+   "start": 21.11,
+   "dur": 0.63,
+   "words": [
+    [
+     "less",
+     21.14
+    ],
+    [
+     "money,",
+     21.4
+    ]
+   ]
+  },
+  {
+   "kind": "title",
+   "hold": true,
+   "start": 23.59,
+   "dur": 4.277,
+   "top": 925,
+   "lines": [
+    {
+     "style": "small-ink",
+     "size": 64,
+     "words": [
+      [
+       "comment",
+       23.64
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 190,
+     "slam": true,
+     "words": [
+      [
+       "hotel",
+       24.06
+      ]
+     ]
+    },
+    {
+     "style": "small-ink",
+     "size": 50,
+     "words": [
+      [
+       "below",
+       24.2
+      ],
+      [
+       "and",
+       24.54
+      ],
+      [
+       "we",
+       24.74
+      ],
+      [
+       "will",
+       24.88
+      ],
+      [
+       "check",
+       25.0
+      ],
+      [
+       "how",
+       25.2
+      ],
+      [
+       "much",
+       25.38
+      ]
+     ]
+    },
+    {
+     "style": "small-ink",
+     "size": 50,
+     "words": [
+      [
+       "you",
+       25.52
+      ],
+      [
+       "can",
+       25.64
+      ],
+      [
+       "save",
+       25.9
+      ],
+      [
+       "on",
+       26.22
+      ],
+      [
+       "your",
+       26.48
+      ],
+      [
+       "China",
+       26.68
+      ],
+      [
+       "trip.",
+       26.88
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  [
+   "whoosh_es.wav",
+   1.68,
+   0.35
+  ],
+  [
+   "whoosh_es.wav",
+   5.42,
+   0.3
+  ],
+  [
+   "whoosh_es.wav",
+   11.86,
+   0.3
+  ],
+  [
+   "whoosh_es.wav",
+   22.66,
+   0.3
+  ],
+  [
+   "pop_es.wav",
+   0.78,
+   0.4
+  ],
+  [
+   "pop_es.wav",
+   3.39,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   7.32,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   19.44,
+   0.4
+  ],
+  [
+   "pop_es.wav",
+   21.08,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   24.01,
+   0.55
+  ]
+ ],
+ "cap_top": 1060,
+ "music": {
+  "file": "music_marimba_el.mp3",
+  "vol": 0
+ }
+}

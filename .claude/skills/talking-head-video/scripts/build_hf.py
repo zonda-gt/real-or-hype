@@ -51,6 +51,8 @@ body.append('    <div id="aroll-cam" class="cam">')
 for s in plan["aroll"]:
     body.append(f'      <video id="a-{s["k"]}" class="clip seg" src="assets/aroll/{s["k"]}.mp4" data-start="{f3(s["start"])}" data-duration="{f3(s["dur"])}" data-track-index="0" muted playsinline></video>')
 body.append('    </div>')
+if plan.get("logo"):   # brand mark on the wall above his head: outside the cam wrapper (stays put on punch-ins); B-roll and cards cover it
+    body.append('    <img id="aroll-logo" class="logo" src="assets/logo.png" alt="ChinaPal Travel" />')
 for s in plan["aroll"]:
     sc = s.get("scale", 1.0)
     if s.get("whip"):      # zoom-blur arrival, as the reference's cuts
@@ -58,6 +60,7 @@ for s in plan["aroll"]:
     else:
         js.append(f'    tl.set("#aroll-cam", {{ scale: {sc}, filter: "blur(0px)" }}, {f3(s["start"])});')
 css = """.cam { position: absolute; inset: 0; transform-origin: 50% 30%; }
+    .logo { position: absolute; top: 150px; left: 375px; width: 330px; opacity: 0.88; }
     .seg { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; object-fit: cover; }"""
 open(f"{P}/compositions/aroll.html", "w").write(scene("aroll", 1, "\n".join(body), "\n".join(js), css))
 
@@ -89,13 +92,18 @@ for i, c in enumerate(plan["cards"]):
         for ln in c["lines"]:
             spans = []
             for t, wt in ln["words"]:
-                spans.append(f'<span class="w" id="{cid}-w{j}">{html.escape(t)}</span>')
-                js.append(f'    tl.fromTo("#{cid}-w{j}", {{ opacity: 0, filter: "blur(10px)" }}, {{ opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power3.out" }}, {f3(max(st, wt - 0.03))});')
+                if ln.get("slam"):   # hero word: lands big and blurred, settles in 0.2 s, then dead still
+                    spans.append(f'<span class="w slam" id="{cid}-w{j}">{html.escape(t)}</span>')
+                    js.append(f'    tl.fromTo("#{cid}-w{j}", {{ opacity: 0, scale: 1.4, filter: "blur(14px)" }}, {{ opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.2, ease: "expo.out" }}, {f3(max(st, wt - 0.03))});')
+                else:
+                    spans.append(f'<span class="w" id="{cid}-w{j}">{html.escape(t)}</span>')
+                    js.append(f'    tl.fromTo("#{cid}-w{j}", {{ opacity: 0, filter: "blur(10px)" }}, {{ opacity: 1, filter: "blur(0px)", duration: 0.13, ease: "power3.out" }}, {f3(max(st, wt - 0.03))});')
                 j += 1
             lines.append(f'<div class="tl {ln["style"]}" style="font-size:{ln["size"]}px">{" ".join(spans)}</div>')
         body.append(f'    <div id="{cid}" class="clip title" data-start="{f3(st)}" data-duration="{f3(du)}" data-track-index="1" style="top:{c["top"]}px">{"".join(lines)}</div>')
-        js.append(f'    tl.to("#{cid}", {{ opacity: 0, filter: "blur(8px)", duration: 0.12, ease: "power2.in" }}, {f3(st + du - 0.12)});')
-        js.append(f'    tl.set("#{cid}", {{ opacity: 1, filter: "blur(0px)" }}, {f3(st)});')
+        if not c.get("hold"):   # a closing title holds to the last frame
+            js.append(f'    tl.to("#{cid}", {{ opacity: 0, filter: "blur(8px)", duration: 0.12, ease: "power2.in" }}, {f3(st + du - 0.12)});')
+            js.append(f'    tl.set("#{cid}", {{ opacity: 1, filter: "blur(0px)" }}, {f3(st)});')
     elif c["kind"] == "pill":
         body.append(f'''    <div id="{cid}" class="clip pillwrap" data-start="{f3(st)}" data-duration="{f3(du)}" data-track-index="1" style="top:{c["top"]}px">
       <div class="pill" id="{cid}-pill"><span class="pill-text">&ldquo;{html.escape(c["text"])}&rdquo;</span>
@@ -144,12 +152,14 @@ css = """.full { position: absolute; inset: 0; display: flex; align-items: cente
     .title { position: absolute; left: 0; width: 1080px; text-align: center; }
     .tl { line-height: 0.88; white-space: nowrap; }
     .heavy { font-family: "Inter Display Heavy"; font-weight: 900; font-style: italic; color: var(--ink); letter-spacing: -0.045em; text-transform: uppercase; text-shadow: 0 6px 30px rgba(0,0,0,0.35); }
-    .heavy-red { font-family: "Inter Display Heavy"; font-weight: 900; font-style: italic; color: var(--accent); letter-spacing: -0.045em; text-transform: uppercase; text-shadow: 0 6px 30px rgba(0,0,0,0.25); }
+    .heavy-red { font-family: "Inter Display Heavy"; font-weight: 900; font-style: italic; color: #cb2329; letter-spacing: -0.045em; text-transform: uppercase; text-shadow: 0 6px 30px rgba(0,0,0,0.25); }
     .serif-red { font-family: "Playfair HF"; font-weight: 700; font-style: italic; color: #d4494f; letter-spacing: -0.03em; margin: -4px 0 18px; text-shadow: 0 0 2px rgba(255,255,255,0.35), 0 4px 18px rgba(0,0,0,0.25); }
     .pillwrap { position: absolute; left: 0; width: 1080px; display: flex; justify-content: center; }
     .pill { width: 760px; height: 116px; border-radius: 58px; background: #f7f3ee; display: flex; align-items: center; justify-content: space-between; padding: 0 18px 0 46px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); }
     .pill-text { font-family: "Inter Display HF"; font-weight: 700; font-size: 50px; letter-spacing: -0.03em; color: #111; }
     .pill-send { width: 80px; height: 80px; border-radius: 40px; background: var(--accent); display: flex; align-items: center; justify-content: center; }
+    .slam { display: inline-block; transform-origin: 50% 60%; }
+    .small-ink { font-family: "Inter Display HF"; font-weight: 700; color: var(--ink); letter-spacing: -0.045em; text-shadow: 0 2px 4px rgba(0,0,0,0.25), 0 6px 28px rgba(0,0,0,0.45); }
     .ctawrap { position: absolute; inset: 0; }
     .cbox { position: absolute; left: 70px; width: 940px; height: 140px; }
     .layer { position: absolute; inset: 0; border-radius: 70px; background: #fff; display: flex; align-items: center; gap: 22px; padding: 0 22px 0 26px; box-shadow: 0 14px 44px rgba(0,0,0,0.35); }

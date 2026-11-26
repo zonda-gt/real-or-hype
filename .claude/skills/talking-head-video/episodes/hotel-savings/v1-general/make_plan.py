@@ -42,14 +42,15 @@ cards=[
    {"style":"serif-red","size":78,"words":[["your",t(54)],["hotel",t(55)],["saving",t(56)],["alone",t(57)]]},
    {"style":"heavy","size":104,"words":[["can",t(58)],["cover",t(59)],["our",t(60)]]},
    {"style":"heavy-red","size":104,"words":[["concierge",t(61)],["fee.",t(62)]]}]},
- {"kind":"cta","start":round(t(63)-0.2,3),"dur":round(DUR-t(63)+0.2,3),"top":1080,"keyword":"HOTEL",
-  "t_type":round(t(64)+0.02,3),"t_send":round(t(65)+0.10,3),"t_dm":round(t(66)+0.05,3),
-  "brand":"ChinaPal Travel","reward":"We'll check how much you can save on your hotels \U0001F3E8"}]
-CTA=cards[-1]
+ {"kind":"title","hold":True,"start":round(t(63)-0.05,3),"dur":round(DUR-t(63)+0.05,3),"top":925,"lines":[
+   {"style":"small-ink","size":68,"words":[["comment",t(63)]]},
+   {"style":"heavy-red","size":218,"slam":True,"words":[["hotel",t(64)]]},
+   {"style":"small-ink","size":58,"words":[["below",t(65)],["to",t(66)],["find",t(67)],["out",t(68)],["more.",t(69)]]}]}]
+
 sfx=[["whoosh_es.wav",br[0][1]-0.12,0.35],["whoosh_es.wav",br[1][1]-0.10,0.3],["whoosh_es.wav",br[3][1]-0.08,0.3],
-     ["pop_es.wav",t(5)-0.02,0.35],["pop_es.wav",CREAM[0]-0.03,0.35],["pop_es.wav",NAVY[0]-0.03,0.35],["pop_es.wav",t(54)-0.02,0.35],["whoosh_es.wav",CTA["start"]-0.05,0.18],["pop_es.wav",CTA["t_send"]-0.02,0.45],["pop_es.wav",CTA["t_dm"]-0.02,0.5]]
+     ["pop_es.wav",t(5)-0.02,0.35],["pop_es.wav",CREAM[0]-0.03,0.35],["pop_es.wav",NAVY[0]-0.03,0.35],["pop_es.wav",t(54)-0.02,0.35],["pop_es.wav",t(64)-0.05,0.55]]
 sfx=[[f,round(a,3),v] for f,a,v in sfx]
-json.dump({"duration":DUR,"aroll":aroll,"broll":broll,"captions":caps,"cards":cards,"sfx":sfx,"cap_top":1060,
+json.dump({"logo":True,"duration":DUR,"aroll":aroll,"broll":broll,"captions":caps,"cards":cards,"sfx":sfx,"cap_top":1060,
            "music":MUSIC},open(f'{E}/plan.json','w'),indent=1)
 for c in caps: print(f"{c['start']:6.2f}-{c['end']:6.2f}  "+' '.join(w[0] for w in c['words']))
 print('duration',DUR)

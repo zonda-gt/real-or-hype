@@ -1,0 +1,10 @@
+# v6 "Before you spend thousands" (source 20261126_165157.mp4), 27.9 s
+
+Script as cut: "Before you spend thousands of dollars on hotels in China, hear me out. We work directly with local hotels to negotiate better prices for you. And we will design a whole trip to your preference. Get your bookings sorted, and help book the incredible local restaurants that people go into. We will pass down the hotel savings all to you. So you can spend less money, but get a better China trip. Comment hotel below and we will check how much you can save on your China trip."
+
+Takes (source s): A 4.95-9.04 hook (false start "Before you s-" at 3.98 cut out, breath at 4.82-4.92 left out) · B 32.50-37.15 · C 47.65-50.36 · D 62.06-63.60 "Get your bookings sorted," spliced to E 71.01-74.75 "and help book ... go into." · F 92.76-96.45 (natural 0.26 s pause after "We" kept) · G 109.47-112.55 · H 127.18-131.55 (0.9 s room-tone hold; the "Thanks for watching" hallucination zone from 131.9 avoided).
+Hiccups: hook false start removed; scan otherwise clean (flags were mishears: "book and sorted" = "bookings sorted", "challenger"/"childhood" = "China trip").
+Edit: hook title before you spend / THOUSANDS (slam) / OF DOLLARS; navy "hear me out."; cream "better prices", "less money,"; middle title we will pass down / the hotel savings (white Playfair: red was on his neck, 2.1:1) / ALL TO YOU. (slam); closing comment / HOTEL / below and we will check how much / you can save on your China trip. Logo on. Local build_hf.py copy: heavy-red #cf353b (contrast), serif-ink style.
+B-roll (Douyin, internal): J Hotel room 7565148395124854074 @23.6 ("on hotels in China"), Ritz Pudong view 7466023247272840483 @16.4 ("local hotels"), Fuxing train 7369562650730155279 @3.4 ("bookings sorted"), hotpot 7605915859131620294 @1.9 ("incredible"), street hotpot restaurant 7587367618375686821 @0.2 ("local restaurants that people go into"), Bund lasers 7608048919034301416 @3.2 ("China trip").
+Music: How We Do (Instrumental) from 5.09 s, mix_music.py 3 dB.
+Check: "go into" heard as "into" twice and "are going to" once; he may say "go to".

@@ -1,0 +1,66 @@
+[
+ {
+  "k": "A",
+  "src_in": 4.95,
+  "src_out": 9.04,
+  "start": 0,
+  "dur": 4.1,
+  "text": "Before you spend thousands of dollars on hotels in China, hear me out."
+ },
+ {
+  "k": "B",
+  "src_in": 32.5,
+  "src_out": 37.15,
+  "start": 4.1,
+  "dur": 4.6667,
+  "text": "We work directly with local hotels to negotiate better prices for you."
+ },
+ {
+  "k": "C",
+  "src_in": 47.65,
+  "src_out": 50.36,
+  "start": 8.7667,
+  "dur": 2.7,
+  "text": "And we will design a whole trip to your preference."
+ },
+ {
+  "k": "D",
+  "src_in": 62.06,
+  "src_out": 63.6,
+  "start": 11.4667,
+  "dur": 1.5333,
+  "text": "Get your bookings sorted,"
+ },
+ {
+  "k": "E",
+  "src_in": 71.01,
+  "src_out": 74.75,
+  "start": 13.0,
+  "dur": 3.7333,
+  "text": "and help book the incredible local restaurants that people go into."
+ },
+ {
+  "k": "F",
+  "src_in": 92.76,
+  "src_out": 96.45,
+  "start": 16.7333,
+  "dur": 3.7,
+  "text": "We will pass down the hotel savings all to you."
+ },
+ {
+  "k": "G",
+  "src_in": 109.47,
+  "src_out": 112.55,
+  "start": 20.4333,
+  "dur": 3.0667,
+  "text": "So you can spend less money, but get a better China trip."
+ },
+ {
+  "k": "H",
+  "src_in": 127.18,
+  "src_out": 131.55,
+  "start": 23.5,
+  "dur": 4.3667,
+  "text": "Comment hotel below and we will check how much you can save on your China trip."
+ }
+]
