@@ -39,3 +39,32 @@ Rejected: 7627668117356308721 (camera-app UI, location unclear), 736087178449473
 - **G "4 things nobody tells you"** (33.1 s): an insider-tips list with handwritten #1–#4 labels; new clips: giraffes arriving outside the restaurant (7685311414965524923), giraffe nose on the glass (6976808703164992805), **newborn calf with its mother** (7650310001970073807, 4K, cut 0.14, crop x≈0.42–0.45), winter vlog (7604799138752724410: snow cabin, **indoor giraffe house** 47.65–49.7, arch, drone; burned subs need cut 0.19), keeper with a calf (7653265250729437775). Tip 4 ("on cold, rainy days the giraffes may stay inside") is hedged, medium confidence. `plan_G.py`.
 - Each version re-uses the creator's two Seedance clips on different words. Before reusing a source window, check its own cut points (`cuts.sh`): an R in-point at 38.2 landed past the restaurant shot (36.70–38.13).
 - Unused but good: bonfire night show 7654958528349001123 (vertical, 42 fps), bamboo slide/bridge (7696448570602560619; 140 s+ is letterboxed). Skip 7693134999780714667 (heavy frame effects).
+
+## H, I, J: three more angles (26 Nov 2026), same direction as E2me/F/G
+**Status: picture planned and dry-run tested; NOT voiced or finished.** The ElevenLabs account ran out of characters on the first take (17 credits left, each take needs ~240–280), so there is no John narration, no words_H/I/J.json and no final mp4 yet. Nothing posted.
+
+Three angles (none repeats E2me "full tour", F "Kenya vs China" or G "4 things"):
+- **H "A day at China's giraffe hotel"**: the day in order, second person (wake-up call → breakfast window → bamboo walk past the giraffes → capybaras and cranes → bonfire show → villa). Why: the walkthrough that did 110k (E2me) told as a timeline, with the creator's new clips as "you". HERO hook: giraffe at the breakfast table beside a child (W2 21.1). Relaxed, ~1.8 s a shot. Handwritten time-of-day labels.
+- **I "The baby giraffes"**: two calves born at the hotel (Apr 2024, 1.85 m; 11 Jun 2026), keepers bottle-feeding and the morning head rub, then "the grown-ups come to breakfast". Why: the cutest, most shareable fact, never the lead before. Hook: 2×2 collage of calf shots (calf face TL, newborn by its mother TR, bottle BL, calf walking up BR). Medium, ~1.4 s a shot. One card ("the first one / 6 ft 1 in").
+- **J "Is it worth it?"**: the wow, the Kenya gap ("a fraction of the price", no nightly price), then the honest watch-outs (weekends/holidays book up, queue by 6:30 for a window table, giraffes may stay inside on cold, rainy days). Why: answers the objection the other versions skip. HERO hook on the creator's breakfast clip (startled as the giraffe's head comes in), title moved down to y 1290. Fast, ~1.0 s a shot. Kenya card + "a fraction of the price" card.
+- No nightly price in any version (the team now quotes ~US$260 for two with breakfast; the old ¥1,000 was a deal).
+- CTA: all three say "Comment the word giraffe, and we'll send you the full guide." (skill: same CTA on all three; "the word"; "we"). Alternate **J_price** script ends "…and we'll send you the guide and our guest price." (the DM now offers the guest price) for the creator to choose.
+
+Creator's Seedance clips (720p 24 fps, 4 s), different moments per version:
+| version | clip | moment | on the words |
+|---|---|---|---|
+| H | ai25_me_raccoon | 0.0–2.45 waking up, raccoon trots in | "Nine AM. Your wake-up call is an animal," |
+| H | ai25_me_breakfast | 2.6–4.04 laughs, pats the giraffe | "And yes, you can give it a pat." |
+| H | ai25_me_walkway | 1.3–3.05 looks up, amazed | "…and giraffes stroll right past the fence." |
+| H | ai25_me_bonfire | 0.6–1.45 (brief) | "…with music and dancing." |
+| I | ai25_me_breakfast | 0.65–1.3 the head comes in | "They come to breakfast." |
+| I | ai25_me_walkway | 1.25–3.15 looks up | "Outside, they walk right past you…" |
+| J | ai25_me_breakfast | 0.95–2.7 startled (HERO, under the title) | "Is China's giraffe hotel actually worth it?" |
+| J | ai25_me_raccoon | 2.5–4.04 crouches, raccoon at his hand | "A raccoon can be your wake-up call." |
+| J | ai25_me_walkway | 3.15–4.04 grins at camera | "…and yes, it's worth it." |
+
+New footage ids (already in `work/giraffe/broll/`, first use): 7651279604527986664 (keeper bottle-feeds a calf, 14 Jun 2026), 7654958528349001123 (bonfire show at night, Huzhou POI; ✱ single guest video for the bonfire fact), BIRTH 7650310001970073807 wide 25.5–28.5, BABY 7673338456038363624 bottle 6–8 and calf walking up 15.5–19, CALF2 7653265250729437775 head rub 4.6–8 and face 22–23.7, B2 red-crowned cranes 28.45–31.78 and bamboo steps 40.05–41.37. All Huzhou (POI checked). Footage of the 2024 calf exists only in a news clip with burned text (7360871784494730559), so "the first one" line in I shows the 2026 calf.
+
+Plans: `plan_H/I/J.py` find their cue words by PHRASE (`at('then breakfast')`) in words.json, so they work with any new take without renumbering. Rebuild, per version V (J_price uses plan_J.py):
+`cp plan_V.py <work>/V/plan.py; cp script_V.txt <work>/V/script.txt; vo_take.py <work>/V PXo7njgt8slUVdtKa3La 3 200` → `graphics.py` (J only: `../tiger-rooms-qinyang/title_at.py <work>/J 1290`) → `render_cut.py` (fix any SLOW flags for the real timing) → `finish.py <work>/V giraffe_V` → `compare_cuts.py H I J`, `sheet.py giraffe_V_1080.mp4 0.5`, `wtx.py giraffe_V_1080.mp4`.
+Dry run with synthetic ~200 wpm timing (`work/giraffe/{H,I,J}/dryrun_*`): all cues resolve, frames checked on contact sheets, compare_cuts: H vs I order 0.22, H vs J 0.39, I vs J 0.25, rhythm 1.82 / 1.39 / 1.03 s a shot, openings all different.
