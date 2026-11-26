@@ -1,0 +1,82 @@
+[
+ {
+  "k": "A",
+  "src_in": 10.66,
+  "src_out": 13.0,
+  "start": 0,
+  "dur": 2.3333,
+  "text": "Planning a China trip with your partner?"
+ },
+ {
+  "k": "B",
+  "src_in": 40.19,
+  "src_out": 45.08,
+  "start": 2.3333,
+  "dur": 4.9,
+  "text": "We can help you get better hotel prices by directly working with local hotels."
+ },
+ {
+  "k": "C",
+  "src_in": 61.24,
+  "src_out": 64.45,
+  "start": 7.2333,
+  "dur": 3.2,
+  "text": "Imagine a trip designed around what you both love."
+ },
+ {
+  "k": "D",
+  "src_in": 68.92,
+  "src_out": 70.79,
+  "start": 10.4333,
+  "dur": 1.8667,
+  "text": "Discovering hidden places,"
+ },
+ {
+  "k": "E",
+  "src_in": 83.91,
+  "src_out": 87.0,
+  "start": 12.3,
+  "dur": 3.1,
+  "text": "getting reservations at incredible local restaurants,"
+ },
+ {
+  "k": "F",
+  "src_in": 93.32,
+  "src_out": 96.87,
+  "start": 15.4,
+  "dur": 3.5667,
+  "text": "and enjoy unique experiences without spending hours"
+ },
+ {
+  "k": "G",
+  "src_in": 97.27,
+  "src_out": 98.66,
+  "start": 18.9667,
+  "dur": 1.4,
+  "text": "researching them."
+ },
+ {
+  "k": "H",
+  "src_in": 103.48,
+  "src_out": 107.68,
+  "start": 20.3667,
+  "dur": 4.2,
+  "text": "You will have us as a local concierge to help you throughout your trip."
+ },
+ {
+  "k": "I",
+  "src_in": 113.88,
+  "src_out": 117.54,
+  "start": 24.5667,
+  "dur": 3.6667,
+  "text": "Your hotel savings can cover our concierge fee alone."
+ },
+ {
+  "k": "J",
+  "src_in": 119.46,
+  "src_out": 122.92,
+  "start": 28.2333,
+  "dur": 3.4667,
+  "text": "Comment hotel to find out more."
+ }
+]
