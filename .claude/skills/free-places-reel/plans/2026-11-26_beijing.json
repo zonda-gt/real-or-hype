@@ -1,0 +1,145 @@
+{
+ "city": "Beijing",
+ "shots": [
+  [
+   "hookA_6742806443801562372",
+   1.2,
+   "HOOK"
+  ],
+  [
+   "hookA_6742806443801562372",
+   36.0,
+   "HOOK"
+  ],
+  [
+   "guomao_7618888347910188281",
+   0.3,
+   "Guomao CBD"
+  ],
+  [
+   "guomao_7610017738350351973",
+   8.0,
+   "Guomao CBD"
+  ],
+  [
+   "ncpa_6975891063110208802",
+   0.2,
+   "National Grand Theatre"
+  ],
+  [
+   "ncpa_6980624640112741665",
+   8.2,
+   "National Grand Theatre"
+  ],
+  [
+   "liuli_7553769559716613427",
+   22.45,
+   "Liulichang Street"
+  ],
+  [
+   "liuli_7553769559716613427",
+   31.0,
+   "Liulichang Street"
+  ],
+  [
+   "canal_7654236347376596864",
+   0.5,
+   "Grand Canal Museum"
+  ],
+  [
+   "canal_7507076428220009785",
+   2.2,
+   "Grand Canal Museum"
+  ],
+  [
+   "daxing_7337629495857351970",
+   0.3,
+   "Daxing Airport"
+  ],
+  [
+   "daxing_7052539810191346981",
+   0.2,
+   "Daxing Airport"
+  ],
+  [
+   "ucw_6998708346987629828",
+   17.5,
+   "Universal CityWalk"
+  ],
+  [
+   "ucw_6998708346987629828",
+   33.1,
+   "Universal CityWalk"
+  ],
+  [
+   "wudaotwo_7376609030355127562",
+   9.45,
+   "Wudaoying Hutong"
+  ],
+  [
+   "wudaotwo_7287051269254958393",
+   6.1,
+   "Wudaoying Hutong"
+  ],
+  [
+   "yandaitwo_7341896383345052939",
+   1.0,
+   "Yandai Xiejie"
+  ],
+  [
+   "yandaitwo_7341896383345052939",
+   8.2,
+   "Yandai Xiejie"
+  ],
+  [
+   "gulou_7663861260047837369",
+   2.0,
+   "Drum & Bell Tower Square"
+  ],
+  [
+   "yandaitwo_7266726294610595131",
+   10.2,
+   "Drum & Bell Tower Square"
+  ],
+  [
+   "endA_7706126295557995123",
+   26.2,
+   "END"
+  ],
+  [
+   "endC_7628924884571468773",
+   3.5,
+   "END"
+  ]
+ ],
+ "blur": {
+  "9": [
+   [
+    50,
+    1600,
+    920,
+    190
+   ]
+  ],
+  "12": [
+   [
+    130,
+    1420,
+    950,
+    150
+   ]
+  ],
+  "13": [
+   [
+    170,
+    1420,
+    760,
+    150
+   ]
+  ]
+ },
+ "precrop": {},
+ "speed": {
+  "14": 0.85
+ }
+}
