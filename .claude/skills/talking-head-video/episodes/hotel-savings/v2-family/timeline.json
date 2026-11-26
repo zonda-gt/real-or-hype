@@ -1,0 +1,82 @@
+[
+ {
+  "k": "A",
+  "src_in": 1.36,
+  "src_out": 4.9,
+  "start": 0,
+  "dur": 3.5333,
+  "text": "Taking your family to China? Don't book your hotel just yet."
+ },
+ {
+  "k": "B",
+  "src_in": 9.23,
+  "src_out": 13.25,
+  "start": 3.5333,
+  "dur": 4.0333,
+  "text": "We work directly with local hotels to give you a better price."
+ },
+ {
+  "k": "C",
+  "src_in": 21.42,
+  "src_out": 23.56,
+  "start": 7.5667,
+  "dur": 2.1333,
+  "text": "We will find family-friendly hotels,"
+ },
+ {
+  "k": "D",
+  "src_in": 26.6,
+  "src_out": 29.01,
+  "start": 9.7,
+  "dur": 2.4,
+  "text": "design your trip around your children's needs."
+ },
+ {
+  "k": "E",
+  "src_in": 34.99,
+  "src_out": 36.8,
+  "start": 12.1,
+  "dur": 1.8,
+  "text": "Get your tickets and restaurants booked."
+ },
+ {
+  "k": "F",
+  "src_in": 41.34,
+  "src_out": 42.55,
+  "start": 13.9,
+  "dur": 1.2,
+  "text": "and here to help"
+ },
+ {
+  "k": "G",
+  "src_in": 52.08,
+  "src_out": 53.57,
+  "start": 15.1,
+  "dur": 1.5,
+  "text": "whenever something goes wrong."
+ },
+ {
+  "k": "H",
+  "src_in": 61.44,
+  "src_out": 67.51,
+  "start": 16.6,
+  "dur": 6.0667,
+  "text": "Spend less time organizing and more time enjoying your time with your family in China."
+ },
+ {
+  "k": "I",
+  "src_in": 76.01,
+  "src_out": 79.25,
+  "start": 22.6667,
+  "dur": 3.2333,
+  "text": "and your hotel savings alone can cover our concierge fee."
+ },
+ {
+  "k": "J",
+  "src_in": 82.28,
+  "src_out": 85.5,
+  "start": 25.9,
+  "dur": 3.2333,
+  "text": "Comment hotel, and I'll send you the details."
+ }
+]

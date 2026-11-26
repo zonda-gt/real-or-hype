@@ -1,0 +1,803 @@
+{
+ "logo": true,
+ "duration": 29.133,
+ "aroll": [
+  {
+   "k": "A",
+   "start": 0,
+   "dur": 3.5333,
+   "scale": 1.0,
+   "whip": false
+  },
+  {
+   "k": "B",
+   "start": 3.5333,
+   "dur": 4.0333,
+   "scale": 1.14,
+   "whip": true
+  },
+  {
+   "k": "C",
+   "start": 7.5667,
+   "dur": 2.1333,
+   "scale": 1.0,
+   "whip": false
+  },
+  {
+   "k": "D",
+   "start": 9.7,
+   "dur": 2.4,
+   "scale": 1.1,
+   "whip": false
+  },
+  {
+   "k": "E",
+   "start": 12.1,
+   "dur": 1.8,
+   "scale": 1.0,
+   "whip": true
+  },
+  {
+   "k": "F",
+   "start": 13.9,
+   "dur": 1.2,
+   "scale": 1.12,
+   "whip": true
+  },
+  {
+   "k": "G",
+   "start": 15.1,
+   "dur": 1.5,
+   "scale": 1.0,
+   "whip": false
+  },
+  {
+   "k": "H",
+   "start": 16.6,
+   "dur": 6.0667,
+   "scale": 1.1,
+   "whip": true
+  },
+  {
+   "k": "I",
+   "start": 22.6667,
+   "dur": 3.2333,
+   "scale": 1.0,
+   "whip": true
+  },
+  {
+   "k": "J",
+   "start": 25.9,
+   "dur": 3.2333,
+   "scale": 1.0,
+   "whip": true
+  }
+ ],
+ "broll": [
+  {
+   "id": "shoulders",
+   "src": "shoulders",
+   "start": 0.6,
+   "dur": 1.22
+  },
+  {
+   "id": "jhotel",
+   "src": "jhotel",
+   "start": 4.92,
+   "dur": 0.9
+  },
+  {
+   "id": "ritz",
+   "src": "ritz",
+   "start": 5.82,
+   "dur": 0.67
+  },
+  {
+   "id": "kidsuite",
+   "src": "kidsuite",
+   "start": 8.2,
+   "dur": 0.8
+  },
+  {
+   "id": "slideroom",
+   "src": "slideroom",
+   "start": 9.0,
+   "dur": 0.7
+  },
+  {
+   "id": "fireworks",
+   "src": "fireworks",
+   "start": 12.59,
+   "dur": 0.47
+  },
+  {
+   "id": "hotpot",
+   "src": "hotpot",
+   "start": 13.06,
+   "dur": 0.84
+  },
+  {
+   "id": "buswave",
+   "src": "buswave",
+   "start": 19.62,
+   "dur": 1.04
+  },
+  {
+   "id": "running",
+   "src": "running",
+   "start": 20.66,
+   "dur": 2.007
+  }
+ ],
+ "captions": [
+  {
+   "start": 0.1,
+   "end": 0.59,
+   "words": [
+    [
+     "Taking",
+     0.0,
+     ""
+    ],
+    [
+     "your",
+     0.38,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 0.59,
+   "end": 0.89,
+   "words": [
+    [
+     "family",
+     0.64,
+     "emw"
+    ]
+   ]
+  },
+  {
+   "start": 0.89,
+   "end": 1.82,
+   "words": [
+    [
+     "to",
+     0.94,
+     ""
+    ],
+    [
+     "China?",
+     1.18,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 3.69,
+   "end": 4.61,
+   "words": [
+    [
+     "We",
+     3.74,
+     ""
+    ],
+    [
+     "work",
+     3.88,
+     ""
+    ],
+    [
+     "directly",
+     4.16,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 4.61,
+   "end": 5.77,
+   "words": [
+    [
+     "with",
+     4.66,
+     ""
+    ],
+    [
+     "local",
+     4.96,
+     "emw"
+    ],
+    [
+     "hotels",
+     5.36,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 5.77,
+   "end": 6.49,
+   "words": [
+    [
+     "to",
+     5.82,
+     ""
+    ],
+    [
+     "give",
+     6.06,
+     ""
+    ],
+    [
+     "you",
+     6.2,
+     ""
+    ],
+    [
+     "a",
+     6.46,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 7.73,
+   "end": 8.19,
+   "words": [
+    [
+     "We",
+     7.78,
+     ""
+    ],
+    [
+     "will",
+     7.86,
+     ""
+    ],
+    [
+     "find",
+     8.04,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 8.19,
+   "end": 9.93,
+   "words": [
+    [
+     "family-friendly",
+     8.24,
+     "emw"
+    ],
+    [
+     "hotels,",
+     9.0,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 9.93,
+   "end": 10.69,
+   "words": [
+    [
+     "design",
+     9.98,
+     ""
+    ],
+    [
+     "your",
+     10.38,
+     ""
+    ],
+    [
+     "trip",
+     10.62,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 10.69,
+   "end": 11.18,
+   "words": [
+    [
+     "around",
+     10.74,
+     ""
+    ],
+    [
+     "your",
+     10.98,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 12.27,
+   "end": 12.81,
+   "words": [
+    [
+     "get",
+     12.32,
+     ""
+    ],
+    [
+     "your",
+     12.4,
+     ""
+    ],
+    [
+     "tickets",
+     12.62,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 12.81,
+   "end": 13.41,
+   "words": [
+    [
+     "and",
+     12.86,
+     ""
+    ],
+    [
+     "restaurants",
+     13.06,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 13.41,
+   "end": 13.79,
+   "words": [
+    [
+     "booked",
+     13.46,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 13.79,
+   "end": 15.03,
+   "words": [
+    [
+     "and",
+     13.84,
+     ""
+    ],
+    [
+     "here",
+     14.28,
+     ""
+    ],
+    [
+     "to",
+     14.46,
+     ""
+    ],
+    [
+     "help",
+     14.74,
+     "em"
+    ]
+   ]
+  },
+  {
+   "start": 15.03,
+   "end": 15.85,
+   "words": [
+    [
+     "whenever",
+     15.08,
+     ""
+    ],
+    [
+     "something",
+     15.6,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 15.85,
+   "end": 16.89,
+   "words": [
+    [
+     "goes",
+     15.9,
+     ""
+    ],
+    [
+     "wrong.",
+     16.16,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 17.15,
+   "end": 18.09,
+   "words": [
+    [
+     "Spend",
+     17.2,
+     ""
+    ],
+    [
+     "less",
+     17.5,
+     ""
+    ],
+    [
+     "time",
+     17.76,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 18.09,
+   "end": 18.65,
+   "words": [
+    [
+     "organizing",
+     18.14,
+     "em"
+    ]
+   ]
+  },
+  {
+   "start": 18.65,
+   "end": 19.61,
+   "words": [
+    [
+     "and",
+     18.7,
+     ""
+    ],
+    [
+     "more",
+     18.96,
+     ""
+    ],
+    [
+     "time",
+     19.3,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 19.61,
+   "end": 20.05,
+   "words": [
+    [
+     "enjoying",
+     19.66,
+     "emw"
+    ]
+   ]
+  },
+  {
+   "start": 20.05,
+   "end": 20.61,
+   "words": [
+    [
+     "your",
+     20.1,
+     ""
+    ],
+    [
+     "time",
+     20.46,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 20.61,
+   "end": 21.21,
+   "words": [
+    [
+     "with",
+     20.66,
+     ""
+    ],
+    [
+     "your",
+     20.86,
+     ""
+    ],
+    [
+     "family",
+     21.06,
+     ""
+    ]
+   ]
+  },
+  {
+   "start": 21.21,
+   "end": 22.13,
+   "words": [
+    [
+     "in",
+     21.26,
+     ""
+    ],
+    [
+     "China.",
+     21.52,
+     ""
+    ]
+   ]
+  }
+ ],
+ "cards": [
+  {
+   "kind": "title",
+   "start": 1.82,
+   "dur": 1.713,
+   "top": 1030,
+   "lines": [
+    {
+     "style": "heavy",
+     "size": 134,
+     "words": [
+      [
+       "Don't",
+       1.9
+      ],
+      [
+       "book",
+       2.22
+      ]
+     ]
+    },
+    {
+     "style": "heavy",
+     "size": 134,
+     "words": [
+      [
+       "your",
+       2.46
+      ],
+      [
+       "hotel",
+       2.72
+      ]
+     ]
+    },
+    {
+     "style": "serif-red",
+     "size": 124,
+     "words": [
+      [
+       "just",
+       2.94
+      ],
+      [
+       "yet.",
+       3.3
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "cream",
+   "start": 6.49,
+   "dur": 1.077,
+   "words": [
+    [
+     "better",
+     6.52
+    ],
+    [
+     "price.",
+     6.8
+    ]
+   ]
+  },
+  {
+   "kind": "navy",
+   "start": 11.18,
+   "dur": 0.92,
+   "words": [
+    [
+     "children's",
+     11.22
+    ],
+    [
+     "needs,",
+     11.7
+    ]
+   ]
+  },
+  {
+   "kind": "title",
+   "start": 22.6667,
+   "dur": 3.233,
+   "top": 990,
+   "lines": [
+    {
+     "style": "serif-red",
+     "size": 72,
+     "words": [
+      [
+       "your",
+       23.02
+      ],
+      [
+       "hotel",
+       23.24
+      ],
+      [
+       "savings",
+       23.48
+      ],
+      [
+       "alone",
+       23.8
+      ]
+     ]
+    },
+    {
+     "style": "heavy",
+     "size": 96,
+     "words": [
+      [
+       "can",
+       24.18
+      ],
+      [
+       "cover",
+       24.5
+      ],
+      [
+       "our",
+       24.8
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 96,
+     "words": [
+      [
+       "concierge",
+       25.08
+      ],
+      [
+       "fee.",
+       25.64
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kind": "title",
+   "hold": true,
+   "start": 25.94,
+   "dur": 3.193,
+   "top": 960,
+   "lines": [
+    {
+     "style": "small-ink",
+     "size": 62,
+     "words": [
+      [
+       "comment",
+       25.99
+      ]
+     ]
+    },
+    {
+     "style": "heavy-red",
+     "size": 200,
+     "slam": true,
+     "words": [
+      [
+       "hotel",
+       26.5
+      ]
+     ]
+    },
+    {
+     "style": "small-ink",
+     "size": 52,
+     "words": [
+      [
+       "and",
+       27.0
+      ],
+      [
+       "I'll",
+       27.36
+      ],
+      [
+       "send",
+       27.54
+      ],
+      [
+       "you",
+       27.66
+      ],
+      [
+       "the",
+       27.82
+      ],
+      [
+       "details.",
+       28.0
+      ]
+     ]
+    }
+   ]
+  }
+ ],
+ "sfx": [
+  [
+   "whoosh_es.wav",
+   0.48,
+   0.35
+  ],
+  [
+   "whoosh_es.wav",
+   4.82,
+   0.3
+  ],
+  [
+   "whoosh_es.wav",
+   8.1,
+   0.3
+  ],
+  [
+   "whoosh_es.wav",
+   12.51,
+   0.3
+  ],
+  [
+   "whoosh_es.wav",
+   19.52,
+   0.3
+  ],
+  [
+   "pop_es.wav",
+   1.88,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   6.46,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   11.15,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   23.0,
+   0.35
+  ],
+  [
+   "pop_es.wav",
+   26.45,
+   0.55
+  ]
+ ],
+ "cap_top": 1060,
+ "music": {
+  "file": "music_marimba_el.mp3",
+  "vol": 0
+ }
+}
